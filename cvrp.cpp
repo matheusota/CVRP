@@ -11,6 +11,7 @@
 #include "myutils.h"
 #include "cvrp.h"
 #include "cvrpalgs.h"
+#include <regex>
 
 using namespace lemon;
 using namespace std;
@@ -265,13 +266,46 @@ bool readCVRP(string          filename,
         cerr << "File '" << filename << "' does not exist.\n"; exit(0);
     }
 
-    IgnoreComments(ifile);
+    //extract info from filename
+    regex e1("[0-9]+");
 
-    ifile >> n >> ws; //number of vertices
+    auto rgx_begin = sregex_iterator(filename.begin(), filename.end(), e1);
+    auto rgx_end = sregex_iterator();
+
+    for (sregex_iterator i = rgx_begin; i != rgx_end; ++i) {
+        smatch match = *i;
+
+        if(i == rgx_begin)
+            n = stoi(match.str());
+        else
+            nroutes = stoi(match.str());
+    }
+
+    //IgnoreComments(ifile);
+
+    //ignore comments
+    getline(ifile,STR);
+    getline(ifile,STR);
+    getline(ifile,STR);
+    getline(ifile,STR);
+    getline(ifile,STR);
+
+    //get capacity
+    getline(ifile,STR);
+
+    regex e2("[0-9]+");
+    rgx_begin = sregex_iterator(STR.begin(), STR.end(), e2);
+    for (sregex_iterator i = rgx_begin; i != rgx_end; ++i) {
+        smatch match = *i;
+        capacity = stoi(match.str());
+    }
+
+    //more comments
+    getline(ifile,STR);
 
     //read nodes: <node_id> <posx> <posy>
     for(i = 0; i < n; i++){
-        ifile >> nameu >> posx_aux >> posy_aux >> ws;
+        ifile >> ws >> nameu >> posx_aux >> posy_aux;
 
         nameu--;
         u = g.addNode();
@@ -282,7 +316,7 @@ bool readCVRP(string          filename,
         posy[u] = posy_aux;
     }
 
-    //add edges since it is always a complete graph
+    //add edges (it is always a complete graph)
     //cout << "added edges" << endl;
     for(NodeIt v(g); v != INVALID; ++v){
         for(NodeIt u(g); u != INVALID; ++u){
@@ -294,26 +328,17 @@ bool readCVRP(string          filename,
         }
     }
 
-    IgnoreComments(ifile);
+    //more comments
+    ifile >> ws;
+    getline(ifile,STR);
 
     //Begin of specific parts of the CVRP
     // depot
-    ifile >> nameu >> ws;
-    auto t = int2node.find(nameu);
-    if(t == int2node.end()){
-        cerr << "ERROR: Unknown node: " << nameu << endl;
-        exit(1);
-    }
-    else{
-        depot = int2node[nameu];
-    }
-
-    ifile >> nroutes >> ws;
-    ifile >> capacity >> ws;
+    depot = int2node[0];
 
     for(i = 0; i < n; i++){
         // format: <node> <demand>
-        ifile >> nameu >> peso >> ws;
+        ifile >> ws >> nameu >> peso;
         nameu--;
         if (ifile.eof()){
             cerr << "Reached unexpected end of file " <<filename << ".\n";
