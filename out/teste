@@ -1,0 +1,18 @@
+algorithm  : EXACT
+instance   : in/teste
+elapsedTime: 0 s
+timeLimit  : 300 s
+optimal    : No
+sol. status: ARC_MISSING
+Solution returned has not passed in the verification.
+n          : 7
+m          : 24
+k          : 3
+capacity   : 4.5
+depot      : 1
+lowerBound : 0
+cost       : 999999
+upperBound : 1.79769e+308
+tour       : 1
+arc	load
+( ARC_MISSING )	0

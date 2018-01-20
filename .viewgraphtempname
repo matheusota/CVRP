@@ -1,0 +1,78 @@
+graph g {
+	node [
+shape = "ellipse",
+style = "bold",
+color = "black",
+fontsize = 20,
+];
+	0 [style = "bold", color="blue", pos = "33.402062,30.515464!" ];
+	1 [style = "bold", color="red", pos = "39.175258,17.319588!" ];
+	2 [style = "bold", color="red", pos = "20.206186,1.237113!" ];
+	3 [style = "bold", color="red", pos = "19.793814,2.474227!" ];
+	4 [style = "bold", color="red", pos = "4.948454,2.061856!" ];
+	5 [style = "bold", color="red", pos = "11.546392,35.876289!" ];
+	6 [style = "bold", color="red", pos = "23.505155,11.546392!" ];
+	7 [style = "bold", color="red", pos = "34.226804,15.257732!" ];
+	8 [style = "bold", color="red", pos = "5.360825,9.072165!" ];
+	9 [style = "bold", color="red", pos = "0.412371,15.257732!" ];
+	10 [style = "bold", color="red", pos = "0.824742,32.989691!" ];
+	11 [style = "bold", color="red", pos = "1.649485,3.298969!" ];
+	12 [style = "bold", color="red", pos = "40.000000,20.618557!" ];
+	13 [style = "bold", color="red", pos = "34.226804,9.484536!" ];
+	14 [style = "bold", color="red", pos = "24.742268,23.505155!" ];
+	15 [style = "bold", color="red", pos = "0.000000,25.979381!" ];
+	16 [style = "bold", color="red", pos = "35.876289,20.206186!" ];
+	17 [style = "bold", color="red", pos = "37.113402,0.000000!" ];
+	18 [style = "bold", color="red", pos = "7.422680,12.371134!" ];
+	19 [style = "bold", color="red", pos = "37.938144,0.412371!" ];
+	20 [style = "bold", color="red", pos = "20.206186,37.525773!" ];
+	21 [style = "bold", color="red", pos = "40.000000,4.948454!" ];
+	22 [style = "bold", color="red", pos = "1.649485,16.494845!" ];
+	23 [style = "bold", color="red", pos = "16.907216,2.886598!" ];
+	24 [style = "bold", color="red", pos = "24.742268,24.742268!" ];
+	25 [style = "bold", color="red", pos = "3.298969,39.175258!" ];
+	26 [style = "bold", color="red", pos = "32.577320,21.855670!" ];
+	27 [style = "bold", color="red", pos = "23.092784,27.628866!" ];
+	28 [style = "bold", color="red", pos = "9.072165,5.360825!" ];
+	29 [style = "bold", color="red", pos = "7.835052,28.041237!" ];
+	30 [style = "bold", color="red", pos = "34.639175,23.917526!" ];
+	31 [style = "bold", color="red", pos = "40.000000,1.237113!" ];
+	0  -- 24 [label = "", color="black" ];
+	0  -- 21 [label = "", color="black" ];
+	0  -- 18 [label = "", color="black" ];
+	0  -- 12 [label = "", color="black" ];
+	0  -- 6 [label = "", color="black" ];
+	1  -- 16 [label = "", color="black" ];
+	2  -- 23 [label = "", color="black" ];
+	3  -- 2 [label = "", color="black" ];
+	4  -- 11 [label = "", color="black" ];
+	5  -- 20 [label = "", color="black" ];
+	6  -- 3 [label = "", color="black" ];
+	7  -- 26 [label = "", color="black" ];
+	8  -- 9 [label = "", color="black" ];
+	9  -- 22 [label = "", color="black" ];
+	10  -- 25 [label = "", color="black" ];
+	11  -- 28 [label = "", color="black" ];
+	12  -- 1 [label = "", color="black" ];
+	13  -- 7 [label = "", color="black" ];
+	14  -- 0 [label = "", color="black" ];
+	15  -- 29 [label = "", color="black" ];
+	16  -- 30 [label = "", color="black" ];
+	17  -- 13 [label = "", color="black" ];
+	18  -- 8 [label = "", color="black" ];
+	19  -- 17 [label = "", color="black" ];
+	20  -- 0 [label = "", color="black" ];
+	21  -- 31 [label = "", color="black" ];
+	22  -- 15 [label = "", color="black" ];
+	23  -- 4 [label = "", color="black" ];
+	24  -- 27 [label = "", color="black" ];
+	25  -- 5 [label = "", color="black" ];
+	26  -- 0 [label = "", color="black" ];
+	27  -- 0 [label = "", color="black" ];
+	28  -- 14 [label = "", color="black" ];
+	29  -- 10 [label = "", color="black" ];
+	30  -- 0 [label = "", color="black" ];
+	31  -- 19 [label = "", color="black" ];
+label="CVRP. Instance: in/augerat_21_cvrp. Tour with cost: 787.082";
+fontsize=30;
+}

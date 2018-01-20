@@ -1,0 +1,16 @@
+Siga as instruções do arquivo README em 
+http://www.ic.unicamp.br/~fkm/codes/connectivity.tgz. 
+Dentre outras coisas, você será instruído a: 
+- Instalar GUROBI, LEMON e GraphViz; e 
+- Corrigir o leitor de pdf.
+
+Programas exemplos, incluindo uso do GUROBI e do LEMON,
+estão presentes em connectivity.
+
+Voce pode precisar usar o script activate.sh em connectivity 
+para atribuir variavel de ambiente para correto funcionamento
+do GUROBI e do LEMON.
+
+Há descrição do formato dos arquivo de entrada em INSTANCES.
+Entretanto, é pouco provável que você precise desta informação,
+pois o projeto base já faz a leitura da instância de entrada.

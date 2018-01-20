@@ -1,0 +1,16 @@
+algorithm  : EXACT
+instance   : in/gr_berlin51_lpd
+elapsedTime: 110 s
+timeLimit  : 30 s
+optimal    : No
+sol. status: NOT_FOUND_FEASIBLE_SOLUTION
+n          : 51
+m          : 2550
+k          : 25
+capacity   : 198.5
+depot      : 1
+lowerBound : 0
+cost       : 1.79769e+308
+upperBound : 1.79769e+308
+tour       :
+arc	load

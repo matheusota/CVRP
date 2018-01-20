@@ -1,0 +1,32 @@
+The first number, say N, in the first line of such a file, is the number of vertices.
+
+If this number is followed by a -1, you have an euclidean graph. In this case,
+in the next N lines you can find a tuple "v, px, py" for each vertex v
+(e.g. gr_100). The position (px,py) is the coordinate of the vertex v in the
+plane. The graph is complete and distances are calculated by the euclidean
+distance.
+
+The program lpdtsp.e cannot read the euclidean graph format. However, you can pass an
+euclidean graph using the following format.
+
+If after the number of vertices N you find a number M different of -1, then you
+have a graph given by nodes and edges. The next N lines have the name of the
+vertices (e.g. gr_50). Optionally, after the name of each vertex, you may give
+the position px and py of the corresponding node (e.g. gr_att48). And after the
+vertices, the next M lines you can find a tuple "u v weight" that is an edge
+that connects vertex u and vertex v and has weight "weight".
+
+Schematic view:
+n m 
+v_n x_n y_n
+...
+n_1 x_1 y_1
+e_1.u e_1.v e_1.dist
+...
+e_m.u e_m.v e_m.dist
+d
+C
+k
+s_1 t_1 w_1
+...
+s_k t_k w_k
