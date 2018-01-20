@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.4.1, 2018-01-20T10:22:46. -->
+<!-- Written by QtCreator 4.4.1, 2018-01-20T11:08:18. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -169,7 +169,7 @@
     </valuelist>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Arguments">-e -g -i in/augerat_21_cvrp   -o out/augerat_21_cvrp.EXACT.out</value>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Arguments">-e -g -i in/kinder4_cvrp   -o out/kinder4_cvrp.EXACT.out</value>
     <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Executable">/home/matheus/MC658/bcp/cvrp.e</value>
     <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.WorkingDirectory">%{buildDir}</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Run /home/matheus/MC658/bcp/cvrp.e</value>

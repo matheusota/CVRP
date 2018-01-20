@@ -26,7 +26,7 @@ ifeq ($(shell uname), Darwin)
 	endif
 	CC      = g++
 	#CC_ARGS    = -Wall -m64 -O3 -Wall $(CPPSTDLIB)  -Wno-c++11-extensions
-	CC_ARGS    =  -m64 -Wall -std=c++11 -D_GLIBCXX_USE_CXX11_ABI=0 
+	CC_ARGS    =  -m64  -O2 -Wall -std=c++11 -D_GLIBCXX_USE_CXX11_ABI=0 
 	RELEASE := $(shell uname -r | cut -f 1 -d .)
 	CC_LIB   = -lm -lpthread $(CPPSTDLIB)
 	GUROBI_DIR = /Library/gurobi$(VERSION)/$(PLATFORM)
@@ -38,7 +38,7 @@ else
 	PLATFORM = linux64
 	CC      = g++
 	#CC_ARGS    = -m64 -O2 -Wall -std=c++11
-	CC_ARGS    = -m64 -g -Wall -std=c++11 -D_GLIBCXX_USE_CXX11_ABI=0 
+	CC_ARGS    = -m64 -O2 -Wall -std=c++11 -D_GLIBCXX_USE_CXX11_ABI=0 
 	RELEASE := $(shell uname -r | cut -f 1 -d .)
 	CC_LIB   = -lm -lpthread
 	GUROBI_DIR = /home/matheus/gurobi$(VERSION)/$(PLATFORM)

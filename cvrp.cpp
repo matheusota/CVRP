@@ -76,9 +76,10 @@ int main(int argc, char *argv[])
     //optimal = exact(l, ts, params.timeLimit);
     //break;
 
+    exact(l, ts, params.timeLimit);
     clock_t after = clock();
     elapsedTime = (double) (after - before) / CLOCKS_PER_SEC;
-    exact(l, ts, params.timeLimit);
+
     printf("Elapsed time: %f\n", elapsedTime);
 
     // Show a graphical solution
@@ -251,7 +252,7 @@ bool readCVRP(string          filename,
     Edge e;
     int nameu;
     string STR;
-    double peso;
+    double peso, posx_aux, posy_aux;
     Node u,v;
 #if __cplusplus >= 201103L
     std::unordered_map<int,Node> int2node,test;
@@ -266,41 +267,29 @@ bool readCVRP(string          filename,
 
     IgnoreComments(ifile);
 
-    ifile >> n; //number of vertices
+    ifile >> n >> ws; //number of vertices
 
-    for (i=0;i<n;i++) {
-        getline(ifile,STR);
-        if (ifile.eof()) {cerr<<"Reached unexpected end of file "<<filename<<".\n";exit(0);}
-        while (STR=="") getline(ifile,STR);
-        {
-            string token;
-            istringstream ins; // Declare an input string stream.
-            ins.str(STR);        // Specify string to read.
-            int nt = 0;
-            int int_token;
-            while( getline(ins, token, ' ') ) {
-                // format: <node_name>  <pos_x>  <pos_y>
-                if (nt==0) {
-                    int_token = stoi(token);
-                    auto test = int2node.find(int_token);
+    //read nodes: <node_id> <posx> <posy>
+    for(i = 0; i < n; i++){
+        ifile >> nameu >> posx_aux >> posy_aux >> ws;
 
-                    if (test!=int2node.end()){cerr<<"ERROR: Repeated node: "<<int_token<<endl;exit(0);}
-                    v = g.addNode(); int2node[int_token] = v; vname[v] = int_token;}
-                else if (nt==1) { posx[v] = atof(token.c_str());}
-                else if (nt==2) { posy[v] = atof(token.c_str());}
-                nt++;
-            }
-        }
+        nameu--;
+        u = g.addNode();
+        int2node[nameu] = u;
+        vname[u] = nameu;
+
+        posx[u] = posx_aux;
+        posy[u] = posy_aux;
     }
 
     //add edges since it is always a complete graph
-    cout << "added edges" << endl;
+    //cout << "added edges" << endl;
     for(NodeIt v(g); v != INVALID; ++v){
         for(NodeIt u(g); u != INVALID; ++u){
             if(g.id(v) < g.id(u)){
                 e = g.addEdge(v, u);
                 weight[e] = sqrt((posx[v] - posx[u]) * (posx[v] - posx[u]) + (posy[v] - posy[u]) * (posy[v] - posy[u]));
-                cout << "w["<< g.id(v) << "][" << g.id(u) << "] = " << weight[e] << endl;
+                //cout << "w["<< g.id(v) << "][" << g.id(u) << "] = " << weight[e] << endl;
             }
         }
     }
@@ -309,7 +298,7 @@ bool readCVRP(string          filename,
 
     //Begin of specific parts of the CVRP
     // depot
-    ifile >> nameu;
+    ifile >> nameu >> ws;
     auto t = int2node.find(nameu);
     if(t == int2node.end()){
         cerr << "ERROR: Unknown node: " << nameu << endl;
@@ -319,13 +308,13 @@ bool readCVRP(string          filename,
         depot = int2node[nameu];
     }
 
-    ifile >> nroutes;
-    ifile >> capacity;
+    ifile >> nroutes >> ws;
+    ifile >> capacity >> ws;
 
-    for(i = 0; i < n - 1; i++){
+    for(i = 0; i < n; i++){
         // format: <node> <demand>
-        ifile >> nameu;
-        ifile >> peso;
+        ifile >> nameu >> peso >> ws;
+        nameu--;
         if (ifile.eof()){
             cerr << "Reached unexpected end of file " <<filename << ".\n";
             exit(1);
@@ -683,6 +672,7 @@ void solutionAsGraphical(CVRPInstance &instance, CVRPSolution  &sol, string inpu
     EdgeColorMap acolor(h);  // color of edges
     EdgeStringMap aname(h);
     // ArcStringMap aname(h);  // name of edges
+    int color = 1;
 
     for(ListGraph::NodeIt v(instance.g); v != INVALID; ++v){
         ListGraph::Node hv = h.addNode();
@@ -704,9 +694,18 @@ void solutionAsGraphical(CVRPInstance &instance, CVRPSolution  &sol, string inpu
 
         u = sol.tour[i - 1];
         v = sol.tour[i];
+
+        //change tours color
+        if(instance.vname[u] == 0){
+            color++;
+
+            if(color == 11)
+                color = 1;
+        }
+
         e = h.addEdge(g2h[u] , g2h[v]);
         // aname[a] = "";
-        acolor[e]= BLACK;
+        acolor[e]= color;
     }
 
 

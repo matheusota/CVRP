@@ -69,6 +69,7 @@ class CVRPCallback: public GRBCallback {
                 }
 
                 //call cvrpsep routine for finding the RCIs
+                /*
                 cout << "demand: ";
                 for(i = 1; i < cvrp.n; i++)
                     cout << " " << Demand[i];
@@ -88,6 +89,7 @@ class CVRPCallback: public GRBCallback {
                 for(i = 1; i < nedges; i++)
                     cout << " " << EdgeX[i];
                 cout << endl;
+                */
 
                 CAPSEP_SeparateCapCuts(NoOfCustomers, Demand, CAP, nedges, EdgeTail, EdgeHead,
                     EdgeX, MyOldCutsCMP,MaxNoOfCuts, EpsForIntegrality,
@@ -122,17 +124,17 @@ class CVRPCallback: public GRBCallback {
                     //create the gurobi expression for x(S:S) <= |S| - k(S)
                     GRBLinExpr expr = 0;
 
-                    cout << "constraint: ";
+                    //cout << "constraint: ";
                     for(j = 1; j <= ListSize; j++){
                         for(int k = j + 1; k <= ListSize; k++){
                             Edge e = findEdge(cvrp.g, cvrp.g.nodeFromId(List[j]), cvrp.g.nodeFromId(List[k]));
-                            cout << " + x[" << List[j] << "][" << List[k] << "]";
+                            //cout << " + x[" << List[j] << "][" << List[k] << "]";
                             expr += x[e];
                         }
                     }
 
                     RHS = MyCutsCMP -> CPL[i] -> RHS;
-                    cout << " <= " << RHS << endl;
+                    //cout << " <= " << RHS << endl;
 
                     //add the cut to the LP
                     addLazy(expr <= RHS);
@@ -163,7 +165,7 @@ void toMatrix(EdgeGRBVarMap &x, const CVRPInstance &l, int **m, int n){
             int value = int(x[e].get(GRB_DoubleAttr_X) + 0.5);
             m[u][v] = value;
             m[v][u] = value;
-            cout << "going from " << u << " to " << v << endl;
+            //cout << "going from " << u << " to " << v << endl;
         }
     }
 }
@@ -242,12 +244,12 @@ bool exact(const CVRPInstance &l, CVRPSolution  &s, int tl){
     //add constraint x(\delta(0)) == 2K
     GRBLinExpr expr_depot = 0;
 
-    cout << "constraint: ";
+    //cout << "constraint: ";
     for(IncEdgeIt e(l.g, l.depot); e != INVALID; ++e){
-        cout << " + x[" << l.vname[l.g.u(e)] << "][" << l.vname[l.g.v(e)] << "]";
+        //cout << " + x[" << l.vname[l.g.u(e)] << "][" << l.vname[l.g.v(e)] << "]";
         expr_depot += x[e];
     }
-    cout << " = 2 * " << l.nroutes << endl;
+    //cout << " = 2 * " << l.nroutes << endl;
 
     model.addConstr(expr_depot == 2 * l.nroutes);
 
