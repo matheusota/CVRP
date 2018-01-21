@@ -2,6 +2,8 @@ cvrp.cpp
 cvrp.h
 cvrpalgs.cpp
 cvrpalgs.h
+cvrpcutscallback.cpp
+cvrpcutscallback.h
 geompack.cpp
 geompack.hpp
 mygraphlib.cpp

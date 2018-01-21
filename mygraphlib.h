@@ -50,6 +50,7 @@ typedef ListGraph::NodeMap<Edge> NodeEdgeMap;
 typedef ListGraph::EdgeIt EdgeIt;
 typedef ListGraph::IncEdgeIt IncEdgeIt;
 typedef ListGraph::EdgeMap<double> EdgeValueMap;
+typedef ListGraph::EdgeMap<long double> EdgeLongDoubleMap;
 typedef ListGraph::EdgeMap<int> EdgeColorMap;
 typedef ListGraph::EdgeMap<int> EdgeIndexMap;
 typedef ListGraph::EdgeMap<int> EdgeIntMap;
