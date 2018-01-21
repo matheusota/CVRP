@@ -4,3 +4,5 @@
 *.files
 *.includes
 *.o
+.viewgraphtempname
+.viewgraphtempname.pdf

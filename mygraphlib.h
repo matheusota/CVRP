@@ -147,6 +147,14 @@ int ViewListGraph(ListGraph &g,
       EdgeColorMap  &ecolor, // color of edge
       string text); // text displayed below the figure
 
+int ViewListGraph2(ListGraph &g,
+                  NodeIntMap &vname, // name of the nodes
+                  NodePosMap& px, // x-position of the nodes
+                  NodePosMap& py, // y-position of the nodes
+                  int solution[], //edges
+                  int solution_size,
+                  string text);
+
 int ViewEuclideanListGraph(ListGraph &g,
 			   NodeStringMap &vname, // nome dos vertices
 			   NodePosMap   &posx, // coord. x dos vertices

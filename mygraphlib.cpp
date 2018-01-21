@@ -711,7 +711,89 @@ int ViewListGraph(ListGraph &g,
     return(1);
 }
 
+// This routine visualize a graph using a pdf viewer. It uses neato (from
+// graphviz.org) to generate a pdf file and a program to view the pdf file. The
+// pdf viewer name is given in the viewername parameter.
+int ViewListGraph2(ListGraph &g,
+                  NodeIntMap &vname, // name of the nodes
+                  NodePosMap& px, // x-position of the nodes
+                  NodePosMap& py, // y-position of the nodes
+                  int solution[], //edges
+                  int solution_size,
+                  string text) // text displayed below the figure
+{
+    char tempname[1000],cmd[1000],outputname[1000];
 
+    memset(tempname,0,1000);
+    memset(cmd,0,1000);
+    memset(outputname,0,1000);
+
+    FILE *fp;
+    double minpx=DBL_MAX,minpy=DBL_MAX,maxpx=-DBL_MAX,maxpy=-DBL_MAX,delta,factor;
+
+    // obtain a temporary file name
+    strcpy(tempname,".viewgraphtempname");
+    sprintf(outputname,"%s.pdf",tempname);
+    fp = fopen(tempname,"w+");
+    if (fp==NULL) {cout << "Error to open temporary file to visualize graph.\n"; return(0);}
+    for (NodeIt v(g); v!=INVALID; ++v) {
+        if (px[v] < minpx) minpx = px[v];
+        if (px[v] > maxpx) maxpx = px[v];
+        if (py[v] < minpy) minpy = py[v];
+        if (py[v] > maxpy) maxpy = py[v];
+    }
+    factor = 40; // quanto maior, menor o desenho do vértice
+    delta = fmax(maxpx - minpx,maxpy - minpy);
+
+    // Generate a text file with the graph format of neato program
+    fprintf(fp,"graph g {\n");
+    //fprintf(fp,"\tsize = \"10, 10\";\n");
+    //fprintf(fp,"\tnode [shape = \"circle\"];\n");
+    fprintf(fp,"\tnode [\n");
+    fprintf(fp,"shape = \"ellipse\",\n");
+    fprintf(fp,"style = \"bold\",\n");
+    fprintf(fp,"color = \"black\",\n");
+    fprintf(fp,"fontsize = %d,\n",VIEWGRAPH_FONTSIZE);
+    fprintf(fp,"];\n");
+
+    int color;
+    for (NodeIt v(g); v!=INVALID; ++v) {
+        if (vname[v] == 0)
+            color = BLUE;
+        else
+            color = RED;
+        fprintf(fp,"\t%s [style = \"bold\", color=\"%s\", pos = \"%lf,%lf!\" ];\n",
+                to_string(vname[v]).c_str(),ColorName(color).c_str(),factor*(px[v]-minpx)/delta,factor*(py[v]-minpy)/delta);
+    }
+
+    color = 1;
+    int u, v;
+    for(int i = 1; i < solution_size; i++){
+        u = solution[i - 1];
+        v = solution[i];
+
+        //change tours color
+        if(u == 0){
+            color++;
+
+            if(color == 11)
+                color = 1;
+        }
+
+        fprintf(fp,"\t%s  -- %s [label = \"%s\", color=\"%s\" ];\n",to_string(u).c_str(),to_string(v).c_str(),"",ColorName(color).c_str());
+    }
+
+    fprintf(fp,"label=\"%s\";\n",text.c_str());
+    fprintf(fp,"fontsize=%d;\n",VIEWGRAPH_CAPTIONFONTSIZE);
+
+    fprintf(fp,"}\n");
+    fclose(fp);
+    sprintf(cmd,"neato -Tpdf %s -o %s",tempname,outputname); system(cmd);
+    //cout << "Grafo em "<< tempname << "\n";
+    view_pdffile(outputname);
+    //pause();
+    return(1);
+}
 
 // The same routine ViewListGraph above, but without positions px and py.
 // These positions are generated first and then the routine ViewListGraph

@@ -688,53 +688,11 @@ string resultAsString(CVRPInstance  &cvrpInstance,
 //------------------------------------------------------------------------------
 void solutionAsGraphical(CVRPInstance &instance, CVRPSolution  &sol, string inputFile)
 {
-    ListGraph h;
-    NodeStringMap h_vname(h);  // node names
-    ListGraph::NodeMap<ListGraph::Node> g2h(instance.g);  // maps a node of g to a node of h
-    NodePosMap h_posx(h);
-    NodePosMap h_posy(h);
-    NodeColorMap vcolor(h);   // color of the vertices
-    EdgeColorMap acolor(h);  // color of edges
-    EdgeStringMap aname(h);
-    // ArcStringMap aname(h);  // name of edges
-    int color = 1;
+    int *int_sol = new int[(int)sol.tour.size()];
+    for(int i = 0; i < (int)sol.tour.size(); i++)
+        int_sol[i] = instance.vname[sol.tour[i]];
 
-    for(ListGraph::NodeIt v(instance.g); v != INVALID; ++v){
-        ListGraph::Node hv = h.addNode();
-        g2h[v] = hv;
-        h_posx[hv] = instance.posx[v];
-        h_posy[hv] = instance.posy[v];
-        h_vname[hv] = to_string(instance.vname[v]);  // + ".\"" + vti(v, l) +"\"";
-        if(v == instance.depot){
-            vcolor[hv] = BLUE;
-        }
-        else{
-            vcolor[hv] = RED;
-        }
-    }
-
-    for(int i = 1; i < (int)sol.tour.size(); i++){
-        Node u, v;
-        Edge e;
-
-        u = sol.tour[i - 1];
-        v = sol.tour[i];
-
-        //change tours color
-        if(instance.vname[u] == 0){
-            color++;
-
-            if(color == 11)
-                color = 1;
-        }
-
-        e = h.addEdge(g2h[u] , g2h[v]);
-        // aname[a] = "";
-        acolor[e]= color;
-    }
-
-
-    ViewListGraph(h, h_vname, aname, h_posx, h_posy, vcolor, acolor, "CVRP. Instance: " + inputFile + ". Tour with cost: " + DoubleToString(sol.cost));
+    ViewListGraph2(instance.g, instance.vname, instance.posx, instance.posy, int_sol, (int)sol.tour.size(), "CVRP. Instance: " + inputFile + ". Tour with cost: " + DoubleToString(sol.cost));
 }
 //------------------------------------------------------------------------------
 string decodeAlg(ALG alg)

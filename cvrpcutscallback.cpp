@@ -26,12 +26,11 @@ void CVRPCutsCallback::callback(){
 
     //populate EdgeTail, EdgeHead and EdgeX
     int *EdgeTail, *EdgeHead, i = 1;
-    double *EdgeX, *    weight;
+    double *EdgeX;
 
     EdgeTail = new int[nedges + 1];
     EdgeHead = new int[nedges + 1];
     EdgeX = new double[nedges + 1];
-    weight = new double[nedges + 1];
 
     for(EdgeIt e(cvrp.g); e != INVALID; ++e){
         if((this ->*solution_value)(x[e]) > EpsForIntegrality){
@@ -46,7 +45,6 @@ void CVRPCutsCallback::callback(){
             EdgeTail[i] = u;
             EdgeHead[i] = v;
             EdgeX[i] = (this ->*solution_value)(x[e]);
-            weight[i] = cvrp.weight[e];
             i++;
         }
     }
@@ -78,34 +76,13 @@ void CVRPCutsCallback::callback(){
         EdgeX, MyOldCutsCMP,MaxNoOfCuts, EpsForIntegrality,
         &IntegerAndFeasible, &MaxViolation, MyCutsCMP);
 
+    //free edges arrays
+    delete[] EdgeTail;
+    delete[] EdgeHead;
+    delete[] EdgeX;
+
     //Optimal solution found
     if (IntegerAndFeasible){
-        /*
-        cout << "INTEGER AND FEASIBLE! " << endl;
-
-        cout << "EdgeTail: ";
-        for(i = 1; i < nedges; i++)
-            cout << " " << EdgeTail[i];
-        cout << endl;
-
-        cout << "EdgeHead: ";
-        for(i = 1; i < nedges; i++)
-            cout << " " << EdgeHead[i];
-        cout << endl;
-
-        cout << "EdgeX: ";
-        for(i = 1; i < nedges; i++)
-            cout << " " << EdgeX[i];
-        cout << endl;
-
-        double total = 0;
-
-        for(i = 1; i < nedges; i++){
-            total += EdgeX[i] * weight[i];
-        }
-
-        cout << "SOL VALUE " << total << endl;
-        */
         return;
     }
 

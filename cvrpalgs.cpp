@@ -141,29 +141,14 @@ bool exact(const CVRPInstance &l, CVRPSolution  &s, int tl){
 
             //founded optimal solution, now we need to construct the solution
             else{
+                //free the demand vector
+                //delete[] Demand;
+
                 //print variable values
-                double they = 0, me = 0;
                 for(EdgeIt e(l.g); e != INVALID; ++e){
                     cout << "x[" << l.vname[l.g.u(e)] << "][" << l.vname[l.g.v(e)] << "] = ";
-                    cout << x[e].get(GRB_DoubleAttr_X) << " -> " << l.weight[e] << endl;
-
-                    if((l.vname[l.g.u(e)] == 10 && l.vname[l.g.v(e)] == 29) ||
-                            (l.vname[l.g.u(e)] == 15 && l.vname[l.g.v(e)] == 29) ||
-                            (l.vname[l.g.u(e)] == 0 && l.vname[l.g.v(e)] == 18)){
-                        me += l.weight[e];
-                        cout << "me edge " << l.weight[e] << endl;
-                    }
-
-                    if((l.vname[l.g.u(e)] == 10 && l.vname[l.g.v(e)] == 15) ||
-                            (l.vname[l.g.u(e)] == 18 && l.vname[l.g.v(e)] == 29) ||
-                            (l.vname[l.g.u(e)] == 0 && l.vname[l.g.v(e)] == 29)){
-                        they += l.weight[e];
-                        cout << "they edge " << l.weight[e] << endl;
-                    }
+                    cout << x[e].get(GRB_DoubleAttr_X) << endl;
                 }
-
-                cout << "they " << they << endl;
-                cout << "me " << me << endl;
 
                 //get a matrix representation of the graph
                 int **matrix;
@@ -184,6 +169,11 @@ bool exact(const CVRPInstance &l, CVRPSolution  &s, int tl){
                     i = j;
                 }
                 s.cost = model.get(GRB_DoubleAttr_ObjVal);
+
+                //free matrix
+                for (i = 0; i < l.n; i++)
+                    delete[] matrix[i];
+                delete[] matrix;
             }
         }
         else
