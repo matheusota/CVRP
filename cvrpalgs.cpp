@@ -55,24 +55,6 @@ bool exact(const CVRPInstance &l, CVRPSolution  &s, int tl){
     s.cost = DBL_MAX;
 
     //---------------------------------------------------------------------------
-    //initialize some cvrpsep variables
-    NoOfCustomers = l.n - 1;
-    CAP = l.capacity;
-    EpsForIntegrality = 0.0001;
-    MaxNoOfCuts = 100;
-    MaxViolation = 0.0001;
-
-    //populate Demand vector
-    Demand = new int[NoOfCustomers + 1];
-    for(NodeIt v(l.g); v != INVALID; ++v){
-        if(l.vname[v] != 0)
-            Demand[l.vname[v]] = l.demand[v];
-    }
-
-    //initialize Constraint structure
-    CMGR_CreateCMgr(&MyCutsCMP,100);
-    CMGR_CreateCMgr(&MyOldCutsCMP,100);
-
     //gurobi variables
     EdgeGRBVarMap x(l.g);
     GRBEnv env = GRBEnv();
@@ -131,6 +113,9 @@ bool exact(const CVRPInstance &l, CVRPSolution  &s, int tl){
             CVRPCutsCallback cb = CVRPCutsCallback(l , x);
             model.setCallback(&cb);
 
+            //initialize some cvrpsep variables
+            cb.initializeCVRPSEPConstants(l);
+
             //gurobi tries to solve the LP
             model.optimize();
             model.update();
@@ -175,11 +160,10 @@ bool exact(const CVRPInstance &l, CVRPSolution  &s, int tl){
                     delete[] matrix[i];
                 delete[] matrix;
 
-                delete[] Demand;
+                cb.freeDemand();
             }
         }
         else{
-            delete[] Demand;
             return 0;
         }
 
