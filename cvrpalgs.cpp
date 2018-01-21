@@ -63,7 +63,7 @@ bool exact(const CVRPInstance &l, CVRPSolution  &s, int tl){
     MaxViolation = 0.0001;
 
     //populate Demand vector
-    Demand = new int[NoOfCustomers];
+    Demand = new int[NoOfCustomers + 1];
     for(NodeIt v(l.g); v != INVALID; ++v){
         if(l.vname[v] != 0)
             Demand[l.vname[v]] = l.demand[v];
@@ -170,14 +170,18 @@ bool exact(const CVRPInstance &l, CVRPSolution  &s, int tl){
                 }
                 s.cost = model.get(GRB_DoubleAttr_ObjVal);
 
-                //free matrix
+                //free stuff
                 for (i = 0; i < l.n; i++)
                     delete[] matrix[i];
                 delete[] matrix;
+
+                delete[] Demand;
             }
         }
-        else
+        else{
+            delete[] Demand;
             return 0;
+        }
 
     } catch (GRBException e) {
         //cout << "Error number: " << e.getErrorCode() << endl;
@@ -186,6 +190,5 @@ bool exact(const CVRPInstance &l, CVRPSolution  &s, int tl){
         //cout << "Error during optimization" << endl;
     }
 
-    //could not find exact solution
     return 0;
 }

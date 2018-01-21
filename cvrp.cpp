@@ -323,6 +323,7 @@ bool readCVRP(string          filename,
             if(g.id(v) < g.id(u)){
                 e = g.addEdge(v, u);
                 weight[e] = std::round(hypot((posx[v] - posx[u]), (posy[v] - posy[u])));
+                //weight[e] = hypot((posx[v] - posx[u]), (posy[v] - posy[u])));
                 //cout << "w["<< g.id(v) << "][" << g.id(u) << "] = " << weight[e] << endl;
             }
         }
@@ -693,6 +694,8 @@ void solutionAsGraphical(CVRPInstance &instance, CVRPSolution  &sol, string inpu
         int_sol[i] = instance.vname[sol.tour[i]];
 
     ViewListGraph2(instance.g, instance.vname, instance.posx, instance.posy, int_sol, (int)sol.tour.size(), "CVRP. Instance: " + inputFile + ". Tour with cost: " + DoubleToString(sol.cost));
+
+    delete[] int_sol;
 }
 //------------------------------------------------------------------------------
 string decodeAlg(ALG alg)

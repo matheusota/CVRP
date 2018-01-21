@@ -722,39 +722,33 @@ int ViewListGraph2(ListGraph &g,
                   int solution_size,
                   string text) // text displayed below the figure
 {
-    char tempname[1000],cmd[1000],outputname[1000];
+    string tempname = ".viewgraphtemp";
+    string outputname = ".viewgraphtemp.pdf";
 
-    memset(tempname,0,1000);
-    memset(cmd,0,1000);
-    memset(outputname,0,1000);
-
-    FILE *fp;
     double minpx=DBL_MAX,minpy=DBL_MAX,maxpx=-DBL_MAX,maxpy=-DBL_MAX,delta,factor;
 
-    // obtain a temporary file name
-    strcpy(tempname,".viewgraphtempname");
-    sprintf(outputname,"%s.pdf",tempname);
-    fp = fopen(tempname,"w+");
-    if (fp==NULL) {cout << "Error to open temporary file to visualize graph.\n"; return(0);}
+    ofstream myfile;
+    myfile.open(tempname);
+
     for (NodeIt v(g); v!=INVALID; ++v) {
         if (px[v] < minpx) minpx = px[v];
         if (px[v] > maxpx) maxpx = px[v];
         if (py[v] < minpy) minpy = py[v];
         if (py[v] > maxpy) maxpy = py[v];
     }
-    factor = 40; // quanto maior, menor o desenho do vértice
+    factor = 20; // quanto maior, menor o desenho do vértice
     delta = fmax(maxpx - minpx,maxpy - minpy);
 
     // Generate a text file with the graph format of neato program
-    fprintf(fp,"graph g {\n");
+    myfile << "graph g {\n";
     //fprintf(fp,"\tsize = \"10, 10\";\n");
     //fprintf(fp,"\tnode [shape = \"circle\"];\n");
-    fprintf(fp,"\tnode [\n");
-    fprintf(fp,"shape = \"ellipse\",\n");
-    fprintf(fp,"style = \"bold\",\n");
-    fprintf(fp,"color = \"black\",\n");
-    fprintf(fp,"fontsize = %d,\n",VIEWGRAPH_FONTSIZE);
-    fprintf(fp,"];\n");
+    myfile << "\tnode [\n";
+    myfile << "shape = \"ellipse\",\n";
+    myfile << "style = \"bold\",\n";
+    myfile << "color = \"black\",\n";
+    myfile << "fontsize = " << VIEWGRAPH_FONTSIZE << ",\n";
+    myfile << "];\n";
 
     int color;
     for (NodeIt v(g); v!=INVALID; ++v) {
@@ -762,8 +756,9 @@ int ViewListGraph2(ListGraph &g,
             color = BLUE;
         else
             color = RED;
-        fprintf(fp,"\t%s [style = \"bold\", color=\"%s\", pos = \"%lf,%lf!\" ];\n",
-                to_string(vname[v]).c_str(),ColorName(color).c_str(),factor*(px[v]-minpx)/delta,factor*(py[v]-minpy)/delta);
+        myfile << "\t" << to_string(vname[v]).c_str() << "[style = \"bold\", color=\""
+        << ColorName(color).c_str() << "\", pos = \"" << factor*(px[v]-minpx)/delta << "," <<
+           factor*(py[v]-minpy)/delta << "!\" ];\n";
     }
 
     color = 1;
@@ -780,17 +775,19 @@ int ViewListGraph2(ListGraph &g,
                 color = 1;
         }
 
-        fprintf(fp,"\t%s  -- %s [label = \"%s\", color=\"%s\" ];\n",to_string(u).c_str(),to_string(v).c_str(),"",ColorName(color).c_str());
+        myfile << "\t" << to_string(u).c_str() << " -- " << to_string(v).c_str() << " [label = \"\", color=\"" << ColorName(color).c_str() << "\" ];\n";
     }
 
-    fprintf(fp,"label=\"%s\";\n",text.c_str());
-    fprintf(fp,"fontsize=%d;\n",VIEWGRAPH_CAPTIONFONTSIZE);
+    myfile << "label=\"" << text.c_str() << "\";\n";
+    myfile << "fontsize=" << VIEWGRAPH_CAPTIONFONTSIZE << ";\n";
 
-    fprintf(fp,"}\n");
-    fclose(fp);
-    sprintf(cmd,"neato -Tpdf %s -o %s",tempname,outputname); system(cmd);
+    myfile << "}\n";
+    myfile.close();
+
+    string cmd = "neato -Tpdf " + tempname + " -o " + outputname;
+    system(cmd.c_str());
     //cout << "Grafo em "<< tempname << "\n";
-    view_pdffile(outputname);
+    view_pdffile(outputname.c_str());
     //pause();
     return(1);
 }
