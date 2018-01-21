@@ -322,7 +322,7 @@ bool readCVRP(string          filename,
         for(NodeIt u(g); u != INVALID; ++u){
             if(g.id(v) < g.id(u)){
                 e = g.addEdge(v, u);
-                weight[e] = sqrt((posx[v] - posx[u]) * (posx[v] - posx[u]) + (posy[v] - posy[u]) * (posy[v] - posy[u]));
+                weight[e] = std::round(hypot((posx[v] - posx[u]), (posy[v] - posy[u])));
                 //cout << "w["<< g.id(v) << "][" << g.id(u) << "] = " << weight[e] << endl;
             }
         }
