@@ -775,7 +775,8 @@ int ViewListGraph2(ListGraph &g,
                 color = 1;
         }
 
-        myfile << "\t" << to_string(u).c_str() << " -- " << to_string(v).c_str() << " [label = \"\", color=\"" << ColorName(color).c_str() << "\" ];\n";
+        myfile << "\t" << to_string(u).c_str() << " -- " << to_string(v).c_str()
+               << " [style = \"bold\", label = \"\", color=\"" << ColorName(color).c_str() << "\" ];\n";
     }
 
     myfile << "label=\"" << text.c_str() << "\";\n";
