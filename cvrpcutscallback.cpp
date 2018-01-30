@@ -3,6 +3,7 @@
 #include "CVRPSEP/include/mstarsep.h"
 #include "CVRPSEP/include/fcisep.h"
 #include "CVRPSEP/include/combsep.h"
+#include "CVRPSEP/include/htoursep.h"
 #include <lemon/list_graph.h>
 
 CVRPCutsCallback::CVRPCutsCallback(const CVRPInstance &cvrp, EdgeGRBVarMap& x) : cvrp(cvrp),x(x)  {    }
@@ -11,11 +12,12 @@ void CVRPCutsCallback::initializeCVRPSEPConstants(const CVRPInstance &cvrp){
     NoOfCustomers = cvrp.n - 1;
     CAP = cvrp.capacity;
     EpsForIntegrality = 0.0001;
-    MaxNoOfCapCuts = 100;
+    MaxNoOfCapCuts = 50;
     MaxNoOfFCITreeNodes = 100;
-    MaxNoOfFCICuts = 100;
-    MaxNoOfMStarCuts = 100;
-    MaxNoOfCombCuts = 100;
+    MaxNoOfFCICuts = 10;
+    MaxNoOfMStarCuts = 30;
+    MaxNoOfCombCuts = 20;
+    MaxNoOfHypoCuts = 10;
 
     //initialize Constraint structure
     CMGR_CreateCMgr(&MyCutsCMP,100);
@@ -23,7 +25,7 @@ void CVRPCutsCallback::initializeCVRPSEPConstants(const CVRPInstance &cvrp){
 
     //populate Demand vector
     int demandSum = 0;
-    Demand = new int[NoOfCustomers + 1];
+    Demand = new int[NoOfCustomers + 2];
     for(NodeIt v(cvrp.g); v != INVALID; ++v){
         if(cvrp.vname[v] != 0){
             Demand[cvrp.vname[v]] = int(cvrp.demand[v]);
@@ -45,14 +47,6 @@ void CVRPCutsCallback::freeDemand(){
 GRBLinExpr CVRPCutsCallback::getDeltaExpr(int *S, int size){
     bool set[cvrp.n];
     GRBLinExpr expr = 0;
-
-    //replace depot number from N to 0
-    for(int i = 1; i < size; i++){
-        if(S[i] == cvrp.n){
-            S[i] = 0;
-            break;
-        }
-    }
 
     //create a set for fast checking
     fill_n(set, cvrp.n, false);
@@ -82,22 +76,6 @@ GRBLinExpr CVRPCutsCallback::getDeltaExpr(int *S, int size){
 GRBLinExpr CVRPCutsCallback::getCrossingExpr(int *S1, int *S2, int size1, int size2){
     GRBLinExpr expr = 0;
 
-    //replace depot number from N to 0
-    /*
-    for(int i = 1; i < size1; i++){
-        if(S1[i] == cvrp.n){
-            S1[i] = 0;
-            break;
-        }
-    }
-
-    for(int i = 1; i < size2; i++){
-        if(S2[i] == cvrp.n){
-            S2[i] = 0;
-            break;
-        }
-    }*/
-
     //cout << "Crossing: ";
     //get the expression
     for(int i = 1; i < size1; i++){
@@ -120,15 +98,6 @@ GRBLinExpr CVRPCutsCallback::getCrossingExpr(int *S1, int *S2, int size1, int si
 GRBLinExpr CVRPCutsCallback::getInsideExpr(int *S, int size){
     GRBLinExpr expr = 0;
 
-    //replace depot number from N to 0
-    /*
-    for(int i = 1; i < size; i++){
-        if(S[i] == cvrp.n){
-            S[i] = 0;
-            break;
-        }
-    }*/
-
     //cout << "Crossing: ";
     //get the expression
     for(int i = 1; i < size; i++){
@@ -143,6 +112,258 @@ GRBLinExpr CVRPCutsCallback::getInsideExpr(int *S, int size){
     //cout << endl;
 
     return expr;
+}
+
+//check if vertex is a depot (N)
+int CVRPCutsCallback::checkForDepot(int i){
+    if(i == cvrp.n)
+        return 0;
+    else
+        return i;
+}
+
+//add capacity cuts
+void CVRPCutsCallback::addCapacityCuts(int i){
+    double RHS;
+    int ListSize = 0;
+    int List[NoOfCustomers + 1];
+
+    //populate List with the customers defining the cut
+    for (int j = 1; j <= MyCutsCMP -> CPL[i] -> IntListSize; j++){
+        int aux = MyCutsCMP -> CPL[i] -> IntList[j];
+
+        List[++ListSize] = checkForDepot(aux);
+    }
+
+    //create the gurobi expression for x(S:S) <= |S| - k(S)
+    GRBLinExpr expr = 0;
+
+    //cout << "constraint: ";
+    for(int j = 1; j <= ListSize; j++){
+        for(int k = j + 1; k <= ListSize; k++){
+            Edge e = findEdge(cvrp.g, cvrp.g.nodeFromId(List[j]), cvrp.g.nodeFromId(List[k]));
+            //cout << " + x[" << List[j] << "][" << List[k] << "]";
+            expr += x[e];
+        }
+    }
+
+    RHS = MyCutsCMP->CPL[i]->RHS;
+    //cout << " <= " << RHS << endl;
+
+    //add the cut to the LP
+    addLazy(expr <= RHS);
+}
+
+//add FCI cuts
+void CVRPCutsCallback::addFCICuts(int i){
+    double RHS;
+    int MaxIdx = 0, MinIdx, k, w = 1;
+    int nsubsets = MyCutsCMP->CPL[i]->ExtListSize;
+    int sets_index[nsubsets + 1];
+    int *sets[nsubsets + 1];
+    int *S;
+
+    //allocate memory
+    S = new int[cvrp.n + 1];
+    for (int SubsetNr = 1; SubsetNr <= nsubsets; SubsetNr++)
+        sets[SubsetNr] = new int[cvrp.n + 1];
+
+    for (int SubsetNr = 1; SubsetNr <= nsubsets; SubsetNr++){
+        // (subset sizes are stored in ExtList)
+        MinIdx = MaxIdx + 1;
+        MaxIdx = MinIdx + MyCutsCMP->CPL[i]->ExtList[SubsetNr] - 1;
+
+        sets_index[SubsetNr] = 1;
+        for (int j = MinIdx; j <= MaxIdx; j++){
+            k = MyCutsCMP->CPL[i]->IntList[j];
+
+            //sets will store each vertex in the respective S_i
+            sets[SubsetNr][sets_index[SubsetNr]] = checkForDepot(k);
+            sets_index[SubsetNr]++;
+
+            //S will store all vertexes in a single array
+            S[w] = checkForDepot(k);
+            w++;
+        }
+    }
+
+    //here we construct the expression for the RCI
+    //note that the index will give the next free position, and therefore can be used as the size
+    GRBLinExpr deltaS = getDeltaExpr(S, w);
+    GRBLinExpr deltaSum = 0;
+    for(int SubsetNr = 1; SubsetNr <= nsubsets; SubsetNr++)
+        deltaSum += getDeltaExpr(sets[SubsetNr], sets_index[SubsetNr]);
+    RHS = MyCutsCMP->CPL[i]->RHS;
+
+    // Add the cut to the LP
+    addLazy(deltaS + deltaSum >= RHS);
+
+    //free memory
+    delete[] S;
+    for (int SubsetNr = 1; SubsetNr <= nsubsets; SubsetNr++)
+        delete[] sets[SubsetNr];
+}
+
+//add multistar cuts
+void CVRPCutsCallback::addMultistarCuts(int i){
+    int A, B, L, sizeN, sizeT, sizeC;
+
+    sizeN = MyCutsCMP->CPL[i]->IntListSize;
+    sizeT = MyCutsCMP->CPL[i]->ExtListSize;
+    sizeC = MyCutsCMP->CPL[i]->CListSize;
+
+    int *NList, *TList, *CList;
+
+    //allocate memory
+    NList = new int[sizeN + 1];
+    TList = new int[sizeT + 1];
+    CList = new int[sizeC + 1];
+
+    // Nucleus
+    //cout << "N: ";
+    for (int j=1; j<=MyCutsCMP->CPL[i]->IntListSize; j++){
+        NList[j] = checkForDepot(MyCutsCMP->CPL[i]->IntList[j]);
+        //cout << NList[j] << " ";
+    }
+    //cout << endl;
+
+    // Satellites
+    //cout << "T: ";
+    for (int j=1; j<=MyCutsCMP->CPL[i]->ExtListSize; j++){
+        TList[j] = checkForDepot(MyCutsCMP->CPL[i]->ExtList[j]);
+        //cout << TList[j] << " ";
+    }
+    //cout << endl;
+
+    // Connectors
+    //cout << "C: ";
+    for (int j=1; j<=MyCutsCMP->CPL[i]->CListSize; j++){
+        CList[j] = checkForDepot(MyCutsCMP->CPL[i]->CList[j]);
+        //cout << CList[j] << " ";
+    }
+    //cout << endl;
+
+    // Coefficients of the cut:
+    A = MyCutsCMP->CPL[i]->A;
+    B = MyCutsCMP->CPL[i]->B;
+    L = MyCutsCMP->CPL[i]->L;
+
+    // Lambda=L/B, Sigma=A/B
+    // Add the cut to the LP
+    GRBLinExpr exprN = getDeltaExpr(NList, sizeN + 1);
+    GRBLinExpr exprCT = getCrossingExpr(TList, CList, sizeT + 1, sizeC + 1);
+    addLazy(B * exprN - A * exprCT >= L);
+
+    //free memory
+    delete[] NList;
+    delete[] TList;
+    delete[] CList;
+}
+
+//add strengthened comb cuts
+void CVRPCutsCallback::addCombCuts(int i){
+    double RHS;
+    int NoOfTeeth = MyCutsCMP->CPL[i]->Key;
+    int j;
+    int *teeth[NoOfTeeth + 1];
+    int *handle;
+    int MinIdx, MaxIdx;
+    int teeth_index[NoOfTeeth + 1];
+    int handle_size = MyCutsCMP->CPL[i]->IntListSize;
+
+    //allocate memory
+    for (int t = 1; t <= NoOfTeeth; t++)
+        teeth[t] = new int[cvrp.n + 1];
+    handle = new int[cvrp.n + 1];
+
+    //get handle
+    //cout << "handle: ";
+    for (int k = 1; k <= handle_size; k++){
+        j = MyCutsCMP->CPL[i]->IntList[k];
+        handle[k] = checkForDepot(j);
+        //cout << j << " ";
+    }
+    //cout << endl;
+
+    //get teeth
+    for (int t = 1; t <= NoOfTeeth; t++){
+        MinIdx = MyCutsCMP->CPL[i]->ExtList[t];
+
+        if (t == NoOfTeeth)
+            MaxIdx = MyCutsCMP->CPL[i]->ExtListSize;
+        else
+            MaxIdx = MyCutsCMP->CPL[i]->ExtList[t + 1] - 1;
+
+        teeth_index[t] = 1;
+        //cout << "teeth[" << t << "] ";
+        for (int k = MinIdx; k <= MaxIdx; k++){
+            j = MyCutsCMP->CPL[i]->ExtList[k];
+            // Node j is in tooth t
+            teeth[t][teeth_index[t]] = checkForDepot(j);
+            teeth_index[t]++;
+            //cout << j << " ";
+        }
+        //cout << endl;
+    }
+
+    //get the expression
+    GRBLinExpr handleExpr = getDeltaExpr(handle, handle_size + 1);
+
+    GRBLinExpr teethExpr = 0;
+    for (int t = 1; t <= NoOfTeeth; t++)
+        teethExpr += getDeltaExpr(teeth[t], teeth_index[t]);
+
+    RHS = MyCutsCMP->CPL[i]->RHS;
+
+    //cout << "RHS " << RHS << endl;
+    // Add the cut to the LP
+    addLazy(handleExpr + teethExpr >= RHS);
+
+    //free memory
+    delete[] handle;
+    for (int t = 1; t <= NoOfTeeth; t++)
+        delete[] teeth[t];
+}
+
+//add hypotour cuts
+void CVRPCutsCallback::addHypotourCuts(int i){
+    double RHS;
+    int *Tail, *Head;
+    double *Coeff;
+    int size = MyCutsCMP->CPL[i]->IntListSize + 1;
+
+    //allocate memory
+    Tail = new int[size];
+    Head = new int[size];
+    Coeff = new double[size];
+
+    for (int j = 1; j < size; j++){
+        Tail[j] = checkForDepot(MyCutsCMP->CPL[i]->IntList[j]);
+        Head[j] = checkForDepot(MyCutsCMP->CPL[i]->ExtList[j]);
+        Coeff[j] = MyCutsCMP->CPL[i]->CoeffList[j];
+    }
+
+    RHS = MyCutsCMP->CPL[i]->RHS;
+
+    //construct the cut
+    Node u, v;
+    Edge e;
+    GRBLinExpr expr = 0;
+
+    for (int j = 1; j < size; j++){
+        u = cvrp.g.nodeFromId(Tail[j]);
+        v = cvrp.g.nodeFromId(Head[j]);
+        e = findEdge(cvrp.g, u, v);
+        expr += Coeff[j] * x[e];
+    }
+
+    //Add the cut to the LP
+    addLazy(expr <= RHS);
+
+    //free memory
+    delete[] Tail;
+    delete[] Head;
+    delete[] Coeff;
 }
 
 void CVRPCutsCallback::callback(){
@@ -209,6 +430,7 @@ void CVRPCutsCallback::callback(){
     */
 
     //get capacity separation cuts
+    MaxCapViolation = 0;
     CAPSEP_SeparateCapCuts(NoOfCustomers, Demand, CAP, nedges, EdgeTail, EdgeHead,
         EdgeX, MyOldCutsCMP,MaxNoOfCapCuts, EpsForIntegrality,
         &IntegerAndFeasible, &MaxCapViolation, MyCutsCMP);
@@ -223,17 +445,29 @@ void CVRPCutsCallback::callback(){
         return;
     }
 
-    //get framed capacity inequalities(FCI) cuts
-    FCISEP_SeparateFCIs(NoOfCustomers, Demand, CAP, nedges, EdgeTail, EdgeHead,
-        EdgeX, MyOldCutsCMP, MaxNoOfFCITreeNodes, MaxNoOfFCICuts, &MaxFCIViolation, MyCutsCMP);
-
-    //get homogeneous multistar cuts
-    MSTARSEP_SeparateMultiStarCuts(NoOfCustomers, Demand, CAP, nedges, EdgeTail, EdgeHead,
-        EdgeX, MyOldCutsCMP, MaxNoOfMStarCuts, &MaxMStarViolation, MyCutsCMP);
-
     //get strengthened comb inequalities
+    MaxCombViolation = 0;
+    if(MaxCapViolation < 0.1)
     COMBSEP_SeparateCombs(NoOfCustomers, Demand, CAP, QMin, nedges, EdgeTail, EdgeHead,
         EdgeX, MaxNoOfCombCuts, &MaxCombViolation, MyCutsCMP);
+
+    //get homogeneous multistar cuts
+    MaxMStarViolation = 0;
+    if(MaxCapViolation < 0.1 && MaxCombViolation < 0.1)
+        MSTARSEP_SeparateMultiStarCuts(NoOfCustomers, Demand, CAP, nedges, EdgeTail, EdgeHead,
+            EdgeX, MyOldCutsCMP, MaxNoOfMStarCuts, &MaxMStarViolation, MyCutsCMP);
+
+    //get framed capacity inequalities(FCI) cuts
+    MaxFCIViolation = 0;
+    if(MaxCapViolation < 0.1 && MaxCombViolation < 0.1 && MaxMStarViolation < 0.1)
+        FCISEP_SeparateFCIs(NoOfCustomers, Demand, CAP, nedges, EdgeTail, EdgeHead,
+            EdgeX, MyOldCutsCMP, MaxNoOfFCITreeNodes, MaxNoOfFCICuts, &MaxFCIViolation, MyCutsCMP);
+
+    //get hypotour inequalities
+    MaxHypoViolation = 0;
+    if(MaxCapViolation < 0.1 && MaxCombViolation < 0.1 && MaxMStarViolation < 0.1 && MaxFCIViolation < 0.1)
+        HTOURSEP_SeparateHTours(NoOfCustomers, Demand, CAP, nedges, EdgeTail, EdgeHead, EdgeX,
+            MyOldCutsCMP, MaxNoOfHypoCuts, &MaxHypoViolation, MyCutsCMP);
 
     //free edges arrays
     delete[] EdgeTail;
@@ -245,213 +479,21 @@ void CVRPCutsCallback::callback(){
         return;
 
     //read the cuts from MyCutsCMP, and add them to the LP
-    double RHS;
     for (i = 0; i < MyCutsCMP -> Size; i++){
-        //capacity separation cuts
-        if (MyCutsCMP->CPL[i]->CType == CMGR_CT_CAP){
-            int ListSize = 0;
-            int List[NoOfCustomers + 1];
+        if (MyCutsCMP->CPL[i]->CType == CMGR_CT_CAP)
+            addCapacityCuts(i);
 
-            //populate List with the customers defining the cut
-            for (int j = 1; j <= MyCutsCMP -> CPL[i] -> IntListSize; j++){
-                int aux = MyCutsCMP -> CPL[i] -> IntList[j];
+        else if(MyCutsCMP->CPL[i]->CType == CMGR_CT_FCI)
+            addFCICuts(i);
 
-                if(aux == cvrp.n)
-                    aux = 0;
-
-                List[++ListSize] = aux;
-            }
-
-            //create the gurobi expression for x(S:S) <= |S| - k(S)
-            GRBLinExpr expr = 0;
-
-            //cout << "constraint: ";
-            for(int j = 1; j <= ListSize; j++){
-                for(int k = j + 1; k <= ListSize; k++){
-                    Edge e = findEdge(cvrp.g, cvrp.g.nodeFromId(List[j]), cvrp.g.nodeFromId(List[k]));
-                    //cout << " + x[" << List[j] << "][" << List[k] << "]";
-                    expr += x[e];
-                }
-            }
-
-            RHS = MyCutsCMP->CPL[i]->RHS;
-            //cout << " <= " << RHS << endl;
-
-            //add the cut to the LP
-            addLazy(expr <= RHS);
-        }
-
-        //FCI cuts
-        else if(MyCutsCMP->CPL[i]->CType == CMGR_CT_FCI){
-            int MaxIdx = 0, MinIdx, k, w = 1;
-            int nsubsets = MyCutsCMP->CPL[i]->ExtListSize;
-            int sets_index[nsubsets + 1];
-            int *sets[nsubsets + 1];
-            int *S;
-
-            //allocate memory
-            S = new int[cvrp.n + 1];
-            for (int SubsetNr = 1; SubsetNr <= nsubsets; SubsetNr++)
-                sets[SubsetNr] = new int[cvrp.n + 1];
-
-            for (int SubsetNr = 1; SubsetNr <= nsubsets; SubsetNr++){
-                // (subset sizes are stored in ExtList)
-                MinIdx = MaxIdx + 1;
-                MaxIdx = MinIdx + MyCutsCMP->CPL[i]->ExtList[SubsetNr] - 1;
-
-                sets_index[SubsetNr] = 1;
-                for (int j = MinIdx; j <= MaxIdx; j++){
-                    k = MyCutsCMP->CPL[i]->IntList[j];
-
-                    //sets will store each vertex in the respective S_i
-                    sets[SubsetNr][sets_index[SubsetNr]] = k;
-                    sets_index[SubsetNr]++;
-
-                    //S will store all vertexes in a single array
-                    S[w] = k;
-                    w++;
-                }
-            }
-
-            //here we construct the expression for the RCI
-            //note that the index will give the next free position, and therefore can be used as the size
-            GRBLinExpr deltaS = getDeltaExpr(S, w);
-            GRBLinExpr deltaSum = 0;
-            for(int SubsetNr = 1; SubsetNr <= nsubsets; SubsetNr++)
-                deltaSum += getDeltaExpr(sets[SubsetNr], sets_index[SubsetNr]);
-            RHS = MyCutsCMP->CPL[i]->RHS;
-
-            // Add the cut to the LP
-            addLazy(deltaS + deltaSum >= RHS);
-
-            //free memory
-            delete[] S;
-            for (int SubsetNr = 1; SubsetNr <= nsubsets; SubsetNr++)
-                delete[] sets[SubsetNr];
-
-        }
-
-        //homogeneous multistar cuts
         else if (MyCutsCMP->CPL[i]->CType == CMGR_CT_MSTAR)
-        {
-            int A, B, L, sizeN, sizeT, sizeC;
+            addMultistarCuts(i);
 
-            sizeN = MyCutsCMP->CPL[i]->IntListSize;
-            sizeT = MyCutsCMP->CPL[i]->ExtListSize;
-            sizeC = MyCutsCMP->CPL[i]->CListSize;
+        else if (MyCutsCMP->CPL[i]->CType == CMGR_CT_STR_COMB)
+            addCombCuts(i);
 
-            int *NList, *TList, *CList;
-
-            //allocate memory
-            NList = new int[sizeN + 1];
-            TList = new int[sizeT + 1];
-            CList = new int[sizeC + 1];
-
-            // Nucleus
-            //cout << "N: ";
-            for (int j=1; j<=MyCutsCMP->CPL[i]->IntListSize; j++){
-                NList[j] = MyCutsCMP->CPL[i]->IntList[j];
-                //cout << NList[j] << " ";
-            }
-            //cout << endl;
-
-            // Satellites
-            //cout << "T: ";
-            for (int j=1; j<=MyCutsCMP->CPL[i]->ExtListSize; j++){
-                TList[j] = MyCutsCMP->CPL[i]->ExtList[j];
-                //cout << TList[j] << " ";
-            }
-            //cout << endl;
-
-            // Connectors
-            //cout << "C: ";
-            for (int j=1; j<=MyCutsCMP->CPL[i]->CListSize; j++){
-                CList[j] = MyCutsCMP->CPL[i]->CList[j];
-                //cout << CList[j] << " ";
-            }
-            //cout << endl;
-
-            // Coefficients of the cut:
-            A = MyCutsCMP->CPL[i]->A;
-            B = MyCutsCMP->CPL[i]->B;
-            L = MyCutsCMP->CPL[i]->L;
-
-            // Lambda=L/B, Sigma=A/B
-            // Add the cut to the LP
-            GRBLinExpr exprN = getDeltaExpr(NList, sizeN + 1);
-            GRBLinExpr exprCT = getCrossingExpr(TList, CList, sizeT + 1, sizeC + 1);
-            addLazy(B * exprN - A * exprCT >= L);
-
-            //free memory
-            delete[] NList;
-            delete[] TList;
-            delete[] CList;
-        }
-
-        //strengthened comb cuts
-        if (MyCutsCMP->CPL[i]->CType == CMGR_CT_STR_COMB)
-        {
-            int NoOfTeeth = MyCutsCMP->CPL[i]->Key;
-            int j;
-            int *teeth[NoOfTeeth + 1];
-            int *handle;
-            int MinIdx, MaxIdx;
-            int teeth_index[NoOfTeeth + 1];
-            int handle_size = MyCutsCMP->CPL[i]->IntListSize;
-
-            //allocate memory
-            for (int t = 1; t <= NoOfTeeth; t++)
-                teeth[t] = new int[cvrp.n + 1];
-            handle = new int[cvrp.n + 1];
-
-            //get handle
-            //cout << "handle: ";
-            for (int k = 1; k <= handle_size; k++){
-                j = MyCutsCMP->CPL[i]->IntList[k];
-                handle[k] = j;
-                //cout << j << " ";
-            }
-            //cout << endl;
-
-            //get teeth
-            for (int t = 1; t <= NoOfTeeth; t++){
-                MinIdx = MyCutsCMP->CPL[i]->ExtList[t];
-
-                if (t == NoOfTeeth)
-                    MaxIdx = MyCutsCMP->CPL[i]->ExtListSize;
-                else
-                    MaxIdx = MyCutsCMP->CPL[i]->ExtList[t + 1] - 1;
-
-                teeth_index[t] = 1;
-                //cout << "teeth[" << t << "] ";
-                for (int k = MinIdx; k <= MaxIdx; k++){
-                    j = MyCutsCMP->CPL[i]->ExtList[k];
-                    // Node j is in tooth t
-                    teeth[t][teeth_index[t]] = j;
-                    teeth_index[t]++;
-                    //cout << j << " ";
-                }
-                //cout << endl;
-            }
-
-            //get the expression
-            GRBLinExpr handleExpr = getDeltaExpr(handle, handle_size + 1);
-
-            GRBLinExpr teethExpr = 0;
-            for (int t = 1; t <= NoOfTeeth; t++)
-                teethExpr += getDeltaExpr(teeth[t], teeth_index[t]);
-
-            RHS = MyCutsCMP->CPL[i]->RHS;
-
-            //cout << "RHS " << RHS << endl;
-            // Add the cut to the LP
-            addLazy(handleExpr + teethExpr >= RHS);
-
-            //free memory
-            delete[] handle;
-            for (int t = 1; t <= NoOfTeeth; t++)
-                delete[] teeth[t];
-        }
+        else if (MyCutsCMP->CPL[i]->CType == CMGR_CT_TWOEDGES_HYPOTOUR)
+            addHypotourCuts(i);
     }
 
     //move the new cuts to the list of old cuts

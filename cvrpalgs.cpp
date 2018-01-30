@@ -131,8 +131,8 @@ bool exact(const CVRPInstance &l, CVRPSolution  &s, int tl){
 
                 //print variable values
                 for(EdgeIt e(l.g); e != INVALID; ++e){
-                    cout << "x[" << l.vname[l.g.u(e)] << "][" << l.vname[l.g.v(e)] << "] = ";
-                    cout << x[e].get(GRB_DoubleAttr_X) << endl;
+                    if(x[e].get(GRB_DoubleAttr_X) > 0.9)
+                        cout << "x[" << l.vname[l.g.u(e)] << "][" << l.vname[l.g.v(e)] << "]" << endl;
                 }
 
                 //get a matrix representation of the graph
