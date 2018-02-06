@@ -145,39 +145,12 @@ void readCheckParams(Params &params, int argc, char *argv[])
             next = string("");
         }
 
-        if(params.alg != NONE && (arg.find("-c") == 0 || arg.find("-n") == 0 || arg.find("-e") == 0 || arg.find("-b") == 0)){
-            cerr << "Erro ao ler parametro \"" << arg << "\": pode haver somente um parametro de modo de execucao" << endl;
-            showUsage();
-            exit(1);
-        }
-        else if(arg.find("-c") == 0){
-            params.alg = CONSTR_HEUR;
-            continue;
-        }
-        else if(arg.find("-m") == 0){
-            params.alg = META_HEUR;
-            continue;
-        }
-        else if(arg.find("-e") == 0){
-            params.alg = EXACT;
-            continue;
-        }
-
         if(arg.find("-t") == 0 && next.size() > 0){
             params.timeLimit = atoi(next.c_str());
             i++;
             continue;
         }
 
-        if(params.verbosity != QUIET && (arg.find("-v") == 0 || arg.find("-g") == 0)){
-            cerr << "Erro ao ler parametro \"" << arg << "\": pode haver somente um parametro de modo de execucao" << endl;
-            showUsage();
-            exit(1);
-        }
-        else if(arg.find("-v") == 0){
-            params.verbosity = VERB;
-            continue;
-        }
         else if(arg.find("-g") == 0){
             params.verbosity = GRAPH;
             continue;
@@ -201,8 +174,8 @@ void readCheckParams(Params &params, int argc, char *argv[])
     }
 
     // Check
-    if(params.alg == NONE){
-        cerr << "Deve ser selecionado exatamente um algoritmo" << endl;
+    if(params.inputFile == "" || params.outputFile == ""){
+        cerr << "Deve ser especificado os arquivos de entrada e saída" << endl;
         showUsage();
         exit(1);
     }
@@ -224,16 +197,12 @@ void readCheckParams(Params &params, int argc, char *argv[])
 void showUsage()
 {
     cout << "Uso: \n"
-         << "./lpdtsp.e (-c|-m|-e) -i <in> -o <out> [-t <time>] [-v|-g]\n"
+         << "./cvrp.e -i <in> -o <out> [-t <time>] [-g]\n"
          << "Onde:\n"
-         << "-c|-m|-e  Seleciona exclusivamente:\n"
-         << "          -c: heurística construtiva\n"
-         << "          -m: estratégias heurísticas baseadas em grafo de vizinhança e/ou busca local\n"
-         << "          -e: algoritmo exato\n"
          << "-t <time> Informa o tempo limite em segundos dado por <time>. Caso não seja informado, considera-se 30s.\n"
          << "-i <in>   Informa arquivo de entrada <in>\n"
          << "-o <out>  Informa arquivo de saida <out>\n"
-         << "-v|-g     Adicionalmente, produz saídas detalhadas: -v para apenas texto ou -g para também mostrar gráfico.\n"
+         << "-g     Adicionalmente, -g mostra um gráfico da solução.\n"
          << flush;
 }
 //------------------------------------------------------------------------------
