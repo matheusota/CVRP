@@ -38,9 +38,9 @@ fontsize = 20,
 	1[style = "bold", color="red", pos = "19.5876,8.65979!" ];
 	0[style = "bold", color="blue", pos = "16.701,15.2577!" ];
 	0 -- 6 [style = "bold", label = "", color="black" ];
-	6 -- 2 [style = "bold", label = "", color="black" ];
-	2 -- 3 [style = "bold", label = "", color="black" ];
-	3 -- 23 [style = "bold", label = "", color="black" ];
+	6 -- 3 [style = "bold", label = "", color="black" ];
+	3 -- 2 [style = "bold", label = "", color="black" ];
+	2 -- 23 [style = "bold", label = "", color="black" ];
 	23 -- 4 [style = "bold", label = "", color="black" ];
 	4 -- 11 [style = "bold", label = "", color="black" ];
 	11 -- 28 [style = "bold", label = "", color="black" ];

@@ -26,7 +26,7 @@ ifeq ($(shell uname), Darwin)
 	endif
 	CC      = g++
 	#CC_ARGS    = -Wall -m64 -O3 -Wall $(CPPSTDLIB)  -Wno-c++11-extensions
-	CC_ARGS    =  -m64  -g -Wall -std=c++11 -D_GLIBCXX_USE_CXX11_ABI=0 
+	CC_ARGS    =  -m64  -g -Wall -Wno-long-long -Wall -W -Wpointer-arith -Wcast-align -Wwrite-strings -Wshadow -Wno-unknown-pragmas -Wno-unused-parameter -Wredundant-decls -Wdisabled-optimization -Wctor-dtor-privacy -Wnon-virtual-dtor -Wreorder -Woverloaded-virtual -Wsign-promo -Wsynth -Wcast-qual -Wno-unused-parameter -Wno-strict-overflow  -Wno-strict-aliasing -std=c++11 -D_GLIBCXX_USE_CXX11_ABI=0 
 	RELEASE := $(shell uname -r | cut -f 1 -d .)
 	CC_LIB   = -lm -lpthread $(CPPSTDLIB)
 	GUROBI_DIR = /Library/gurobi$(VERSION)/$(PLATFORM)
@@ -38,7 +38,7 @@ else
 	PLATFORM = linux64
 	CC      = g++
 	#CC_ARGS    = -m64 -O2 -Wall -std=c++11
-	CC_ARGS    = -m64 -g -Wall -std=c++11 -D_GLIBCXX_USE_CXX11_ABI=0 
+	CC_ARGS    = -m64 -g -Wall -Wno-long-long -Wall -W -Wpointer-arith -Wcast-align -Wwrite-strings -Wshadow -Wno-unknown-pragmas -Wno-unused-parameter -Wredundant-decls -Wdisabled-optimization -Wctor-dtor-privacy -Wnon-virtual-dtor -Wreorder -Woverloaded-virtual -Wsign-promo -Wsynth -Wcast-qual -Wno-unused-parameter -Wno-strict-overflow  -Wno-strict-aliasing -std=c++11 -D_GLIBCXX_USE_CXX11_ABI=0 
 	RELEASE := $(shell uname -r | cut -f 1 -d .)
 	CC_LIB   = -lm -lpthread
 	GUROBI_DIR = /home/matheus/gurobi$(VERSION)/$(PLATFORM)
@@ -56,17 +56,20 @@ CVRPSEPDIR  = CVRPSEP
 CVRPSEPINCDIR  = -I$(CVRPSEPDIR)/include
 CVRPSEPLIBDIR  = $(CVRPSEPDIR)/lib/libCVRPSEP.a
 
+#================= SCIP =====================================================
+SCIPINC  = -Isrc -DWITH_SCIPDEF -I/home/matheus/scip/scip-4.0.0/src -DNDEBUG -DROUNDING_FE  -DNPARASCIP -DWITH_ZLIB  -DWITH_GMP  -DWITH_READLINE
+SCIPLIB = -L/home/matheus/scip/scip-4.0.0/lib/static -lscip.linux.x86_64.gnu.opt -lobjscip.linux.x86_64.gnu.opt -llpispx2.linux.x86_64.gnu.opt -lnlpi.cppad.linux.x86_64.gnu.opt -ltpinone.linux.x86_64.gnu.opt  -O3 -fomit-frame-pointer -mtune=native    -L/home/matheus/scip/scip-4.0.0/lib/static -lsoplex.linux.x86_64.gnu.opt -lm -m64  -lz -lzimpl.linux.x86_64.gnu.opt  -lgmp -lreadline -lncurses -lm -m64  -lz -lzimpl.linux.x86_64.gnu.opt  -lgmp -lreadline -lncurses
 #---------------------------------------------
 # define includes and libraries
 
-INC = $(GUROBI_INC) $(LEMONINCDIR) $(CVRPSEPINCDIR)
-LIB = $(CC_LIB) $(GUROBI_LIB)  $(LEMONLIBDIR) -lemon 
+INC = $(GUROBI_INC) $(LEMONINCDIR) $(CVRPSEPINCDIR) $(SCIPINC)
+LIB = $(CC_LIB) $(GUROBI_LIB)  $(LEMONLIBDIR) $(SCIPLIB) -lemon 
 
 
 # g++ -m64 -g -o exe readgraph.cpp viewgraph.cpp adjacencymatrix.cpp ex_fractional_packing.o -I/Library/gurobi600/mac64/include/ -L/Library/gurobi600/mac64/lib/ -lgurobi_c++ -lgurobi60 -stdlib=libstdc++ -lpthread -lm
 # g++ -m64 -g -c adjacencymatrix.cpp -o adjacencymatrix.o -I/Library/gurobi600/mac64/include/  -stdlib=libstdc++ 
 
-MYLIBSOURCES = mygraphlib.cpp geompack.cpp myutils.cpp cvrpalgs.cpp cvrpcutscallback.cpp
+MYLIBSOURCES = mygraphlib.cpp geompack.cpp myutils.cpp cvrpalgs.cpp cvrpcutscallback.cpp cvrpalgsscip.cpp cvrpcutscallbackscip.cpp 
 MYOBJLIB = $(MYLIBSOURCES:.cpp=.o)
 
 EX =  cvrp.cpp

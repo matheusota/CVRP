@@ -11,6 +11,7 @@
 #include "myutils.h"
 #include "cvrp.h"
 #include "cvrpalgs.h"
+#include "cvrpalgsscip.h"
 #include <regex>
 
 using namespace lemon;
@@ -44,11 +45,7 @@ int main(int argc, char *argv[])
     // Initialize a solution
     CVRPSolution ts;
 
-    if(params.verbosity == VERB){  // if(params.verbosity == VERB || params.verbosity == GRAPH){
-        cout << "INPUT" << endl;
-        cout << instanceAsString(l) << endl;
-    }
-    else if(params.verbosity == GRAPH){
+    if(params.verbosity == GRAPH){
         cout << "INPUT" << endl;
         cout << instanceDescriptionAsString(l) << endl;
     }
@@ -56,28 +53,8 @@ int main(int argc, char *argv[])
     double  elapsedTime = DBL_MAX;
     clock_t before  = clock();
 
-    //bool optimal = false;
+    SCIPexact(l, ts, params.timeLimit);
 
-    /*
-    switch(params.alg){
-    case CONSTR_HEUR:{
-        optimal = constrHeur(l, ts, params.timeLimit);
-        break;
-    }
-    case META_HEUR:{
-        optimal = metaHeur(l, ts, params.timeLimit);
-        break;
-    }
-    case EXACT:{
-        optimal = exact(l, ts, params.timeLimit);
-        break;
-    }
-    }*/
-
-    //optimal = exact(l, ts, params.timeLimit);
-    //break;
-
-    exact(l, ts, params.timeLimit);
     clock_t after = clock();
     elapsedTime = (double) (after - before) / CLOCKS_PER_SEC;
 
@@ -292,7 +269,7 @@ bool readCVRP(string          filename,
             if(g.id(v) < g.id(u)){
                 e = g.addEdge(v, u);
                 weight[e] = std::round(hypot((posx[v] - posx[u]), (posy[v] - posy[u])));
-                //weight[e] = hypot((posx[v] - posx[u]), (posy[v] - posy[u])));
+                //weight[e] = hypot((posx[v] - posx[u]), (posy[v] - posy[u]));
                 //cout << "w["<< g.id(v) << "][" << g.id(u) << "] = " << weight[e] << endl;
             }
         }
