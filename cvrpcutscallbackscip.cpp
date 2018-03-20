@@ -15,7 +15,7 @@ struct SCIP_ConsData
 void CVRPCutsCallbackSCIP::initializeCVRPSEPConstants(const CVRPInstance &cvrp){
     NoOfCustomers = cvrp.n - 1;
     CAP = cvrp.capacity;
-    EpsForIntegrality = 0.00001;
+    EpsForIntegrality = 0.0001;
     MaxNoOfCapCuts = 50;
     MaxNoOfFCITreeNodes = 100;
     MaxNoOfFCICuts = 10;

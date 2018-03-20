@@ -14,6 +14,7 @@
 #include "cvrpalgs.h"
 #include <lemon/preflow.h>
 #include "cvrpcutscallbackscip.h"
+#include "cvrpbranchingrule.h"
 
 using namespace scip;
 
@@ -64,6 +65,7 @@ bool SCIPexact(const CVRPInstance &l, CVRPSolution  &s, int tl){
     EdgeSCIPVarMap x(l.g);
     SCIP *scip;
     SCIP_CALL(SCIPcreate(&scip));
+
     /*
     SCIP_CALL(SCIPsetIntParam(scip, "display/verblevel", 5));
     SCIP_CALL(SCIPsetIntParam(scip, "presolving/maxrestarts", 0));
@@ -71,11 +73,15 @@ bool SCIPexact(const CVRPInstance &l, CVRPSolution  &s, int tl){
     SCIPsetBoolParam(scip, "lp/presolving", FALSE);
     SCIPsetIntParam(scip, "propagating/maxrounds", 0);
     SCIPsetIntParam(scip, "propagating/maxroundsroot", 0);*/
+
     SCIPenableDebugSol(scip);
     SCIP_CALL(SCIPincludeDefaultPlugins(scip));
     CVRPCutsCallbackSCIP callback = CVRPCutsCallbackSCIP(scip, l, x);
     callback.initializeCVRPSEPConstants(l);
+    CVRPBranchingRule branching = CVRPBranchingRule(scip, "branchingRule", "branchingRule", 9999999, -1, 1.0, l, x);
+    branching.initializeCVRPSEPConstants(l, callback.MyOldCutsCMP);
     SCIP_CALL(SCIPincludeObjConshdlr(scip, &callback, TRUE));
+    SCIP_CALL(SCIPincludeObjBranchrule(scip, &branching, TRUE));
 
     // create an empty problem
     SCIP_CALL(SCIPcreateProb(scip, "CVRP Problem", NULL, NULL, NULL, NULL, NULL, NULL, NULL));
