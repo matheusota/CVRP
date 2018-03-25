@@ -20,7 +20,9 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     Params params;
-    readCheckParams(params, argc, argv);
+    bool useScip = false;
+
+    readCheckParams(params, argc, argv, &useScip);
 
     // Variables that represent the CVRP
     ListGraph        g;
@@ -53,7 +55,14 @@ int main(int argc, char *argv[])
     double  elapsedTime = DBL_MAX;
     clock_t before  = clock();
 
-    SCIPexact(l, ts, params.timeLimit);
+    if(useScip){
+        printf("Using SCIP\n");
+        SCIPexact(l, ts, params.timeLimit);
+    }
+    else{
+        printf("Using Gurobi\n");
+        exact(l, ts, params.timeLimit);
+    }
 
     clock_t after = clock();
     elapsedTime = (double) (after - before) / CLOCKS_PER_SEC;
@@ -103,7 +112,7 @@ CVRPSolution::CVRPSolution()
     upperBound = DBL_MAX;
 }
 //------------------------------------------------------------------------------
-void readCheckParams(Params &params, int argc, char *argv[])
+void readCheckParams(Params &params, int argc, char *argv[], bool *useScip)
 {
     params.alg        = NONE;
     params.timeLimit  = 0;
@@ -144,6 +153,12 @@ void readCheckParams(Params &params, int argc, char *argv[])
             i++;
             continue;
         }
+
+        if( arg.find("-s") == 0){
+            *useScip = true;
+            continue;
+        }
+
 
         cerr << "Parametro invalido: \"" << arg << "\"" << " (ou parametro faltando)" << endl;
         showUsage();

@@ -54,7 +54,8 @@ class CVRPCutsCallbackSCIP: public scip::ObjConshdlr{
            );
 
     private:
-        SCIP_RETCODE addCVRPCuts(SCIP* scip, SCIP_CONSHDLR* conshdlr, SCIP_SOL* sol, SCIP_RESULT* result, bool feasible, bool *check);
+        bool checkFeasibilityCVRP(SCIP* scip, SCIP_SOL* sol);
+        SCIP_RETCODE addCVRPCuts(SCIP* scip, SCIP_CONSHDLR* conshdlr, SCIP_SOL* sol, SCIP_RESULT* result, bool feasible);
         SCIP_RETCODE getDeltaExpr(int *S, int size, SCIP* scip, SCIP_ROW* row, double coef);
         SCIP_RETCODE getCrossingExpr(int *S1, int *S2, int size1, int size2, SCIP* scip, SCIP_ROW* row, double coef);
         SCIP_RETCODE getInsideExpr(int *S, int size, SCIP* scip, SCIP_ROW* row, double coef);

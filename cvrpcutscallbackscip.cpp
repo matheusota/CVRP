@@ -108,8 +108,8 @@ SCIP_DECL_CONSTRANS(CVRPCutsCallbackSCIP::scip_trans)
  */
 SCIP_DECL_CONSSEPALP(CVRPCutsCallbackSCIP::scip_sepalp)
 {
-    bool feasible, check;
-    SCIP_CALL(addCVRPCuts(scip, conshdlr, NULL, result, &feasible, &check));
+    bool feasible;
+    SCIP_CALL(addCVRPCuts(scip, conshdlr, NULL, result, &feasible));
     return SCIP_OKAY;
 }
 
@@ -134,8 +134,8 @@ SCIP_DECL_CONSSEPALP(CVRPCutsCallbackSCIP::scip_sepalp)
  */
 SCIP_DECL_CONSSEPASOL(CVRPCutsCallbackSCIP::scip_sepasol)
 {
-    bool feasible, check;
-    SCIP_CALL(addCVRPCuts(scip, conshdlr, sol, result, &feasible, &check));
+    bool feasible;
+    SCIP_CALL(addCVRPCuts(scip, conshdlr, sol, result, &feasible));
     return SCIP_OKAY;
 }
 
@@ -172,9 +172,7 @@ SCIP_DECL_CONSSEPASOL(CVRPCutsCallbackSCIP::scip_sepasol)
  */
 SCIP_DECL_CONSENFOLP(CVRPCutsCallbackSCIP::scip_enfolp)
 {
-    //THIS IS TEMPORARY, MAY NEED TO IMPLEMENT BRANCHING RULES
-    bool feasible, check;
-    SCIP_CALL(addCVRPCuts(scip, conshdlr, NULL, result, feasible, &check));
+    bool check = checkFeasibilityCVRP(scip, NULL);
     if(check)
         *result = SCIP_FEASIBLE;
     else
@@ -214,9 +212,7 @@ SCIP_DECL_CONSENFOLP(CVRPCutsCallbackSCIP::scip_enfolp)
  */
 SCIP_DECL_CONSENFOPS(CVRPCutsCallbackSCIP::scip_enfops)
 {
-    //THIS IS TEMPORARY, MAY NEED TO IMPLEMENT BRANCHING RULES
-    bool feasible, check;
-    SCIP_CALL(addCVRPCuts(scip, conshdlr, NULL, result, feasible, &check));
+    bool check = checkFeasibilityCVRP(scip, NULL);
     if(check)
         *result = SCIP_FEASIBLE;
     else
@@ -247,9 +243,7 @@ SCIP_DECL_CONSENFOPS(CVRPCutsCallbackSCIP::scip_enfops)
  */
 SCIP_DECL_CONSCHECK(CVRPCutsCallbackSCIP::scip_check)
 {
-    //THIS IS TEMPORARY, MAY NEED TO IMPLEMENT BRANCHING RULES
-    bool feasible, check;
-    SCIP_CALL(addCVRPCuts(scip, conshdlr, NULL, result, feasible, &check));
+    bool check = checkFeasibilityCVRP(scip, NULL);
     if(check)
         *result = SCIP_FEASIBLE;
     else
@@ -422,8 +416,6 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addCapacityCuts(int i, SCIP* scip, SCIP_CONSH
 
         if(infeasible)
             *result = SCIP_CUTOFF;
-        else
-            *result = SCIP_SEPARATED;
     }
     SCIP_CALL(SCIPreleaseRow(scip, &row));
 }
@@ -480,8 +472,6 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addFCICuts(int i, SCIP* scip, SCIP_CONSHDLR* 
 
         if(infeasible)
             *result = SCIP_CUTOFF;
-        else
-            *result = SCIP_SEPARATED;
     }
     SCIP_CALL(SCIPreleaseRow(scip, &row));
 
@@ -544,8 +534,6 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addMultistarCuts(int i, SCIP* scip, SCIP_CONS
 
         if(infeasible)
             *result = SCIP_CUTOFF;
-        else
-            *result = SCIP_SEPARATED;
     }
     SCIP_CALL(SCIPreleaseRow(scip, &row));
 
@@ -614,8 +602,6 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addCombCuts(int i, SCIP* scip, SCIP_CONSHDLR*
 
         if(infeasible)
             *result = SCIP_CUTOFF;
-        else
-            *result = SCIP_SEPARATED;
     }
     SCIP_CALL(SCIPreleaseRow(scip, &row));
 
@@ -668,8 +654,6 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addHypotourCuts(int i, SCIP* scip, SCIP_CONSH
 
         if(infeasible)
             *result = SCIP_CUTOFF;
-        else
-            *result = SCIP_SEPARATED;
     }
     SCIP_CALL(SCIPreleaseRow(scip, &row));
 
@@ -679,11 +663,115 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addHypotourCuts(int i, SCIP* scip, SCIP_CONSH
     delete[] Coeff;
 }
 
-SCIP_RETCODE CVRPCutsCallbackSCIP::addCVRPCuts(SCIP* scip, SCIP_CONSHDLR* conshdlr, SCIP_SOL* sol, SCIP_RESULT* result, bool feasible, bool *check){
+bool CVRPCutsCallbackSCIP::checkFeasibilityCVRP(SCIP* scip, SCIP_SOL* sol){
+    //printf("feasibility\n");
+    //count number of edges x_e > 0
+    int nedges = 0;
+
+    //first we are going to create a graph from the solution
+    ListGraph g;
+    NodeIntMap vname(g);
+    NodePosMap demand(g);
+    ListGraph::EdgeMap<int> edgeCount(g);
+    bool integer = true;
+    double aux;
+
+    //create an auxiliary graph
+    for(int i = 0; i < cvrp.n; i++){
+        Node v = g.addNode();
+        vname[v] = i;
+
+        if(i > 0)
+            demand[v] = cvrp.demand[cvrp.g.nodeFromId(i)];
+        else
+            demand[v] = 0;
+    }
+
+    for(EdgeIt e(cvrp.g); e != INVALID; ++e){
+        aux = SCIPgetSolVal(scip, sol, x[e]);
+        if(std::abs(std::round(aux) - aux) > EpsForIntegrality){
+            //solution is not integer
+            integer = false;
+            break;
+        }
+        else if(std::round(aux) == 1 || std::round(aux) == 2){
+            //assign this edge on the copy graph
+            int nameu = cvrp.vname[cvrp.g.u(e)];
+            int namev = cvrp.vname[cvrp.g.v(e)];
+            Edge e = g.addEdge(g.nodeFromId(nameu), g.nodeFromId(namev));
+            edgeCount[e] = int(std::round(aux));
+        }
+    }
+
+    if(!integer)
+        return false;
+
+    //now we are going to walk through the graph
+    Node curr = g.nodeFromId(0);
+    Node next;
+    int count = 1;
+    double load = 0.0;
+    bool flag;
+    while(true){
+        flag = true;
+
+        //get next node
+        IncEdgeIt e(g, curr);
+        for(; e != INVALID; ++e){
+            if(vname[g.u(e)] == vname[curr]){
+                next = g.v(e);
+                flag = false;
+                break;
+            }
+            else if(vname[g.v(e)] == vname[curr]){
+                next = g.u(e);
+                flag = false;
+                break;
+            }
+        }
+
+        //no edges
+        if(flag)
+            break;
+
+        //this edge goes and comes back to depot
+        if(edgeCount[e] == 2){
+            if(demand[next] > cvrp.capacity)
+                return false;
+
+            count++;
+            curr = g.nodeFromId(0);
+            g.erase(e);
+        }
+        //we are coming back to depot
+        else if(vname[next] == 0){
+            curr = g.nodeFromId(0);
+            g.erase(e);
+            load = 0.0;
+        }
+        //new vertex
+        else{
+            load += demand[next];
+            if(load > cvrp.capacity)
+                return false;
+
+            curr = next;
+            g.erase(e);
+            count++;
+        }
+    }
+
+    if(count == cvrp.n)
+        return true;
+    else
+        return false;
+}
+
+SCIP_RETCODE CVRPCutsCallbackSCIP::addCVRPCuts(SCIP* scip, SCIP_CONSHDLR* conshdlr, SCIP_SOL* sol, SCIP_RESULT* result, bool feasible){
     assert(result != NULL);
     *result = SCIP_DIDNOTFIND;
-    *check = true;
 
+    //printf("cuts\n");
     //count number of edges x_e > 0
     int nedges = 0;
     for(EdgeIt e(cvrp.g); e != INVALID; ++e){
@@ -728,7 +816,6 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addCVRPCuts(SCIP* scip, SCIP_CONSHDLR* conshd
         delete[] EdgeTail;
         delete[] EdgeHead;
         delete[] EdgeX;
-
         return SCIP_OKAY;
     }
 
@@ -767,7 +854,6 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addCVRPCuts(SCIP* scip, SCIP_CONSHDLR* conshd
 
     else{
         *result = SCIP_SEPARATED;
-        *check = false;
 
         //read the cuts from MyCutsCMP, and add them to the LP
         for (i = 0; i < MyCutsCMP -> Size; i++){

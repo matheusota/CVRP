@@ -86,7 +86,7 @@ typedef enum ENUM_SOLUTION_STATUS
     OK
 } SOLUTION_STATUS;
 
-void            readCheckParams(Params &params, int argc, char *argv[]);
+void            readCheckParams(Params &params, int argc, char *argv[], bool *useScip);
 void            showUsage();
 void            IgnoreComments(ifstream &ifile);  // Implemented in mygraphlib.cpp
 bool            readCVRP(string       filename,

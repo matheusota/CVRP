@@ -11,5 +11,6 @@
 #define LPDTSPALGS_H
 
 #include "cvrp.h"
+int findNonZeroColumn(int row, int **m, int n);
 bool exact(const CVRPInstance &l, CVRPSolution  &s, int tl);
 #endif

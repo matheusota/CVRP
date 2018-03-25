@@ -17,7 +17,6 @@
 #include "cvrpbranchingrule.h"
 
 using namespace scip;
-
 typedef ListGraph::EdgeMap<SCIP_VAR*> EdgeSCIPVarMap;
 
 //convert a graph from the solution vector x to a matrix form
@@ -41,17 +40,6 @@ void toMatrix(EdgeSCIPVarMap &x, const CVRPInstance &l, int **m, int n, SCIP *sc
     }
 }
 
-//given a row it finds the first nonzero column
-//return -1 if none exists
-int findNonZeroColumn(int row, int **m, int n){
-    for(int j = 0; j < n; j++){
-        if (m[row][j])
-            return j;
-    }
-
-    return -1;
-}
-
 bool SCIPexact(const CVRPInstance &l, CVRPSolution  &s, int tl){
     //set initial clock
     double elapsed_time;
@@ -67,18 +55,16 @@ bool SCIPexact(const CVRPInstance &l, CVRPSolution  &s, int tl){
     SCIP_CALL(SCIPcreate(&scip));
 
     /*
-    SCIP_CALL(SCIPsetIntParam(scip, "display/verblevel", 5));
     SCIP_CALL(SCIPsetIntParam(scip, "presolving/maxrestarts", 0));
     SCIPsetPresolving(scip, SCIP_PARAMSETTING_OFF, true);
     SCIPsetBoolParam(scip, "lp/presolving", FALSE);
-    SCIPsetIntParam(scip, "propagating/maxrounds", 0);
-    SCIPsetIntParam(scip, "propagating/maxroundsroot", 0);*/
+    */
 
     SCIPenableDebugSol(scip);
     SCIP_CALL(SCIPincludeDefaultPlugins(scip));
     CVRPCutsCallbackSCIP callback = CVRPCutsCallbackSCIP(scip, l, x);
     callback.initializeCVRPSEPConstants(l);
-    CVRPBranchingRule branching = CVRPBranchingRule(scip, "branchingRule", "branchingRule", 9999999, -1, 1.0, l, x);
+    CVRPBranchingRule branching = CVRPBranchingRule(scip, "branchingRule", "branchingRule", 536870911, -1, 1.0, l, x);
     branching.initializeCVRPSEPConstants(l, callback.MyOldCutsCMP);
     SCIP_CALL(SCIPincludeObjConshdlr(scip, &callback, TRUE));
     SCIP_CALL(SCIPincludeObjBranchrule(scip, &branching, TRUE));

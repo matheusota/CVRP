@@ -29,10 +29,11 @@ class CVRPBranchingRule: public scip::ObjBranchrule{
                           SCIP_Real maxbounddist, const CVRPInstance &cvrp, EdgeSCIPVarMap& x);
         void initializeCVRPSEPConstants(const CVRPInstance &cvrp, CnstrMgrPointer MyOldCutsCMP);
 
-        virtual SCIP_DECL_BRANCHEXECLP(scip_execlp);
+        //virtual SCIP_DECL_BRANCHEXECLP(scip_execlp);
         virtual SCIP_DECL_BRANCHEXECPS(scip_execps);
 
     private:
+        bool checkFeasibilityCVRP(SCIP* scip, SCIP_SOL* sol);
         SCIP_RETCODE branchingRoutine(SCIP *scip);
         SCIP_RETCODE getDeltaExpr(int *S, int size, SCIP* scip, SCIP_CONS* cons, double coef);
         int checkForDepot(int i);
