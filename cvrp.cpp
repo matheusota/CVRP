@@ -73,6 +73,9 @@ int main(int argc, char *argv[])
     if(params.verbosity == GRAPH){
         solutionAsGraphical(l, ts, params.inputFile);
     }
+    else{
+        resultAsString(l, ts, params.outputFile);
+    }
     cout << endl;
 
     return 0;
@@ -283,7 +286,7 @@ bool readCVRP(string          filename,
         for(NodeIt u(g); u != INVALID; ++u){
             if(g.id(v) < g.id(u)){
                 e = g.addEdge(v, u);
-                weight[e] = std::round(hypot((posx[v] - posx[u]), (posy[v] - posy[u])));
+                weight[e] = hypot(abs(posx[v] - posx[u]), abs(posy[v] - posy[u]));
                 //weight[e] = hypot((posx[v] - posx[u]), (posy[v] - posy[u]));
                 //cout << "w["<< g.id(v) << "][" << g.id(u) << "] = " << weight[e] << endl;
             }
@@ -623,29 +626,22 @@ string valuesAsString(CVRPSolution &sol)
     return ss.str();
 }
 //------------------------------------------------------------------------------
-string resultAsString(CVRPInstance  &cvrpInstance,
-                      CVRPSolution  &cvrpSolution,
-                      Params          &params,
-                      bool             optimal,
-                      SOLUTION_STATUS  solutionStatus,
-                      int              elapsedTime)
+void resultAsString(CVRPInstance &instance, CVRPSolution  &sol, string outputName)
 {
-    stringstream ss;
+    ofstream myfile;
+    myfile.open(outputName);
 
-    ss << "algorithm  : " << decodeAlg(params.alg) << endl;
-    ss << "instance   : " << params.inputFile << endl;
-    ss << "elapsedTime: " << elapsedTime << " s" << endl;
-    ss << "timeLimit  : " << params.timeLimit << " s" <<  endl;
-    ss << "optimal    : " <<  (optimal?"Yes":"No") << endl;
-    ss << "sol. status: " << decodeSolutionStatus(solutionStatus) << endl;
-    if(solutionStatus != OK && solutionStatus != NOT_FOUND_FEASIBLE_SOLUTION){
-        ss << "Solution returned has not passed in the verification." << endl;
+    int *int_sol = new int[(int)sol.tour.size()];
+    for(int i = 0; i < (int)sol.tour.size(); i++)
+        int_sol[i] = instance.vname[sol.tour[i]];
+
+    for(int i = 0; i < (int)sol.tour.size() - 1; i++){
+        myfile << to_string(int_sol[i]) + " ";
+        if((i + 1 < (int)sol.tour.size()) && (int_sol[i + 1] == 0))
+            myfile << "\n";
     }
-    ss << solutionAsString(cvrpInstance, cvrpSolution);
 
-
-
-    return ss.str();
+    myfile.close();
 }
 //------------------------------------------------------------------------------
 void solutionAsGraphical(CVRPInstance &instance, CVRPSolution  &sol, string inputFile)

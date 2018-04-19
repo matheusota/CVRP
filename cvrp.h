@@ -115,12 +115,7 @@ string          solutionAsString(CVRPInstance &CVRPInstance, CVRPSolution  &CVRP
 string          tourAsString(CVRPInstance &CVRPInstance, CVRPSolution  &CVRPSolution);
 string          tourAndDemandAsString(CVRPInstance &CVRPInstance, CVRPSolution  &CVRPSolution);
 string          valuesAsString(CVRPSolution &CVRPSolution);
-string          resultAsString(CVRPInstance  &cvrpInstance,
-                               CVRPSolution  &cvrpSolution,
-                               Params          &params,
-                               bool             optimal,
-                               SOLUTION_STATUS  solutionStatus,
-                               int              elapsedTime);
+void          resultAsString(CVRPInstance &CVRPInstance, CVRPSolution  &CVRPSolution, string outputName);
 string          decodeAlg(ALG alg);
 
 #endif

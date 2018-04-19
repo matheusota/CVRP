@@ -60,7 +60,7 @@ bool SCIPexact(const CVRPInstance &l, CVRPSolution  &s, int tl){
     SCIPsetBoolParam(scip, "lp/presolving", FALSE);
     */
 
-    SCIPenableDebugSol(scip);
+    //SCIPenableDebugSol(scip);
     SCIP_CALL(SCIPincludeDefaultPlugins(scip));
     CVRPCutsCallbackSCIP callback = CVRPCutsCallbackSCIP(scip, l, x);
     callback.initializeCVRPSEPConstants(l);
