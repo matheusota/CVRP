@@ -54,20 +54,18 @@ bool SCIPexact(const CVRPInstance &l, CVRPSolution  &s, int tl){
     SCIP *scip;
     SCIP_CALL(SCIPcreate(&scip));
 
-    /*
-    SCIP_CALL(SCIPsetIntParam(scip, "presolving/maxrestarts", 0));
-    SCIPsetPresolving(scip, SCIP_PARAMSETTING_OFF, true);
-    SCIPsetBoolParam(scip, "lp/presolving", FALSE);
-    */
-
     //SCIPenableDebugSol(scip);
     SCIP_CALL(SCIPincludeDefaultPlugins(scip));
-    CVRPCutsCallbackSCIP callback = CVRPCutsCallbackSCIP(scip, l, x);
-    callback.initializeCVRPSEPConstants(l);
+
+    //include branching rules
     CVRPBranchingRule branching = CVRPBranchingRule(scip, "branchingRule", "branchingRule", 536870911, -1, 1.0, l, x);
     branching.initializeCVRPSEPConstants(l, callback.MyOldCutsCMP);
-    SCIP_CALL(SCIPincludeObjConshdlr(scip, &callback, TRUE));
     SCIP_CALL(SCIPincludeObjBranchrule(scip, &branching, TRUE));
+
+    //include cvrpsep cuts
+    CVRPCutsCallbackSCIP callback = CVRPCutsCallbackSCIP(scip, l, x);
+    callback.initializeCVRPSEPConstants(l);
+    SCIP_CALL(SCIPincludeObjConshdlr(scip, &callback, TRUE));
 
     // create an empty problem
     SCIP_CALL(SCIPcreateProb(scip, "CVRP Problem", NULL, NULL, NULL, NULL, NULL, NULL, NULL));
@@ -115,7 +113,6 @@ bool SCIPexact(const CVRPInstance &l, CVRPSolution  &s, int tl){
     SCIP_CALL(SCIPcreateConsLinear(scip, &cons_depot, ("x(\\delta(0)) == " + to_string(2 * l.nroutes)).c_str(), 0, NULL, NULL, 2.0 * l.nroutes, 2.0 * l.nroutes,
         TRUE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE));
 
-    //cout << "constraint: ";
     for(IncEdgeIt e(l.g, l.depot); e != INVALID; ++e){
         SCIP_CALL(SCIPaddCoefLinear(scip, cons_depot, x[e], 1.0));
     }
@@ -144,9 +141,6 @@ bool SCIPexact(const CVRPInstance &l, CVRPSolution  &s, int tl){
 
         //founded optimal solution, now we need to construct the solution
         else{
-            //free the demand vector
-            //delete[] Demand;
-
             //get a matrix representation of the graph
             SCIP_SOL* sol = SCIPgetBestSol(scip);
             s.cost = SCIPgetSolOrigObj(scip, sol);
@@ -164,9 +158,9 @@ bool SCIPexact(const CVRPInstance &l, CVRPSolution  &s, int tl){
                     cout << "x[" << l.vname[l.g.u(e)] << "][" << l.vname[l.g.v(e)] << "]" << endl;
             }
 
+            //construct solution
             int i = 0;
             int j;
-
             s.tour.push_back(l.g.nodeFromId(i));
             while((j = findNonZeroColumn(i, matrix, l.n)) != -1){
                 s.tour.push_back(l.g.nodeFromId(j));
@@ -182,9 +176,6 @@ bool SCIPexact(const CVRPInstance &l, CVRPSolution  &s, int tl){
 
             callback.freeDemand();
         }
-    }
-    else{
-        return 0;
     }
 
     return 0;
