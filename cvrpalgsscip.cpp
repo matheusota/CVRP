@@ -15,6 +15,7 @@
 #include <lemon/preflow.h>
 #include "cvrpcutscallbackscip.h"
 #include "cvrpbranchingrule.h"
+#include "dpcaller.h"
 
 using namespace scip;
 typedef ListGraph::EdgeMap<SCIP_VAR*> EdgeSCIPVarMap;
@@ -57,19 +58,24 @@ bool SCIPexact(const CVRPInstance &l, CVRPSolution  &s, int tl){
     //SCIPenableDebugSol(scip);
     SCIP_CALL(SCIPincludeDefaultPlugins(scip));
 
-    //include branching rules
-    CVRPBranchingRule branching = CVRPBranchingRule(scip, "branchingRule", "branchingRule", 536870911, -1, 1.0, l, x);
-    branching.initializeCVRPSEPConstants(l, callback.MyOldCutsCMP);
-    SCIP_CALL(SCIPincludeObjBranchrule(scip, &branching, TRUE));
-
     //include cvrpsep cuts
     CVRPCutsCallbackSCIP callback = CVRPCutsCallbackSCIP(scip, l, x);
     callback.initializeCVRPSEPConstants(l);
     SCIP_CALL(SCIPincludeObjConshdlr(scip, &callback, TRUE));
 
+    //include branching rules
+    CVRPBranchingRule branching = CVRPBranchingRule(scip, "branchingRule", "branchingRule", 536870911, -1, 1.0, l, x);
+    branching.initializeCVRPSEPConstants(l, callback.MyOldCutsCMP);
+    SCIP_CALL(SCIPincludeObjBranchrule(scip, &branching, TRUE));
+
     // create an empty problem
     SCIP_CALL(SCIPcreateProb(scip, "CVRP Problem", NULL, NULL, NULL, NULL, NULL, NULL, NULL));
     SCIP_CALL(SCIPsetObjsense(scip, SCIP_OBJSENSE_MINIMIZE));
+
+    //testing DPCaller
+    DPCaller *dpcaller = new DPCaller(l);
+    dpcaller -> solveHeuristic();
+    delete dpcaller;
 
     //initialize SCIP variables
     for(EdgeIt e(l.g); e != INVALID; ++e){

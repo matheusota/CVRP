@@ -56,20 +56,28 @@ CVRPSEPDIR  = CVRPSEP
 CVRPSEPINCDIR  = -I$(CVRPSEPDIR)/include
 CVRPSEPLIBDIR  = $(CVRPSEPDIR)/lib/libCVRPSEP.a
 
+#================= DINPROG =====================================================
+DINPROGDIR  = DinProg
+DINPROGINCDIR  = -I$(DINPROGDIR)/include
+DINPROGSOURCESDIR  = $(DINPROGDIR)/source
+DINPROGSOURCES = $(wildcard $(DINPROGSOURCESDIR)/*.cpp)
+DINPROGOBJLIB = $(DINPROGSOURCES:.cpp=.o)
+DINPROGLIBDIR  = dinprog.a
+
 #================= SCIP =====================================================
 SCIPINC  = -Isrc -DWITH_SCIPDEF -I/home/matheus/scip/scip-4.0.0/src -DNDEBUG -DROUNDING_FE  -DNPARASCIP -DWITH_ZLIB  -DWITH_GMP  -DWITH_READLINE
 SCIPLIB = -L/home/matheus/scip/scip-4.0.0/lib/static -lscip.linux.x86_64.gnu.opt -lobjscip.linux.x86_64.gnu.opt -llpispx2.linux.x86_64.gnu.opt -lnlpi.cppad.linux.x86_64.gnu.opt -ltpinone.linux.x86_64.gnu.opt  -O3 -fomit-frame-pointer -mtune=native    -L/home/matheus/scip/scip-4.0.0/lib/static -lsoplex.linux.x86_64.gnu.opt -lm -m64  -lz -lzimpl.linux.x86_64.gnu.opt  -lgmp -lreadline -lncurses -lm -m64  -lz -lzimpl.linux.x86_64.gnu.opt  -lgmp -lreadline -lncurses
 #---------------------------------------------
 # define includes and libraries
 
-INC = $(GUROBI_INC) $(LEMONINCDIR) $(CVRPSEPINCDIR) $(SCIPINC)
+INC = $(GUROBI_INC) $(LEMONINCDIR) $(DINPROGINCDIR) $(CVRPSEPINCDIR) $(SCIPINC)
 LIB = $(CC_LIB) $(GUROBI_LIB)  $(LEMONLIBDIR) $(SCIPLIB) -lemon 
 
 
 # g++ -m64 -g -o exe readgraph.cpp viewgraph.cpp adjacencymatrix.cpp ex_fractional_packing.o -I/Library/gurobi600/mac64/include/ -L/Library/gurobi600/mac64/lib/ -lgurobi_c++ -lgurobi60 -stdlib=libstdc++ -lpthread -lm
 # g++ -m64 -g -c adjacencymatrix.cpp -o adjacencymatrix.o -I/Library/gurobi600/mac64/include/  -stdlib=libstdc++ 
 
-MYLIBSOURCES = mygraphlib.cpp geompack.cpp myutils.cpp cvrpalgs.cpp cvrpcutscallback.cpp cvrpalgsscip.cpp cvrpcutscallbackscip.cpp  cvrpbranchingrule.cpp
+MYLIBSOURCES = mygraphlib.cpp geompack.cpp myutils.cpp cvrpalgs.cpp cvrpcutscallback.cpp cvrpalgsscip.cpp cvrpcutscallbackscip.cpp  cvrpbranchingrule.cpp dpcaller.cpp
 MYOBJLIB = $(MYLIBSOURCES:.cpp=.o)
 
 EX =  cvrp.cpp
@@ -84,11 +92,14 @@ mylib.a: $(MYOBJLIB) $(MYLIBSOURCES)
 	ar cru $@ $(MYOBJLIB)
 	#ar cr $@ $(MYOBJLIB)  # by mhmulati, https://bugzilla.redhat.com/show_bug.cgi?id=1155273
 
+dinprog.a: $(DINPROGOBJLIB) $(DINPROGSOURCES)
+	ar cru $@ $(DINPROGOBJLIB)
+	
 %.o: %.cpp 
 	$(CC) $(CC_ARGS) -c $^ $(INC) -o $@  
 
-%.e: %.o  mylib.a
-	$(CC) $(CC_ARGS) $^ -o $@ $(CVRPSEPLIBDIR) $(LIB) 
+%.e: %.o  mylib.a $(DINPROGLIBDIR)
+	$(CC) $(CC_ARGS) $^ -o $@ $(DINPROGLIBDIR) $(CVRPSEPLIBDIR) $(LIB) 
 
 .cpp.o:
 	$(CC) -c $(CARGS) $< -o $@

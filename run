@@ -1,1 +1,1 @@
-./cvrp.e -i in/cvrp-set-A/A/A-n56-k2.vrp -o out/A-n56-k2.out -t 3000 -s
+./cvrp.e -i in/cvrp-set-A/A/A-n32-k5.vrp -o out/A-n32-k5.out -t 3000 -s -g

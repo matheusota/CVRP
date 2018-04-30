@@ -192,7 +192,7 @@ template <class TOracle> class QRSolver {
 		void allocateArrays() {
 			//fprintf (stderr, "Allocating arrays with n=%d and cap=%d.\n", n, cap);
 			best                = new Bucket*[n+1];   //best states reaching each vertex with capacity smaller than current
-			for (int i=1; i<=n; i++) {
+            for (int i=1; i<=n; i++) {
 				best[i] = new Bucket(2*bcap);
 			}
 			
@@ -923,7 +923,7 @@ template <class TOracle> class QRSolver {
 
 		int countNegativePaths () {
 			int negative = 0;
-			int neighbors = oracle->getNeighbors(oracle->getDepot(), neighbor_labels, neighbor_demands, neighbor_lengths);
+            int neighbors = oracle->getIncomingNeighbors(oracle->getDepot(), neighbor_labels, neighbor_demands, neighbor_lengths);
 
 			for (int i=0; i<neighbors; i++) {
 				int v = neighbor_labels[i];
@@ -1133,8 +1133,8 @@ template <class TOracle> int QRSolver<TOracle>::insolve (TOracle *_oracle, int k
 			 *-------------------------------------------------*/
 			if (!stack->isEmpty()) {
 				//get list of all neighbors of v --- considering forbidden ones
-				//int ncount = oracle->getNeighbors (v, nlabel, ndemand, nlength, full_graph); //number of neighbors
-				int ncount = oracle->getNeighbors (v, nlabel, ndemand, nlength);
+                int ncount = oracle->getNeighbors (v, nlabel, ndemand, nlength, full_graph); //number of neighbors
+                //int ncount = oracle->getNeighbors (v, nlabel, ndemand, nlength);
 
 				do {
 					State *current_state = stack->pop(); //get current state
