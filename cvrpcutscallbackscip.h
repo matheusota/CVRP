@@ -7,7 +7,17 @@
 #include "mygraphlib.h"
 #include "cvrp.h"
 #include "CVRPSEP/include/cnstrmgr.h"
+#include "CVRPSEP/include/capsep.h"
+#include "CVRPSEP/include/mstarsep.h"
+#include "CVRPSEP/include/fcisep.h"
+#include "CVRPSEP/include/combsep.h"
+#include "CVRPSEP/include/htoursep.h"
+#include <lemon/list_graph.h>
+#include <cassert>
+#include "conspool.h"
+#include "easyscip.h"
 
+using namespace easyscip;
 using namespace scip;
 
 typedef ListGraph::EdgeMap<SCIP_VAR*> EdgeSCIPVarMap;
@@ -23,8 +33,9 @@ class CVRPCutsCallbackSCIP: public scip::ObjConshdlr{
         int MaxNoOfFCITreeNodes;
         int QMin;
 
-        const CVRPInstance &cvrp;
+        CVRPInstance &cvrp;
         EdgeSCIPVarMap& x;
+        ConsPool *consPool;
 
         virtual SCIP_DECL_CONSTRANS(scip_trans);
         virtual SCIP_DECL_CONSSEPALP(scip_sepalp);
@@ -34,8 +45,8 @@ class CVRPCutsCallbackSCIP: public scip::ObjConshdlr{
         virtual SCIP_DECL_CONSCHECK(scip_check);
         virtual SCIP_DECL_CONSLOCK(scip_lock);
 
-        CVRPCutsCallbackSCIP(SCIP *scip, const CVRPInstance &cvrp, EdgeSCIPVarMap& x);
-        void initializeCVRPSEPConstants(const CVRPInstance &cvrp);
+        CVRPCutsCallbackSCIP(SCIP *scip, CVRPInstance &cvrp, EdgeSCIPVarMap& x, ConsPool *consPool_);
+        void initializeCVRPSEPConstants(CVRPInstance &cvrp);
         void freeDemand();
 
         SCIP_RETCODE SCIPcreateCVRPCuts(
@@ -54,6 +65,7 @@ class CVRPCutsCallbackSCIP: public scip::ObjConshdlr{
            );
 
     private:
+        SCIP_RETCODE addVarToRow(SCIP* scip, Edge e, SCIP_ROW* row, SCIP_VAR* var, double coef);
         bool checkFeasibilityCVRP(SCIP* scip, SCIP_SOL* sol);
         SCIP_RETCODE addCVRPCuts(SCIP* scip, SCIP_CONSHDLR* conshdlr, SCIP_SOL* sol, SCIP_RESULT* result, bool feasible);
         SCIP_RETCODE getDeltaExpr(int *S, int size, SCIP* scip, SCIP_ROW* row, double coef);

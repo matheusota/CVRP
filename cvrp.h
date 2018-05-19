@@ -2,7 +2,17 @@
 #define CVRP_H
 
 #include "mygraphlib.h"
+#include <vector>
+#include <scip/scip.h>
+#include "objscip/objscip.h"
+#include "scip/cons_linear.h"
+#include <scip/scipdefplugins.h>
+#include <map>
+
 typedef ListGraph::NodeMap<ListGraph::Node> NodeNodeMap;
+typedef ListGraph::NodeMap<SCIP_CONS*> NodeSCIPConsMap;
+
+using namespace std;
 
 typedef enum ENUM_ALG
 {
@@ -30,41 +40,58 @@ typedef struct structParams
 
 class CVRPInstance
 {
-public:
-    CVRPInstance(ListGraph        &pg,
-                   NodeIntMap &pvname,
-                   EdgeValueMap    &pweight,
-                   NodePosMap    &pposx,
-                   NodePosMap    &pposy,
-                   Node           pdepot,
-                   double          pcapacity,
-                   NodePosMap   &pdemand,
-                   int   &nroutes);
+    public:
+        CVRPInstance(ListGraph        &pg,
+                       NodeIntMap &pvname,
+                       EdgeValueMap    &pweight,
+                       EdgeValueMap    &pdual,
+                       NodePosMap    &pposx,
+                       NodePosMap    &pposy,
+                       Node           pdepot,
+                       double          pcapacity,
+                       NodePosMap   &pdemand,
+                       int   &nroutes);
 
-    ListGraph    &g;
-    int             n, m;
-    NodeIntMap &vname;
-    EdgeStringMap    aname;
-    NodeColorMap   vcolor;
-    EdgeColorMap     acolor;
-    EdgeValueMap    &weight;
-    NodePosMap    &posx;
-    NodePosMap    &posy;
+        ListGraph    &g;
+        int             n, m;
+        NodeIntMap &vname;
+        EdgeStringMap    aname;
+        NodeColorMap   vcolor;
+        EdgeColorMap     acolor;
+        EdgeValueMap    &weight;
+        EdgeValueMap    &dual;
+        NodePosMap    &posx;
+        NodePosMap    &posy;
 
-    Node           depot;
-    double          capacity;
-    NodePosMap   &demand;
-    int nroutes;
+        Node           depot;
+        double          capacity;
+        NodePosMap   &demand;
+        int nroutes;
+        bool shouldPrice;
 };
+
+class QR{
+    public:
+        map<int, float> edgeCoefs;
+        SCIP_VAR* var;
+        SCIP *scip;
+
+        QR(){}
+        ~QR(){
+            SCIPreleaseVar(scip, &var);
+        }
+};
+
+typedef vector<QR*>::iterator QRit;
 
 class CVRPSolution
 {
-public:
-    CVRPSolution();
-    vector<Node> tour;
-    double        lowerBound;
-    double        cost;
-    double        upperBound;
+    public:
+        CVRPSolution();
+        vector<Node> tour;
+        double        lowerBound;
+        double        cost;
+        double        upperBound;
 };
 
 typedef enum ENUM_SOLUTION_STATUS
@@ -86,7 +113,7 @@ typedef enum ENUM_SOLUTION_STATUS
     OK
 } SOLUTION_STATUS;
 
-void            readCheckParams(Params &params, int argc, char *argv[], bool *useScip);
+void            readCheckParams(Params &params, int argc, char *argv[], bool *useScip, bool *shouldPrice);
 void            showUsage();
 void            IgnoreComments(ifstream &ifile);  // Implemented in mygraphlib.cpp
 bool            readCVRP(string       filename,

@@ -1,27 +1,7 @@
-#include <scip/scip.h>
-#include "objscip/objscip.h"
-#include "scip/cons_linear.h"
-#include <scip/scipdefplugins.h>
-#include <float.h>
-#include <math.h>
-#include <set>
-#include <lemon/list_graph.h>
-#include <lemon/unionfind.h>
-#include <lemon/gomory_hu.h>
-#include <lemon/adaptors.h>
-#include <lemon/connectivity.h>
-#include "mygraphlib.h"
-#include "cvrpalgs.h"
-#include <lemon/preflow.h>
-#include "cvrpcutscallbackscip.h"
-#include "cvrpbranchingrule.h"
-#include "dpcaller.h"
-
-using namespace scip;
-typedef ListGraph::EdgeMap<SCIP_VAR*> EdgeSCIPVarMap;
+#include "cvrpalgsscip.h"
 
 //convert a graph from the solution vector x to a matrix form
-void toMatrix(EdgeSCIPVarMap &x, const CVRPInstance &l, int **m, int n, SCIP *scip, SCIP_SOL* sol){
+void toMatrix(EdgeSCIPVarMap &x, CVRPInstance &l, int **m, int n, SCIP *scip, SCIP_SOL* sol){
     //initialize matrix
     for(int i = 0; i < n; i++){
         for(int j = 0; j < n; j++)
@@ -36,12 +16,11 @@ void toMatrix(EdgeSCIPVarMap &x, const CVRPInstance &l, int **m, int n, SCIP *sc
             int value = int(SCIPgetSolVal(scip, sol, x[e]) + 0.5);
             m[u][v] = value;
             m[v][u] = value;
-            //cout << "going from " << u << " to " << v << endl;
         }
     }
 }
 
-bool SCIPexact(const CVRPInstance &l, CVRPSolution  &s, int tl){
+bool SCIPexact(CVRPInstance &l, CVRPSolution  &s, int tl){
     //set initial clock
     double elapsed_time;
     clock_t begin = clock();
@@ -55,11 +34,101 @@ bool SCIPexact(const CVRPInstance &l, CVRPSolution  &s, int tl){
     SCIP *scip;
     SCIP_CALL(SCIPcreate(&scip));
 
-    //SCIPenableDebugSol(scip);
+    //some variables used for pricing
+    CVRPPricerSCIP *pricer;
+    NodeSCIPConsMap *nodeMap;
+    ConsPool *consPool;
+    EdgeSCIPConsMap *translateMap;
+
+    SCIP_CALL(SCIPsetIntParam(scip, "display/verblevel", 5));
+    SCIP_CALL(SCIPsetIntParam(scip, "presolving/maxrestarts", 0));
+    SCIPsetPresolving(scip, SCIP_PARAMSETTING_OFF, true);
     SCIP_CALL(SCIPincludeDefaultPlugins(scip));
 
+    // create an empty problem
+    SCIP_CALL(SCIPcreateProb(scip, "CVRP Problem", NULL, NULL, NULL, NULL, NULL, NULL, NULL));
+    SCIP_CALL(SCIPsetObjsense(scip, SCIP_OBJSENSE_MINIMIZE));
+
+    //initialize edge variables
+    for(EdgeIt e(l.g); e != INVALID; ++e){
+        ScipVar* var;
+
+        //if one of the ends of the edge is in the depot, x can be 2
+        if(l.g.id(l.g.u(e)) == 0 ||  l.g.id(l.g.v(e)) == 0) {
+            var = new ScipIntVar(scip, 0.0, 2.0, l.weight[e]);
+        }
+        else {
+            var = new ScipBinVar(scip, l.weight[e]);
+        }
+
+        x[e] = var->var;
+    }
+
+    //initialize qroutes variables
+    if(l.shouldPrice){
+        consPool = new ConsPool(l);
+        nodeMap = new NodeSCIPConsMap(l.g);
+        translateMap = new EdgeSCIPConsMap(l.g);
+
+        //get qroutes
+        DPCaller *dpcaller = new DPCaller(scip, l, 0);
+        vector<QR*> qroutes;
+        dpcaller -> solveHeuristic(qroutes);
+        delete dpcaller;
+
+        //create translation constraints
+        for(EdgeIt e(l.g); e != INVALID; ++e){
+            ScipConsPrice *cons = new ScipConsPrice(scip, -SCIPinfinity(scip), 0.0);
+
+            for(QRit it = qroutes.begin(); it != qroutes.end(); ++it){
+                cons->addVar((*it)->var, (*it)->edgeCoefs[l.g.id(e)]);
+            }
+
+            //printf("added constraint for edge %d\n", l.g.id(e));
+            (*translateMap)[e] = cons->cons;
+            consPool->addConsInfo(e, -1, cons->cons);
+            cons->addVar(x[e], -1.0);
+            cons->commit();
+        }
+
+        //insert pricer in the model
+        pricer = new CVRPPricerSCIP(scip, l, x, *translateMap, *nodeMap, consPool);
+        SCIP_CALL(SCIPincludeObjPricer(scip, pricer, TRUE));
+        SCIP_CALL(SCIPactivatePricer(scip, SCIPfindPricer(scip, "CVRPPricer")));
+    }
+
+    //---------------------------------------------------------------------------
+    //now we add the model constraints
+
+    //add constraint x(\delta(i)) == 2 (forall i \in V \ {0})
+    for(NodeIt v(l.g); v != INVALID; ++v){
+        if(l.vname[v] != 0){
+            ScipCons *cons = new ScipCons(scip, 2.0, 2.0);
+
+            for(IncEdgeIt e(l.g, v); e != INVALID; ++e){
+                cons->addVar(x[e], 1.0);
+
+                if(l.shouldPrice)
+                    (*nodeMap)[v] = cons->cons;
+            }
+            cons->commit();
+        }
+    }
+
+    //add constraint x(\delta(0)) == 2K
+    ScipCons *cons_depot = new ScipCons(scip, 2.0 * l.nroutes, 2.0 * l.nroutes);
+
+    for(IncEdgeIt e(l.g, l.depot); e != INVALID; ++e){
+        cons_depot->addVar(x[e], 1.0);
+
+        if(l.shouldPrice)
+            (*nodeMap)[l.depot] = cons_depot->cons;
+    }
+
+    cons_depot->commit();
+
     //include cvrpsep cuts
-    CVRPCutsCallbackSCIP callback = CVRPCutsCallbackSCIP(scip, l, x);
+    CVRPCutsCallbackSCIP callback = CVRPCutsCallbackSCIP(scip, l, x, consPool);
     callback.initializeCVRPSEPConstants(l);
     SCIP_CALL(SCIPincludeObjConshdlr(scip, &callback, TRUE));
 
@@ -68,66 +137,9 @@ bool SCIPexact(const CVRPInstance &l, CVRPSolution  &s, int tl){
     branching.initializeCVRPSEPConstants(l, callback.MyOldCutsCMP);
     SCIP_CALL(SCIPincludeObjBranchrule(scip, &branching, TRUE));
 
-    // create an empty problem
-    SCIP_CALL(SCIPcreateProb(scip, "CVRP Problem", NULL, NULL, NULL, NULL, NULL, NULL, NULL));
-    SCIP_CALL(SCIPsetObjsense(scip, SCIP_OBJSENSE_MINIMIZE));
-
-    //testing DPCaller
-    DPCaller *dpcaller = new DPCaller(l);
-    dpcaller -> solveHeuristic();
-    delete dpcaller;
-
-    //initialize SCIP variables
-    for(EdgeIt e(l.g); e != INVALID; ++e){
-        SCIP_VAR* var;
-
-        //if one of the ends of the edge is in the depot, x can be 2
-        if(l.g.id(l.g.u(e)) == 0 ||  l.g.id(l.g.v(e)) == 0) {
-            SCIP_CALL(SCIPcreateVar(scip, &var, ("x#" + to_string(l.g.id(l.g.u(e))) + "#" + to_string(l.g.id(l.g.v(e)))).c_str(),
-                0.0, 2.0, l.weight[e], SCIP_VARTYPE_INTEGER, TRUE, FALSE, NULL, NULL, NULL, NULL, NULL));
-        }
-        else {
-            SCIP_CALL(SCIPcreateVar(scip, &var, ("x#" + to_string(l.g.id(l.g.u(e))) + "#" + to_string(l.g.id(l.g.v(e)))).c_str(),
-                0.0, 1.0, l.weight[e], SCIP_VARTYPE_BINARY, TRUE, FALSE, NULL, NULL, NULL, NULL, NULL));
-        }
-
-        x[e] = var;
-
-        SCIP_CALL(SCIPaddVar(scip, var));
-    }
-
-    //add the constraints
-
-    //add constraint x(\delta(i)) == 2 (forall i \in V \ {0})
-    for(NodeIt v(l.g); v != INVALID; ++v){
-        if(l.vname[v] != 0){
-            SCIP_CONS *cons;
-            SCIP_CALL(SCIPcreateConsLinear(scip, &cons, ("x(\\delta(" + to_string(l.vname[v]) + ")) == 2").c_str(), 0, NULL, NULL, 2.0, 2.0,
-                TRUE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE));
-
-            for(IncEdgeIt e(l.g, v); e != INVALID; ++e){
-                SCIP_CALL(SCIPaddCoefLinear(scip, cons, x[e], 1.0));
-            }
-
-            SCIP_CALL(SCIPaddCons(scip, cons));
-            SCIP_CALL(SCIPreleaseCons(scip, &cons));
-        }
-    }
-
-    //add constraint x(\delta(0)) == 2K
-    SCIP_CONS *cons_depot;
-    SCIP_CALL(SCIPcreateConsLinear(scip, &cons_depot, ("x(\\delta(0)) == " + to_string(2 * l.nroutes)).c_str(), 0, NULL, NULL, 2.0 * l.nroutes, 2.0 * l.nroutes,
-        TRUE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE));
-
-    for(IncEdgeIt e(l.g, l.depot); e != INVALID; ++e){
-        SCIP_CALL(SCIPaddCoefLinear(scip, cons_depot, x[e], 1.0));
-    }
-    SCIP_CALL(SCIPaddCons(scip, cons_depot));
-    SCIP_CALL(SCIPreleaseCons(scip, &cons_depot));
-
     //create CVRPSEP constraints
     SCIP_CONS* cons;
-    SCIP_CALL(callback.SCIPcreateCVRPCuts(scip, &cons, "CVRPCuts", FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, TRUE));
+    SCIP_CALL(callback.SCIPcreateCVRPCuts(scip, &cons, "CVRPCuts", FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, l.shouldPrice, FALSE, TRUE));
     SCIP_CALL(SCIPaddCons(scip, cons));
     SCIP_CALL(SCIPreleaseCons(scip, &cons));
 
@@ -180,6 +192,8 @@ bool SCIPexact(const CVRPInstance &l, CVRPSolution  &s, int tl){
                 delete[] matrix[i];
             delete[] matrix;
 
+            if(l.shouldPrice)
+                delete pricer;
             callback.freeDemand();
         }
     }

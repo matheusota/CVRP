@@ -987,7 +987,7 @@ template <class TOracle> class QRSolver {
 
 		int solve (TOracle *_oracle) {
 			static QRParameters params;
-			const bool verbose = false;
+            const bool verbose = false;
 			int capacity = _oracle->getCapacity();
 			int nvertices = _oracle->getN();
 			int count = 0;
@@ -1065,7 +1065,7 @@ template <class TOracle> class QRSolver {
  *-------------------------------------------------------*/
 
 template <class TOracle> int QRSolver<TOracle>::insolve (TOracle *_oracle, int k, int g, bool full_graph, bool full_bucket)  {
-	const bool verbose = false;
+    const bool verbose = true;
 	const bool histogram = false;
 
 	if (verbose) fprintf (stderr, "insolve called\n");
@@ -1157,7 +1157,8 @@ template <class TOracle> int QRSolver<TOracle>::insolve (TOracle *_oracle, int k
 	}
 
 	//MATHEUS: print the paths stored in the matrix
-	printf("MATHEUS: DEBUGGING\n");
+    /*
+    printf("MATHEUS: DEBUGGING\n");
 	for(d = 0; d <= cap; d += grain){
 		printf("CAPACITY: %d\n", d);
 		Bucket **candidates = matrix[d];
@@ -1175,7 +1176,7 @@ template <class TOracle> int QRSolver<TOracle>::insolve (TOracle *_oracle, int k
 				}
 			}
 		}
-	}
+    }*/
 
 	/*---------------------------------------------------------------------------
 	 | now 'best' has the best paths mincost paths to all vertices but the depot

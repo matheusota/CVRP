@@ -12,5 +12,5 @@
 
 #include "cvrp.h"
 int findNonZeroColumn(int row, int **m, int n);
-bool exact(const CVRPInstance &l, CVRPSolution  &s, int tl);
+bool exact(CVRPInstance &l, CVRPSolution  &s, int tl);
 #endif

@@ -21,13 +21,15 @@ int main(int argc, char *argv[])
 {
     Params params;
     bool useScip = false;
+    bool shouldPrice = false;
 
-    readCheckParams(params, argc, argv, &useScip);
+    readCheckParams(params, argc, argv, &useScip, &shouldPrice);
 
     // Variables that represent the CVRP
     ListGraph        g;
     NodeIntMap vname(g);
     EdgeValueMap    weight(g);
+    EdgeValueMap    dual(g);
     NodePosMap    posx(g);
     NodePosMap    posy(g);
     Node          depot;
@@ -42,7 +44,7 @@ int main(int argc, char *argv[])
     }
 
     // Initialize the LPD-TSP instance with the read values
-    CVRPInstance l(g, vname, weight, posx, posy, depot, capacity, demand, nroutes);
+    CVRPInstance l(g, vname, weight, dual, posx, posy, depot, capacity, demand, nroutes);
 
     // Initialize a solution
     CVRPSolution ts;
@@ -57,6 +59,7 @@ int main(int argc, char *argv[])
 
     if(useScip){
         printf("Using SCIP\n");
+        l.shouldPrice = shouldPrice;
         SCIPexact(l, ts, params.timeLimit);
     }
     else{
@@ -84,6 +87,7 @@ int main(int argc, char *argv[])
 CVRPInstance::CVRPInstance(ListGraph    &pg,
                                NodeIntMap &pvname,
                                EdgeValueMap    &pweight,
+                               EdgeValueMap    &pdual,
                                NodePosMap    &pposx,
                                NodePosMap    &pposy,
                                Node           pdepot,
@@ -96,6 +100,7 @@ CVRPInstance::CVRPInstance(ListGraph    &pg,
     vcolor(pg),
     acolor(pg),
     weight(pweight),
+    dual(pdual),
     posx(pposx),
     posy(pposy),
     depot(pdepot),
@@ -115,7 +120,7 @@ CVRPSolution::CVRPSolution()
     upperBound = DBL_MAX;
 }
 //------------------------------------------------------------------------------
-void readCheckParams(Params &params, int argc, char *argv[], bool *useScip)
+void readCheckParams(Params &params, int argc, char *argv[], bool *useScip, bool *shouldPrice)
 {
     params.alg        = NONE;
     params.timeLimit  = 0;
@@ -162,6 +167,10 @@ void readCheckParams(Params &params, int argc, char *argv[], bool *useScip)
             continue;
         }
 
+        if( arg.find("-p") == 0){
+            *shouldPrice = true;
+            continue;
+        }
 
         cerr << "Parametro invalido: \"" << arg << "\"" << " (ou parametro faltando)" << endl;
         showUsage();
@@ -197,7 +206,9 @@ void showUsage()
          << "-t <time> Informa o tempo limite em segundos dado por <time>. Caso não seja informado, considera-se 30s.\n"
          << "-i <in>   Informa arquivo de entrada <in>\n"
          << "-o <out>  Informa arquivo de saida <out>\n"
-         << "-g     Adicionalmente, -g mostra um gráfico da solução.\n"
+         << "-s Utiliza o SCIP ao invés do GUROBI.\n"
+         << "-p Realiza o geracao de colunas.\n"
+         << "-g Adicionalmente, -g mostra um gráfico da solução.\n"
          << flush;
 }
 //------------------------------------------------------------------------------
@@ -257,11 +268,11 @@ bool readCVRP(string          filename,
     //get capacity
     getline(ifile,STR);
 
-    regex e2("[0-9]+");
+    regex e2("[0-9]+(\.[0-9]+)?");
     rgx_begin = sregex_iterator(STR.begin(), STR.end(), e2);
     for (sregex_iterator i = rgx_begin; i != rgx_end; ++i) {
         smatch match = *i;
-        capacity = stoi(match.str());
+        capacity = stod(match.str());
     }
 
     //more comments

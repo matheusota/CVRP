@@ -23,8 +23,8 @@ class CVRPCutsCallback: public GRBCallback{
     double (GRBCallback::*solution_value)(GRBVar);
 
     public:
-        CVRPCutsCallback(const CVRPInstance &cvrp, EdgeGRBVarMap& x);
-        void initializeCVRPSEPConstants(const CVRPInstance &cvrp);
+        CVRPCutsCallback(CVRPInstance &cvrp, EdgeGRBVarMap& x);
+        void initializeCVRPSEPConstants(CVRPInstance &cvrp);
         void freeDemand();
     private:
         void callback();

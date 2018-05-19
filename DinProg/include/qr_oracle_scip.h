@@ -211,6 +211,7 @@ class QROracleScip {
         const CVRPInstance *master;
         double *lpDualExp;
         QRPriority *priorities;
+        int mode;
 
         //does edge (i,j) belong to the graph?
         inline bool exists (int i, int j) {
@@ -243,7 +244,6 @@ class QROracleScip {
                 return v;
         }
 
-        //TODO
         inline double getLength (int i, int j) {
             i = replaceDepot(i);
             j = replaceDepot(j);
@@ -255,7 +255,7 @@ class QROracleScip {
             if(e == INVALID)
                 e = findEdge((master -> g), w, v);
 
-            return master -> weight[e];
+            return master -> dual[e];
         }
 
         inline double getOriginalLength(int i, int j) {
@@ -296,7 +296,12 @@ class QROracleScip {
                     if (exists(v,w)) {
                         label[count] = w;
                         demand[count] = getDemand(w);
-                        length[count] = getLength(v,w);
+
+                        if(mode == 0)
+                            length[count] = getOriginalLength(v,w);
+                        else
+                            length[count] = getLength(v,w);
+
                         count++;
                     }
                 }
@@ -311,7 +316,12 @@ class QROracleScip {
                     if (exists(v,w)) {
                         label[count] = w;
                         demand[count] = getDemand(w);
-                        length[count] = getLength(v,w);
+
+                        if(mode == 0)
+                            length[count] = getOriginalLength(v,w);
+                        else
+                            length[count] = getLength(v,w);
+
                         count++;
                     }
                 }
@@ -339,9 +349,10 @@ class QROracleScip {
         /*-------------
          | constructor
          *------------*/
-        QROracleScip (const CVRPInstance *_master) {
+        QROracleScip (const CVRPInstance *_master, int _mode) {
             master = _master;
             priorities = new QRPriority (master);
+            mode = _mode;
         }
 
         ~QROracleScip () {

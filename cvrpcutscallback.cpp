@@ -6,9 +6,9 @@
 #include "CVRPSEP/include/htoursep.h"
 #include <lemon/list_graph.h>
 
-CVRPCutsCallback::CVRPCutsCallback(const CVRPInstance &cvrp, EdgeGRBVarMap& x) : cvrp(cvrp),x(x)  {    }
+CVRPCutsCallback::CVRPCutsCallback(CVRPInstance &cvrp, EdgeGRBVarMap& x) : cvrp(cvrp),x(x)  {    }
 
-void CVRPCutsCallback::initializeCVRPSEPConstants(const CVRPInstance &cvrp){
+void CVRPCutsCallback::initializeCVRPSEPConstants(CVRPInstance &cvrp){
     NoOfCustomers = cvrp.n - 1;
     CAP = cvrp.capacity;
     EpsForIntegrality = 0.0001;

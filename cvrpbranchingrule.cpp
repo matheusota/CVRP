@@ -6,11 +6,11 @@
 #include "CVRPSEP/include/capsep.h"
 
 CVRPBranchingRule::CVRPBranchingRule(SCIP *scip, const char *name, const char *desc, int priority, int maxdepth,
-    SCIP_Real maxbounddist, const CVRPInstance &cvrp, EdgeSCIPVarMap& x) : cvrp(cvrp),x(x),
+    SCIP_Real maxbounddist, CVRPInstance &cvrp, EdgeSCIPVarMap& x) : cvrp(cvrp),x(x),
     ObjBranchrule(scip, name, desc, priority, maxdepth, maxbounddist){
 }
 
-void CVRPBranchingRule::initializeCVRPSEPConstants(const CVRPInstance &cvrp, CnstrMgrPointer MyOldCutsCMP){
+void CVRPBranchingRule::initializeCVRPSEPConstants(CVRPInstance &cvrp, CnstrMgrPointer MyOldCutsCMP){
     NoOfCustomers = cvrp.n - 1;
     CAP = cvrp.capacity;
     EpsForIntegrality = 0.0001;
@@ -164,14 +164,16 @@ bool CVRPBranchingRule::checkFeasibilityCVRP(SCIP* scip, SCIP_SOL* sol){
         return false;
 }
 
-//main branching routine
-SCIP_RETCODE CVRPBranchingRule::branchingRoutine(SCIP *scip){
-    //first we check if solution is not feasible
-    if(!checkFeasibilityCVRP(scip, NULL))
+SCIP_DECL_BRANCHEXECPS(CVRPBranchingRule::scip_execps){
+    //first we check if solution is infeasible
+    /*
+    if(!checkFeasibilityCVRP(scip, NULL)){
+        *result = SCIP_DIDNOTRUN;
         return SCIP_OKAY;
+    }*/
 
     //count number of edges x_e > 0
-    //printf("branching\n");
+    printf("branching\n");
     int nedges = 0;
     for(EdgeIt e(cvrp.g); e != INVALID; ++e){
         if(SCIPgetSolVal(scip, NULL, x[e]) > EpsForIntegrality)
@@ -350,9 +352,6 @@ SCIP_RETCODE CVRPBranchingRule::branchingRoutine(SCIP *scip){
 
     CMGR_FreeMemCMgr(&SetsCMP);
 
+    *result = SCIP_BRANCHED;
     return SCIP_OKAY;
-}
-
-SCIP_DECL_BRANCHEXECPS(CVRPBranchingRule::scip_execps){
-    branchingRoutine(scip);
 }

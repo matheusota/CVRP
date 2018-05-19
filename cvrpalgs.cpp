@@ -15,7 +15,7 @@
 typedef ListGraph::EdgeMap<GRBVar> EdgeGRBVarMap;
 
 //convert a graph from the solution vector x to a matrix form
-void toMatrix(EdgeGRBVarMap &x, const CVRPInstance &l, int **m, int n){
+void toMatrix(EdgeGRBVarMap &x, CVRPInstance &l, int **m, int n){
     //initialize matrix
     for(int i = 0; i < n; i++){
         for(int j = 0; j < n; j++)
@@ -46,7 +46,7 @@ int findNonZeroColumn(int row, int **m, int n){
     return -1;
 }
 
-bool exact(const CVRPInstance &l, CVRPSolution  &s, int tl){
+bool exact(CVRPInstance &l, CVRPSolution  &s, int tl){
     //set initial clock
     double elapsed_time;
     clock_t begin = clock();

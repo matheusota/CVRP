@@ -22,12 +22,12 @@ class CVRPBranchingRule: public scip::ObjBranchrule{
         char IntegerAndFeasible;
         int QMin;
 
-        const CVRPInstance &cvrp;
+        CVRPInstance &cvrp;
         EdgeSCIPVarMap& x;
 
         CVRPBranchingRule(SCIP *scip, const char *name, const char *desc, int priority, int maxdepth,
-                          SCIP_Real maxbounddist, const CVRPInstance &cvrp, EdgeSCIPVarMap& x);
-        void initializeCVRPSEPConstants(const CVRPInstance &cvrp, CnstrMgrPointer MyOldCutsCMP);
+                          SCIP_Real maxbounddist, CVRPInstance &cvrp, EdgeSCIPVarMap& x);
+        void initializeCVRPSEPConstants(CVRPInstance &cvrp, CnstrMgrPointer MyOldCutsCMP);
 
         //virtual SCIP_DECL_BRANCHEXECLP(scip_execlp);
         virtual SCIP_DECL_BRANCHEXECPS(scip_execps);

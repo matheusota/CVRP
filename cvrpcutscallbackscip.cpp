@@ -1,18 +1,6 @@
 #include "cvrpcutscallbackscip.h"
-#include "CVRPSEP/include/capsep.h"
-#include "CVRPSEP/include/mstarsep.h"
-#include "CVRPSEP/include/fcisep.h"
-#include "CVRPSEP/include/combsep.h"
-#include "CVRPSEP/include/htoursep.h"
-#include <lemon/list_graph.h>
-#include <cassert>
 
-//SCIP STUFF
-struct SCIP_ConsData
-{
-};
-
-void CVRPCutsCallbackSCIP::initializeCVRPSEPConstants(const CVRPInstance &cvrp){
+void CVRPCutsCallbackSCIP::initializeCVRPSEPConstants(CVRPInstance &cvrp){
     NoOfCustomers = cvrp.n - 1;
     CAP = cvrp.capacity;
     EpsForIntegrality = 0.0001;
@@ -40,9 +28,11 @@ void CVRPCutsCallbackSCIP::initializeCVRPSEPConstants(const CVRPInstance &cvrp){
     QMin = demandSum - (cvrp.nroutes - 1) * cvrp.capacity;
 }
 
-CVRPCutsCallbackSCIP::CVRPCutsCallbackSCIP(SCIP *scip, const CVRPInstance &cvrp, EdgeSCIPVarMap& x) : cvrp(cvrp),x(x),
+CVRPCutsCallbackSCIP::CVRPCutsCallbackSCIP(SCIP *scip, CVRPInstance &cvrp, EdgeSCIPVarMap& x, ConsPool *consPool_) : cvrp(cvrp),x(x),
     ObjConshdlr(scip, "CVRPCuts", "CVRP callback constraints", 1000000, -2000000, -2000000, 1, -1, 1, 0,
-        FALSE, FALSE, TRUE, SCIP_PROPTIMING_BEFORELP, SCIP_PRESOLTIMING_FAST) {}
+        FALSE, FALSE, TRUE, SCIP_PROPTIMING_BEFORELP, SCIP_PRESOLTIMING_FAST) {
+    consPool = consPool_;
+}
 
 /** creates and captures a CVRPSEP constraint */
 SCIP_RETCODE CVRPCutsCallbackSCIP::SCIPcreateCVRPCuts(
@@ -88,24 +78,7 @@ SCIP_DECL_CONSTRANS(CVRPCutsCallbackSCIP::scip_trans)
    return SCIP_OKAY;
 }
 
-/** separation method of constraint handler for LP solution
- *
- *  Separates all constraints of the constraint handler. The method is called in the LP solution loop,
- *  which means that a valid LP solution exists.
- *
- *  The first nusefulconss constraints are the ones, that are identified to likely be violated. The separation
- *  method should process only the useful constraints in most runs, and only occasionally the remaining
- *  nconss - nusefulconss constraints.
- *
- *  possible return values for *result (if more than one applies, the first in the list should be used):
- *  - SCIP_CUTOFF     : the node is infeasible in the variable's bounds and can be cut off
- *  - SCIP_CONSADDED  : an additional constraint was generated
- *  - SCIP_REDUCEDDOM : a variable's domain was reduced
- *  - SCIP_SEPARATED  : a cutting plane was generated
- *  - SCIP_DIDNOTFIND : the separator searched, but did not find domain reductions, cutting planes, or cut constraints
- *  - SCIP_DIDNOTRUN  : the separator was skipped
- *  - SCIP_DELAYED    : the separator was skipped, but should be called again
- */
+// separation method of constraint handler for LP solution
 SCIP_DECL_CONSSEPALP(CVRPCutsCallbackSCIP::scip_sepalp)
 {
     bool feasible;
@@ -113,25 +86,7 @@ SCIP_DECL_CONSSEPALP(CVRPCutsCallbackSCIP::scip_sepalp)
     return SCIP_OKAY;
 }
 
-/** separation method of constraint handler for arbitrary primal solution
- *
- *  Separates all constraints of the constraint handler. The method is called outside the LP solution loop (e.g., by
- *  a relaxator or a primal heuristic), which means that there is no valid LP solution.
- *  Instead, the method should produce cuts that separate the given solution.
- *
- *  The first nusefulconss constraints are the ones, that are identified to likely be violated. The separation
- *  method should process only the useful constraints in most runs, and only occasionally the remaining
- *  nconss - nusefulconss constraints.
- *
- *  possible return values for *result (if more than one applies, the first in the list should be used):
- *  - SCIP_CUTOFF     : the node is infeasible in the variable's bounds and can be cut off
- *  - SCIP_CONSADDED  : an additional constraint was generated
- *  - SCIP_REDUCEDDOM : a variable's domain was reduced
- *  - SCIP_SEPARATED  : a cutting plane was generated
- *  - SCIP_DIDNOTFIND : the separator searched, but did not find domain reductions, cutting planes, or cut constraints
- *  - SCIP_DIDNOTRUN  : the separator was skipped
- *  - SCIP_DELAYED    : the separator was skipped, but should be called again
- */
+// separation method of constraint handler for arbitrary primal solution
 SCIP_DECL_CONSSEPASOL(CVRPCutsCallbackSCIP::scip_sepasol)
 {
     bool feasible;
@@ -140,38 +95,10 @@ SCIP_DECL_CONSSEPASOL(CVRPCutsCallbackSCIP::scip_sepasol)
 }
 
 
-/** constraint enforcing method of constraint handler for LP solutions
- *
- *  The method is called at the end of the node processing loop for a node where the LP was solved.
- *  The LP solution has to be checked for feasibility. If possible, an infeasibility should be resolved by
- *  branching, reducing a variable's domain to exclude the solution or separating the solution with a valid
- *  cutting plane.
- *
- *  The enforcing methods of the active constraint handlers are called in decreasing order of their enforcing
- *  priorities until the first constraint handler returned with the value SCIP_CUTOFF, SCIP_SEPARATED,
- *  SCIP_REDUCEDDOM, SCIP_CONSADDED, or SCIP_BRANCHED.
- *  The integrality constraint handler has an enforcing priority of zero. A constraint handler which can
- *  (or wants) to enforce its constraints only for integral solutions should have a negative enforcing priority
- *  (e.g. the alldiff-constraint can only operate on integral solutions).
- *  A constraint handler which wants to incorporate its own branching strategy even on non-integral
- *  solutions must have an enforcing priority greater than zero (e.g. the SOS-constraint incorporates
- *  SOS-branching on non-integral solutions).
- *
- *  The first nusefulconss constraints are the ones, that are identified to likely be violated. The enforcing
- *  method should process the useful constraints first. The other nconss - nusefulconss constraints should only
- *  be enforced, if no violation was found in the useful constraints.
- *
- *  possible return values for *result (if more than one applies, the first in the list should be used):
- *  - SCIP_CUTOFF     : the node is infeasible in the variable's bounds and can be cut off
- *  - SCIP_CONSADDED  : an additional constraint was generated
- *  - SCIP_REDUCEDDOM : a variable's domain was reduced
- *  - SCIP_SEPARATED  : a cutting plane was generated
- *  - SCIP_BRANCHED   : no changes were made to the problem, but a branching was applied to resolve an infeasibility
- *  - SCIP_INFEASIBLE : at least one constraint is infeasible, but it was not resolved
- *  - SCIP_FEASIBLE   : all constraints of the handler are feasible
- */
+// constraint enforcing method of constraint handler for LP solutions
 SCIP_DECL_CONSENFOLP(CVRPCutsCallbackSCIP::scip_enfolp)
 {
+    printf("consenfolp\n");
     bool check = checkFeasibilityCVRP(scip, NULL);
     if(check)
         *result = SCIP_FEASIBLE;
@@ -180,38 +107,10 @@ SCIP_DECL_CONSENFOLP(CVRPCutsCallbackSCIP::scip_enfolp)
     return SCIP_OKAY;
 }/*lint !e715*/
 
-/** constraint enforcing method of constraint handler for pseudo solutions
- *
- *  The method is called at the end of the node processing loop for a node where the LP was not solved.
- *  The pseudo solution has to be checked for feasibility. If possible, an infeasibility should be resolved by
- *  branching, reducing a variable's domain to exclude the solution or adding an additional constraint.
- *  Separation is not possible, since the LP is not processed at the current node. All LP informations like
- *  LP solution, slack values, or reduced costs are invalid and must not be accessed.
- *
- *  Like in the enforcing method for LP solutions, the enforcing methods of the active constraint handlers are
- *  called in decreasing order of their enforcing priorities until the first constraint handler returned with
- *  the value SCIP_CUTOFF, SCIP_REDUCEDDOM, SCIP_CONSADDED, SCIP_BRANCHED, or SCIP_SOLVELP.
- *
- *  The first nusefulconss constraints are the ones, that are identified to likely be violated. The enforcing
- *  method should process the useful constraints first. The other nconss - nusefulconss constraints should only
- *  be enforced, if no violation was found in the useful constraints.
- *
- *  If the pseudo solution's objective value is lower than the lower bound of the node, it cannot be feasible
- *  and the enforcing method may skip it's check and set *result to SCIP_DIDNOTRUN. However, it can also process
- *  its constraints and return any other possible result code.
- *
- *  possible return values for *result (if more than one applies, the first in the list should be used):
- *  - SCIP_CUTOFF     : the node is infeasible in the variable's bounds and can be cut off
- *  - SCIP_CONSADDED  : an additional constraint was generated
- *  - SCIP_REDUCEDDOM : a variable's domain was reduced
- *  - SCIP_BRANCHED   : no changes were made to the problem, but a branching was applied to resolve an infeasibility
- *  - SCIP_SOLVELP    : at least one constraint is infeasible, and this can only be resolved by solving the SCIP_LP
- *  - SCIP_INFEASIBLE : at least one constraint is infeasible, but it was not resolved
- *  - SCIP_FEASIBLE   : all constraints of the handler are feasible
- *  - SCIP_DIDNOTRUN  : the enforcement was skipped (only possible, if objinfeasible is true)
- */
+// constraint enforcing method of constraint handler for pseudo solutions
 SCIP_DECL_CONSENFOPS(CVRPCutsCallbackSCIP::scip_enfops)
 {
+    printf("consenfops\n");
     bool check = checkFeasibilityCVRP(scip, NULL);
     if(check)
         *result = SCIP_FEASIBLE;
@@ -220,30 +119,11 @@ SCIP_DECL_CONSENFOPS(CVRPCutsCallbackSCIP::scip_enfops)
     return SCIP_OKAY;
 } /*lint !e715*/
 
-/** feasibility check method of constraint handler for primal solutions
- *
- *  The given solution has to be checked for feasibility.
- *
- *  The check methods of the active constraint handlers are called in decreasing order of their check
- *  priorities until the first constraint handler returned with the result SCIP_INFEASIBLE.
- *  The integrality constraint handler has a check priority of zero. A constraint handler which can
- *  (or wants) to check its constraints only for integral solutions should have a negative check priority
- *  (e.g. the alldiff-constraint can only operate on integral solutions).
- *  A constraint handler which wants to check feasibility even on non-integral solutions must have a
- *  check priority greater than zero (e.g. if the check is much faster than testing all variables for
- *  integrality).
- *
- *  In some cases, integrality conditions or rows of the current LP don't have to be checked, because their
- *  feasibility is already checked or implicitly given. In these cases, 'checkintegrality' or
- *  'checklprows' is FALSE.
- *
- *  possible return values for *result:
- *  - SCIP_INFEASIBLE : at least one constraint of the handler is infeasible
- *  - SCIP_FEASIBLE   : all constraints of the handler are feasible
- */
+// feasibility check method of constraint handler for primal solutions
 SCIP_DECL_CONSCHECK(CVRPCutsCallbackSCIP::scip_check)
 {
-    bool check = checkFeasibilityCVRP(scip, NULL);
+    printf("conscheck\n");
+    bool check = checkFeasibilityCVRP(scip, sol);
     if(check)
         *result = SCIP_FEASIBLE;
     else
@@ -252,55 +132,7 @@ SCIP_DECL_CONSCHECK(CVRPCutsCallbackSCIP::scip_check)
     return SCIP_OKAY;
 } /*lint !e715*/
 
-/** variable rounding lock method of constraint handler
- *
- *  This method is called, after a constraint is added or removed from the transformed problem.
- *  It should update the rounding locks of all associated variables with calls to SCIPaddVarLocks(),
- *  depending on the way, the variable is involved in the constraint:
- *  - If the constraint may get violated by decreasing the value of a variable, it should call
- *    SCIPaddVarLocks(scip, var, nlockspos, nlocksneg), saying that rounding down is potentially rendering the
- *    (positive) constraint infeasible and rounding up is potentially rendering the negation of the constraint
- *    infeasible.
- *  - If the constraint may get violated by increasing the value of a variable, it should call
- *    SCIPaddVarLocks(scip, var, nlocksneg, nlockspos), saying that rounding up is potentially rendering the
- *    constraint's negation infeasible and rounding up is potentially rendering the constraint itself
- *    infeasible.
- *  - If the constraint may get violated by changing the variable in any direction, it should call
- *    SCIPaddVarLocks(scip, var, nlockspos + nlocksneg, nlockspos + nlocksneg).
- *
- *  Consider the linear constraint "3x -5y +2z <= 7" as an example. The variable rounding lock method of the
- *  linear constraint handler should call SCIPaddVarLocks(scip, x, nlocksneg, nlockspos),
- *  SCIPaddVarLocks(scip, y, nlockspos, nlocksneg) and SCIPaddVarLocks(scip, z, nlocksneg, nlockspos) to tell SCIP,
- *  that rounding up of x and z and rounding down of y can destroy the feasibility of the constraint, while rounding
- *  down of x and z and rounding up of y can destroy the feasibility of the constraint's negation "3x -5y +2z > 7".
- *  A linear constraint "2 <= 3x -5y +2z <= 7" should call
- *  SCIPaddVarLocks(scip, ..., nlockspos + nlocksneg, nlockspos + nlocksneg) on all variables, since rounding in both
- *  directions of each variable can destroy both the feasibility of the constraint and it's negation
- *  "3x -5y +2z < 2  or  3x -5y +2z > 7".
- *
- *  If the constraint itself contains other constraints as sub constraints (e.g. the "or" constraint concatenation
- *  "c(x) or d(x)"), the rounding lock methods of these constraints should be called in a proper way.
- *  - If the constraint may get violated by the violation of the sub constraint c, it should call
- *    SCIPaddConsLocks(scip, c, nlockspos, nlocksneg), saying that infeasibility of c may lead to infeasibility of
- *    the (positive) constraint, and infeasibility of c's negation (i.e. feasibility of c) may lead to infeasibility
- *    of the constraint's negation (i.e. feasibility of the constraint).
- *  - If the constraint may get violated by the feasibility of the sub constraint c, it should call
- *    SCIPaddConsLocks(scip, c, nlocksneg, nlockspos), saying that infeasibility of c may lead to infeasibility of
- *    the constraint's negation (i.e. feasibility of the constraint), and infeasibility of c's negation (i.e. feasibility
- *    of c) may lead to infeasibility of the (positive) constraint.
- *  - If the constraint may get violated by any change in the feasibility of the sub constraint c, it should call
- *    SCIPaddConsLocks(scip, c, nlockspos + nlocksneg, nlockspos + nlocksneg).
- *
- *  Consider the or concatenation "c(x) or d(x)". The variable rounding lock method of the or constraint handler
- *  should call SCIPaddConsLocks(scip, c, nlockspos, nlocksneg) and SCIPaddConsLocks(scip, d, nlockspos, nlocksneg)
- *  to tell SCIP, that infeasibility of c and d can lead to infeasibility of "c(x) or d(x)".
- *
- *  As a second example, consider the equivalence constraint "y <-> c(x)" with variable y and constraint c. The
- *  constraint demands, that y == 1 if and only if c(x) is satisfied. The variable lock method of the corresponding
- *  constraint handler should call SCIPaddVarLocks(scip, y, nlockspos + nlocksneg, nlockspos + nlocksneg) and
- *  SCIPaddConsLocks(scip, c, nlockspos + nlocksneg, nlockspos + nlocksneg), because any modification to the
- *  value of y or to the feasibility of c can alter the feasibility of the equivalence constraint.
- */
+// variable rounding lock method of constraint handler
 SCIP_DECL_CONSLOCK(CVRPCutsCallbackSCIP::scip_lock)
 {
     for(EdgeIt e(cvrp.g); e != INVALID; ++e){
@@ -310,8 +142,15 @@ SCIP_DECL_CONSLOCK(CVRPCutsCallbackSCIP::scip_lock)
     return SCIP_OKAY;
 } /*lint !e715*/
 
-//SPECIFIC CVRP STUFF
+//add variable to a row (and update consPool if pricing)
+SCIP_RETCODE CVRPCutsCallbackSCIP::addVarToRow(SCIP *scip, Edge e, SCIP_ROW* row, SCIP_VAR* var, double coef){
+    SCIPaddVarToRow(scip, row, var, coef);
 
+    if(cvrp.shouldPrice)
+        consPool->addConsInfo(e, coef, row);
+}
+
+//SPECIFIC CVRP STUFF
 void CVRPCutsCallbackSCIP::freeDemand(){
     CMGR_FreeMemCMgr(&MyCutsCMP);
     CMGR_FreeMemCMgr(&MyOldCutsCMP);
@@ -335,7 +174,7 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::getDeltaExpr(int *S, int size, SCIP* scip, SC
                 Node u = cvrp.g.nodeFromId(i);
                 Node v = cvrp.g.nodeFromId(S[j]);
                 Edge e = findEdge(cvrp.g,u,v);
-                SCIP_CALL(SCIPaddVarToRow(scip, row, x[e], coef));
+                addVarToRow(scip, e, row, x[e], coef);
             }
         }
     }
@@ -350,7 +189,7 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::getCrossingExpr(int *S1, int *S2, int size1, 
                 Node u = cvrp.g.nodeFromId(S1[i]);
                 Node v = cvrp.g.nodeFromId(S2[j]);
                 Edge e = findEdge(cvrp.g,u,v);
-                SCIP_CALL(SCIPaddVarToRow(scip, row, x[e], coef));
+                addVarToRow(scip, e, row, x[e], coef);
             }
         }
     }
@@ -366,7 +205,7 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::getInsideExpr(int *S, int size, SCIP* scip, S
             Node u = cvrp.g.nodeFromId(S[i]);
             Node v = cvrp.g.nodeFromId(S[j]);
             Edge e = findEdge(cvrp.g,u,v);
-            SCIP_CALL(SCIPaddVarToRow(scip, row, x[e], coef));
+            addVarToRow(scip, e, row, x[e], coef);
         }
     }
 }
@@ -404,7 +243,7 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addCapacityCuts(int i, SCIP* scip, SCIP_CONSH
     for(int j = 1; j <= ListSize; j++){
         for(int k = j + 1; k <= ListSize; k++){
             Edge e = findEdge(cvrp.g, cvrp.g.nodeFromId(List[j]), cvrp.g.nodeFromId(List[k]));
-            SCIP_CALL(SCIPaddVarToRow(scip, row, x[e], 1.0));
+            addVarToRow(scip, e, row, x[e], 1.0);
         }
     }
 
@@ -643,7 +482,7 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addHypotourCuts(int i, SCIP* scip, SCIP_CONSH
         u = cvrp.g.nodeFromId(Tail[j]);
         v = cvrp.g.nodeFromId(Head[j]);
         e = findEdge(cvrp.g, u, v);
-        SCIP_CALL(SCIPaddVarToRow(scip, row, x[e], Coeff[j]));
+        addVarToRow(scip, e, row, x[e], Coeff[j]);
     }
 
     //Add the cut to the LP
@@ -761,8 +600,10 @@ bool CVRPCutsCallbackSCIP::checkFeasibilityCVRP(SCIP* scip, SCIP_SOL* sol){
         }
     }
 
-    if(count == cvrp.n)
+    if(count == cvrp.n){
+        printf("solved!\n");
         return true;
+    }
     else
         return false;
 }
@@ -771,7 +612,7 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addCVRPCuts(SCIP* scip, SCIP_CONSHDLR* conshd
     assert(result != NULL);
     *result = SCIP_DIDNOTFIND;
 
-    //printf("cuts\n");
+    printf("cuts\n");
     //count number of edges x_e > 0
     int nedges = 0;
     for(EdgeIt e(cvrp.g); e != INVALID; ++e){
@@ -825,6 +666,7 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addCVRPCuts(SCIP* scip, SCIP_CONSHDLR* conshd
     COMBSEP_SeparateCombs(NoOfCustomers, Demand, CAP, QMin, nedges, EdgeTail, EdgeHead,
         EdgeX, MaxNoOfCombCuts, &MaxCombViolation, MyCutsCMP);
 
+    /*
     //get homogeneous multistar cuts
     MaxMStarViolation = 0;
     if(MaxCapViolation < 0.1 && MaxCombViolation < 0.1)
@@ -842,6 +684,7 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addCVRPCuts(SCIP* scip, SCIP_CONSHDLR* conshd
     if(MaxCapViolation < 0.1 && MaxCombViolation < 0.1 && MaxMStarViolation < 0.1 && MaxFCIViolation < 0.1)
         HTOURSEP_SeparateHTours(NoOfCustomers, Demand, CAP, nedges, EdgeTail, EdgeHead, EdgeX,
             MyOldCutsCMP, MaxNoOfHypoCuts, &MaxHypoViolation, MyCutsCMP);
+    */
 
     //free edges arrays
     delete[] EdgeTail;
