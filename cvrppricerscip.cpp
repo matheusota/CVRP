@@ -4,7 +4,6 @@
 #include "scip/pub_var.h"
 #include "scip/cons_linear.h"
 
-
 CVRPPricerSCIP::CVRPPricerSCIP(SCIP *scip, CVRPInstance &cvrp, EdgeSCIPVarMap& x, EdgeSCIPConsMap &translateMap_, NodeSCIPConsMap &nodeMap_, ConsPool *consPool_) :
     cvrp(cvrp), x(x), translateMap(translateMap_), nodeMap(nodeMap_), ObjPricer(scip, "CVRPPricer", "Finds tour with negative reduced cost", 0, TRUE){
     consPool = consPool_;
@@ -20,7 +19,6 @@ CVRPPricerSCIP::~CVRPPricerSCIP(){}
  */
 SCIP_DECL_PRICERINIT(CVRPPricerSCIP::scip_init)
 {
-    printf("init start\n");
     for(EdgeIt e(cvrp.g); e != INVALID; ++e){
         SCIP_CALL(SCIPgetTransformedVar(scip, x[e], &x[e]));
         SCIP_CALL(SCIPgetTransformedCons(scip, translateMap[e], &translateMap[e]));
@@ -29,7 +27,6 @@ SCIP_DECL_PRICERINIT(CVRPPricerSCIP::scip_init)
     for(NodeIt v(cvrp.g); v != INVALID; ++v)
         SCIP_CALL(SCIPgetTransformedCons(scip, nodeMap[v], &nodeMap[v]));
 
-    printf("init end\n");
    return SCIP_OKAY;
 } /*lint !e715*/
 
@@ -39,19 +36,20 @@ void CVRPPricerSCIP::getReducedCosts(SCIP *scip, bool isFarkas){
     if(isFarkas){
         for(EdgeIt e(cvrp.g); e != INVALID; ++e){
             list<ConsInfo*> consList = consPool->getConsInfo(e);
+            //r = 0;
             r = cvrp.weight[e];
-            //r = SCIPgetDualfarkasLinear(scip, translateMap[e]);
-            r -= SCIPgetDualfarkasLinear(scip, nodeMap[cvrp.g.u(e)]);
-            r -= SCIPgetDualfarkasLinear(scip, nodeMap[cvrp.g.v(e)]);
+            r -= SCIPgetDualfarkasLinear(scip, translateMap[e]);
+            r -= 0.5 * SCIPgetDualfarkasLinear(scip, nodeMap[cvrp.g.u(e)]);
+            r -= 0.5 * SCIPgetDualfarkasLinear(scip, nodeMap[cvrp.g.v(e)]);
 
             for (list<ConsInfo*>::iterator it = consList.begin(); it != consList.end(); ++it){
                 if((*it)->cons != NULL){
                     SCIP_CONS *transfCons;
                     SCIPgetTransformedCons(scip, (*it)->cons, &transfCons);
-                    r -= (*it)->coef * SCIPgetDualfarkasLinear(scip, transfCons);
+                    r += (*it)->coef * SCIPgetDualfarkasLinear(scip, transfCons);
                 }
                 else{
-                    r -= (*it)->coef *  SCIProwGetDualfarkas((*it)->row);
+                    r += (*it)->coef *  SCIProwGetDualfarkas((*it)->row);
                 }
             }
 
@@ -61,19 +59,20 @@ void CVRPPricerSCIP::getReducedCosts(SCIP *scip, bool isFarkas){
     else{
         for(EdgeIt e(cvrp.g); e != INVALID; ++e){
             list<ConsInfo*> consList = consPool->getConsInfo(e);
+            //r = 0;
             r = cvrp.weight[e];
-            //r = SCIPgetDualsolLinear(scip, translateMap[e]);
-            r -= SCIPgetDualsolLinear(scip, nodeMap[cvrp.g.u(e)]);
-            r -= SCIPgetDualsolLinear(scip, nodeMap[cvrp.g.v(e)]);
+            r -= SCIPgetDualsolLinear(scip, translateMap[e]);
+            r -= 0.5 * SCIPgetDualsolLinear(scip, nodeMap[cvrp.g.u(e)]);
+            r -= 0.5 * SCIPgetDualsolLinear(scip, nodeMap[cvrp.g.v(e)]);
 
             for (list<ConsInfo*>::iterator it = consList.begin(); it != consList.end(); ++it){
                 if((*it)->cons != NULL){
                     SCIP_CONS *transfCons;
                     SCIPgetTransformedCons(scip, (*it)->cons, &transfCons);
-                    r -= (*it)->coef * SCIPgetDualsolLinear(scip, transfCons);
+                    r += (*it)->coef * SCIPgetDualsolLinear(scip, transfCons);
                 }
                 else{
-                    r -= (*it)->coef *  SCIProwGetDualsol((*it)->row);
+                    r += (*it)->coef *  SCIProwGetDualsol((*it)->row);
                 }
             }
 
@@ -84,7 +83,7 @@ void CVRPPricerSCIP::getReducedCosts(SCIP *scip, bool isFarkas){
 
 // perform pricing
 SCIP_RETCODE CVRPPricerSCIP::pricing(SCIP* scip, bool isFarkas) {
-    printf("performing pricing\n");
+    //printf("performing pricing\n");
     //get edge reduced costs
     getReducedCosts(scip, isFarkas);
 
@@ -107,7 +106,6 @@ SCIP_RETCODE CVRPPricerSCIP::pricing(SCIP* scip, bool isFarkas) {
 }
 
 
-
 /** Pricing of additional variables if LP is feasible.
  *
  *  - get the values of the dual variables you need
@@ -120,12 +118,12 @@ SCIP_RETCODE CVRPPricerSCIP::pricing(SCIP* scip, bool isFarkas) {
  *  - SCIP_DIDNOTRUN  : the pricing process was aborted by the pricer, there is no guarantee that the current LP solution is optimal
  */
 SCIP_DECL_PRICERREDCOST(CVRPPricerSCIP::scip_redcost){
-   //printf("pricerredcost\n");
+   SCIPdebugMessage("pricerredcost\n");
    /* set result pointer, see above */
-   *result = SCIP_DIDNOTRUN;
 
-   /* call pricing routine */
+   *result = SCIP_DIDNOTRUN;
    SCIP_CALL(pricing(scip, false));
+   *result = SCIP_SUCCESS;
 
    return SCIP_OKAY;
 }
@@ -139,8 +137,9 @@ SCIP_DECL_PRICERREDCOST(CVRPPricerSCIP::scip_redcost){
  *  - if this tour has negative reduced cost, add it to the LP
  */
 SCIP_DECL_PRICERFARKAS(CVRPPricerSCIP::scip_farkas){
-   /* call pricing routine */
-   SCIP_CALL(pricing(scip, true));
+    /* call pricing routine */
+    SCIPdebugMessage("pricerredfarkas\n");
+    SCIP_CALL(pricing(scip, true));
 
-   return SCIP_OKAY;
+    return SCIP_OKAY;
 }

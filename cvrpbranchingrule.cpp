@@ -6,8 +6,10 @@
 #include "CVRPSEP/include/capsep.h"
 
 CVRPBranchingRule::CVRPBranchingRule(SCIP *scip, const char *name, const char *desc, int priority, int maxdepth,
-    SCIP_Real maxbounddist, CVRPInstance &cvrp, EdgeSCIPVarMap& x) : cvrp(cvrp),x(x),
+    SCIP_Real maxbounddist, CVRPInstance &cvrp, EdgeSCIPVarMap& x, ConsPool *consPool_, CVRPBranchingManager *branchingManager_) : cvrp(cvrp),x(x),
     ObjBranchrule(scip, name, desc, priority, maxdepth, maxbounddist){
+    consPool = consPool_;
+    branchingManager = branchingManager_;
 }
 
 void CVRPBranchingRule::initializeCVRPSEPConstants(CVRPInstance &cvrp, CnstrMgrPointer MyOldCutsCMP){
@@ -30,23 +32,29 @@ void CVRPBranchingRule::initializeCVRPSEPConstants(CVRPInstance &cvrp, CnstrMgrP
 }
 
 //return the expression for x(delta(S))
-SCIP_RETCODE CVRPBranchingRule::getDeltaExpr(int *S, int size, SCIP* scip, SCIP_CONS* cons, double coef){
+SCIP_RETCODE CVRPBranchingRule::getDeltaExpr(int *S, int size, SCIP* scip, SCIP_CONS* cons, double coef, list<int> &edgesList, bool flag){
     bool set[cvrp.n];
 
     //create a set for fast checking
     fill_n(set, cvrp.n, false);
-    for(int i = 1; i < size; i++){
+    for(int i = 1; i <= size; i++){
         set[S[i]] = true;
     }
 
     //get the expression
     for(int i = 0; i < cvrp.n; i++){
         if(!set[i]){
-            for(int j = 1; j < size; j++){
+            for(int j = 1; j <= size; j++){
                 Node u = cvrp.g.nodeFromId(i);
                 Node v = cvrp.g.nodeFromId(S[j]);
                 Edge e = findEdge(cvrp.g,u,v);
+
+                if(e == INVALID)
+                    e = findEdge(cvrp.g, v, u);
+
                 SCIP_CALL(SCIPaddCoefLinear(scip, cons, x[e], coef));
+                if(flag)
+                    edgesList.push_back(cvrp.g.id(e));
             }
         }
     }
@@ -60,120 +68,13 @@ int CVRPBranchingRule::checkForDepot(int i){
         return i;
 }
 
-bool CVRPBranchingRule::checkFeasibilityCVRP(SCIP* scip, SCIP_SOL* sol){
-    //printf("feasibility2\n");
-    //count number of edges x_e > 0
-    int nedges = 0;
+//main branching routine
+SCIP_RETCODE CVRPBranchingRule::branchingRoutine(SCIP *scip, SCIP_RESULT* result){
+    *result = SCIP_DIDNOTRUN;
 
-    //first we are going to create a graph from the solution
-    ListGraph g;
-    NodeIntMap vname(g);
-    NodePosMap demand(g);
-    ListGraph::EdgeMap<int> edgeCount(g);
-    bool integer = true;
-    double aux;
+    //we will use this list to add the branching decision in the cutspool (if pricing)
+    list<int> edgesList;
 
-    //create an auxiliary graph
-    for(int i = 0; i < cvrp.n; i++){
-        Node v = g.addNode();
-        vname[v] = i;
-
-        if(i > 0)
-            demand[v] = cvrp.demand[cvrp.g.nodeFromId(i)];
-        else
-            demand[v] = 0;
-    }
-
-    for(EdgeIt e(cvrp.g); e != INVALID; ++e){
-        aux = SCIPgetSolVal(scip, sol, x[e]);
-        if(std::abs(std::round(aux) - aux) > EpsForIntegrality){
-            //solution is not integer
-            integer = false;
-            break;
-        }
-        else if(std::round(aux) == 1 || std::round(aux) == 2){
-            //assign this edge on the copy graph
-            int nameu = cvrp.vname[cvrp.g.u(e)];
-            int namev = cvrp.vname[cvrp.g.v(e)];
-            Edge e = g.addEdge(g.nodeFromId(nameu), g.nodeFromId(namev));
-            edgeCount[e] = int(std::round(aux));
-        }
-    }
-
-    if(!integer)
-        return false;
-
-    //now we are going to walk through the graph
-    Node curr = g.nodeFromId(0);
-    Node next;
-    int count = 1;
-    double load = 0.0;
-    bool flag;
-    while(true){
-        flag = true;
-
-        //get next node
-        IncEdgeIt e(g, curr);
-        for(; e != INVALID; ++e){
-            if(vname[g.u(e)] == vname[curr]){
-                next = g.v(e);
-                flag = false;
-                break;
-            }
-            else if(vname[g.v(e)] == vname[curr]){
-                next = g.u(e);
-                flag = false;
-                break;
-            }
-        }
-
-        //no edges
-        if(flag)
-            break;
-
-        //this edge goes and comes back to depot
-        if(edgeCount[e] == 2){
-            if(demand[next] > cvrp.capacity)
-                return false;
-
-            count++;
-            curr = g.nodeFromId(0);
-            g.erase(e);
-        }
-        //we are coming back to depot
-        else if(vname[next] == 0){
-            curr = g.nodeFromId(0);
-            g.erase(e);
-            load = 0.0;
-        }
-        //new vertex
-        else{
-            load += demand[next];
-            if(load > cvrp.capacity)
-                return false;
-
-            curr = next;
-            g.erase(e);
-            count++;
-        }
-    }
-
-    if(count == cvrp.n)
-        return true;
-    else
-        return false;
-}
-
-SCIP_DECL_BRANCHEXECPS(CVRPBranchingRule::scip_execps){
-    //first we check if solution is infeasible
-    /*
-    if(!checkFeasibilityCVRP(scip, NULL)){
-        *result = SCIP_DIDNOTRUN;
-        return SCIP_OKAY;
-    }*/
-
-    //count number of edges x_e > 0
-    printf("branching\n");
     int nedges = 0;
     for(EdgeIt e(cvrp.g); e != INVALID; ++e){
         if(SCIPgetSolVal(scip, NULL, x[e]) > EpsForIntegrality)
@@ -258,7 +159,7 @@ SCIP_DECL_BRANCHEXECPS(CVRPBranchingRule::scip_execps){
         SCIP_CALL(SCIPcreateConsLinear(scip, &cons1, "branching1", 0, NULL, NULL, 2.0, 2.0,
             TRUE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE));
 
-        getDeltaExpr(List, ListSize, scip, cons1, 1.0);
+        getDeltaExpr(List, ListSize, scip, cons1, 1.0, edgesList, false);
 
         //add and release contraint
         SCIP_CALL(SCIPaddConsNode(scip, node1, cons1, NULL));
@@ -286,7 +187,7 @@ SCIP_DECL_BRANCHEXECPS(CVRPBranchingRule::scip_execps){
         SCIP_CONS* cons2;
         SCIP_CALL(SCIPcreateConsLinear(scip, &cons2, "branching2", 0, NULL, NULL, 4.0, SCIPinfinity(scip),
             TRUE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE));
-        getDeltaExpr(List, ListSize, scip, cons2, 1.0);
+        getDeltaExpr(List, ListSize, scip, cons2, 1.0, edgesList, false);
         SCIP_CALL(SCIPaddConsNode(scip, node2, cons2, NULL));
         SCIP_CALL(SCIPreleaseCons(scip, &cons2));
         SCIP_CALL(SCIPsolveProbingLP(scip, -1, &lperror, &cutoff));
@@ -327,24 +228,41 @@ SCIP_DECL_BRANCHEXECPS(CVRPBranchingRule::scip_execps){
     SCIP_NODE* child2;
     SCIP_CONS* cons1;
     SCIP_CONS* cons2;
-
     //create constraints
     SCIP_CALL(SCIPcreateConsLinear(scip, &cons1, "branching1", 0, NULL, NULL, 2.0, 2.0,
-        TRUE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE));
+        TRUE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE));
 
     SCIP_CALL(SCIPcreateConsLinear(scip, &cons2, "branching2", 0, NULL, NULL, 4.0, SCIPinfinity(scip),
-        TRUE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE));
+        TRUE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE));
 
     //add the child node to scip
     SCIP_CALL(SCIPcreateChild(scip, &child1, 0.0, SCIPgetLocalTransEstimate(scip)));
     SCIP_CALL(SCIPcreateChild(scip, &child2, 0.0, SCIPgetLocalTransEstimate(scip)));
 
     //add constraints to childs
-    getDeltaExpr(List, ListSize, scip, cons1, 1.0);
-    getDeltaExpr(List, ListSize, scip, cons2, 1.0);
+    getDeltaExpr(List, ListSize, scip, cons1, 1.0, edgesList, false);
+    getDeltaExpr(List, ListSize, scip, cons2, 1.0, edgesList, true);
 
     SCIP_CALL(SCIPaddConsNode(scip, child1, cons1, NULL));
     SCIP_CALL(SCIPaddConsNode(scip, child2, cons2, NULL));
+
+    //if pricing, add the managers
+    if(cvrp.shouldPrice){
+        SCIP_CONS* manager1;
+        SCIP_CONS* manager2;
+
+        SCIP_CALL(branchingManager->SCIPcreateBranchingManager(scip, cons1, &manager1, "manager1",
+            FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, edgesList));
+
+        SCIP_CALL(branchingManager->SCIPcreateBranchingManager(scip, cons2, &manager2, "manager2",
+            FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, edgesList));
+
+        SCIP_CALL(SCIPaddConsNode(scip, child1, manager1, NULL));
+        SCIP_CALL(SCIPaddConsNode(scip, child2, manager2, NULL));
+
+        SCIP_CALL(SCIPreleaseCons(scip, &manager1));
+        SCIP_CALL(SCIPreleaseCons(scip, &manager2));
+    }
 
     //release stuff
     SCIP_CALL(SCIPreleaseCons(scip, &cons1));
@@ -354,4 +272,14 @@ SCIP_DECL_BRANCHEXECPS(CVRPBranchingRule::scip_execps){
 
     *result = SCIP_BRANCHED;
     return SCIP_OKAY;
+}
+
+SCIP_DECL_BRANCHEXECPS(CVRPBranchingRule::scip_execps){
+    SCIPdebugMessage("branching execps\n");
+    branchingRoutine(scip, result);
+}
+
+SCIP_DECL_BRANCHEXECLP(CVRPBranchingRule::scip_execlp){
+    SCIPdebugMessage("branching execlp\n");
+    branchingRoutine(scip, result);
 }

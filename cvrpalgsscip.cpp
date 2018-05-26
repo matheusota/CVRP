@@ -39,11 +39,25 @@ bool SCIPexact(CVRPInstance &l, CVRPSolution  &s, int tl){
     NodeSCIPConsMap *nodeMap;
     ConsPool *consPool;
     EdgeSCIPConsMap *translateMap;
+    CVRPBranchingManager *branchingManager;
 
     SCIP_CALL(SCIPsetIntParam(scip, "display/verblevel", 5));
     SCIP_CALL(SCIPsetIntParam(scip, "presolving/maxrestarts", 0));
+    SCIP_CALL(SCIPsetIntParam(scip, "presolving/maxrounds", 0));
     SCIPsetPresolving(scip, SCIP_PARAMSETTING_OFF, true);
     SCIP_CALL(SCIPincludeDefaultPlugins(scip));
+    SCIP_CALL(SCIPsetIntParam(scip, "nodeselection/bfs/stdpriority", 1073741823));
+    SCIP_CALL(SCIPsetRealParam(scip, "numerics/epsilon", 0.0001));
+    SCIP_CALL(SCIPsetRealParam(scip, "numerics/feastol", 0.0001));
+    SCIP_CALL(SCIPsetRealParam(scip, "numerics/lpfeastol", 0.0001));
+    SCIP_CALL(SCIPsetIntParam(scip, "separating/poolfreq", -1));
+    SCIP_CALL(SCIPsetIntParam(scip, "separating/clique/freq", -1));
+    SCIP_CALL(SCIPsetIntParam(scip, "separating/cmir/freq", -1));
+    SCIP_CALL(SCIPsetIntParam(scip, "separating/flowcover/freq", -1));
+    SCIP_CALL(SCIPsetIntParam(scip, "separating/gomory/freq", -1));
+    SCIP_CALL(SCIPsetIntParam(scip, "separating/impliedbounds/freq", -1));
+    SCIP_CALL(SCIPsetIntParam(scip, "separating/mcf/freq", -1));
+    SCIP_CALL(SCIPsetIntParam(scip, "separating/strongcg/freq", -1));
 
     // create an empty problem
     SCIP_CALL(SCIPcreateProb(scip, "CVRP Problem", NULL, NULL, NULL, NULL, NULL, NULL, NULL));
@@ -95,6 +109,10 @@ bool SCIPexact(CVRPInstance &l, CVRPSolution  &s, int tl){
         pricer = new CVRPPricerSCIP(scip, l, x, *translateMap, *nodeMap, consPool);
         SCIP_CALL(SCIPincludeObjPricer(scip, pricer, TRUE));
         SCIP_CALL(SCIPactivatePricer(scip, SCIPfindPricer(scip, "CVRPPricer")));
+
+        //insert branching manager
+        branchingManager = new CVRPBranchingManager(scip, l, consPool);
+        SCIP_CALL(SCIPincludeObjConshdlr(scip, branchingManager, TRUE));
     }
 
     //---------------------------------------------------------------------------
@@ -133,7 +151,7 @@ bool SCIPexact(CVRPInstance &l, CVRPSolution  &s, int tl){
     SCIP_CALL(SCIPincludeObjConshdlr(scip, &callback, TRUE));
 
     //include branching rules
-    CVRPBranchingRule branching = CVRPBranchingRule(scip, "branchingRule", "branchingRule", 536870911, -1, 1.0, l, x);
+    CVRPBranchingRule branching = CVRPBranchingRule(scip, "CVRPBranchingRule", "CVRPBranchingRule", 50000, -1, 1.0, l, x, consPool, branchingManager);
     branching.initializeCVRPSEPConstants(l, callback.MyOldCutsCMP);
     SCIP_CALL(SCIPincludeObjBranchrule(scip, &branching, TRUE));
 
@@ -150,6 +168,7 @@ bool SCIPexact(CVRPInstance &l, CVRPSolution  &s, int tl){
 
         //SCIP tries to solve the LP
         SCIP_CALL(SCIPsolve(scip));
+        SCIP_CALL(SCIPprintStatistics(scip, NULL));
 
         //reached time limit
         if(SCIPgetStatus(scip) == SCIP_STATUS_TIMELIMIT){

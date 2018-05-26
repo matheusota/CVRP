@@ -29,7 +29,7 @@ void CVRPCutsCallbackSCIP::initializeCVRPSEPConstants(CVRPInstance &cvrp){
 }
 
 CVRPCutsCallbackSCIP::CVRPCutsCallbackSCIP(SCIP *scip, CVRPInstance &cvrp, EdgeSCIPVarMap& x, ConsPool *consPool_) : cvrp(cvrp),x(x),
-    ObjConshdlr(scip, "CVRPCuts", "CVRP callback constraints", 1000000, -2000000, -2000000, 1, -1, 1, 0,
+    ObjConshdlr(scip, "CVRPCuts", "CVRP callback constraints", 1000000, 1000000, 1000000, 1, -1, 1, 0,
         FALSE, FALSE, TRUE, SCIP_PROPTIMING_BEFORELP, SCIP_PRESOLTIMING_FAST) {
     consPool = consPool_;
 }
@@ -98,31 +98,38 @@ SCIP_DECL_CONSSEPASOL(CVRPCutsCallbackSCIP::scip_sepasol)
 // constraint enforcing method of constraint handler for LP solutions
 SCIP_DECL_CONSENFOLP(CVRPCutsCallbackSCIP::scip_enfolp)
 {
-    printf("consenfolp\n");
+    //printf("consenfolp\n");
     bool check = checkFeasibilityCVRP(scip, NULL);
     if(check)
         *result = SCIP_FEASIBLE;
-    else
-        *result = SCIP_INFEASIBLE;
+    else{
+        bool feasible;
+        SCIP_CALL(addCVRPCuts(scip, conshdlr, NULL, result, &feasible));
+
+        if(*result == SCIP_DIDNOTFIND)
+            *result = SCIP_INFEASIBLE;
+    }
+
     return SCIP_OKAY;
 }/*lint !e715*/
 
 // constraint enforcing method of constraint handler for pseudo solutions
 SCIP_DECL_CONSENFOPS(CVRPCutsCallbackSCIP::scip_enfops)
 {
-    printf("consenfops\n");
+    //printf("consenfops\n");
     bool check = checkFeasibilityCVRP(scip, NULL);
     if(check)
         *result = SCIP_FEASIBLE;
     else
-        *result = SCIP_INFEASIBLE;
+        *result = SCIP_SOLVELP;
+
     return SCIP_OKAY;
 } /*lint !e715*/
 
 // feasibility check method of constraint handler for primal solutions
 SCIP_DECL_CONSCHECK(CVRPCutsCallbackSCIP::scip_check)
 {
-    printf("conscheck\n");
+    //printf("conscheck\n");
     bool check = checkFeasibilityCVRP(scip, sol);
     if(check)
         *result = SCIP_FEASIBLE;
@@ -502,6 +509,29 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addHypotourCuts(int i, SCIP* scip, SCIP_CONSH
     delete[] Coeff;
 }
 
+//return the expression for x(delta(S))
+SCIP_RETCODE CVRPCutsCallbackSCIP::getDeltaExpr(int *S, int size, SCIP* scip, SCIP_CONS* cons, double coef){
+    bool set[cvrp.n];
+
+    //create a set for fast checking
+    fill_n(set, cvrp.n, false);
+    for(int i = 1; i < size; i++){
+        set[S[i]] = true;
+    }
+
+    //get the expression
+    for(int i = 0; i < cvrp.n; i++){
+        if(!set[i]){
+            for(int j = 1; j < size; j++){
+                Node u = cvrp.g.nodeFromId(i);
+                Node v = cvrp.g.nodeFromId(S[j]);
+                Edge e = findEdge(cvrp.g,u,v);
+                SCIP_CALL(SCIPaddCoefLinear(scip, cons, x[e], coef));
+            }
+        }
+    }
+}
+
 bool CVRPCutsCallbackSCIP::checkFeasibilityCVRP(SCIP* scip, SCIP_SOL* sol){
     //printf("feasibility\n");
     //count number of edges x_e > 0
@@ -601,7 +631,7 @@ bool CVRPCutsCallbackSCIP::checkFeasibilityCVRP(SCIP* scip, SCIP_SOL* sol){
     }
 
     if(count == cvrp.n){
-        printf("solved!\n");
+        //printf("solved!\n");
         return true;
     }
     else
@@ -612,7 +642,7 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addCVRPCuts(SCIP* scip, SCIP_CONSHDLR* conshd
     assert(result != NULL);
     *result = SCIP_DIDNOTFIND;
 
-    printf("cuts\n");
+    SCIPdebugMessage("cuts\n");
     //count number of edges x_e > 0
     int nedges = 0;
     for(EdgeIt e(cvrp.g); e != INVALID; ++e){
@@ -666,7 +696,6 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addCVRPCuts(SCIP* scip, SCIP_CONSHDLR* conshd
     COMBSEP_SeparateCombs(NoOfCustomers, Demand, CAP, QMin, nedges, EdgeTail, EdgeHead,
         EdgeX, MaxNoOfCombCuts, &MaxCombViolation, MyCutsCMP);
 
-    /*
     //get homogeneous multistar cuts
     MaxMStarViolation = 0;
     if(MaxCapViolation < 0.1 && MaxCombViolation < 0.1)
@@ -684,7 +713,6 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addCVRPCuts(SCIP* scip, SCIP_CONSHDLR* conshd
     if(MaxCapViolation < 0.1 && MaxCombViolation < 0.1 && MaxMStarViolation < 0.1 && MaxFCIViolation < 0.1)
         HTOURSEP_SeparateHTours(NoOfCustomers, Demand, CAP, nedges, EdgeTail, EdgeHead, EdgeX,
             MyOldCutsCMP, MaxNoOfHypoCuts, &MaxHypoViolation, MyCutsCMP);
-    */
 
     //free edges arrays
     delete[] EdgeTail;

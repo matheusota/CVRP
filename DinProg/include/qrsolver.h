@@ -1184,7 +1184,7 @@ template <class TOracle> int QRSolver<TOracle>::insolve (TOracle *_oracle, int k
 	
 	if (verbose) {
 		for (int v=1; v<=n; v++) {
-			if (v==oracle->getDepot()) continue;
+            if (v==oracle->getDepot() || best[v]->getSize() == 0) continue;
 			fprintf (stderr, "Path to %d:  ", v);
 			outputPath (stderr, best[v]->getState(0));
 		}

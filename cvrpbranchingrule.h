@@ -7,8 +7,11 @@
 #include "mygraphlib.h"
 #include "cvrp.h"
 #include "CVRPSEP/include/cnstrmgr.h"
+#include <list>
+#include "cvrpbranchingmanager.h"
 
 using namespace scip;
+using namespace std;
 
 typedef ListGraph::EdgeMap<SCIP_VAR*> EdgeSCIPVarMap;
 
@@ -24,18 +27,19 @@ class CVRPBranchingRule: public scip::ObjBranchrule{
 
         CVRPInstance &cvrp;
         EdgeSCIPVarMap& x;
+        ConsPool *consPool;
+        CVRPBranchingManager *branchingManager;
 
         CVRPBranchingRule(SCIP *scip, const char *name, const char *desc, int priority, int maxdepth,
-                          SCIP_Real maxbounddist, CVRPInstance &cvrp, EdgeSCIPVarMap& x);
+                          SCIP_Real maxbounddist, CVRPInstance &cvrp, EdgeSCIPVarMap& x, ConsPool *consPool_, CVRPBranchingManager *branchingManager_);
         void initializeCVRPSEPConstants(CVRPInstance &cvrp, CnstrMgrPointer MyOldCutsCMP);
 
-        //virtual SCIP_DECL_BRANCHEXECLP(scip_execlp);
+        virtual SCIP_DECL_BRANCHEXECLP(scip_execlp);
         virtual SCIP_DECL_BRANCHEXECPS(scip_execps);
 
     private:
-        bool checkFeasibilityCVRP(SCIP* scip, SCIP_SOL* sol);
-        SCIP_RETCODE branchingRoutine(SCIP *scip);
-        SCIP_RETCODE getDeltaExpr(int *S, int size, SCIP* scip, SCIP_CONS* cons, double coef);
+        SCIP_RETCODE branchingRoutine(SCIP *scip, SCIP_RESULT* result);
+        SCIP_RETCODE getDeltaExpr(int *S, int size, SCIP* scip, SCIP_CONS* cons, double coef, list<int> &edgesList, bool flag);
         int checkForDepot(int i);
 };
 #endif // CVRPBRANCHINGRULE_H

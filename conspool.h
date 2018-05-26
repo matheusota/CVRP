@@ -36,6 +36,9 @@ public:
     ConsPool(CVRPInstance &cvrp);
     void addConsInfo(Edge e, double coef, SCIP_ROW *row);
     void addConsInfo(Edge e, double coef, SCIP_CONS *cons);
+    void addConsInfo(int e, double coef, SCIP_CONS *cons);
+    void removeConsInfo(Edge e, SCIP_CONS *cons);
+    void removeConsInfo(int e, SCIP_CONS *cons);
     list<ConsInfo*> getConsInfo(Edge e);
     void freeConsPool();
 };

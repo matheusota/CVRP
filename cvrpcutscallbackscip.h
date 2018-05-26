@@ -12,6 +12,7 @@
 #include "CVRPSEP/include/fcisep.h"
 #include "CVRPSEP/include/combsep.h"
 #include "CVRPSEP/include/htoursep.h"
+#include "CVRPSEP/include/brnching.h"
 #include <lemon/list_graph.h>
 #include <cassert>
 #include "conspool.h"
@@ -69,6 +70,7 @@ class CVRPCutsCallbackSCIP: public scip::ObjConshdlr{
         bool checkFeasibilityCVRP(SCIP* scip, SCIP_SOL* sol);
         SCIP_RETCODE addCVRPCuts(SCIP* scip, SCIP_CONSHDLR* conshdlr, SCIP_SOL* sol, SCIP_RESULT* result, bool feasible);
         SCIP_RETCODE getDeltaExpr(int *S, int size, SCIP* scip, SCIP_ROW* row, double coef);
+        SCIP_RETCODE getDeltaExpr(int *S, int size, SCIP* scip, SCIP_CONS* cons, double coef);
         SCIP_RETCODE getCrossingExpr(int *S1, int *S2, int size1, int size2, SCIP* scip, SCIP_ROW* row, double coef);
         SCIP_RETCODE getInsideExpr(int *S, int size, SCIP* scip, SCIP_ROW* row, double coef);
         int checkForDepot(int i);

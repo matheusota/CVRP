@@ -41,10 +41,11 @@ void DPCaller::getData(vector<QR*> &qroutes, int mode){
         //illustrating the path...
         int pathsize = path[0];
 
-        if (pathsize > 0) {
+        if (pathsize <= -0.0001) {
             qr = new QR();
             qr->scip = scip;
             ScipVar* var;
+            SCIPdebugMessage("created new var\n");
 
             if(mode == 0)
                 var = new ScipBinVar(scip, 0.0);

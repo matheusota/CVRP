@@ -32,7 +32,7 @@ namespace easyscip {
     class ScipPriceBinVar: public ScipVar {
         public:
             ScipPriceBinVar(SCIP *scip, double objective) {
-                SCIPcreateVar(scip, &var, NULL, 0.0, 1.0, objective, SCIP_VARTYPE_CONTINUOUS,
+                SCIPcreateVar(scip, &var, NULL, 0.0, SCIPinfinity(scip), objective, SCIP_VARTYPE_CONTINUOUS,
                         FALSE, FALSE, NULL, NULL, NULL, NULL, NULL);
                 SCIPaddPricedVar(scip, var, 1.0);
             }
