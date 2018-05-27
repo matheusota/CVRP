@@ -44,7 +44,7 @@ SCIP_DECL_CONSLOCK(CVRPBranchingManager::scip_lock){
 }
 
 SCIP_DECL_CONSACTIVE(CVRPBranchingManager::scip_active){
-    SCIPdebugMessage("activated");
+    SCIPdebugMessage("activated\n");
     SCIP_CONSDATA* consdata = SCIPconsGetData(cons);
 
     for (list<int>::iterator it = consdata->edgeList->begin(); it != consdata->edgeList->end(); ++it)
@@ -53,7 +53,7 @@ SCIP_DECL_CONSACTIVE(CVRPBranchingManager::scip_active){
 }
 
 SCIP_DECL_CONSDEACTIVE(CVRPBranchingManager::scip_deactive){
-    SCIPdebugMessage("deactivated");
+    SCIPdebugMessage("deactivated\n");
     SCIP_CONSDATA* consdata = SCIPconsGetData(cons);
 
     for (list<int>::iterator it = consdata->edgeList->begin(); it != consdata->edgeList->end(); ++it)

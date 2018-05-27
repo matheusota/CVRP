@@ -35,13 +35,18 @@ void DPCaller::getData(vector<QR*> &qroutes, int mode){
             continue;
         double length = solver->getBestPath (i, path); //get the best path from the depot to i
 
-        if(mode == 1 && length >= 0)
+        if(path[1] == oracle->getDepot())
+            continue;
+
+        //length += oracle->getLength(path[1], oracle->getDepot());
+
+        if(mode == 1 && length >= -0.0001)
             continue;
 
         //illustrating the path...
         int pathsize = path[0];
 
-        if (pathsize <= -0.0001) {
+        if (pathsize < -0.0001) {
             qr = new QR();
             qr->scip = scip;
             ScipVar* var;
@@ -79,7 +84,7 @@ void DPCaller::getData(vector<QR*> &qroutes, int mode){
 
 void DPCaller::solveExact(vector<QR*> &qroutes){
     solver = new QRSolver<QROracleScip>(2, 1);
-    solver->solve (oracle, 1);
+    solver->solve (oracle);
     getData(qroutes, 1);
     delete solver;
 }

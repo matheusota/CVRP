@@ -1,5 +1,6 @@
 #ifndef CVRPBRANCHINGRULE_H
 #define CVRPBRANCHINGRULE_H
+#define SCIP_DEBUG
 #include <scip/scip.h>
 #include <scip/scipdefplugins.h>
 #include "objscip/objscip.h"

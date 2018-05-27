@@ -4,6 +4,8 @@
 #include "scip/pub_var.h"
 #include "scip/cons_linear.h"
 
+//based on CVRPBBNode::fastDinProg
+
 CVRPPricerSCIP::CVRPPricerSCIP(SCIP *scip, CVRPInstance &cvrp, EdgeSCIPVarMap& x, EdgeSCIPConsMap &translateMap_, NodeSCIPConsMap &nodeMap_, ConsPool *consPool_) :
     cvrp(cvrp), x(x), translateMap(translateMap_), nodeMap(nodeMap_), ObjPricer(scip, "CVRPPricer", "Finds tour with negative reduced cost", 0, TRUE){
     consPool = consPool_;
@@ -93,9 +95,10 @@ SCIP_RETCODE CVRPPricerSCIP::pricing(SCIP* scip, bool isFarkas) {
     dpcaller -> solveExact(qroutes);
     delete dpcaller;
 
-    for(EdgeIt e(cvrp.g); e != INVALID; ++e){
-        for(QRit it = qroutes.begin(); it != qroutes.end(); ++it){
-            SCIP_CALL(SCIPaddCoefLinear(scip, translateMap[e], (*it)->var, (*it)->edgeCoefs[cvrp.g.id(e)]));
+    for(QRit it = qroutes.begin(); it != qroutes.end(); ++it){
+        for(EdgeIt e(cvrp.g); e != INVALID; ++e){
+            if((*it)->edgeCoefs[cvrp.g.id(e)] > 0)
+                SCIP_CALL(SCIPaddCoefLinear(scip, translateMap[e], (*it)->var, (*it)->edgeCoefs[cvrp.g.id(e)]));
         }
     }
 

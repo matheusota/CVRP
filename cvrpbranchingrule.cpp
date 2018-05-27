@@ -228,6 +228,7 @@ SCIP_RETCODE CVRPBranchingRule::branchingRoutine(SCIP *scip, SCIP_RESULT* result
     SCIP_NODE* child2;
     SCIP_CONS* cons1;
     SCIP_CONS* cons2;
+
     //create constraints
     SCIP_CALL(SCIPcreateConsLinear(scip, &cons1, "branching1", 0, NULL, NULL, 2.0, 2.0,
         TRUE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE));

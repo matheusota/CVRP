@@ -1,5 +1,6 @@
 #ifndef CVRPCUTSCALLBACKSCIP_H
 #define CVRPCUTSCALLBACKSCIP_H
+#define SCIP_DEBUG
 #include <scip/scip.h>
 #include <scip/scipdefplugins.h>
 #include "objscip/objscip.h"

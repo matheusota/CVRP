@@ -696,6 +696,7 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addCVRPCuts(SCIP* scip, SCIP_CONSHDLR* conshd
     COMBSEP_SeparateCombs(NoOfCustomers, Demand, CAP, QMin, nedges, EdgeTail, EdgeHead,
         EdgeX, MaxNoOfCombCuts, &MaxCombViolation, MyCutsCMP);
 
+    /*
     //get homogeneous multistar cuts
     MaxMStarViolation = 0;
     if(MaxCapViolation < 0.1 && MaxCombViolation < 0.1)
@@ -713,6 +714,7 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addCVRPCuts(SCIP* scip, SCIP_CONSHDLR* conshd
     if(MaxCapViolation < 0.1 && MaxCombViolation < 0.1 && MaxMStarViolation < 0.1 && MaxFCIViolation < 0.1)
         HTOURSEP_SeparateHTours(NoOfCustomers, Demand, CAP, nedges, EdgeTail, EdgeHead, EdgeX,
             MyOldCutsCMP, MaxNoOfHypoCuts, &MaxHypoViolation, MyCutsCMP);
+    */
 
     //free edges arrays
     delete[] EdgeTail;

@@ -1,5 +1,6 @@
 #ifndef DPCALLER_H
 #define DPCALLER_H
+#define SCIP_DEBUG
 #include "cvrp.h"
 #include "DinProg/include/qr_oracle_scip.h"
 #include "DinProg/include/qrsolver.h"
