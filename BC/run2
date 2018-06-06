@@ -1,0 +1,2 @@
+./cvrp.e -i ../BPC/in/Vrp-Set-P/P/P-n55-k10.vrp -o out/Vrp-Set-P/P/P-n55-k10.vrp -t 3000 -s -g
+

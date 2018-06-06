@@ -1,0 +1,7 @@
+Mini Benchmark. Comparison B&C with GUROBI/SCIP/Lysgaard
+(time limit = 1000s)
+
+A-n36-k5 -> 5.665 / 103.637 / 61
+A-n45-k6 -> X / 87.690 / 176
+A-n53-k7 -> X / 44.695 / 387
+A-n63-k9 -> X / 893 / 1324
