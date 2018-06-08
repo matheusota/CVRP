@@ -296,7 +296,7 @@ bool readCVRP(string          filename,
         for(NodeIt u(g); u != INVALID; ++u){
             if(g.id(v) < g.id(u)){
                 e = g.addEdge(v, u);
-                weight[e] = hypot(abs(posx[v] - posx[u]), abs(posy[v] - posy[u]));
+                weight[e] = std::round(hypot(abs(posx[v] - posx[u]), abs(posy[v] - posy[u])));
                 //weight[e] = hypot((posx[v] - posx[u]), (posy[v] - posy[u]));
                 //cout << "w["<< g.id(v) << "][" << g.id(u) << "] = " << weight[e] << endl;
             }
@@ -660,7 +660,11 @@ void solutionAsGraphical(CVRPInstance &instance, CVRPSolution  &sol, string inpu
     for(int i = 0; i < (int)sol.tour.size(); i++)
         int_sol[i] = instance.vname[sol.tour[i]];
 
-    ViewListGraph2(instance.g, instance.vname, instance.posx, instance.posy, int_sol, (int)sol.tour.size(), "CVRP. Instance: " + inputFile + ". Tour with cost: " + DoubleToString(sol.cost));
+    std::size_t found = inputFile.find_last_of("/");
+    string instanceName = inputFile.substr(found+1);
+
+    ViewListGraph2(instance.g, instance.vname, instance.demand, instance.int2node, instance.posx, instance.posy, int_sol, (int)sol.tour.size(),
+                   "Instance: " + instanceName + " Capacity: " + to_string(int(instance.capacity)) + " Cost: " + DoubleToString(sol.cost));
 
     delete[] int_sol;
 }

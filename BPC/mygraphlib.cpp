@@ -716,6 +716,8 @@ int ViewListGraph(ListGraph &g,
 // pdf viewer name is given in the viewername parameter.
 int ViewListGraph2(ListGraph &g,
                   NodeIntMap &vname, // name of the nodes
+                  NodePosMap &demand, //client demand
+                  std::unordered_map<int,Node> &int2node,
                   NodePosMap& px, // x-position of the nodes
                   NodePosMap& py, // y-position of the nodes
                   int solution[], //edges
@@ -756,7 +758,11 @@ int ViewListGraph2(ListGraph &g,
             color = BLUE;
         else
             color = RED;
-        myfile << "\t" << to_string(vname[v]).c_str() << "[style = \"bold\", color=\""
+        cout << "\t" << to_string(vname[v]).c_str() << "[style = \"bold\", color=\""
+               << ColorName(color).c_str() << "\", pos = \"" << factor*(px[v]-minpx)/delta << "," <<
+                  factor*(py[v]-minpy)/delta << "!\" ];\n";
+
+        myfile << "\t" << "\"" << to_string(vname[v]).c_str() << "(" << to_string(int(demand[v])).c_str() << ")\"" << "[style = \"bold\", color=\""
         << ColorName(color).c_str() << "\", pos = \"" << factor*(px[v]-minpx)/delta << "," <<
            factor*(py[v]-minpy)/delta << "!\" ];\n";
     }
@@ -767,6 +773,9 @@ int ViewListGraph2(ListGraph &g,
         u = solution[i - 1];
         v = solution[i];
 
+        Node nodeu = int2node[u];
+        Node nodev = int2node[v];
+
         //change tours color
         if(u == 0){
             color++;
@@ -775,7 +784,8 @@ int ViewListGraph2(ListGraph &g,
                 color = 1;
         }
 
-        myfile << "\t" << to_string(u).c_str() << " -- " << to_string(v).c_str()
+        myfile << "\t" << "\"" << to_string(u).c_str() << "(" << to_string(int(demand[nodeu])).c_str() << ")\" -- \""
+               << to_string(v).c_str() << "(" << to_string(int(demand[nodev])).c_str() << ")\""
                << " [style = \"bold\", label = \"\", color=\"" << ColorName(color).c_str() << "\" ];\n";
     }
 

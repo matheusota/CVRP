@@ -16,6 +16,7 @@
 #include<string>
 #include "myutils.h"
 #include "geompack.hpp"
+#include <unordered_map>
 
 using namespace std;
 using namespace lemon;
@@ -149,6 +150,8 @@ int ViewListGraph(ListGraph &g,
 
 int ViewListGraph2(ListGraph &g,
                   NodeIntMap &vname, // name of the nodes
+                  NodePosMap    &demand, //demand
+                  std::unordered_map<int,Node> &int2node,
                   NodePosMap& px, // x-position of the nodes
                   NodePosMap& py, // y-position of the nodes
                   int solution[], //edges
