@@ -107,7 +107,7 @@ void DPCaller::getData(vector<QR*> &qroutes){
 
 void DPCaller::solveExact(vector<QR*> &qroutes){
     solver = new QRSolver<QROracleScip>(2, mode);
-    solver->solve(oracle, mode);
+    solver->solve(oracle, -1);
     getData(qroutes);
     //find_shortest_tour(qroutes);
 }

@@ -100,7 +100,7 @@ void CVRPPricerSCIP::getReducedCosts(SCIP *scip, bool isFarkas){
                     }
                 }
             }
-
+            //printf("dual[%d][%d] = %lf\n", cvrp.vname[cvrp.g.u(e)], cvrp.vname[cvrp.g.v(e)], r );
             cvrp.dual[e] = r;
         }
     }
@@ -116,15 +116,8 @@ SCIP_RETCODE CVRPPricerSCIP::pricing(SCIP* scip, bool isFarkas) {
     DPCaller *dpcaller = new DPCaller(scip, cvrp, 1);
 
     vector<QR*> qroutes;
-    dpcaller -> solveHeuristic(qroutes);
+    dpcaller -> solveExact(qroutes);
     delete dpcaller;
-
-    if(qroutes.size() == 0){
-        dpcaller = new DPCaller(scip, cvrp, 1);
-        vector<QR*> qroutes;
-        dpcaller -> solveExact(qroutes);
-        delete dpcaller;
-    }
 
     //add priced variables to constraints
     for(QRit it = qroutes.begin(); it != qroutes.end(); ++it){

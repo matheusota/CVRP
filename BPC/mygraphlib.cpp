@@ -758,9 +758,6 @@ int ViewListGraph2(ListGraph &g,
             color = BLUE;
         else
             color = RED;
-        cout << "\t" << to_string(vname[v]).c_str() << "[style = \"bold\", color=\""
-               << ColorName(color).c_str() << "\", pos = \"" << factor*(px[v]-minpx)/delta << "," <<
-                  factor*(py[v]-minpy)/delta << "!\" ];\n";
 
         myfile << "\t" << "\"" << to_string(vname[v]).c_str() << "(" << to_string(int(demand[v])).c_str() << ")\"" << "[style = \"bold\", color=\""
         << ColorName(color).c_str() << "\", pos = \"" << factor*(px[v]-minpx)/delta << "," <<

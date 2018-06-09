@@ -1,0 +1,6863 @@
+dual[30][31] = 45.666667
+dual[29][30] = 48.358187
+dual[29][31] = 72.024854
+dual[28][29] = 31.941520
+dual[28][30] = 37.083333
+dual[28][31] = 23.750000
+dual[27][28] = 23.083333
+dual[27][29] = 14.021930
+dual[27][30] = 20.000000
+dual[27][31] = 54.666667
+dual[26][27] = 16.500000
+dual[26][28] = 28.583333
+dual[26][29] = 42.858187
+dual[26][30] = 6.500000
+dual[26][31] = 40.166667
+dual[25][26] = 56.377193
+dual[25][27] = 30.877193
+dual[25][28] = 53.460526
+dual[25][29] = -1.460526
+dual[25][30] = 60.877193
+dual[25][31] = 91.543860
+dual[24][25] = 39.377193
+dual[24][26] = 11.000000
+dual[24][27] = -0.500000
+dual[24][28] = 20.583333
+dual[24][29] = 24.858187
+dual[24][30] = 16.500000
+dual[24][31] = 48.166667
+dual[23][24] = 30.611111
+dual[23][25] = 51.988304
+dual[23][26] = 32.611111
+dual[23][27] = 35.111111
+dual[23][28] = -6.083333
+dual[23][29] = 29.469298
+dual[23][30] = 41.111111
+dual[23][31] = 21.777778
+dual[22][23] = 25.960526
+dual[22][24] = 49.016082
+dual[22][25] = 31.697368
+dual[22][26] = 64.016082
+dual[22][27] = 47.516082
+dual[22][28] = 20.432749
+dual[22][29] = 15.178363
+dual[22][30] = 71.516082
+dual[22][31] = 77.182749
+dual[21][22] = 74.182749
+dual[21][23] = 21.777778
+dual[21][24] = 41.166667
+dual[21][25] = 85.543860
+dual[21][26] = 32.166667
+dual[21][27] = 47.666667
+dual[21][28] = 22.750000
+dual[21][29] = 66.024854
+dual[21][30] = 36.666667
+dual[21][31] = -5.888889
+dual[20][21] = 75.894737
+dual[20][22] = 47.823099
+dual[20][23] = 53.339181
+dual[20][24] = 20.728070
+dual[20][25] = 7.184211
+dual[20][26] = 42.728070
+dual[20][27] = 11.228070
+dual[20][28] = 64.811404
+dual[20][29] = 10.665205
+dual[20][30] = 44.228070
+dual[20][31] = 83.894737
+dual[19][20] = 77.672515
+dual[19][21] = -9.111111
+dual[19][22] = 66.960526
+dual[19][23] = 10.555556
+dual[19][24] = 40.944444
+dual[19][25] = 83.321637
+dual[19][26] = 34.944444
+dual[19][27] = 47.444444
+dual[19][28] = 12.527778
+dual[19][29] = 62.802632
+dual[19][30] = 40.444444
+dual[19][31] = -16.111111
+dual[18][19] = 26.415205
+dual[18][20] = 55.698830
+dual[18][21] = 34.637427
+dual[18][22] = 19.545322
+dual[18][23] = 5.859649
+dual[18][24] = 18.470760
+dual[18][25] = 50.573099
+dual[18][26] = 29.470760
+dual[18][27] = 17.970760
+dual[18][28] = 2.331871
+dual[18][29] = 29.054094
+dual[18][30] = 37.970760
+dual[18][31] = 36.637427
+dual[17][18] = 26.137427
+dual[17][19] = -24.611111
+dual[17][20] = 78.394737
+dual[17][21] = -6.388889
+dual[17][22] = 66.682749
+dual[17][23] = 9.277778
+dual[17][24] = 41.666667
+dual[17][25] = 83.043860
+dual[17][26] = 35.666667
+dual[17][27] = 48.166667
+dual[17][28] = 11.250000
+dual[17][29] = 62.524854
+dual[17][30] = 41.166667
+dual[17][31] = -12.388889
+dual[16][17] = 31.666667
+dual[16][18] = 30.470760
+dual[16][19] = 29.944444
+dual[16][20] = 45.728070
+dual[16][21] = 26.166667
+dual[16][22] = 65.016082
+dual[16][23] = 32.611111
+dual[16][24] = 14.000000
+dual[16][25] = 59.377193
+dual[16][26] = 1.000000
+dual[16][27] = 19.500000
+dual[16][28] = 26.583333
+dual[16][29] = 45.858187
+dual[16][30] = 2.500000
+dual[16][31] = 35.166667
+dual[15][16] = 62.377193
+dual[15][17] = 74.043860
+dual[15][18] = 28.573099
+dual[15][19] = 74.321637
+dual[15][20] = 28.184211
+dual[15][21] = 79.543860
+dual[15][22] = 5.697368
+dual[15][23] = 32.988304
+dual[15][24] = 42.377193
+dual[15][25] = 2.058480
+dual[15][26] = 60.377193
+dual[15][27] = 36.877193
+dual[15][28] = 31.460526
+dual[15][29] = -4.460526
+dual[15][30] = 65.877193
+dual[15][31] = 83.543860
+dual[14][15] = 43.377193
+dual[14][16] = 14.000000
+dual[14][17] = 39.666667
+dual[14][18] = 17.470760
+dual[14][19] = 38.944444
+dual[14][20] = 24.728070
+dual[14][21] = 39.166667
+dual[14][22] = 50.016082
+dual[14][23] = 28.611111
+dual[14][24] = -3.000000
+dual[14][25] = 41.377193
+dual[14][26] = 11.000000
+dual[14][27] = 3.500000
+dual[14][28] = 19.583333
+dual[14][29] = 25.858187
+dual[14][30] = 17.500000
+dual[14][31] = 46.166667
+dual[13][14] = 23.000000
+dual[13][15] = 62.377193
+dual[13][16] = 14.000000
+dual[13][17] = 3.444444
+dual[13][18] = 19.470760
+dual[13][19] = 2.722222
+dual[13][20] = 60.728070
+dual[13][21] = 2.944444
+dual[13][22] = 59.016082
+dual[13][23] = 11.611111
+dual[13][24] = 25.000000
+dual[13][25] = 68.377193
+dual[13][26] = 18.000000
+dual[13][27] = 31.500000
+dual[13][28] = 10.583333
+dual[13][29] = 48.858187
+dual[13][30] = 24.500000
+dual[13][31] = 8.944444
+dual[12][13] = 16.000000
+dual[12][14] = 22.000000
+dual[12][15] = 70.377193
+dual[12][16] = 1.000000
+dual[12][17] = 30.666667
+dual[12][18] = 37.470760
+dual[12][19] = 28.944444
+dual[12][20] = 49.728070
+dual[12][21] = 24.166667
+dual[12][22] = 74.016082
+dual[12][23] = 39.611111
+dual[12][24] = 21.000000
+dual[12][25] = 66.377193
+dual[12][26] = 8.000000
+dual[12][27] = 25.500000
+dual[12][28] = 34.583333
+dual[12][29] = 52.858187
+dual[12][30] = 6.500000
+dual[12][31] = 33.166667
+dual[11][12] = 42.470760
+dual[11][13] = 18.470760
+dual[11][14] = 25.470760
+dual[11][15] = 29.573099
+dual[11][16] = 35.470760
+dual[11][17] = 18.137427
+dual[11][18] = 9.444444
+dual[11][19] = 19.415205
+dual[11][20] = 65.698830
+dual[11][21] = 30.637427
+dual[11][22] = 18.545322
+dual[11][23] = 0.804094
+dual[11][24] = 26.470760
+dual[11][25] = 55.573099
+dual[11][26] = 35.470760
+dual[11][27] = 27.970760
+dual[11][28] = -4.723684
+dual[11][29] = 37.054094
+dual[11][30] = 43.970760
+dual[11][31] = 30.637427
+dual[10][11] = 48.058480
+dual[10][12] = 73.862573
+dual[10][13] = 70.862573
+dual[10][14] = 46.862573
+dual[10][15] = -6.456140
+dual[10][16] = 65.862573
+dual[10][17] = 84.529240
+dual[10][18] = 44.058480
+dual[10][19] = 84.807018
+dual[10][20] = 21.669591
+dual[10][21] = 88.029240
+dual[10][22] = 24.182749
+dual[10][23] = 48.473684
+dual[10][24] = 44.862573
+dual[10][25] = -13.456140
+dual[10][26] = 63.862573
+dual[10][27] = 38.362573
+dual[10][28] = 47.945906
+dual[10][29] = -1.975146
+dual[10][30] = 68.362573
+dual[10][31] = 93.029240
+dual[9][10] = 6.209064
+dual[9][11] = -1.428363
+dual[9][12] = 56.042398
+dual[9][13] = 40.042398
+dual[9][14] = 32.042398
+dual[9][15] = -12.276316
+dual[9][16] = 48.042398
+dual[9][17] = 46.709064
+dual[9][18] = -0.428363
+dual[9][19] = 47.986842
+dual[9][20] = 30.849415
+dual[9][21] = 55.209064
+dual[9][22] = -22.304094
+dual[9][23] = 8.986842
+dual[9][24] = 32.042398
+dual[9][25] = 13.723684
+dual[9][26] = 47.042398
+dual[9][27] = 30.542398
+dual[9][28] = 3.459064
+dual[9][29] = -1.795322
+dual[9][30] = 54.542398
+dual[9][31] = 58.209064
+dual[8][9] = -3.372807
+dual[8][10] = 43.114035
+dual[8][11] = -0.555556
+dual[8][12] = 37.526316
+dual[8][13] = 16.526316
+dual[8][14] = 18.526316
+dual[8][15] = 25.628655
+dual[8][16] = 29.526316
+dual[8][17] = 20.192982
+dual[8][18] = 0.500000
+dual[8][19] = 21.470760
+dual[8][20] = 57.754386
+dual[8][21] = 30.692982
+dual[8][22] = 14.600877
+dual[8][23] = 3.859649
+dual[8][24] = 18.526316
+dual[8][25] = 49.628655
+dual[8][26] = 29.526316
+dual[8][27] = 19.026316
+dual[8][28] = -2.668129
+dual[8][29] = 29.109649
+dual[8][30] = 38.026316
+dual[8][31] = 31.692982
+dual[7][8] = 19.526316
+dual[7][9] = 40.042398
+dual[7][10] = 64.862573
+dual[7][11] = 23.470760
+dual[7][12] = 6.000000
+dual[7][13] = -1.000000
+dual[7][14] = 13.000000
+dual[7][15] = 58.377193
+dual[7][16] = 2.000000
+dual[7][17] = 16.666667
+dual[7][18] = 20.470760
+dual[7][19] = 14.944444
+dual[7][20] = 49.728070
+dual[7][21] = 13.166667
+dual[7][22] = 58.016082
+dual[7][23] = 19.611111
+dual[7][24] = 15.000000
+dual[7][25] = 60.377193
+dual[7][26] = 5.000000
+dual[7][27] = 20.500000
+dual[7][28] = 15.583333
+dual[7][29] = 42.858187
+dual[7][30] = 11.500000
+dual[7][31] = 21.166667
+dual[6][7] = -1.000000
+dual[6][8] = 10.915205
+dual[6][9] = 11.042398
+dual[6][10] = 44.862573
+dual[6][11] = 15.859649
+dual[6][12] = 18.000000
+dual[6][13] = -4.000000
+dual[6][14] = 8.000000
+dual[6][15] = 34.377193
+dual[6][16] = 3.000000
+dual[6][17] = 6.666667
+dual[6][18] = 10.915205
+dual[6][19] = 6.944444
+dual[6][20] = 36.728070
+dual[6][21] = 12.166667
+dual[6][22] = 29.016082
+dual[6][23] = 13.000000
+dual[6][24] = 10.000000
+dual[6][25] = 44.377193
+dual[6][26] = 9.000000
+dual[6][27] = 15.500000
+dual[6][28] = 6.972222
+dual[6][29] = 22.858187
+dual[6][30] = 17.500000
+dual[6][31] = 16.166667
+dual[5][6] = 44.464912
+dual[5][7] = 56.464912
+dual[5][8] = 52.491228
+dual[5][9] = 21.586257
+dual[5][10] = 6.406433
+dual[5][11] = 60.435673
+dual[5][12] = 61.464912
+dual[5][13] = 65.464912
+dual[5][14] = 38.464912
+dual[5][15] = 14.921053
+dual[5][16] = 55.464912
+dual[5][17] = 82.131579
+dual[5][18] = 51.435673
+dual[5][19] = 81.409357
+dual[5][20] = 4.271930
+dual[5][21] = 82.631579
+dual[5][22] = 38.559942
+dual[5][23] = 56.076023
+dual[5][24] = 35.464912
+dual[5][25] = -6.078947
+dual[5][26] = 52.464912
+dual[5][27] = 25.964912
+dual[5][28] = 61.548246
+dual[5][29] = -0.597953
+dual[5][30] = 55.964912
+dual[5][31] = 89.631579
+dual[4][5] = 60.770468
+dual[4][6] = 9.194444
+dual[4][7] = 16.805556
+dual[4][8] = -1.220760
+dual[4][9] = 2.906433
+dual[4][10] = 51.393275
+dual[4][11] = -17.276316
+dual[4][12] = 35.805556
+dual[4][13] = 10.805556
+dual[4][14] = 21.805556
+dual[4][15] = 32.907895
+dual[4][16] = 28.805556
+dual[4][17] = 9.472222
+dual[4][18] = 8.779240
+dual[4][19] = 10.750000
+dual[4][20] = 65.033626
+dual[4][21] = 21.972222
+dual[4][22] = 21.880117
+dual[4][23] = -7.861111
+dual[4][24] = 22.805556
+dual[4][25] = 57.907895
+dual[4][26] = 29.805556
+dual[4][27] = 24.305556
+dual[4][28] = -11.388889
+dual[4][29] = 37.388889
+dual[4][30] = 38.305556
+dual[4][31] = 21.972222
+dual[3][4] = -1.361111
+dual[3][5] = 57.576023
+dual[3][6] = 10.500000
+dual[3][7] = 14.111111
+dual[3][8] = 9.359649
+dual[3][9] = 14.486842
+dual[3][10] = 51.973684
+dual[3][11] = 7.304094
+dual[3][12] = 34.111111
+dual[3][13] = 5.111111
+dual[3][14] = 27.111111
+dual[3][15] = 38.488304
+dual[3][16] = 28.111111
+dual[3][17] = 1.777778
+dual[3][18] = 10.359649
+dual[3][19] = 3.055556
+dual[3][20] = 53.839181
+dual[3][21] = 14.277778
+dual[3][22] = 31.460526
+dual[3][23] = -1.555556
+dual[3][24] = 29.111111
+dual[3][25] = 55.488304
+dual[3][26] = 28.111111
+dual[3][27] = 34.611111
+dual[3][28] = 0.416667
+dual[3][29] = 31.969298
+dual[3][30] = 36.611111
+dual[3][31] = 14.277778
+dual[2][3] = -13.861111
+dual[2][4] = -8.166667
+dual[2][5] = 53.770468
+dual[2][6] = 4.694444
+dual[2][7] = 7.305556
+dual[2][8] = 4.554094
+dual[2][9] = 9.681287
+dual[2][10] = 47.168129
+dual[2][11] = 0.498538
+dual[2][12] = 27.305556
+dual[2][13] = -0.916667
+dual[2][14] = 22.305556
+dual[2][15] = 32.682749
+dual[2][16] = 22.305556
+dual[2][17] = -5.250000
+dual[2][18] = 5.554094
+dual[2][19] = -3.972222
+dual[2][20] = 49.033626
+dual[2][21] = 8.250000
+dual[2][22] = 25.654971
+dual[2][23] = -7.361111
+dual[2][24] = 24.305556
+dual[2][25] = 50.682749
+dual[2][26] = 22.305556
+dual[2][27] = 28.805556
+dual[2][28] = -5.388889
+dual[2][29] = 28.163743
+dual[2][30] = 30.805556
+dual[2][31] = 7.250000
+dual[1][2] = 17.805556
+dual[1][3] = 24.611111
+dual[1][4] = 28.305556
+dual[1][5] = 61.964912
+dual[1][6] = 9.500000
+dual[1][7] = -2.500000
+dual[1][8] = 30.026316
+dual[1][9] = 50.542398
+dual[1][10] = 71.362573
+dual[1][11] = 34.970760
+dual[1][12] = -5.500000
+dual[1][13] = 5.500000
+dual[1][14] = 19.500000
+dual[1][15] = 66.877193
+dual[1][16] = -0.500000
+dual[1][17] = 20.166667
+dual[1][18] = 31.970760
+dual[1][19] = 18.444444
+dual[1][20] = 51.228070
+dual[1][21] = 13.666667
+dual[1][22] = 68.516082
+dual[1][23] = 30.111111
+dual[1][24] = 19.500000
+dual[1][25] = 65.877193
+dual[1][26] = 6.500000
+dual[1][27] = 25.000000
+dual[1][28] = 27.083333
+dual[1][29] = 50.358187
+dual[1][30] = 8.000000
+dual[1][31] = 22.666667
+dual[0][1] = 7.000000
+dual[0][2] = 26.805556
+dual[0][3] = 32.611111
+dual[0][4] = 30.305556
+dual[0][5] = 30.964912
+dual[0][6] = 12.500000
+dual[0][7] = 10.500000
+dual[0][8] = 27.026316
+dual[0][9] = 39.542398
+dual[0][10] = 45.362573
+dual[0][11] = 33.970760
+dual[0][12] = 3.500000
+dual[0][13] = 23.500000
+dual[0][14] = 3.500000
+dual[0][15] = 46.877193
+dual[0][16] = 2.500000
+dual[0][17] = 41.166667
+dual[0][18] = 25.970760
+dual[0][19] = 39.444444
+dual[0][20] = 15.228070
+dual[0][21] = 35.666667
+dual[0][22] = 56.516082
+dual[0][23] = 35.111111
+dual[0][24] = 0.500000
+dual[0][25] = 34.877193
+dual[0][26] = 3.500000
+dual[0][27] = 0.000000
+dual[0][28] = 28.083333
+dual[0][29] = 27.358187
+dual[0][30] = 0.000000
+dual[0][31] = 42.666667
+MATHEUS: DEBUGGING
+CAPACITY: 0
+	VERTEX: 1
+	VERTEX: 2
+	VERTEX: 3
+	VERTEX: 4
+	VERTEX: 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+	VERTEX: 9
+	VERTEX: 10
+	VERTEX: 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+	VERTEX: 19
+	VERTEX: 20
+	VERTEX: 21
+	VERTEX: 22
+	VERTEX: 23
+	VERTEX: 24
+	VERTEX: 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+32
+CAPACITY: 1
+	VERTEX: 1
+	VERTEX: 2
+	VERTEX: 3
+	VERTEX: 4
+	VERTEX: 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+	VERTEX: 9
+	VERTEX: 10
+	VERTEX: 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+32 < 18
+	VERTEX: 19
+	VERTEX: 20
+	VERTEX: 21
+	VERTEX: 22
+	VERTEX: 23
+	VERTEX: 24
+	VERTEX: 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+CAPACITY: 2
+	VERTEX: 1
+	VERTEX: 2
+	VERTEX: 3
+	VERTEX: 4
+	VERTEX: 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+	VERTEX: 9
+	VERTEX: 10
+	VERTEX: 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+	VERTEX: 19
+	VERTEX: 20
+	VERTEX: 21
+	VERTEX: 22
+	VERTEX: 23
+	VERTEX: 24
+	VERTEX: 25
+	VERTEX: 26
+32 < 26
+	VERTEX: 27
+	VERTEX: 28
+	VERTEX: 29
+32 < 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+CAPACITY: 3
+	VERTEX: 1
+	VERTEX: 2
+	VERTEX: 3
+	VERTEX: 4
+	VERTEX: 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+	VERTEX: 9
+	VERTEX: 10
+	VERTEX: 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+32 < 14
+	VERTEX: 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+32 < 29 < 18
+	VERTEX: 19
+	VERTEX: 20
+	VERTEX: 21
+	VERTEX: 22
+	VERTEX: 23
+	VERTEX: 24
+	VERTEX: 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+	VERTEX: 29
+32 < 18 < 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+CAPACITY: 4
+	VERTEX: 1
+	VERTEX: 2
+	VERTEX: 3
+	VERTEX: 4
+	VERTEX: 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+	VERTEX: 9
+	VERTEX: 10
+	VERTEX: 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+	VERTEX: 19
+	VERTEX: 20
+	VERTEX: 21
+	VERTEX: 22
+32 < 22
+	VERTEX: 23
+	VERTEX: 24
+	VERTEX: 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+CAPACITY: 5
+	VERTEX: 1
+	VERTEX: 2
+	VERTEX: 3
+	VERTEX: 4
+	VERTEX: 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+	VERTEX: 9
+	VERTEX: 10
+	VERTEX: 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+32 < 26 < 14
+32 < 29 < 14
+	VERTEX: 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+	VERTEX: 19
+	VERTEX: 20
+	VERTEX: 21
+	VERTEX: 22
+32 < 18 < 22
+	VERTEX: 23
+	VERTEX: 24
+	VERTEX: 25
+	VERTEX: 26
+32 < 14 < 26
+	VERTEX: 27
+	VERTEX: 28
+	VERTEX: 29
+32 < 14 < 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+32 < 26 < 14 < 32
+32 < 14 < 26 < 32
+CAPACITY: 6
+	VERTEX: 1
+	VERTEX: 2
+	VERTEX: 3
+32 < 3
+	VERTEX: 4
+	VERTEX: 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 8
+	VERTEX: 9
+	VERTEX: 10
+	VERTEX: 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+32 < 18 < 29 < 14
+	VERTEX: 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+	VERTEX: 19
+	VERTEX: 20
+	VERTEX: 21
+	VERTEX: 22
+32 < 29 < 22
+	VERTEX: 23
+	VERTEX: 24
+	VERTEX: 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+CAPACITY: 7
+	VERTEX: 1
+	VERTEX: 2
+	VERTEX: 3
+32 < 18 < 3
+	VERTEX: 4
+	VERTEX: 5
+32 < 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 18 < 8
+	VERTEX: 9
+	VERTEX: 10
+	VERTEX: 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+32 < 8 < 18
+32 < 3 < 18
+	VERTEX: 19
+	VERTEX: 20
+	VERTEX: 21
+	VERTEX: 22
+32 < 18 < 29 < 22
+32 < 29 < 18 < 22
+	VERTEX: 23
+	VERTEX: 24
+	VERTEX: 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+	VERTEX: 29
+32 < 26 < 14 < 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+CAPACITY: 8
+	VERTEX: 1
+	VERTEX: 2
+	VERTEX: 3
+	VERTEX: 4
+	VERTEX: 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+	VERTEX: 9
+	VERTEX: 10
+32 < 10
+	VERTEX: 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+	VERTEX: 19
+	VERTEX: 20
+32 < 20
+	VERTEX: 21
+	VERTEX: 22
+	VERTEX: 23
+32 < 23
+	VERTEX: 24
+	VERTEX: 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+CAPACITY: 9
+	VERTEX: 1
+	VERTEX: 2
+	VERTEX: 3
+32 < 29 < 18 < 3
+	VERTEX: 4
+	VERTEX: 5
+32 < 29 < 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 29 < 18 < 8
+	VERTEX: 9
+	VERTEX: 10
+	VERTEX: 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+	VERTEX: 19
+	VERTEX: 20
+	VERTEX: 21
+	VERTEX: 22
+32 < 14 < 29 < 22
+	VERTEX: 23
+32 < 18 < 23
+	VERTEX: 24
+	VERTEX: 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 31
+	VERTEX: 32
+CAPACITY: 10
+	VERTEX: 1
+	VERTEX: 2
+	VERTEX: 3
+	VERTEX: 4
+	VERTEX: 5
+32 < 18 < 29 < 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 22 < 8
+	VERTEX: 9
+	VERTEX: 10
+32 < 29 < 10
+	VERTEX: 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+	VERTEX: 19
+	VERTEX: 20
+32 < 29 < 20
+	VERTEX: 21
+	VERTEX: 22
+32 < 8 < 22
+	VERTEX: 23
+	VERTEX: 24
+	VERTEX: 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+	VERTEX: 29
+32 < 20 < 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+32 < 29 < 20 < 32
+CAPACITY: 11
+	VERTEX: 1
+	VERTEX: 2
+	VERTEX: 3
+	VERTEX: 4
+	VERTEX: 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 18 < 22 < 8
+	VERTEX: 9
+	VERTEX: 10
+32 < 18 < 29 < 10
+	VERTEX: 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+	VERTEX: 19
+	VERTEX: 20
+32 < 14 < 20
+32 < 18 < 29 < 20
+	VERTEX: 21
+	VERTEX: 22
+32 < 18 < 8 < 22
+	VERTEX: 23
+32 < 29 < 18 < 23
+	VERTEX: 24
+	VERTEX: 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+32 < 14 < 20 < 32
+CAPACITY: 12
+	VERTEX: 1
+	VERTEX: 2
+	VERTEX: 3
+32 < 8 < 3
+	VERTEX: 4
+	VERTEX: 5
+32 < 14 < 29 < 5
+	VERTEX: 6
+32 < 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 3 < 8
+32 < 29 < 22 < 8
+	VERTEX: 9
+	VERTEX: 10
+32 < 22 < 10
+	VERTEX: 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+	VERTEX: 19
+	VERTEX: 20
+	VERTEX: 21
+32 < 21
+	VERTEX: 22
+	VERTEX: 23
+32 < 22 < 23
+	VERTEX: 24
+	VERTEX: 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+CAPACITY: 13
+	VERTEX: 1
+	VERTEX: 2
+	VERTEX: 3
+32 < 18 < 8 < 3
+	VERTEX: 4
+	VERTEX: 5
+	VERTEX: 6
+32 < 18 < 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 18 < 3 < 8
+	VERTEX: 9
+	VERTEX: 10
+32 < 14 < 29 < 10
+32 < 18 < 22 < 10
+	VERTEX: 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+32 < 6 < 18
+	VERTEX: 19
+	VERTEX: 20
+32 < 26 < 14 < 20
+32 < 14 < 29 < 20
+	VERTEX: 21
+	VERTEX: 22
+	VERTEX: 23
+32 < 18 < 22 < 23
+	VERTEX: 24
+	VERTEX: 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+CAPACITY: 14
+	VERTEX: 1
+	VERTEX: 2
+	VERTEX: 3
+32 < 23 < 3
+	VERTEX: 4
+	VERTEX: 5
+	VERTEX: 6
+32 < 26 < 6
+	VERTEX: 7
+	VERTEX: 8
+	VERTEX: 9
+	VERTEX: 10
+32 < 29 < 22 < 10
+	VERTEX: 11
+32 < 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+	VERTEX: 19
+	VERTEX: 20
+	VERTEX: 21
+	VERTEX: 22
+32 < 20 < 29 < 22
+	VERTEX: 23
+32 < 8 < 23
+32 < 3 < 23
+32 < 29 < 22 < 23
+	VERTEX: 24
+	VERTEX: 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+	VERTEX: 29
+	VERTEX: 30
+32 < 30
+	VERTEX: 31
+	VERTEX: 32
+CAPACITY: 15
+	VERTEX: 1
+	VERTEX: 2
+	VERTEX: 3
+32 < 18 < 23 < 3
+	VERTEX: 4
+	VERTEX: 5
+32 < 20 < 5
+32 < 10 < 5
+	VERTEX: 6
+32 < 14 < 6
+32 < 29 < 18 < 6
+	VERTEX: 7
+	VERTEX: 8
+	VERTEX: 9
+	VERTEX: 10
+32 < 5 < 10
+	VERTEX: 11
+32 < 18 < 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+32 < 26 < 6 < 18
+	VERTEX: 19
+	VERTEX: 20
+32 < 5 < 20
+	VERTEX: 21
+	VERTEX: 22
+	VERTEX: 23
+32 < 18 < 8 < 23
+32 < 8 < 18 < 23
+32 < 18 < 3 < 23
+	VERTEX: 24
+	VERTEX: 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+CAPACITY: 16
+	VERTEX: 1
+	VERTEX: 2
+	VERTEX: 3
+	VERTEX: 4
+	VERTEX: 5
+	VERTEX: 6
+	VERTEX: 7
+32 < 7
+	VERTEX: 8
+	VERTEX: 9
+32 < 9
+	VERTEX: 10
+32 < 20 < 10
+	VERTEX: 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 13
+	VERTEX: 14
+	VERTEX: 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+32 < 14 < 6 < 18
+	VERTEX: 19
+	VERTEX: 20
+32 < 10 < 20
+	VERTEX: 21
+	VERTEX: 22
+	VERTEX: 23
+	VERTEX: 24
+	VERTEX: 25
+	VERTEX: 26
+32 < 30 < 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 18 < 28
+	VERTEX: 29
+	VERTEX: 30
+32 < 26 < 30
+	VERTEX: 31
+	VERTEX: 32
+32 < 30 < 26 < 32
+32 < 26 < 30 < 32
+CAPACITY: 17
+	VERTEX: 1
+	VERTEX: 2
+	VERTEX: 3
+	VERTEX: 4
+	VERTEX: 5
+32 < 20 < 29 < 5
+	VERTEX: 6
+32 < 26 < 14 < 6
+32 < 14 < 26 < 6
+	VERTEX: 7
+	VERTEX: 8
+	VERTEX: 9
+32 < 18 < 9
+	VERTEX: 10
+32 < 29 < 5 < 10
+	VERTEX: 11
+32 < 29 < 18 < 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+	VERTEX: 19
+	VERTEX: 20
+32 < 29 < 5 < 20
+	VERTEX: 21
+	VERTEX: 22
+	VERTEX: 23
+	VERTEX: 24
+	VERTEX: 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 29 < 28
+	VERTEX: 29
+32 < 20 < 5 < 29
+	VERTEX: 30
+32 < 14 < 30
+	VERTEX: 31
+	VERTEX: 32
+CAPACITY: 18
+	VERTEX: 1
+	VERTEX: 2
+	VERTEX: 3
+32 < 6 < 3
+	VERTEX: 4
+	VERTEX: 5
+	VERTEX: 6
+32 < 3 < 6
+	VERTEX: 7
+32 < 26 < 7
+	VERTEX: 8
+	VERTEX: 9
+32 < 29 < 9
+	VERTEX: 10
+32 < 20 < 29 < 10
+	VERTEX: 11
+32 < 22 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 26 < 13
+	VERTEX: 14
+	VERTEX: 15
+	VERTEX: 16
+32 < 16
+	VERTEX: 17
+	VERTEX: 18
+	VERTEX: 19
+	VERTEX: 20
+32 < 29 < 10 < 20
+	VERTEX: 21
+	VERTEX: 22
+	VERTEX: 23
+	VERTEX: 24
+	VERTEX: 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 29 < 18 < 28
+32 < 18 < 29 < 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+32 < 26 < 7 < 32
+CAPACITY: 19
+	VERTEX: 1
+32 < 1
+	VERTEX: 2
+	VERTEX: 3
+32 < 6 < 18 < 3
+	VERTEX: 4
+32 < 4
+	VERTEX: 5
+	VERTEX: 6
+32 < 8 < 18 < 6
+32 < 18 < 3 < 6
+	VERTEX: 7
+32 < 14 < 7
+	VERTEX: 8
+32 < 6 < 18 < 8
+	VERTEX: 9
+32 < 18 < 29 < 9
+32 < 29 < 18 < 9
+	VERTEX: 10
+	VERTEX: 11
+32 < 18 < 22 < 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 17
+	VERTEX: 18
+32 < 29 < 9 < 18
+	VERTEX: 19
+	VERTEX: 20
+	VERTEX: 21
+	VERTEX: 22
+	VERTEX: 23
+	VERTEX: 24
+	VERTEX: 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 22 < 28
+	VERTEX: 29
+32 < 18 < 9 < 29
+	VERTEX: 30
+32 < 14 < 26 < 30
+32 < 26 < 14 < 30
+	VERTEX: 31
+	VERTEX: 32
+CAPACITY: 20
+	VERTEX: 1
+	VERTEX: 2
+	VERTEX: 3
+32 < 26 < 6 < 3
+32 < 8 < 23 < 3
+	VERTEX: 4
+32 < 18 < 4
+	VERTEX: 5
+	VERTEX: 6
+32 < 23 < 6
+	VERTEX: 7
+	VERTEX: 8
+	VERTEX: 9
+32 < 22 < 9
+	VERTEX: 10
+	VERTEX: 11
+32 < 8 < 11
+32 < 3 < 11
+32 < 29 < 22 < 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+	VERTEX: 16
+32 < 26 < 16
+	VERTEX: 17
+	VERTEX: 18
+	VERTEX: 19
+	VERTEX: 20
+	VERTEX: 21
+	VERTEX: 22
+32 < 9 < 22
+	VERTEX: 23
+32 < 6 < 23
+	VERTEX: 24
+	VERTEX: 25
+	VERTEX: 26
+32 < 16 < 26
+	VERTEX: 27
+32 < 27
+	VERTEX: 28
+32 < 14 < 29 < 28
+32 < 18 < 22 < 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+32 < 26 < 16 < 32
+32 < 16 < 26 < 32
+CAPACITY: 21
+	VERTEX: 1
+32 < 26 < 1
+	VERTEX: 2
+32 < 2
+	VERTEX: 3
+32 < 14 < 6 < 3
+32 < 28 < 3
+32 < 18 < 8 < 23 < 3
+	VERTEX: 4
+	VERTEX: 5
+	VERTEX: 6
+32 < 18 < 23 < 6
+	VERTEX: 7
+32 < 14 < 26 < 7
+32 < 26 < 14 < 7
+	VERTEX: 8
+32 < 26 < 6 < 18 < 8
+32 < 28 < 8
+	VERTEX: 9
+32 < 18 < 22 < 9
+32 < 14 < 29 < 9
+	VERTEX: 10
+	VERTEX: 11
+32 < 18 < 8 < 11
+32 < 8 < 18 < 11
+32 < 18 < 3 < 11
+	VERTEX: 12
+32 < 12
+	VERTEX: 13
+32 < 14 < 26 < 13
+	VERTEX: 14
+	VERTEX: 15
+	VERTEX: 16
+32 < 14 < 16
+	VERTEX: 17
+	VERTEX: 18
+	VERTEX: 19
+	VERTEX: 20
+	VERTEX: 21
+32 < 31 < 21
+	VERTEX: 22
+32 < 18 < 9 < 22
+32 < 20 < 5 < 29 < 22
+	VERTEX: 23
+32 < 6 < 18 < 23
+32 < 18 < 8 < 3 < 23
+	VERTEX: 24
+	VERTEX: 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 8 < 28
+32 < 3 < 28
+32 < 29 < 22 < 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 21 < 31
+	VERTEX: 32
+32 < 26 < 1 < 32
+CAPACITY: 22
+	VERTEX: 1
+32 < 14 < 1
+	VERTEX: 2
+32 < 18 < 2
+	VERTEX: 3
+32 < 13 < 3
+32 < 18 < 28 < 3
+	VERTEX: 4
+32 < 29 < 18 < 4
+	VERTEX: 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 14 < 6 < 18 < 8
+32 < 18 < 28 < 8
+	VERTEX: 9
+32 < 29 < 22 < 9
+32 < 8 < 9
+	VERTEX: 10
+	VERTEX: 11
+32 < 23 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 3 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+32 < 18 < 22 < 9 < 18
+32 < 18 < 9 < 22 < 18
+	VERTEX: 19
+	VERTEX: 20
+	VERTEX: 21
+	VERTEX: 22
+32 < 29 < 9 < 22
+	VERTEX: 23
+32 < 26 < 6 < 23
+32 < 11 < 23
+	VERTEX: 24
+	VERTEX: 25
+	VERTEX: 26
+	VERTEX: 27
+32 < 26 < 27
+32 < 29 < 27
+	VERTEX: 28
+32 < 18 < 8 < 28
+32 < 8 < 18 < 28
+32 < 18 < 3 < 28
+	VERTEX: 29
+32 < 27 < 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+32 < 26 < 27 < 32
+CAPACITY: 23
+	VERTEX: 1
+	VERTEX: 2
+	VERTEX: 3
+	VERTEX: 4
+32 < 22 < 4
+	VERTEX: 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 18 < 9 < 8
+	VERTEX: 9
+32 < 18 < 8 < 9
+32 < 8 < 18 < 9
+	VERTEX: 10
+32 < 20 < 5 < 10
+	VERTEX: 11
+32 < 18 < 23 < 11
+	VERTEX: 12
+32 < 26 < 12
+	VERTEX: 13
+32 < 18 < 3 < 13
+	VERTEX: 14
+32 < 27 < 14
+	VERTEX: 15
+32 < 18 < 15
+	VERTEX: 16
+32 < 14 < 26 < 16
+32 < 26 < 14 < 16
+	VERTEX: 17
+	VERTEX: 18
+32 < 29 < 22 < 9 < 18
+32 < 8 < 9 < 18
+	VERTEX: 19
+	VERTEX: 20
+	VERTEX: 21
+	VERTEX: 22
+32 < 6 < 18 < 8 < 22
+32 < 18 < 9 < 29 < 22
+	VERTEX: 23
+32 < 28 < 23
+32 < 14 < 6 < 23
+32 < 26 < 6 < 18 < 23
+	VERTEX: 24
+	VERTEX: 25
+	VERTEX: 26
+	VERTEX: 27
+32 < 14 < 27
+32 < 18 < 29 < 27
+	VERTEX: 28
+32 < 23 < 28
+	VERTEX: 29
+32 < 18 < 9 < 22 < 29
+32 < 18 < 22 < 9 < 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+32 < 27 < 14 < 32
+32 < 14 < 27 < 32
+32 < 26 < 12 < 32
+CAPACITY: 24
+	VERTEX: 1
+32 < 14 < 26 < 1
+32 < 26 < 14 < 1
+	VERTEX: 2
+32 < 29 < 18 < 2
+	VERTEX: 3
+32 < 26 < 13 < 3
+	VERTEX: 4
+32 < 18 < 22 < 4
+	VERTEX: 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 29 < 9 < 8
+	VERTEX: 9
+32 < 23 < 9
+32 < 10 < 9
+	VERTEX: 10
+	VERTEX: 11
+32 < 8 < 22 < 11
+	VERTEX: 12
+32 < 14 < 12
+	VERTEX: 13
+32 < 23 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 29 < 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+32 < 18 < 9 < 8 < 18
+32 < 18 < 8 < 9 < 18
+	VERTEX: 19
+32 < 19
+	VERTEX: 20
+	VERTEX: 21
+	VERTEX: 22
+	VERTEX: 23
+32 < 18 < 28 < 23
+32 < 14 < 6 < 18 < 23
+	VERTEX: 24
+32 < 24
+	VERTEX: 25
+32 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 18 < 23 < 28
+	VERTEX: 29
+32 < 29 < 22 < 9 < 29
+32 < 8 < 9 < 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+CAPACITY: 25
+	VERTEX: 1
+	VERTEX: 2
+	VERTEX: 3
+32 < 4 < 3
+	VERTEX: 4
+32 < 8 < 4
+32 < 3 < 4
+32 < 29 < 22 < 4
+	VERTEX: 5
+	VERTEX: 6
+32 < 18 < 8 < 3 < 6
+	VERTEX: 7
+32 < 31 < 7
+	VERTEX: 8
+32 < 29 < 9 < 18 < 8
+	VERTEX: 9
+32 < 18 < 23 < 9
+	VERTEX: 10
+32 < 20 < 5 < 29 < 10
+32 < 20 < 29 < 5 < 10
+32 < 18 < 9 < 10
+	VERTEX: 11
+32 < 18 < 8 < 22 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 18 < 23 < 13
+32 < 31 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 18 < 29 < 15
+32 < 29 < 18 < 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+	VERTEX: 19
+	VERTEX: 20
+	VERTEX: 21
+	VERTEX: 22
+32 < 26 < 6 < 18 < 8 < 22
+32 < 28 < 8 < 22
+	VERTEX: 23
+	VERTEX: 24
+	VERTEX: 25
+	VERTEX: 26
+	VERTEX: 27
+32 < 26 < 14 < 27
+32 < 14 < 26 < 27
+32 < 14 < 29 < 27
+	VERTEX: 28
+32 < 20 < 29 < 28
+32 < 8 < 22 < 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 7 < 31
+32 < 13 < 31
+	VERTEX: 32
+CAPACITY: 26
+	VERTEX: 1
+	VERTEX: 2
+	VERTEX: 3
+32 < 6 < 23 < 3
+	VERTEX: 4
+32 < 18 < 8 < 4
+32 < 18 < 3 < 4
+32 < 8 < 18 < 4
+	VERTEX: 5
+32 < 18 < 9 < 29 < 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+	VERTEX: 9
+32 < 8 < 22 < 9
+32 < 20 < 29 < 9
+32 < 29 < 10 < 9
+	VERTEX: 10
+32 < 29 < 9 < 10
+	VERTEX: 11
+	VERTEX: 12
+32 < 14 < 26 < 12
+32 < 26 < 14 < 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 22 < 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+	VERTEX: 19
+	VERTEX: 20
+	VERTEX: 21
+	VERTEX: 22
+32 < 8 < 9 < 22
+32 < 27 < 29 < 22
+	VERTEX: 23
+32 < 6 < 3 < 23
+	VERTEX: 24
+32 < 26 < 24
+	VERTEX: 25
+32 < 29 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 18 < 8 < 22 < 28
+	VERTEX: 29
+	VERTEX: 30
+32 < 6 < 30
+	VERTEX: 31
+	VERTEX: 32
+32 < 26 < 24 < 32
+CAPACITY: 27
+	VERTEX: 1
+	VERTEX: 2
+32 < 3 < 2
+32 < 8 < 2
+	VERTEX: 3
+32 < 2 < 3
+32 < 8 < 28 < 3
+32 < 6 < 18 < 23 < 3
+	VERTEX: 4
+32 < 23 < 4
+	VERTEX: 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 18 < 9 < 22 < 8
+32 < 18 < 22 < 9 < 8
+	VERTEX: 9
+32 < 18 < 8 < 22 < 9
+	VERTEX: 10
+32 < 18 < 9 < 29 < 10
+	VERTEX: 11
+32 < 6 < 18 < 11
+32 < 18 < 8 < 3 < 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+32 < 24 < 14
+	VERTEX: 15
+32 < 14 < 29 < 15
+32 < 18 < 22 < 15
+	VERTEX: 16
+32 < 31 < 16
+	VERTEX: 17
+	VERTEX: 18
+32 < 8 < 22 < 9 < 18
+32 < 8 < 9 < 22 < 18
+	VERTEX: 19
+	VERTEX: 20
+	VERTEX: 21
+	VERTEX: 22
+32 < 18 < 8 < 9 < 22
+	VERTEX: 23
+32 < 4 < 23
+32 < 6 < 18 < 8 < 23
+32 < 29 < 9 < 18 < 23
+	VERTEX: 24
+32 < 14 < 24
+	VERTEX: 25
+32 < 18 < 29 < 25
+	VERTEX: 26
+	VERTEX: 27
+32 < 5 < 27
+	VERTEX: 28
+32 < 6 < 28
+	VERTEX: 29
+	VERTEX: 30
+32 < 18 < 6 < 30
+	VERTEX: 31
+32 < 26 < 7 < 31
+32 < 26 < 13 < 31
+32 < 16 < 31
+	VERTEX: 32
+32 < 24 < 14 < 32
+32 < 14 < 24 < 32
+CAPACITY: 28
+	VERTEX: 1
+32 < 31 < 1
+	VERTEX: 2
+32 < 18 < 3 < 2
+32 < 18 < 8 < 2
+32 < 8 < 18 < 2
+	VERTEX: 3
+32 < 18 < 2 < 3
+32 < 26 < 6 < 23 < 3
+32 < 18 < 8 < 28 < 3
+	VERTEX: 4
+32 < 18 < 23 < 4
+	VERTEX: 5
+	VERTEX: 6
+32 < 7 < 6
+	VERTEX: 7
+32 < 6 < 7
+32 < 21 < 7
+	VERTEX: 8
+32 < 29 < 22 < 9 < 8
+32 < 18 < 22 < 9 < 18 < 8
+	VERTEX: 9
+	VERTEX: 10
+	VERTEX: 11
+32 < 8 < 23 < 11
+32 < 23 < 3 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 6 < 13
+32 < 21 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 29 < 22 < 15
+32 < 8 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 31 < 17
+	VERTEX: 18
+32 < 18 < 9 < 22 < 8 < 18
+32 < 18 < 8 < 22 < 9 < 18
+	VERTEX: 19
+	VERTEX: 20
+32 < 27 < 20
+	VERTEX: 21
+32 < 7 < 21
+32 < 13 < 21
+	VERTEX: 22
+32 < 29 < 15 < 22
+	VERTEX: 23
+32 < 26 < 6 < 3 < 23
+32 < 18 < 4 < 23
+32 < 8 < 11 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 22 < 25
+	VERTEX: 26
+	VERTEX: 27
+32 < 20 < 27
+	VERTEX: 28
+32 < 6 < 18 < 28
+32 < 18 < 8 < 3 < 28
+32 < 18 < 6 < 28
+	VERTEX: 29
+32 < 8 < 9 < 22 < 29
+32 < 8 < 22 < 9 < 29
+	VERTEX: 30
+32 < 26 < 6 < 30
+	VERTEX: 31
+32 < 17 < 31
+32 < 1 < 31
+	VERTEX: 32
+32 < 27 < 20 < 32
+CAPACITY: 29
+	VERTEX: 1
+	VERTEX: 2
+32 < 23 < 2
+	VERTEX: 3
+32 < 28 < 23 < 3
+32 < 14 < 6 < 23 < 3
+	VERTEX: 4
+32 < 8 < 22 < 4
+	VERTEX: 5
+32 < 27 < 29 < 5
+	VERTEX: 6
+	VERTEX: 7
+32 < 18 < 6 < 7
+	VERTEX: 8
+32 < 29 < 22 < 9 < 18 < 8
+	VERTEX: 9
+32 < 6 < 18 < 9
+	VERTEX: 10
+32 < 18 < 9 < 22 < 10
+32 < 18 < 22 < 9 < 10
+	VERTEX: 11
+32 < 28 < 11
+32 < 18 < 8 < 23 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 18 < 6 < 13
+32 < 18 < 8 < 3 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 5 < 15
+32 < 18 < 8 < 15
+32 < 8 < 18 < 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+32 < 29 < 22 < 9 < 8 < 18
+32 < 7 < 6 < 18
+	VERTEX: 19
+	VERTEX: 20
+	VERTEX: 21
+	VERTEX: 22
+	VERTEX: 23
+32 < 8 < 28 < 23
+32 < 2 < 23
+32 < 14 < 6 < 3 < 23
+	VERTEX: 24
+32 < 26 < 14 < 24
+32 < 14 < 26 < 24
+	VERTEX: 25
+32 < 14 < 29 < 25
+32 < 18 < 22 < 25
+	VERTEX: 26
+	VERTEX: 27
+32 < 29 < 5 < 27
+	VERTEX: 28
+32 < 26 < 6 < 28
+32 < 8 < 23 < 28
+	VERTEX: 29
+32 < 18 < 8 < 9 < 22 < 29
+32 < 18 < 8 < 22 < 9 < 29
+	VERTEX: 30
+32 < 14 < 6 < 30
+	VERTEX: 31
+32 < 26 < 16 < 31
+	VERTEX: 32
+CAPACITY: 30
+	VERTEX: 1
+	VERTEX: 2
+32 < 18 < 23 < 2
+	VERTEX: 3
+32 < 18 < 23 < 28 < 3
+	VERTEX: 4
+32 < 18 < 8 < 22 < 4
+	VERTEX: 5
+32 < 18 < 9 < 22 < 29 < 5
+	VERTEX: 6
+32 < 16 < 6
+32 < 26 < 7 < 6
+	VERTEX: 7
+32 < 26 < 6 < 7
+32 < 30 < 7
+	VERTEX: 8
+	VERTEX: 9
+32 < 20 < 29 < 22 < 9
+32 < 11 < 9
+	VERTEX: 10
+32 < 27 < 29 < 10
+32 < 29 < 22 < 9 < 10
+32 < 8 < 9 < 10
+	VERTEX: 11
+32 < 18 < 28 < 11
+32 < 14 < 6 < 18 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 26 < 6 < 13
+32 < 30 < 13
+32 < 23 < 3 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 10 < 15
+	VERTEX: 16
+32 < 6 < 16
+	VERTEX: 17
+	VERTEX: 18
+	VERTEX: 19
+	VERTEX: 20
+32 < 27 < 29 < 20
+	VERTEX: 21
+32 < 26 < 7 < 21
+32 < 26 < 13 < 21
+	VERTEX: 22
+	VERTEX: 23
+32 < 18 < 8 < 28 < 23
+32 < 18 < 2 < 23
+32 < 14 < 6 < 18 < 8 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 29 < 22 < 25
+	VERTEX: 26
+	VERTEX: 27
+32 < 20 < 29 < 27
+32 < 29 < 20 < 27
+	VERTEX: 28
+32 < 14 < 6 < 28
+32 < 18 < 8 < 23 < 28
+32 < 26 < 6 < 18 < 28
+	VERTEX: 29
+	VERTEX: 30
+32 < 7 < 30
+32 < 13 < 30
+	VERTEX: 31
+32 < 26 < 1 < 31
+	VERTEX: 32
+CAPACITY: 31
+	VERTEX: 1
+32 < 21 < 1
+	VERTEX: 2
+	VERTEX: 3
+32 < 8 < 4 < 3
+	VERTEX: 4
+	VERTEX: 5
+	VERTEX: 6
+	VERTEX: 7
+32 < 14 < 6 < 7
+	VERTEX: 8
+	VERTEX: 9
+32 < 26 < 6 < 18 < 9
+32 < 28 < 9
+32 < 18 < 11 < 9
+	VERTEX: 10
+32 < 18 < 9 < 22 < 29 < 10
+32 < 18 < 8 < 9 < 10
+	VERTEX: 11
+32 < 18 < 9 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 14 < 6 < 13
+32 < 18 < 23 < 3 < 13
+32 < 18 < 8 < 23 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 29 < 5 < 15
+	VERTEX: 16
+32 < 18 < 6 < 16
+	VERTEX: 17
+32 < 21 < 17
+	VERTEX: 18
+32 < 16 < 6 < 18
+	VERTEX: 19
+	VERTEX: 20
+32 < 14 < 27 < 20
+	VERTEX: 21
+32 < 1 < 21
+32 < 17 < 21
+	VERTEX: 22
+	VERTEX: 23
+32 < 29 < 22 < 9 < 18 < 23
+32 < 18 < 9 < 8 < 23
+	VERTEX: 24
+32 < 5 < 24
+	VERTEX: 25
+32 < 5 < 25
+	VERTEX: 26
+	VERTEX: 27
+32 < 14 < 20 < 27
+	VERTEX: 28
+32 < 14 < 6 < 18 < 28
+32 < 9 < 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+CAPACITY: 32
+	VERTEX: 1
+	VERTEX: 2
+	VERTEX: 3
+32 < 18 < 8 < 4 < 3
+	VERTEX: 4
+32 < 6 < 18 < 4
+32 < 18 < 8 < 3 < 4
+	VERTEX: 5
+32 < 20 < 5 < 29 < 10 < 5
+	VERTEX: 6
+32 < 26 < 16 < 6
+	VERTEX: 7
+32 < 30 < 26 < 7
+32 < 26 < 30 < 7
+32 < 13 < 7
+	VERTEX: 8
+32 < 8 < 22 < 9 < 8
+32 < 8 < 9 < 22 < 8
+	VERTEX: 9
+32 < 14 < 6 < 18 < 9
+32 < 18 < 28 < 9
+32 < 20 < 10 < 9
+	VERTEX: 10
+32 < 29 < 15 < 10
+32 < 25 < 10
+	VERTEX: 11
+32 < 29 < 9 < 11
+32 < 6 < 3 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 7 < 13
+32 < 30 < 26 < 13
+32 < 26 < 30 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 29 < 10 < 15
+32 < 20 < 29 < 15
+32 < 8 < 22 < 15
+	VERTEX: 16
+32 < 30 < 16
+32 < 26 < 6 < 16
+	VERTEX: 17
+	VERTEX: 18
+	VERTEX: 19
+	VERTEX: 20
+32 < 24 < 20
+	VERTEX: 21
+	VERTEX: 22
+	VERTEX: 23
+	VERTEX: 24
+32 < 20 < 24
+	VERTEX: 25
+32 < 20 < 25
+32 < 10 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+	VERTEX: 29
+	VERTEX: 30
+32 < 16 < 30
+	VERTEX: 31
+	VERTEX: 32
+32 < 30 < 16 < 32
+32 < 16 < 30 < 32
+CAPACITY: 33
+	VERTEX: 1
+32 < 30 < 1
+	VERTEX: 2
+32 < 6 < 2
+	VERTEX: 3
+32 < 6 < 28 < 3
+	VERTEX: 4
+32 < 11 < 4
+32 < 8 < 23 < 4
+32 < 3 < 23 < 4
+	VERTEX: 5
+32 < 29 < 25 < 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 18 < 8 < 22 < 9 < 8
+32 < 18 < 8 < 9 < 22 < 8
+	VERTEX: 9
+32 < 20 < 5 < 29 < 9
+32 < 29 < 5 < 10 < 9
+	VERTEX: 10
+	VERTEX: 11
+32 < 4 < 11
+32 < 6 < 18 < 8 < 11
+32 < 29 < 9 < 18 < 11
+	VERTEX: 12
+32 < 21 < 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 18 < 8 < 22 < 15
+	VERTEX: 16
+32 < 14 < 6 < 16
+	VERTEX: 17
+	VERTEX: 18
+32 < 8 < 22 < 9 < 8 < 18
+32 < 8 < 9 < 22 < 8 < 18
+	VERTEX: 19
+32 < 31 < 19
+	VERTEX: 20
+	VERTEX: 21
+32 < 26 < 1 < 21
+32 < 12 < 21
+	VERTEX: 22
+32 < 6 < 18 < 9 < 22
+	VERTEX: 23
+32 < 8 < 4 < 23
+	VERTEX: 24
+32 < 29 < 5 < 24
+	VERTEX: 25
+32 < 29 < 5 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 6 < 3 < 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 19 < 31
+	VERTEX: 32
+32 < 30 < 1 < 32
+CAPACITY: 34
+	VERTEX: 1
+	VERTEX: 2
+32 < 18 < 8 < 3 < 2
+32 < 6 < 18 < 2
+32 < 18 < 6 < 2
+	VERTEX: 3
+32 < 6 < 13 < 3
+32 < 7 < 6 < 3
+	VERTEX: 4
+32 < 28 < 4
+32 < 18 < 11 < 4
+32 < 18 < 8 < 23 < 4
+	VERTEX: 5
+	VERTEX: 6
+	VERTEX: 7
+32 < 16 < 7
+	VERTEX: 8
+	VERTEX: 9
+	VERTEX: 10
+32 < 29 < 25 < 10
+32 < 8 < 22 < 9 < 10
+32 < 8 < 9 < 22 < 10
+	VERTEX: 11
+32 < 18 < 4 < 11
+32 < 6 < 23 < 11
+32 < 26 < 6 < 3 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 26 < 7 < 13
+32 < 16 < 13
+32 < 6 < 3 < 13
+	VERTEX: 14
+	VERTEX: 15
+	VERTEX: 16
+32 < 30 < 26 < 16
+32 < 26 < 30 < 16
+	VERTEX: 17
+	VERTEX: 18
+32 < 18 < 8 < 22 < 9 < 8 < 18
+32 < 18 < 8 < 9 < 22 < 8 < 18
+32 < 20 < 5 < 29 < 9 < 18
+	VERTEX: 19
+	VERTEX: 20
+32 < 18 < 9 < 29 < 5 < 20
+	VERTEX: 21
+	VERTEX: 22
+	VERTEX: 23
+32 < 18 < 8 < 4 < 23
+	VERTEX: 24
+32 < 29 < 20 < 24
+	VERTEX: 25
+32 < 29 < 10 < 25
+32 < 20 < 29 < 25
+	VERTEX: 26
+	VERTEX: 27
+32 < 30 < 27
+	VERTEX: 28
+32 < 4 < 28
+32 < 6 < 18 < 8 < 28
+32 < 29 < 9 < 18 < 28
+	VERTEX: 29
+32 < 29 < 15 < 10 < 29
+32 < 29 < 10 < 15 < 29
+	VERTEX: 30
+32 < 26 < 16 < 30
+	VERTEX: 31
+	VERTEX: 32
+32 < 16 < 7 < 32
+CAPACITY: 35
+	VERTEX: 1
+32 < 7 < 1
+32 < 30 < 26 < 1
+	VERTEX: 2
+32 < 26 < 6 < 2
+32 < 23 < 3 < 2
+	VERTEX: 3
+32 < 8 < 28 < 23 < 3
+32 < 2 < 23 < 3
+32 < 26 < 6 < 28 < 3
+	VERTEX: 4
+32 < 18 < 28 < 4
+32 < 14 < 6 < 18 < 4
+32 < 9 < 4
+	VERTEX: 5
+32 < 27 < 20 < 5
+32 < 8 < 9 < 22 < 29 < 5
+	VERTEX: 6
+32 < 27 < 14 < 6
+	VERTEX: 7
+32 < 1 < 7
+	VERTEX: 8
+32 < 26 < 6 < 28 < 8
+	VERTEX: 9
+32 < 6 < 18 < 8 < 9
+	VERTEX: 10
+32 < 18 < 8 < 22 < 9 < 10
+32 < 18 < 8 < 9 < 22 < 10
+	VERTEX: 11
+32 < 8 < 28 < 11
+32 < 18 < 22 < 9 < 11
+	VERTEX: 12
+32 < 30 < 12
+	VERTEX: 13
+32 < 1 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 6 < 18 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 13 < 17
+32 < 7 < 17
+	VERTEX: 18
+	VERTEX: 19
+	VERTEX: 20
+32 < 14 < 24 < 20
+32 < 24 < 14 < 20
+	VERTEX: 21
+32 < 26 < 12 < 21
+	VERTEX: 22
+32 < 26 < 6 < 18 < 9 < 22
+	VERTEX: 23
+32 < 3 < 2 < 23
+32 < 2 < 3 < 23
+	VERTEX: 24
+32 < 14 < 20 < 24
+	VERTEX: 25
+32 < 14 < 20 < 25
+32 < 18 < 8 < 22 < 25
+	VERTEX: 26
+	VERTEX: 27
+32 < 20 < 5 < 27
+	VERTEX: 28
+32 < 6 < 23 < 28
+32 < 8 < 11 < 28
+	VERTEX: 29
+32 < 6 < 18 < 9 < 22 < 29
+	VERTEX: 30
+32 < 12 < 30
+	VERTEX: 31
+	VERTEX: 32
+32 < 30 < 12 < 32
+32 < 1 < 7 < 32
+CAPACITY: 36
+	VERTEX: 1
+	VERTEX: 2
+32 < 14 < 6 < 2
+32 < 18 < 23 < 3 < 2
+	VERTEX: 3
+32 < 18 < 23 < 2 < 3
+32 < 26 < 6 < 13 < 3
+	VERTEX: 4
+32 < 18 < 9 < 4
+	VERTEX: 5
+32 < 18 < 8 < 9 < 22 < 29 < 5
+	VERTEX: 6
+32 < 24 < 6
+	VERTEX: 7
+32 < 26 < 16 < 7
+32 < 16 < 26 < 7
+	VERTEX: 8
+32 < 14 < 6 < 28 < 8
+	VERTEX: 9
+32 < 8 < 11 < 9
+	VERTEX: 10
+32 < 8 < 9 < 22 < 29 < 10
+	VERTEX: 11
+32 < 29 < 22 < 9 < 11
+32 < 18 < 8 < 28 < 11
+32 < 14 < 6 < 18 < 8 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 26 < 16 < 13
+32 < 16 < 26 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 20 < 29 < 22 < 15
+	VERTEX: 16
+32 < 26 < 7 < 16
+32 < 26 < 13 < 16
+	VERTEX: 17
+	VERTEX: 18
+	VERTEX: 19
+32 < 21 < 19
+	VERTEX: 20
+	VERTEX: 21
+32 < 19 < 21
+	VERTEX: 22
+32 < 14 < 6 < 18 < 9 < 22
+32 < 29 < 10 < 15 < 22
+32 < 20 < 29 < 15 < 22
+	VERTEX: 23
+32 < 6 < 13 < 23
+32 < 29 < 22 < 9 < 8 < 23
+	VERTEX: 24
+32 < 6 < 24
+	VERTEX: 25
+	VERTEX: 26
+	VERTEX: 27
+32 < 30 < 26 < 27
+32 < 26 < 30 < 27
+	VERTEX: 28
+32 < 18 < 8 < 11 < 28
+32 < 26 < 6 < 18 < 8 < 28
+32 < 2 < 28
+	VERTEX: 29
+32 < 29 < 25 < 10 < 29
+32 < 29 < 10 < 25 < 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+CAPACITY: 37
+	VERTEX: 1
+32 < 16 < 1
+32 < 26 < 7 < 1
+32 < 26 < 13 < 1
+	VERTEX: 2
+32 < 13 < 2
+32 < 18 < 28 < 2
+32 < 14 < 6 < 18 < 2
+	VERTEX: 3
+32 < 14 < 6 < 13 < 3
+	VERTEX: 4
+32 < 6 < 3 < 4
+32 < 29 < 9 < 4
+	VERTEX: 5
+32 < 27 < 29 < 10 < 5
+	VERTEX: 6
+	VERTEX: 7
+32 < 26 < 1 < 7
+32 < 12 < 7
+	VERTEX: 8
+32 < 16 < 6 < 18 < 8
+	VERTEX: 9
+32 < 20 < 5 < 29 < 22 < 9
+32 < 26 < 6 < 18 < 8 < 9
+	VERTEX: 10
+32 < 18 < 8 < 9 < 22 < 29 < 10
+32 < 27 < 29 < 5 < 10
+	VERTEX: 11
+32 < 18 < 9 < 8 < 11
+32 < 18 < 8 < 9 < 11
+	VERTEX: 12
+32 < 30 < 26 < 12
+32 < 26 < 30 < 12
+	VERTEX: 13
+32 < 26 < 1 < 13
+32 < 12 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 5 < 10 < 15
+32 < 20 < 5 < 15
+32 < 26 < 6 < 18 < 15
+	VERTEX: 16
+32 < 1 < 16
+	VERTEX: 17
+32 < 26 < 13 < 17
+32 < 26 < 7 < 17
+	VERTEX: 18
+	VERTEX: 19
+	VERTEX: 20
+	VERTEX: 21
+32 < 7 < 31 < 21
+	VERTEX: 22
+32 < 20 < 5 < 29 < 9 < 22
+	VERTEX: 23
+32 < 26 < 6 < 28 < 23
+	VERTEX: 24
+32 < 18 < 6 < 24
+	VERTEX: 25
+	VERTEX: 26
+	VERTEX: 27
+32 < 20 < 5 < 29 < 27
+32 < 20 < 29 < 5 < 27
+	VERTEX: 28
+32 < 26 < 6 < 23 < 28
+32 < 14 < 6 < 18 < 8 < 28
+32 < 29 < 22 < 9 < 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 6 < 13 < 31
+32 < 7 < 21 < 31
+32 < 13 < 21 < 31
+	VERTEX: 32
+32 < 16 < 1 < 32
+32 < 26 < 7 < 1 < 32
+CAPACITY: 38
+	VERTEX: 1
+	VERTEX: 2
+	VERTEX: 3
+32 < 7 < 13 < 3
+	VERTEX: 4
+32 < 6 < 18 < 8 < 4
+32 < 29 < 9 < 18 < 4
+	VERTEX: 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+	VERTEX: 9
+32 < 27 < 29 < 9
+32 < 14 < 6 < 18 < 8 < 9
+	VERTEX: 10
+	VERTEX: 11
+32 < 18 < 23 < 28 < 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 9 < 15
+32 < 20 < 10 < 15
+32 < 14 < 6 < 18 < 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+32 < 20 < 5 < 29 < 22 < 9 < 18
+32 < 20 < 5 < 29 < 9 < 22 < 18
+	VERTEX: 19
+	VERTEX: 20
+	VERTEX: 21
+	VERTEX: 22
+	VERTEX: 23
+32 < 14 < 6 < 28 < 23
+32 < 16 < 6 < 23
+	VERTEX: 24
+32 < 30 < 24
+32 < 26 < 6 < 24
+	VERTEX: 25
+32 < 20 < 29 < 22 < 25
+	VERTEX: 26
+	VERTEX: 27
+32 < 16 < 27
+	VERTEX: 28
+32 < 14 < 6 < 23 < 28
+32 < 18 < 9 < 8 < 28
+32 < 29 < 22 < 9 < 18 < 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+CAPACITY: 39
+	VERTEX: 1
+32 < 26 < 16 < 1
+32 < 16 < 26 < 1
+	VERTEX: 2
+32 < 6 < 3 < 2
+32 < 26 < 13 < 2
+	VERTEX: 3
+32 < 6 < 2 < 3
+32 < 11 < 4 < 3
+32 < 8 < 4 < 23 < 3
+	VERTEX: 4
+32 < 8 < 11 < 4
+32 < 6 < 23 < 4
+	VERTEX: 5
+32 < 20 < 25 < 5
+	VERTEX: 6
+32 < 24 < 14 < 6
+32 < 14 < 24 < 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 4 < 11 < 8
+32 < 20 < 5 < 29 < 9 < 8
+	VERTEX: 9
+32 < 18 < 9 < 22 < 29 < 9
+	VERTEX: 10
+32 < 5 < 25 < 10
+	VERTEX: 11
+32 < 8 < 4 < 11
+	VERTEX: 12
+32 < 16 < 12
+32 < 26 < 7 < 12
+32 < 26 < 13 < 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 18 < 9 < 15
+32 < 20 < 5 < 29 < 15
+	VERTEX: 16
+32 < 12 < 16
+	VERTEX: 17
+	VERTEX: 18
+32 < 27 < 29 < 9 < 18
+	VERTEX: 19
+	VERTEX: 20
+	VERTEX: 21
+32 < 26 < 7 < 31 < 21
+	VERTEX: 22
+	VERTEX: 23
+32 < 14 < 6 < 13 < 23
+	VERTEX: 24
+32 < 14 < 6 < 24
+32 < 20 < 5 < 24
+	VERTEX: 25
+32 < 20 < 5 < 25
+32 < 5 < 10 < 25
+	VERTEX: 26
+	VERTEX: 27
+32 < 18 < 9 < 29 < 27
+	VERTEX: 28
+32 < 26 < 13 < 3 < 28
+	VERTEX: 29
+32 < 20 < 5 < 29 < 22 < 9 < 29
+32 < 20 < 5 < 29 < 9 < 22 < 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 26 < 7 < 21 < 31
+32 < 26 < 6 < 13 < 31
+32 < 26 < 13 < 21 < 31
+	VERTEX: 32
+32 < 16 < 12 < 32
+CAPACITY: 40
+	VERTEX: 1
+32 < 12 < 1
+	VERTEX: 2
+32 < 4 < 2
+32 < 6 < 18 < 8 < 2
+	VERTEX: 3
+32 < 26 < 7 < 13 < 3
+	VERTEX: 4
+32 < 18 < 8 < 11 < 4
+32 < 8 < 28 < 4
+	VERTEX: 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+	VERTEX: 9
+32 < 29 < 15 < 9
+	VERTEX: 10
+32 < 20 < 25 < 10
+32 < 20 < 29 < 15 < 10
+	VERTEX: 11
+32 < 18 < 8 < 4 < 11
+32 < 8 < 22 < 9 < 11
+	VERTEX: 12
+32 < 1 < 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 29 < 9 < 15
+32 < 20 < 29 < 10 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 21 < 31 < 17
+32 < 2 < 17
+32 < 31 < 21 < 17
+	VERTEX: 18
+32 < 4 < 11 < 8 < 18
+32 < 6 < 2 < 3 < 18
+32 < 20 < 5 < 29 < 9 < 8 < 18
+	VERTEX: 19
+32 < 7 < 19
+32 < 13 < 19
+	VERTEX: 20
+	VERTEX: 21
+32 < 6 < 13 < 21
+32 < 17 < 31 < 21
+32 < 31 < 17 < 21
+	VERTEX: 22
+	VERTEX: 23
+	VERTEX: 24
+32 < 30 < 26 < 24
+32 < 7 < 24
+32 < 26 < 30 < 24
+	VERTEX: 25
+32 < 20 < 10 < 25
+	VERTEX: 26
+	VERTEX: 27
+32 < 16 < 26 < 27
+32 < 26 < 16 < 27
+	VERTEX: 28
+32 < 8 < 4 < 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 1 < 21 < 31
+32 < 14 < 6 < 13 < 31
+32 < 21 < 17 < 31
+	VERTEX: 32
+32 < 12 < 1 < 32
+32 < 1 < 12 < 32
+CAPACITY: 41
+	VERTEX: 1
+	VERTEX: 2
+32 < 26 < 6 < 3 < 2
+32 < 6 < 23 < 2
+	VERTEX: 3
+32 < 26 < 6 < 2 < 3
+32 < 3 < 2 < 23 < 3
+	VERTEX: 4
+32 < 18 < 8 < 28 < 4
+32 < 26 < 6 < 23 < 4
+	VERTEX: 5
+32 < 29 < 10 < 25 < 5
+32 < 29 < 15 < 10 < 29 < 5
+32 < 29 < 25 < 10 < 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 2 < 3 < 23 < 8
+32 < 3 < 2 < 23 < 8
+32 < 26 < 6 < 18 < 9 < 22 < 8
+	VERTEX: 9
+	VERTEX: 10
+32 < 29 < 5 < 25 < 10
+	VERTEX: 11
+32 < 23 < 4 < 11
+32 < 6 < 28 < 11
+32 < 18 < 9 < 22 < 8 < 11
+	VERTEX: 12
+32 < 26 < 16 < 12
+32 < 16 < 26 < 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 18 < 9 < 29 < 15
+32 < 6 < 18 < 8 < 15
+32 < 29 < 9 < 18 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 18 < 2 < 17
+	VERTEX: 18
+32 < 29 < 15 < 9 < 18
+	VERTEX: 19
+	VERTEX: 20
+	VERTEX: 21
+	VERTEX: 22
+	VERTEX: 23
+32 < 11 < 4 < 23
+32 < 6 < 2 < 23
+	VERTEX: 24
+32 < 20 < 29 < 5 < 24
+	VERTEX: 25
+32 < 20 < 5 < 29 < 25
+32 < 20 < 29 < 5 < 25
+32 < 29 < 5 < 10 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 18 < 8 < 4 < 28
+32 < 6 < 3 < 23 < 28
+32 < 8 < 9 < 22 < 28
+	VERTEX: 29
+32 < 18 < 9 < 15 < 29
+32 < 5 < 25 < 10 < 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 7 < 13 < 31
+	VERTEX: 32
+CAPACITY: 42
+	VERTEX: 1
+32 < 26 < 12 < 1
+	VERTEX: 2
+32 < 14 < 6 < 3 < 2
+32 < 8 < 28 < 2
+	VERTEX: 3
+32 < 14 < 6 < 2 < 3
+	VERTEX: 4
+32 < 28 < 23 < 4
+32 < 18 < 23 < 11 < 4
+	VERTEX: 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 14 < 6 < 18 < 9 < 22 < 8
+	VERTEX: 9
+32 < 27 < 29 < 22 < 9
+	VERTEX: 10
+	VERTEX: 11
+32 < 18 < 23 < 4 < 11
+32 < 29 < 22 < 9 < 8 < 11
+	VERTEX: 12
+32 < 26 < 1 < 12
+32 < 31 < 21 < 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 9 < 22 < 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+	VERTEX: 19
+32 < 26 < 7 < 19
+32 < 26 < 13 < 19
+	VERTEX: 20
+	VERTEX: 21
+32 < 26 < 6 < 13 < 21
+	VERTEX: 22
+32 < 27 < 29 < 9 < 22
+	VERTEX: 23
+32 < 28 < 4 < 23
+32 < 6 < 13 < 3 < 23
+32 < 4 < 28 < 23
+	VERTEX: 24
+32 < 16 < 24
+32 < 26 < 7 < 24
+	VERTEX: 25
+32 < 20 < 29 < 10 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 3 < 2 < 28
+32 < 2 < 3 < 28
+	VERTEX: 29
+32 < 20 < 25 < 10 < 29
+32 < 29 < 15 < 9 < 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+CAPACITY: 43
+	VERTEX: 1
+	VERTEX: 2
+32 < 26 < 6 < 23 < 2
+32 < 18 < 8 < 28 < 2
+	VERTEX: 3
+	VERTEX: 4
+32 < 18 < 23 < 28 < 4
+32 < 26 < 13 < 3 < 4
+	VERTEX: 5
+32 < 29 < 10 < 25 < 29 < 5
+32 < 29 < 25 < 10 < 29 < 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 20 < 5 < 29 < 22 < 9 < 8
+32 < 20 < 5 < 29 < 9 < 22 < 8
+	VERTEX: 9
+32 < 18 < 9 < 22 < 8 < 9
+32 < 8 < 9 < 22 < 18 < 9
+32 < 6 < 28 < 9
+	VERTEX: 10
+	VERTEX: 11
+32 < 26 < 6 < 28 < 11
+32 < 8 < 28 < 23 < 11
+32 < 6 < 18 < 9 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 3 < 2 < 13
+32 < 2 < 3 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 18 < 9 < 22 < 15
+32 < 18 < 22 < 9 < 15
+32 < 20 < 5 < 29 < 22 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 19 < 17
+	VERTEX: 18
+32 < 27 < 29 < 22 < 9 < 18
+32 < 27 < 29 < 9 < 22 < 18
+32 < 14 < 6 < 2 < 3 < 18
+	VERTEX: 19
+32 < 17 < 19
+32 < 1 < 19
+	VERTEX: 20
+	VERTEX: 21
+32 < 14 < 6 < 13 < 21
+	VERTEX: 22
+32 < 18 < 9 < 15 < 22
+32 < 20 < 5 < 29 < 15 < 22
+	VERTEX: 23
+32 < 26 < 6 < 2 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 18 < 9 < 29 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 18 < 23 < 4 < 28
+32 < 29 < 22 < 9 < 8 < 28
+	VERTEX: 29
+32 < 29 < 10 < 25 < 5 < 29
+32 < 29 < 5 < 25 < 10 < 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 26 < 7 < 13 < 31
+32 < 16 < 7 < 31
+	VERTEX: 32
+CAPACITY: 44
+	VERTEX: 1
+	VERTEX: 2
+32 < 28 < 23 < 2
+32 < 29 < 22 < 9 < 18 < 2
+	VERTEX: 3
+	VERTEX: 4
+	VERTEX: 5
+	VERTEX: 6
+32 < 7 < 13 < 6
+32 < 30 < 16 < 6
+	VERTEX: 7
+32 < 6 < 13 < 7
+	VERTEX: 8
+32 < 27 < 29 < 9 < 8
+32 < 20 < 5 < 29 < 22 < 9 < 18 < 8
+32 < 20 < 5 < 29 < 9 < 22 < 18 < 8
+	VERTEX: 9
+32 < 29 < 15 < 22 < 9
+32 < 8 < 9 < 22 < 29 < 9
+32 < 18 < 9 < 22 < 8 < 18 < 9
+	VERTEX: 10
+32 < 29 < 10 < 25 < 29 < 10
+	VERTEX: 11
+32 < 14 < 6 < 28 < 11
+32 < 18 < 8 < 28 < 23 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 7 < 6 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 29 < 22 < 9 < 15
+32 < 27 < 29 < 15
+32 < 14 < 6 < 18 < 8 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 7 < 31 < 17
+	VERTEX: 18
+32 < 20 < 5 < 29 < 22 < 9 < 8 < 18
+32 < 20 < 5 < 29 < 9 < 22 < 8 < 18
+	VERTEX: 19
+	VERTEX: 20
+	VERTEX: 21
+32 < 7 < 13 < 21
+	VERTEX: 22
+32 < 29 < 15 < 9 < 22
+	VERTEX: 23
+32 < 14 < 6 < 2 < 23
+32 < 18 < 23 < 3 < 2 < 23
+32 < 18 < 23 < 2 < 3 < 23
+	VERTEX: 24
+32 < 27 < 24
+32 < 16 < 26 < 24
+32 < 26 < 16 < 24
+	VERTEX: 25
+32 < 9 < 22 < 25
+	VERTEX: 26
+	VERTEX: 27
+32 < 24 < 27
+	VERTEX: 28
+32 < 2 < 23 < 28
+32 < 29 < 22 < 9 < 8 < 18 < 28
+32 < 28 < 23 < 3 < 28
+	VERTEX: 29
+32 < 27 < 29 < 22 < 9 < 29
+32 < 27 < 29 < 9 < 22 < 29
+32 < 20 < 29 < 10 < 25 < 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 13 < 17 < 31
+32 < 7 < 17 < 31
+32 < 1 < 7 < 31
+	VERTEX: 32
+32 < 27 < 24 < 32
+32 < 24 < 27 < 32
+CAPACITY: 45
+	VERTEX: 1
+	VERTEX: 2
+32 < 26 < 13 < 3 < 2
+32 < 18 < 23 < 28 < 2
+	VERTEX: 3
+32 < 8 < 11 < 4 < 3
+	VERTEX: 4
+32 < 6 < 3 < 23 < 4
+32 < 8 < 22 < 9 < 4
+	VERTEX: 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 8 < 11 < 4 < 8
+32 < 8 < 4 < 11 < 8
+	VERTEX: 9
+32 < 18 < 8 < 9 < 22 < 29 < 9
+32 < 29 < 22 < 9 < 8 < 18 < 9
+	VERTEX: 10
+	VERTEX: 11
+32 < 26 < 6 < 18 < 9 < 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 18 < 8 < 9 < 15
+32 < 18 < 9 < 22 < 29 < 15
+32 < 20 < 5 < 10 < 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+32 < 29 < 15 < 22 < 9 < 18
+32 < 29 < 15 < 9 < 22 < 18
+	VERTEX: 19
+32 < 21 < 31 < 19
+32 < 31 < 21 < 19
+32 < 26 < 1 < 19
+	VERTEX: 20
+	VERTEX: 21
+32 < 19 < 31 < 21
+32 < 31 < 19 < 21
+	VERTEX: 22
+32 < 18 < 9 < 15 < 29 < 22
+	VERTEX: 23
+32 < 14 < 6 < 13 < 3 < 23
+	VERTEX: 24
+32 < 12 < 24
+	VERTEX: 25
+32 < 18 < 9 < 22 < 25
+32 < 20 < 5 < 29 < 22 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 16 < 6 < 28
+32 < 26 < 7 < 6 < 28
+32 < 18 < 23 < 2 < 28
+	VERTEX: 29
+32 < 18 < 9 < 22 < 15 < 29
+32 < 18 < 22 < 9 < 15 < 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 21 < 19 < 31
+	VERTEX: 32
+CAPACITY: 46
+	VERTEX: 1
+	VERTEX: 2
+32 < 8 < 4 < 2
+	VERTEX: 3
+32 < 18 < 8 < 11 < 4 < 3
+32 < 8 < 28 < 4 < 3
+	VERTEX: 4
+32 < 6 < 28 < 4
+32 < 3 < 2 < 4
+32 < 2 < 3 < 4
+	VERTEX: 5
+32 < 20 < 5 < 29 < 9 < 22 < 29 < 5
+32 < 20 < 5 < 29 < 22 < 9 < 29 < 5
+	VERTEX: 6
+32 < 26 < 7 < 13 < 6
+32 < 16 < 7 < 6
+	VERTEX: 7
+32 < 16 < 6 < 7
+32 < 26 < 6 < 13 < 7
+	VERTEX: 8
+32 < 29 < 15 < 9 < 8
+32 < 18 < 8 < 11 < 4 < 8
+	VERTEX: 9
+32 < 27 < 29 < 10 < 9
+32 < 14 < 6 < 28 < 9
+	VERTEX: 10
+	VERTEX: 11
+32 < 8 < 22 < 9 < 8 < 11
+32 < 8 < 9 < 22 < 8 < 11
+32 < 14 < 6 < 18 < 9 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 16 < 6 < 13
+32 < 26 < 7 < 6 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 25 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 3 < 2 < 17
+32 < 26 < 7 < 31 < 17
+	VERTEX: 18
+32 < 8 < 4 < 11 < 8 < 18
+32 < 8 < 11 < 4 < 8 < 18
+	VERTEX: 19
+	VERTEX: 20
+	VERTEX: 21
+32 < 26 < 7 < 13 < 21
+32 < 16 < 7 < 21
+	VERTEX: 22
+32 < 20 < 25 < 10 < 29 < 22
+	VERTEX: 23
+	VERTEX: 24
+32 < 26 < 27 < 24
+	VERTEX: 25
+32 < 27 < 29 < 25
+32 < 15 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 16 < 6 < 18 < 28
+32 < 18 < 9 < 11 < 28
+	VERTEX: 29
+32 < 29 < 22 < 9 < 15 < 29
+32 < 29 < 15 < 9 < 22 < 29
+32 < 29 < 15 < 22 < 9 < 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 26 < 13 < 17 < 31
+32 < 16 < 1 < 31
+	VERTEX: 32
+32 < 16 < 6 < 7 < 32
+CAPACITY: 47
+	VERTEX: 1
+	VERTEX: 2
+32 < 6 < 23 < 3 < 2
+32 < 6 < 3 < 23 < 2
+32 < 18 < 8 < 4 < 2
+	VERTEX: 3
+32 < 11 < 4 < 23 < 3
+32 < 6 < 2 < 23 < 3
+	VERTEX: 4
+32 < 26 < 6 < 3 < 23 < 4
+32 < 8 < 23 < 11 < 4
+32 < 29 < 22 < 9 < 8 < 4
+	VERTEX: 5
+32 < 20 < 25 < 10 < 5
+	VERTEX: 6
+32 < 1 < 7 < 6
+	VERTEX: 7
+32 < 14 < 6 < 13 < 7
+	VERTEX: 8
+32 < 29 < 15 < 9 < 18 < 8
+32 < 18 < 8 < 4 < 28 < 8
+32 < 18 < 8 < 28 < 4 < 8
+	VERTEX: 9
+32 < 16 < 6 < 18 < 9
+	VERTEX: 10
+32 < 20 < 5 < 25 < 10
+32 < 18 < 9 < 15 < 10
+	VERTEX: 11
+32 < 8 < 23 < 4 < 11
+32 < 18 < 8 < 22 < 9 < 8 < 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+32 < 27 < 24 < 14
+	VERTEX: 15
+32 < 20 < 5 < 29 < 10 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 6 < 13 < 17
+32 < 7 < 21 < 17
+32 < 13 < 21 < 17
+	VERTEX: 18
+32 < 29 < 15 < 9 < 8 < 18
+	VERTEX: 19
+	VERTEX: 20
+	VERTEX: 21
+32 < 1 < 7 < 21
+32 < 13 < 17 < 21
+32 < 7 < 17 < 21
+	VERTEX: 22
+32 < 18 < 22 < 9 < 15 < 22
+32 < 20 < 5 < 29 < 22 < 9 < 8 < 22
+	VERTEX: 23
+32 < 8 < 11 < 4 < 23
+32 < 6 < 3 < 2 < 23
+	VERTEX: 24
+32 < 27 < 14 < 24
+32 < 14 < 27 < 24
+32 < 26 < 12 < 24
+	VERTEX: 25
+32 < 20 < 5 < 10 < 25
+32 < 18 < 9 < 22 < 29 < 25
+32 < 18 < 15 < 25
+	VERTEX: 26
+	VERTEX: 27
+32 < 14 < 24 < 27
+32 < 24 < 14 < 27
+	VERTEX: 28
+32 < 8 < 22 < 9 < 8 < 28
+32 < 8 < 9 < 22 < 8 < 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+32 < 27 < 24 < 14 < 32
+CAPACITY: 48
+	VERTEX: 1
+	VERTEX: 2
+32 < 6 < 28 < 2
+32 < 23 < 4 < 2
+32 < 18 < 9 < 22 < 8 < 2
+	VERTEX: 3
+	VERTEX: 4
+32 < 28 < 11 < 4
+32 < 26 < 6 < 28 < 4
+32 < 8 < 28 < 23 < 4
+	VERTEX: 5
+32 < 18 < 9 < 15 < 29 < 5
+32 < 5 < 25 < 10 < 29 < 5
+	VERTEX: 6
+	VERTEX: 7
+32 < 30 < 16 < 7
+	VERTEX: 8
+32 < 27 < 29 < 22 < 9 < 8
+32 < 27 < 29 < 9 < 22 < 8
+32 < 18 < 23 < 4 < 11 < 8
+	VERTEX: 9
+32 < 29 < 10 < 15 < 9
+32 < 20 < 29 < 15 < 9
+32 < 8 < 9 < 22 < 8 < 9
+	VERTEX: 10
+	VERTEX: 11
+32 < 28 < 4 < 11
+32 < 4 < 28 < 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 8 < 22 < 9 < 15
+32 < 8 < 9 < 22 < 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+32 < 8 < 11 < 4 < 23 < 18
+32 < 6 < 3 < 2 < 23 < 18
+	VERTEX: 19
+	VERTEX: 20
+	VERTEX: 21
+	VERTEX: 22
+32 < 29 < 22 < 9 < 15 < 22
+	VERTEX: 23
+32 < 18 < 8 < 11 < 4 < 23
+32 < 8 < 4 < 28 < 23
+32 < 18 < 8 < 4 < 11 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 29 < 15 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 11 < 4 < 28
+32 < 4 < 11 < 28
+32 < 6 < 2 < 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+CAPACITY: 49
+	VERTEX: 1
+	VERTEX: 2
+32 < 6 < 13 < 2
+32 < 26 < 6 < 3 < 23 < 2
+32 < 7 < 6 < 2
+	VERTEX: 3
+32 < 26 < 6 < 2 < 23 < 3
+	VERTEX: 4
+32 < 14 < 6 < 28 < 4
+32 < 18 < 8 < 28 < 23 < 4
+32 < 18 < 23 < 2 < 4
+	VERTEX: 5
+32 < 20 < 29 < 10 < 25 < 5
+32 < 20 < 25 < 10 < 29 < 5
+	VERTEX: 6
+	VERTEX: 7
+32 < 30 < 1 < 7
+	VERTEX: 8
+32 < 27 < 29 < 22 < 9 < 18 < 8
+	VERTEX: 9
+32 < 4 < 11 < 9
+32 < 18 < 8 < 9 < 22 < 8 < 9
+	VERTEX: 10
+32 < 18 < 9 < 15 < 29 < 10
+	VERTEX: 11
+32 < 2 < 3 < 23 < 11
+32 < 3 < 2 < 23 < 11
+32 < 26 < 6 < 18 < 9 < 22 < 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 18 < 8 < 22 < 9 < 15
+32 < 18 < 8 < 9 < 22 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 26 < 6 < 13 < 17
+32 < 26 < 7 < 21 < 17
+	VERTEX: 18
+32 < 27 < 29 < 22 < 9 < 8 < 18
+32 < 29 < 10 < 15 < 9 < 18
+	VERTEX: 19
+32 < 7 < 31 < 19
+	VERTEX: 20
+32 < 29 < 10 < 25 < 5 < 20
+	VERTEX: 21
+32 < 6 < 13 < 31 < 21
+32 < 16 < 1 < 21
+32 < 26 < 13 < 17 < 21
+	VERTEX: 22
+	VERTEX: 23
+32 < 26 < 6 < 3 < 2 < 23
+32 < 26 < 6 < 2 < 3 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 20 < 5 < 29 < 10 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 18 < 8 < 4 < 23 < 28
+32 < 6 < 13 < 3 < 28
+32 < 18 < 8 < 22 < 9 < 8 < 18 < 28
+	VERTEX: 29
+32 < 20 < 5 < 25 < 10 < 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 6 < 13 < 21 < 31
+32 < 2 < 17 < 31
+	VERTEX: 32
+32 < 29 < 10 < 25 < 5 < 20 < 32
+CAPACITY: 50
+	VERTEX: 1
+	VERTEX: 2
+32 < 28 < 23 < 3 < 2
+32 < 8 < 28 < 23 < 2
+	VERTEX: 3
+32 < 28 < 23 < 2 < 3
+32 < 14 < 6 < 2 < 23 < 3
+	VERTEX: 4
+32 < 18 < 9 < 11 < 4
+32 < 16 < 6 < 18 < 4
+	VERTEX: 5
+32 < 29 < 5 < 25 < 10 < 29 < 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 29 < 15 < 9 < 22 < 8
+32 < 29 < 15 < 22 < 9 < 8
+	VERTEX: 9
+32 < 29 < 15 < 10 < 29 < 9
+32 < 18 < 8 < 22 < 9 < 8 < 18 < 9
+32 < 29 < 25 < 10 < 9
+	VERTEX: 10
+	VERTEX: 11
+32 < 18 < 23 < 2 < 3 < 11
+32 < 14 < 6 < 18 < 9 < 22 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 16 < 7 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 8 < 9 < 22 < 29 < 15
+32 < 29 < 22 < 9 < 8 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 14 < 6 < 13 < 17
+32 < 1 < 21 < 17
+	VERTEX: 18
+	VERTEX: 19
+	VERTEX: 20
+	VERTEX: 21
+	VERTEX: 22
+32 < 29 < 22 < 9 < 15 < 29 < 22
+	VERTEX: 23
+32 < 14 < 6 < 3 < 2 < 23
+32 < 14 < 6 < 2 < 3 < 23
+	VERTEX: 24
+32 < 18 < 9 < 29 < 5 < 24
+	VERTEX: 25
+32 < 18 < 9 < 29 < 5 < 25
+32 < 8 < 9 < 22 < 25
+32 < 27 < 29 < 22 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 2 < 3 < 23 < 28
+32 < 3 < 2 < 23 < 28
+32 < 26 < 6 < 2 < 28
+	VERTEX: 29
+32 < 8 < 22 < 9 < 15 < 29
+32 < 8 < 9 < 22 < 15 < 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+CAPACITY: 51
+	VERTEX: 1
+32 < 30 < 16 < 1
+	VERTEX: 2
+32 < 26 < 6 < 13 < 2
+32 < 16 < 6 < 2
+	VERTEX: 3
+	VERTEX: 4
+32 < 8 < 22 < 9 < 8 < 4
+32 < 8 < 9 < 22 < 8 < 4
+32 < 14 < 6 < 18 < 9 < 4
+	VERTEX: 5
+32 < 27 < 29 < 22 < 9 < 29 < 5
+32 < 27 < 29 < 9 < 22 < 29 < 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 29 < 15 < 22 < 9 < 18 < 8
+	VERTEX: 9
+32 < 8 < 28 < 11 < 9
+	VERTEX: 10
+32 < 18 < 9 < 22 < 15 < 10
+32 < 29 < 10 < 25 < 5 < 29 < 10
+32 < 18 < 22 < 9 < 15 < 10
+	VERTEX: 11
+32 < 20 < 5 < 29 < 22 < 9 < 11
+32 < 20 < 5 < 29 < 9 < 22 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 1 < 7 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 6 < 18 < 9 < 15
+32 < 18 < 8 < 9 < 22 < 29 < 15
+32 < 27 < 29 < 5 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 7 < 13 < 17
+	VERTEX: 18
+32 < 29 < 15 < 9 < 22 < 8 < 18
+32 < 29 < 15 < 22 < 9 < 8 < 18
+	VERTEX: 19
+32 < 26 < 7 < 31 < 19
+	VERTEX: 20
+32 < 29 < 10 < 25 < 29 < 5 < 20
+	VERTEX: 21
+32 < 26 < 6 < 13 < 31 < 21
+	VERTEX: 22
+	VERTEX: 23
+32 < 18 < 23 < 4 < 28 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 18 < 8 < 9 < 22 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 14 < 6 < 2 < 28
+32 < 18 < 23 < 2 < 3 < 28
+	VERTEX: 29
+32 < 20 < 5 < 29 < 10 < 25 < 29
+32 < 18 < 8 < 22 < 9 < 15 < 29
+32 < 18 < 8 < 9 < 22 < 15 < 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 26 < 6 < 13 < 21 < 31
+32 < 26 < 7 < 19 < 31
+32 < 26 < 13 < 19 < 31
+	VERTEX: 32
+CAPACITY: 52
+	VERTEX: 1
+	VERTEX: 2
+32 < 14 < 6 < 13 < 2
+32 < 16 < 6 < 18 < 2
+32 < 21 < 17 < 2
+	VERTEX: 3
+32 < 16 < 6 < 13 < 3
+32 < 6 < 28 < 4 < 3
+	VERTEX: 4
+32 < 6 < 2 < 4
+32 < 6 < 3 < 28 < 4
+32 < 18 < 8 < 22 < 9 < 8 < 4
+	VERTEX: 5
+32 < 18 < 9 < 22 < 15 < 29 < 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 6 < 28 < 4 < 8
+	VERTEX: 9
+32 < 29 < 10 < 15 < 22 < 9
+32 < 29 < 10 < 25 < 29 < 9
+32 < 29 < 25 < 10 < 29 < 9
+	VERTEX: 10
+32 < 29 < 22 < 9 < 15 < 10
+32 < 27 < 29 < 22 < 9 < 29 < 10
+32 < 27 < 29 < 9 < 22 < 29 < 10
+	VERTEX: 11
+32 < 27 < 29 < 9 < 11
+32 < 14 < 6 < 23 < 28 < 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 27 < 29 < 10 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 31 < 19 < 17
+32 < 19 < 31 < 17
+32 < 6 < 2 < 17
+	VERTEX: 18
+	VERTEX: 19
+32 < 31 < 17 < 19
+32 < 6 < 13 < 19
+	VERTEX: 20
+32 < 24 < 27 < 20
+	VERTEX: 21
+32 < 14 < 6 < 13 < 31 < 21
+32 < 21 < 31 < 17 < 21
+32 < 12 < 1 < 21
+	VERTEX: 22
+32 < 29 < 10 < 15 < 9 < 22
+32 < 8 < 22 < 9 < 15 < 22
+	VERTEX: 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 8 < 9 < 22 < 29 < 25
+32 < 27 < 20 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 14 < 6 < 13 < 3 < 28
+32 < 20 < 5 < 29 < 22 < 9 < 28
+32 < 20 < 5 < 29 < 9 < 22 < 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 17 < 19 < 31
+32 < 19 < 17 < 31
+32 < 14 < 6 < 13 < 21 < 31
+	VERTEX: 32
+CAPACITY: 53
+	VERTEX: 1
+32 < 16 < 7 < 1
+	VERTEX: 2
+32 < 7 < 13 < 2
+32 < 8 < 9 < 22 < 8 < 2
+32 < 8 < 22 < 9 < 8 < 2
+	VERTEX: 3
+32 < 8 < 11 < 4 < 23 < 3
+32 < 6 < 3 < 23 < 2 < 3
+32 < 6 < 3 < 2 < 23 < 3
+	VERTEX: 4
+32 < 6 < 13 < 3 < 4
+	VERTEX: 5
+32 < 29 < 15 < 9 < 22 < 29 < 5
+32 < 29 < 22 < 9 < 15 < 29 < 5
+32 < 27 < 29 < 25 < 5
+	VERTEX: 6
+	VERTEX: 7
+32 < 16 < 1 < 7
+	VERTEX: 8
+32 < 8 < 11 < 4 < 23 < 8
+32 < 8 < 23 < 4 < 11 < 8
+32 < 6 < 3 < 2 < 23 < 8
+	VERTEX: 9
+	VERTEX: 10
+32 < 18 < 9 < 22 < 15 < 29 < 10
+	VERTEX: 11
+32 < 6 < 2 < 3 < 11
+32 < 20 < 5 < 29 < 9 < 8 < 11
+	VERTEX: 12
+32 < 30 < 16 < 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 26 < 6 < 18 < 9 < 15
+32 < 5 < 25 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 26 < 7 < 13 < 17
+32 < 16 < 7 < 17
+	VERTEX: 18
+32 < 29 < 10 < 15 < 22 < 9 < 18
+32 < 29 < 10 < 15 < 9 < 22 < 18
+	VERTEX: 19
+	VERTEX: 20
+32 < 18 < 9 < 22 < 15 < 29 < 20
+	VERTEX: 21
+	VERTEX: 22
+32 < 18 < 8 < 22 < 9 < 15 < 22
+32 < 20 < 5 < 25 < 10 < 29 < 22
+	VERTEX: 23
+32 < 8 < 11 < 4 < 3 < 23
+32 < 16 < 6 < 28 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 27 < 29 < 5 < 25
+32 < 18 < 8 < 9 < 22 < 29 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 20 < 5 < 29 < 22 < 9 < 18 < 28
+32 < 27 < 29 < 9 < 28
+32 < 20 < 5 < 29 < 9 < 22 < 18 < 28
+	VERTEX: 29
+32 < 18 < 9 < 22 < 15 < 10 < 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 7 < 6 < 13 < 31
+	VERTEX: 32
+32 < 16 < 1 < 7 < 32
+CAPACITY: 54
+	VERTEX: 1
+32 < 30 < 12 < 1
+	VERTEX: 2
+32 < 6 < 28 < 3 < 2
+32 < 11 < 4 < 2
+	VERTEX: 3
+32 < 18 < 8 < 11 < 4 < 23 < 3
+32 < 6 < 28 < 2 < 3
+32 < 28 < 11 < 4 < 3
+	VERTEX: 4
+32 < 8 < 28 < 11 < 4
+32 < 2 < 3 < 23 < 4
+	VERTEX: 5
+32 < 20 < 5 < 25 < 10 < 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 28 < 4 < 11 < 8
+32 < 11 < 4 < 28 < 8
+32 < 29 < 10 < 15 < 9 < 8
+	VERTEX: 9
+	VERTEX: 10
+32 < 27 < 29 < 25 < 10
+32 < 29 < 15 < 9 < 22 < 29 < 10
+32 < 29 < 22 < 9 < 15 < 29 < 10
+	VERTEX: 11
+32 < 8 < 28 < 4 < 11
+32 < 29 < 15 < 9 < 11
+32 < 8 < 4 < 28 < 11
+	VERTEX: 12
+32 < 30 < 1 < 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 14 < 6 < 18 < 9 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 26 < 6 < 2 < 17
+32 < 1 < 7 < 17
+	VERTEX: 18
+	VERTEX: 19
+32 < 26 < 6 < 13 < 19
+32 < 26 < 7 < 21 < 19
+32 < 26 < 13 < 21 < 19
+	VERTEX: 20
+32 < 20 < 5 < 29 < 9 < 22 < 29 < 5 < 20
+32 < 29 < 15 < 9 < 22 < 29 < 20
+32 < 29 < 22 < 9 < 15 < 29 < 20
+	VERTEX: 21
+32 < 26 < 7 < 19 < 21
+32 < 26 < 13 < 19 < 21
+	VERTEX: 22
+	VERTEX: 23
+32 < 6 < 28 < 4 < 23
+32 < 18 < 8 < 11 < 4 < 3 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 27 < 29 < 10 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 8 < 11 < 4 < 28
+32 < 6 < 3 < 2 < 28
+	VERTEX: 29
+32 < 29 < 10 < 15 < 9 < 22 < 29
+32 < 29 < 22 < 9 < 15 < 10 < 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+CAPACITY: 55
+	VERTEX: 1
+	VERTEX: 2
+32 < 6 < 13 < 3 < 2
+32 < 26 < 7 < 13 < 2
+	VERTEX: 3
+32 < 6 < 13 < 2 < 3
+32 < 26 < 6 < 3 < 2 < 23 < 3
+32 < 14 < 6 < 28 < 4 < 3
+	VERTEX: 4
+32 < 29 < 22 < 9 < 11 < 4
+32 < 14 < 6 < 2 < 4
+32 < 18 < 23 < 2 < 3 < 4
+	VERTEX: 5
+	VERTEX: 6
+	VERTEX: 7
+32 < 24 < 14 < 6 < 7
+	VERTEX: 8
+	VERTEX: 9
+32 < 20 < 5 < 29 < 15 < 9
+32 < 8 < 4 < 11 < 9
+	VERTEX: 10
+	VERTEX: 11
+32 < 18 < 8 < 28 < 4 < 11
+32 < 18 < 8 < 4 < 28 < 11
+	VERTEX: 12
+32 < 16 < 7 < 12
+	VERTEX: 13
+32 < 24 < 14 < 6 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 20 < 5 < 29 < 9 < 15
+32 < 6 < 18 < 9 < 22 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 21 < 19 < 17
+32 < 14 < 6 < 2 < 17
+32 < 18 < 23 < 3 < 2 < 17
+	VERTEX: 18
+32 < 28 < 4 < 11 < 8 < 18
+32 < 8 < 11 < 4 < 28 < 18
+32 < 11 < 4 < 28 < 8 < 18
+	VERTEX: 19
+32 < 21 < 17 < 19
+32 < 14 < 6 < 13 < 19
+32 < 1 < 21 < 19
+	VERTEX: 20
+	VERTEX: 21
+32 < 17 < 19 < 21
+32 < 19 < 17 < 21
+32 < 26 < 7 < 13 < 31 < 21
+	VERTEX: 22
+	VERTEX: 23
+32 < 8 < 23 < 4 < 11 < 23
+	VERTEX: 24
+	VERTEX: 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 18 < 8 < 11 < 4 < 28
+32 < 18 < 8 < 4 < 11 < 28
+32 < 26 < 7 < 13 < 3 < 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 3 < 2 < 17 < 31
+32 < 26 < 7 < 13 < 21 < 31
+32 < 16 < 6 < 13 < 31
+	VERTEX: 32
+CAPACITY: 56
+	VERTEX: 1
+	VERTEX: 2
+32 < 2 < 3 < 23 < 2
+	VERTEX: 3
+32 < 14 < 6 < 3 < 2 < 23 < 3
+32 < 2 < 3 < 23 < 28 < 3
+	VERTEX: 4
+32 < 14 < 6 < 13 < 3 < 4
+32 < 20 < 5 < 29 < 22 < 9 < 4
+32 < 20 < 5 < 29 < 9 < 22 < 4
+	VERTEX: 5
+32 < 20 < 5 < 29 < 10 < 25 < 5
+32 < 20 < 5 < 25 < 10 < 29 < 5
+	VERTEX: 6
+	VERTEX: 7
+32 < 12 < 1 < 7
+	VERTEX: 8
+32 < 2 < 3 < 23 < 28 < 8
+	VERTEX: 9
+32 < 18 < 8 < 4 < 11 < 9
+32 < 18 < 8 < 11 < 4 < 9
+	VERTEX: 10
+32 < 8 < 22 < 9 < 15 < 10
+32 < 8 < 9 < 22 < 15 < 10
+	VERTEX: 11
+32 < 27 < 29 < 22 < 9 < 11
+32 < 27 < 29 < 9 < 22 < 11
+	VERTEX: 12
+32 < 1 < 7 < 12
+	VERTEX: 13
+32 < 12 < 1 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 29 < 25 < 10 < 15
+32 < 29 < 15 < 10 < 29 < 15
+32 < 29 < 10 < 25 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 6 < 13 < 31 < 17
+32 < 7 < 21 < 31 < 17
+	VERTEX: 18
+32 < 18 < 8 < 11 < 4 < 28 < 18
+32 < 20 < 5 < 29 < 15 < 9 < 18
+	VERTEX: 19
+32 < 7 < 13 < 19
+	VERTEX: 20
+32 < 18 < 9 < 15 < 29 < 5 < 20
+	VERTEX: 21
+32 < 7 < 6 < 13 < 21
+32 < 13 < 17 < 31 < 21
+	VERTEX: 22
+32 < 27 < 29 < 10 < 15 < 22
+	VERTEX: 23
+32 < 28 < 11 < 4 < 23
+32 < 11 < 4 < 28 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 29 < 15 < 10 < 25
+32 < 29 < 10 < 15 < 25
+32 < 20 < 29 < 15 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 11 < 4 < 23 < 28
+32 < 26 < 6 < 3 < 2 < 28
+	VERTEX: 29
+32 < 27 < 29 < 25 < 10 < 29
+32 < 27 < 29 < 10 < 25 < 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 6 < 13 < 17 < 31
+	VERTEX: 32
+32 < 12 < 1 < 7 < 32
+CAPACITY: 57
+	VERTEX: 1
+	VERTEX: 2
+32 < 26 < 6 < 13 < 3 < 2
+	VERTEX: 3
+32 < 26 < 6 < 13 < 2 < 3
+	VERTEX: 4
+32 < 14 < 6 < 23 < 28 < 4
+32 < 27 < 29 < 9 < 4
+	VERTEX: 5
+32 < 8 < 22 < 9 < 15 < 29 < 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+	VERTEX: 9
+32 < 18 < 9 < 15 < 29 < 9
+32 < 5 < 25 < 10 < 29 < 9
+	VERTEX: 10
+32 < 18 < 8 < 22 < 9 < 15 < 10
+32 < 18 < 8 < 9 < 22 < 15 < 10
+	VERTEX: 11
+32 < 20 < 5 < 29 < 22 < 9 < 8 < 11
+32 < 18 < 23 < 4 < 28 < 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 26 < 6 < 18 < 9 < 22 < 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+	VERTEX: 19
+32 < 30 < 1 < 19
+	VERTEX: 20
+32 < 20 < 29 < 10 < 25 < 5 < 20
+32 < 20 < 5 < 25 < 10 < 29 < 20
+	VERTEX: 21
+32 < 21 < 31 < 19 < 21
+32 < 21 < 19 < 31 < 21
+	VERTEX: 22
+	VERTEX: 23
+32 < 14 < 6 < 28 < 4 < 23
+32 < 6 < 13 < 2 < 23
+	VERTEX: 24
+	VERTEX: 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 18 < 23 < 4 < 11 < 28
+32 < 14 < 6 < 3 < 2 < 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+32 < 20 < 29 < 10 < 25 < 5 < 20 < 32
+32 < 20 < 5 < 25 < 10 < 29 < 20 < 32
+CAPACITY: 58
+	VERTEX: 1
+32 < 16 < 12 < 1
+	VERTEX: 2
+32 < 14 < 6 < 13 < 3 < 2
+	VERTEX: 3
+32 < 14 < 6 < 13 < 2 < 3
+	VERTEX: 4
+32 < 6 < 3 < 2 < 4
+32 < 6 < 2 < 3 < 4
+	VERTEX: 5
+32 < 20 < 5 < 29 < 10 < 25 < 29 < 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 29 < 10 < 15 < 9 < 22 < 8
+32 < 29 < 10 < 15 < 22 < 9 < 8
+	VERTEX: 9
+32 < 20 < 25 < 10 < 29 < 9
+32 < 18 < 23 < 4 < 11 < 9
+	VERTEX: 10
+32 < 8 < 22 < 9 < 15 < 29 < 10
+	VERTEX: 11
+32 < 29 < 15 < 22 < 9 < 11
+32 < 29 < 15 < 9 < 22 < 11
+	VERTEX: 12
+32 < 16 < 1 < 12
+32 < 26 < 7 < 1 < 12
+	VERTEX: 13
+32 < 14 < 6 < 3 < 2 < 13
+32 < 14 < 6 < 2 < 3 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 14 < 6 < 18 < 9 < 22 < 15
+32 < 29 < 10 < 25 < 29 < 15
+32 < 29 < 25 < 10 < 29 < 15
+	VERTEX: 16
+32 < 12 < 1 < 16
+	VERTEX: 17
+32 < 26 < 7 < 21 < 31 < 17
+32 < 6 < 3 < 2 < 17
+32 < 26 < 6 < 13 < 31 < 17
+	VERTEX: 18
+	VERTEX: 19
+32 < 26 < 7 < 13 < 19
+32 < 16 < 7 < 19
+	VERTEX: 20
+32 < 29 < 5 < 25 < 10 < 29 < 5 < 20
+	VERTEX: 21
+32 < 16 < 6 < 13 < 21
+32 < 26 < 13 < 17 < 31 < 21
+32 < 3 < 2 < 17 < 21
+	VERTEX: 22
+	VERTEX: 23
+32 < 28 < 23 < 3 < 2 < 23
+32 < 28 < 23 < 2 < 3 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 29 < 15 < 10 < 29 < 25
+	VERTEX: 26
+32 < 12 < 1 < 7 < 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 26 < 6 < 2 < 23 < 28
+32 < 20 < 5 < 29 < 22 < 9 < 8 < 28
+32 < 27 < 29 < 22 < 9 < 18 < 28
+	VERTEX: 29
+32 < 20 < 5 < 29 < 10 < 25 < 5 < 29
+32 < 8 < 22 < 9 < 15 < 10 < 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 26 < 6 < 13 < 17 < 31
+	VERTEX: 32
+32 < 16 < 1 < 12 < 32
+32 < 12 < 1 < 16 < 32
+32 < 12 < 1 < 7 < 26 < 32
+CAPACITY: 59
+	VERTEX: 1
+	VERTEX: 2
+32 < 14 < 6 < 23 < 28 < 2
+	VERTEX: 3
+	VERTEX: 4
+32 < 8 < 22 < 9 < 11 < 4
+32 < 26 < 7 < 13 < 3 < 4
+	VERTEX: 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 29 < 10 < 15 < 22 < 9 < 18 < 8
+	VERTEX: 9
+32 < 18 < 9 < 22 < 15 < 9
+32 < 18 < 9 < 15 < 22 < 9
+	VERTEX: 10
+32 < 20 < 5 < 29 < 10 < 25 < 29 < 10
+	VERTEX: 11
+32 < 8 < 11 < 4 < 8 < 11
+32 < 16 < 6 < 28 < 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 20 < 5 < 29 < 22 < 9 < 15
+32 < 20 < 5 < 29 < 9 < 22 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 7 < 19 < 17
+32 < 1 < 21 < 31 < 17
+32 < 14 < 6 < 13 < 31 < 17
+	VERTEX: 18
+32 < 29 < 10 < 15 < 9 < 22 < 8 < 18
+	VERTEX: 19
+32 < 13 < 17 < 19
+32 < 7 < 17 < 19
+32 < 1 < 7 < 19
+	VERTEX: 20
+32 < 27 < 29 < 22 < 9 < 29 < 5 < 20
+	VERTEX: 21
+32 < 6 < 13 < 17 < 21
+	VERTEX: 22
+32 < 20 < 5 < 29 < 15 < 9 < 22
+32 < 20 < 5 < 29 < 9 < 15 < 22
+	VERTEX: 23
+32 < 26 < 6 < 13 < 2 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 27 < 20 < 5 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 14 < 6 < 2 < 23 < 28
+32 < 29 < 15 < 9 < 22 < 28
+32 < 28 < 23 < 2 < 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 14 < 6 < 13 < 17 < 31
+	VERTEX: 32
+CAPACITY: 60
+	VERTEX: 1
+	VERTEX: 2
+32 < 8 < 11 < 4 < 2
+32 < 24 < 14 < 6 < 2
+	VERTEX: 3
+32 < 8 < 11 < 4 < 28 < 3
+32 < 6 < 28 < 4 < 23 < 3
+	VERTEX: 4
+32 < 6 < 28 < 11 < 4
+32 < 26 < 6 < 3 < 2 < 4
+	VERTEX: 5
+	VERTEX: 6
+	VERTEX: 7
+32 < 7 < 6 < 13 < 7
+	VERTEX: 8
+32 < 8 < 11 < 4 < 28 < 8
+32 < 8 < 28 < 4 < 11 < 8
+32 < 6 < 3 < 2 < 28 < 8
+	VERTEX: 9
+32 < 27 < 29 < 9 < 22 < 29 < 9
+32 < 20 < 5 < 29 < 22 < 9 < 8 < 18 < 9
+	VERTEX: 10
+	VERTEX: 11
+32 < 6 < 28 < 4 < 11
+32 < 29 < 15 < 9 < 8 < 11
+32 < 18 < 8 < 11 < 4 < 8 < 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 27 < 29 < 9 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 26 < 6 < 3 < 2 < 17
+	VERTEX: 18
+32 < 18 < 9 < 15 < 22 < 9 < 18
+32 < 18 < 9 < 22 < 15 < 9 < 18
+32 < 20 < 5 < 29 < 15 < 9 < 22 < 18
+	VERTEX: 19
+	VERTEX: 20
+32 < 18 < 9 < 22 < 15 < 29 < 5 < 20
+	VERTEX: 21
+	VERTEX: 22
+	VERTEX: 23
+32 < 14 < 6 < 13 < 2 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 29 < 25 < 10 < 29 < 25
+	VERTEX: 26
+32 < 12 < 1 < 16 < 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 8 < 4 < 11 < 8 < 28
+32 < 29 < 15 < 22 < 9 < 18 < 28
+32 < 8 < 11 < 4 < 3 < 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+32 < 12 < 1 < 16 < 26 < 32
+32 < 18 < 9 < 22 < 15 < 29 < 5 < 20 < 32
+CAPACITY: 61
+	VERTEX: 1
+	VERTEX: 2
+32 < 26 < 7 < 13 < 3 < 2
+32 < 18 < 8 < 11 < 4 < 2
+	VERTEX: 3
+32 < 26 < 7 < 13 < 2 < 3
+32 < 18 < 8 < 11 < 4 < 28 < 3
+	VERTEX: 4
+32 < 14 < 6 < 3 < 2 < 4
+32 < 14 < 6 < 2 < 3 < 4
+	VERTEX: 5
+32 < 27 < 29 < 10 < 25 < 5
+32 < 29 < 10 < 15 < 9 < 22 < 29 < 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 18 < 8 < 11 < 4 < 28 < 8
+32 < 18 < 8 < 28 < 4 < 11 < 8
+32 < 20 < 5 < 29 < 15 < 9 < 8
+	VERTEX: 9
+32 < 18 < 9 < 22 < 15 < 29 < 9
+32 < 8 < 4 < 11 < 8 < 9
+	VERTEX: 10
+32 < 27 < 29 < 5 < 25 < 10
+	VERTEX: 11
+32 < 8 < 11 < 4 < 23 < 11
+32 < 6 < 3 < 2 < 23 < 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 5 < 25 < 10 < 15
+32 < 20 < 5 < 29 < 9 < 22 < 29 < 15
+32 < 20 < 5 < 29 < 22 < 9 < 29 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 26 < 7 < 19 < 17
+32 < 14 < 6 < 3 < 2 < 17
+	VERTEX: 18
+32 < 8 < 11 < 4 < 28 < 8 < 18
+32 < 8 < 28 < 4 < 11 < 8 < 18
+	VERTEX: 19
+32 < 26 < 13 < 17 < 19
+32 < 6 < 13 < 31 < 19
+	VERTEX: 20
+32 < 29 < 15 < 9 < 22 < 29 < 5 < 20
+	VERTEX: 21
+32 < 2 < 17 < 31 < 21
+32 < 26 < 6 < 13 < 17 < 21
+	VERTEX: 22
+	VERTEX: 23
+32 < 6 < 3 < 23 < 2 < 3 < 23
+	VERTEX: 24
+	VERTEX: 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 29 < 15 < 9 < 8 < 28
+32 < 18 < 8 < 11 < 4 < 8 < 28
+32 < 18 < 8 < 11 < 4 < 3 < 28
+	VERTEX: 29
+32 < 18 < 9 < 15 < 22 < 9 < 29
+32 < 20 < 5 < 29 < 22 < 9 < 15 < 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 31 < 19 < 17 < 31
+32 < 31 < 17 < 19 < 31
+32 < 6 < 13 < 19 < 31
+	VERTEX: 32
+32 < 29 < 15 < 9 < 22 < 29 < 5 < 20 < 32
+CAPACITY: 62
+	VERTEX: 1
+	VERTEX: 2
+32 < 3 < 2 < 23 < 3 < 2
+32 < 11 < 4 < 23 < 2
+	VERTEX: 3
+32 < 2 < 3 < 23 < 2 < 3
+32 < 28 < 11 < 4 < 23 < 3
+32 < 11 < 4 < 28 < 23 < 3
+	VERTEX: 4
+32 < 26 < 6 < 28 < 11 < 4
+32 < 26 < 6 < 2 < 23 < 4
+	VERTEX: 5
+	VERTEX: 6
+32 < 16 < 7 < 13 < 6
+	VERTEX: 7
+32 < 16 < 6 < 13 < 7
+32 < 26 < 7 < 13 < 6 < 7
+	VERTEX: 8
+32 < 11 < 4 < 23 < 28 < 8
+32 < 18 < 8 < 11 < 4 < 28 < 18 < 8
+32 < 28 < 11 < 4 < 23 < 8
+	VERTEX: 9
+32 < 29 < 15 < 9 < 22 < 29 < 9
+32 < 29 < 22 < 9 < 15 < 29 < 9
+32 < 18 < 8 < 11 < 4 < 8 < 9
+	VERTEX: 10
+32 < 29 < 10 < 15 < 9 < 22 < 29 < 10
+	VERTEX: 11
+32 < 26 < 6 < 28 < 4 < 11
+32 < 11 < 4 < 28 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 16 < 7 < 6 < 13
+32 < 16 < 6 < 7 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 20 < 25 < 10 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 14 < 6 < 13 < 21 < 17
+32 < 26 < 7 < 13 < 31 < 17
+	VERTEX: 18
+32 < 18 < 8 < 11 < 4 < 28 < 8 < 18
+32 < 18 < 8 < 28 < 4 < 11 < 8 < 18
+	VERTEX: 19
+	VERTEX: 20
+32 < 27 < 29 < 10 < 25 < 20
+32 < 29 < 10 < 15 < 9 < 22 < 29 < 20
+	VERTEX: 21
+32 < 14 < 6 < 13 < 17 < 21
+32 < 16 < 7 < 13 < 21
+	VERTEX: 22
+	VERTEX: 23
+32 < 8 < 11 < 4 < 28 < 23
+32 < 8 < 28 < 11 < 4 < 23
+32 < 8 < 28 < 4 < 11 < 23
+	VERTEX: 24
+	VERTEX: 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 8 < 11 < 4 < 23 < 28
+32 < 8 < 23 < 4 < 11 < 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 26 < 7 < 13 < 17 < 31
+	VERTEX: 32
+32 < 16 < 6 < 13 < 7 < 32
+32 < 27 < 29 < 10 < 25 < 20 < 32
+CAPACITY: 63
+	VERTEX: 1
+	VERTEX: 2
+32 < 2 < 3 < 28 < 2
+	VERTEX: 3
+	VERTEX: 4
+32 < 14 < 6 < 28 < 11 < 4
+32 < 14 < 6 < 2 < 23 < 4
+	VERTEX: 5
+32 < 27 < 29 < 10 < 25 < 29 < 5
+32 < 27 < 29 < 25 < 10 < 29 < 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 18 < 23 < 4 < 11 < 28 < 8
+	VERTEX: 9
+32 < 18 < 22 < 9 < 15 < 22 < 9
+32 < 8 < 23 < 4 < 11 < 9
+	VERTEX: 10
+32 < 20 < 5 < 29 < 9 < 15 < 10
+	VERTEX: 11
+32 < 14 < 6 < 28 < 4 < 11
+32 < 26 < 6 < 3 < 2 < 23 < 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 29 < 5 < 25 < 10 < 15
+32 < 5 < 25 < 10 < 29 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 7 < 6 < 13 < 17
+32 < 28 < 23 < 2 < 17
+	VERTEX: 18
+	VERTEX: 19
+32 < 26 < 7 < 21 < 31 < 19
+32 < 26 < 6 < 13 < 31 < 19
+	VERTEX: 20
+	VERTEX: 21
+32 < 26 < 7 < 19 < 31 < 21
+32 < 26 < 7 < 31 < 19 < 21
+	VERTEX: 22
+32 < 18 < 9 < 22 < 15 < 9 < 22
+32 < 20 < 5 < 29 < 22 < 9 < 15 < 22
+	VERTEX: 23
+32 < 18 < 8 < 11 < 4 < 28 < 23
+32 < 6 < 13 < 2 < 3 < 23
+32 < 6 < 13 < 3 < 2 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 20 < 5 < 29 < 9 < 22 < 29 < 25
+32 < 18 < 9 < 15 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 18 < 8 < 11 < 4 < 23 < 28
+32 < 28 < 11 < 4 < 28
+	VERTEX: 29
+32 < 27 < 29 < 10 < 25 < 5 < 29
+32 < 27 < 29 < 5 < 25 < 10 < 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 26 < 6 < 13 < 19 < 31
+	VERTEX: 32
+CAPACITY: 64
+	VERTEX: 1
+	VERTEX: 2
+32 < 18 < 23 < 4 < 28 < 2
+32 < 19 < 17 < 2
+	VERTEX: 3
+	VERTEX: 4
+32 < 16 < 6 < 28 < 4
+32 < 8 < 4 < 11 < 8 < 4
+	VERTEX: 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 6 < 3 < 2 < 4 < 8
+32 < 14 < 6 < 13 < 2 < 3 < 8
+	VERTEX: 9
+32 < 29 < 22 < 9 < 15 < 22 < 9
+32 < 8 < 9 < 22 < 15 < 9
+32 < 28 < 4 < 11 < 9
+	VERTEX: 10
+32 < 27 < 29 < 10 < 25 < 29 < 10
+	VERTEX: 11
+32 < 2 < 3 < 23 < 28 < 11
+32 < 14 < 6 < 3 < 2 < 23 < 11
+32 < 29 < 15 < 9 < 22 < 8 < 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 27 < 29 < 22 < 9 < 15
+32 < 27 < 29 < 9 < 22 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 21 < 31 < 19 < 17
+32 < 21 < 19 < 31 < 17
+32 < 19 < 31 < 21 < 17
+	VERTEX: 18
+32 < 18 < 22 < 9 < 15 < 22 < 9 < 18
+32 < 18 < 9 < 22 < 15 < 9 < 22 < 18
+	VERTEX: 19
+32 < 21 < 31 < 17 < 19
+32 < 1 < 21 < 31 < 19
+	VERTEX: 20
+32 < 20 < 5 < 29 < 10 < 25 < 5 < 20
+32 < 27 < 29 < 10 < 25 < 29 < 20
+	VERTEX: 21
+32 < 17 < 19 < 31 < 21
+32 < 31 < 19 < 17 < 21
+32 < 19 < 17 < 31 < 21
+	VERTEX: 22
+32 < 6 < 28 < 4 < 11 < 22
+32 < 8 < 11 < 4 < 28 < 8 < 22
+32 < 8 < 28 < 4 < 11 < 8 < 22
+	VERTEX: 23
+	VERTEX: 24
+	VERTEX: 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 26 < 6 < 3 < 2 < 23 < 28
+32 < 6 < 13 < 2 < 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 21 < 17 < 19 < 31
+32 < 21 < 19 < 17 < 31
+	VERTEX: 32
+32 < 20 < 5 < 29 < 10 < 25 < 5 < 20 < 32
+CAPACITY: 65
+	VERTEX: 1
+	VERTEX: 2
+32 < 7 < 6 < 13 < 2
+32 < 2 < 23 < 28 < 2
+32 < 20 < 5 < 29 < 22 < 9 < 8 < 18 < 2
+	VERTEX: 3
+	VERTEX: 4
+32 < 29 < 15 < 9 < 8 < 4
+	VERTEX: 5
+	VERTEX: 6
+32 < 16 < 1 < 7 < 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 18 < 9 < 15 < 22 < 9 < 8
+32 < 18 < 9 < 22 < 15 < 9 < 8
+32 < 20 < 5 < 29 < 15 < 9 < 22 < 8
+	VERTEX: 9
+32 < 18 < 8 < 9 < 22 < 15 < 9
+32 < 20 < 5 < 25 < 10 < 29 < 9
+32 < 27 < 29 < 22 < 9 < 8 < 18 < 9
+	VERTEX: 10
+	VERTEX: 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 29 < 10 < 25 < 5 < 29 < 15
+32 < 29 < 5 < 25 < 10 < 29 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 26 < 7 < 13 < 21 < 17
+32 < 16 < 6 < 13 < 17
+	VERTEX: 18
+32 < 29 < 22 < 9 < 15 < 22 < 9 < 18
+32 < 8 < 9 < 22 < 15 < 9 < 18
+	VERTEX: 19
+	VERTEX: 20
+	VERTEX: 21
+32 < 26 < 7 < 13 < 17 < 21
+	VERTEX: 22
+32 < 18 < 8 < 11 < 4 < 28 < 8 < 22
+32 < 18 < 9 < 15 < 22 < 9 < 29 < 22
+	VERTEX: 23
+32 < 26 < 6 < 13 < 2 < 3 < 23
+32 < 26 < 6 < 13 < 3 < 2 < 23
+32 < 18 < 23 < 4 < 11 < 28 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 18 < 9 < 15 < 29 < 25
+32 < 5 < 25 < 10 < 29 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 14 < 6 < 3 < 2 < 23 < 28
+32 < 29 < 15 < 9 < 22 < 8 < 28
+32 < 28 < 23 < 3 < 2 < 28
+	VERTEX: 29
+32 < 18 < 9 < 22 < 15 < 9 < 22 < 29
+32 < 18 < 22 < 9 < 15 < 22 < 9 < 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+CAPACITY: 66
+	VERTEX: 1
+	VERTEX: 2
+32 < 8 < 11 < 4 < 3 < 2
+32 < 16 < 6 < 28 < 2
+	VERTEX: 3
+32 < 8 < 11 < 4 < 2 < 3
+32 < 6 < 28 < 11 < 4 < 3
+32 < 6 < 28 < 4 < 11 < 3
+	VERTEX: 4
+32 < 6 < 3 < 2 < 23 < 4
+32 < 11 < 4 < 23 < 3 < 4
+32 < 6 < 3 < 23 < 2 < 4
+	VERTEX: 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 6 < 28 < 4 < 11 < 8
+32 < 6 < 28 < 11 < 4 < 8
+	VERTEX: 9
+32 < 29 < 15 < 9 < 22 < 8 < 9
+32 < 8 < 22 < 9 < 15 < 29 < 9
+	VERTEX: 10
+32 < 20 < 5 < 29 < 10 < 25 < 5 < 29 < 10
+32 < 14 < 6 < 18 < 9 < 22 < 15 < 10
+	VERTEX: 11
+32 < 29 < 10 < 15 < 22 < 9 < 11
+32 < 29 < 10 < 15 < 9 < 22 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 28 < 23 < 3 < 2 < 13
+32 < 28 < 23 < 2 < 3 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 29 < 15 < 22 < 9 < 15
+32 < 29 < 15 < 9 < 22 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 6 < 3 < 23 < 2 < 17
+	VERTEX: 18
+32 < 18 < 8 < 9 < 22 < 15 < 9 < 18
+32 < 18 < 9 < 15 < 22 < 9 < 8 < 18
+	VERTEX: 19
+32 < 26 < 6 < 13 < 21 < 19
+	VERTEX: 20
+32 < 20 < 5 < 29 < 10 < 25 < 5 < 29 < 20
+	VERTEX: 21
+32 < 26 < 6 < 13 < 19 < 21
+	VERTEX: 22
+32 < 26 < 6 < 28 < 4 < 11 < 22
+	VERTEX: 23
+32 < 14 < 6 < 13 < 2 < 3 < 23
+32 < 14 < 6 < 13 < 3 < 2 < 23
+32 < 6 < 3 < 2 < 4 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 20 < 25 < 10 < 29 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 26 < 6 < 13 < 2 < 28
+	VERTEX: 29
+32 < 29 < 22 < 9 < 15 < 22 < 9 < 29
+32 < 27 < 29 < 22 < 9 < 15 < 29
+32 < 27 < 29 < 9 < 22 < 15 < 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 21 < 31 < 19 < 21 < 31
+	VERTEX: 32
+CAPACITY: 67
+	VERTEX: 1
+	VERTEX: 2
+32 < 18 < 8 < 11 < 4 < 3 < 2
+32 < 6 < 28 < 4 < 2
+	VERTEX: 3
+32 < 18 < 8 < 11 < 4 < 2 < 3
+	VERTEX: 4
+32 < 4 < 11 < 28 < 4
+32 < 27 < 29 < 22 < 9 < 8 < 4
+	VERTEX: 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+	VERTEX: 9
+32 < 20 < 5 < 29 < 10 < 25 < 29 < 9
+32 < 29 < 15 < 9 < 22 < 8 < 18 < 9
+	VERTEX: 10
+32 < 20 < 5 < 29 < 22 < 9 < 15 < 10
+32 < 20 < 5 < 29 < 9 < 22 < 15 < 10
+	VERTEX: 11
+32 < 8 < 11 < 4 < 23 < 3 < 11
+32 < 6 < 3 < 23 < 2 < 3 < 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 6 < 28 < 2 < 17
+	VERTEX: 18
+32 < 6 < 28 < 4 < 11 < 8 < 18
+	VERTEX: 19
+32 < 26 < 7 < 13 < 31 < 19
+32 < 14 < 6 < 13 < 21 < 19
+	VERTEX: 20
+	VERTEX: 21
+32 < 3 < 2 < 17 < 31 < 21
+32 < 21 < 19 < 17 < 21
+	VERTEX: 22
+32 < 14 < 6 < 28 < 4 < 11 < 22
+	VERTEX: 23
+32 < 8 < 22 < 9 < 11 < 4 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 29 < 10 < 25 < 29 < 5 < 25
+32 < 29 < 10 < 25 < 5 < 29 < 25
+32 < 29 < 5 < 25 < 10 < 29 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 14 < 6 < 13 < 2 < 28
+32 < 29 < 10 < 15 < 9 < 22 < 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 26 < 7 < 13 < 19 < 31
+32 < 16 < 6 < 13 < 21 < 31
+	VERTEX: 32
+CAPACITY: 68
+	VERTEX: 1
+	VERTEX: 2
+32 < 11 < 4 < 23 < 3 < 2
+32 < 8 < 11 < 4 < 23 < 2
+	VERTEX: 3
+32 < 8 < 11 < 4 < 28 < 23 < 3
+32 < 8 < 11 < 4 < 23 < 28 < 3
+	VERTEX: 4
+32 < 26 < 6 < 3 < 2 < 23 < 4
+32 < 2 < 3 < 23 < 11 < 4
+32 < 6 < 13 < 2 < 4
+	VERTEX: 5
+32 < 18 < 9 < 15 < 22 < 9 < 29 < 5
+32 < 20 < 5 < 29 < 22 < 9 < 15 < 29 < 5
+	VERTEX: 6
+32 < 12 < 1 < 7 < 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 26 < 6 < 28 < 4 < 11 < 8
+32 < 8 < 11 < 4 < 23 < 28 < 8
+	VERTEX: 9
+32 < 8 < 22 < 9 < 15 < 22 < 9
+32 < 27 < 29 < 10 < 15 < 9
+	VERTEX: 10
+	VERTEX: 11
+32 < 2 < 3 < 23 < 4 < 11
+32 < 8 < 11 < 4 < 28 < 11
+32 < 6 < 3 < 2 < 28 < 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 29 < 15 < 9 < 22 < 29 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 6 < 13 < 21 < 31 < 17
+32 < 6 < 13 < 2 < 17
+32 < 6 < 13 < 31 < 21 < 17
+	VERTEX: 18
+	VERTEX: 19
+32 < 13 < 17 < 31 < 19
+32 < 7 < 6 < 13 < 19
+	VERTEX: 20
+	VERTEX: 21
+32 < 6 < 13 < 17 < 31 < 21
+32 < 6 < 13 < 31 < 17 < 21
+	VERTEX: 22
+32 < 8 < 9 < 22 < 15 < 9 < 22
+32 < 27 < 29 < 22 < 9 < 15 < 22
+	VERTEX: 23
+32 < 6 < 28 < 11 < 4 < 23
+32 < 6 < 28 < 4 < 11 < 23
+32 < 8 < 11 < 4 < 2 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 29 < 10 < 25 < 29 < 10 < 25
+32 < 27 < 29 < 22 < 9 < 29 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 8 < 11 < 4 < 23 < 3 < 28
+32 < 6 < 3 < 23 < 2 < 3 < 28
+32 < 29 < 10 < 15 < 22 < 9 < 18 < 28
+	VERTEX: 29
+32 < 29 < 15 < 22 < 9 < 15 < 29
+32 < 29 < 15 < 9 < 22 < 15 < 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 13 < 17 < 19 < 31
+32 < 7 < 19 < 17 < 31
+	VERTEX: 32
+CAPACITY: 69
+	VERTEX: 1
+	VERTEX: 2
+32 < 18 < 8 < 11 < 4 < 23 < 2
+32 < 28 < 11 < 4 < 2
+	VERTEX: 3
+32 < 18 < 8 < 11 < 4 < 28 < 23 < 3
+32 < 18 < 8 < 11 < 4 < 23 < 28 < 3
+	VERTEX: 4
+32 < 14 < 6 < 3 < 2 < 23 < 4
+32 < 2 < 3 < 23 < 28 < 4
+	VERTEX: 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 18 < 9 < 22 < 15 < 9 < 22 < 8
+32 < 14 < 6 < 28 < 4 < 11 < 8
+	VERTEX: 9
+32 < 18 < 8 < 22 < 9 < 15 < 22 < 9
+	VERTEX: 10
+32 < 18 < 9 < 15 < 22 < 9 < 29 < 10
+32 < 20 < 5 < 29 < 22 < 9 < 15 < 29 < 10
+32 < 27 < 29 < 10 < 25 < 5 < 10
+	VERTEX: 11
+32 < 18 < 8 < 11 < 4 < 28 < 11
+32 < 20 < 5 < 29 < 15 < 9 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 16 < 1 < 7 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 20 < 5 < 25 < 10 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 28 < 23 < 3 < 2 < 17
+32 < 16 < 7 < 13 < 17
+	VERTEX: 18
+32 < 8 < 22 < 9 < 15 < 22 < 9 < 18
+32 < 26 < 6 < 28 < 4 < 11 < 8 < 18
+	VERTEX: 19
+32 < 19 < 31 < 21 < 19
+	VERTEX: 20
+32 < 27 < 29 < 10 < 25 < 5 < 20
+32 < 18 < 9 < 15 < 22 < 9 < 29 < 20
+32 < 20 < 5 < 29 < 22 < 9 < 15 < 29 < 20
+	VERTEX: 21
+	VERTEX: 22
+32 < 18 < 8 < 9 < 22 < 15 < 9 < 22
+	VERTEX: 23
+32 < 26 < 7 < 13 < 2 < 3 < 23
+32 < 26 < 7 < 13 < 3 < 2 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 18 < 9 < 22 < 15 < 29 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 8 < 28 < 11 < 4 < 28
+32 < 8 < 28 < 4 < 11 < 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+32 < 27 < 29 < 10 < 25 < 5 < 20 < 32
+32 < 18 < 9 < 15 < 22 < 9 < 29 < 20 < 32
+CAPACITY: 70
+	VERTEX: 1
+	VERTEX: 2
+32 < 14 < 6 < 28 < 4 < 2
+32 < 26 < 6 < 13 < 17 < 2
+	VERTEX: 3
+	VERTEX: 4
+32 < 20 < 5 < 29 < 22 < 9 < 11 < 4
+32 < 26 < 6 < 13 < 2 < 4
+	VERTEX: 5
+32 < 27 < 29 < 5 < 25 < 10 < 29 < 5
+	VERTEX: 6
+32 < 12 < 1 < 16 < 6
+32 < 14 < 6 < 13 < 2 < 3 < 6
+32 < 14 < 6 < 13 < 3 < 2 < 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 29 < 22 < 9 < 15 < 22 < 9 < 8
+32 < 18 < 9 < 22 < 15 < 9 < 22 < 18 < 8
+	VERTEX: 9
+32 < 8 < 28 < 4 < 11 < 9
+32 < 28 < 4 < 11 < 8 < 9
+	VERTEX: 10
+	VERTEX: 11
+32 < 11 < 4 < 23 < 28 < 11
+32 < 28 < 11 < 4 < 23 < 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 26 < 7 < 31 < 19 < 17
+32 < 26 < 6 < 13 < 21 < 31 < 17
+32 < 26 < 7 < 19 < 31 < 17
+	VERTEX: 18
+32 < 18 < 8 < 22 < 9 < 15 < 22 < 9 < 18
+32 < 18 < 9 < 22 < 15 < 9 < 22 < 8 < 18
+32 < 14 < 6 < 28 < 4 < 11 < 8 < 18
+	VERTEX: 19
+32 < 3 < 2 < 17 < 19
+32 < 26 < 13 < 17 < 31 < 19
+	VERTEX: 20
+	VERTEX: 21
+32 < 26 < 6 < 13 < 17 < 31 < 21
+32 < 26 < 7 < 21 < 31 < 17 < 21
+32 < 26 < 7 < 13 < 19 < 21
+	VERTEX: 22
+32 < 29 < 15 < 22 < 9 < 15 < 22
+32 < 29 < 22 < 9 < 15 < 22 < 9 < 29 < 22
+32 < 6 < 28 < 4 < 11 < 8 < 22
+	VERTEX: 23
+32 < 3 < 2 < 23 < 3 < 2 < 23
+32 < 2 < 3 < 23 < 2 < 3 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 29 < 15 < 9 < 22 < 29 < 25
+32 < 29 < 22 < 9 < 15 < 29 < 25
+32 < 20 < 5 < 29 < 9 < 22 < 29 < 5 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 29 < 22 < 9 < 11 < 4 < 28
+32 < 18 < 8 < 28 < 4 < 11 < 28
+32 < 6 < 13 < 2 < 3 < 28
+	VERTEX: 29
+32 < 8 < 9 < 22 < 15 < 9 < 22 < 29
+32 < 8 < 22 < 9 < 15 < 22 < 9 < 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 26 < 13 < 17 < 19 < 31
+32 < 26 < 7 < 19 < 17 < 31
+	VERTEX: 32
+CAPACITY: 71
+	VERTEX: 1
+	VERTEX: 2
+32 < 2 < 3 < 23 < 28 < 2
+32 < 16 < 7 < 13 < 2
+32 < 14 < 6 < 13 < 17 < 2
+	VERTEX: 3
+	VERTEX: 4
+32 < 14 < 6 < 13 < 2 < 4
+32 < 29 < 10 < 15 < 22 < 9 < 4
+	VERTEX: 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 18 < 8 < 9 < 22 < 15 < 9 < 8
+32 < 29 < 22 < 9 < 15 < 22 < 9 < 18 < 8
+	VERTEX: 9
+32 < 18 < 8 < 28 < 4 < 11 < 9
+32 < 28 < 4 < 11 < 8 < 18 < 9
+	VERTEX: 10
+32 < 27 < 29 < 10 < 25 < 5 < 29 < 10
+	VERTEX: 11
+32 < 26 < 6 < 13 < 2 < 3 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 6 < 13 < 3 < 2 < 13
+32 < 6 < 13 < 2 < 3 < 13
+	VERTEX: 14
+32 < 12 < 1 < 7 < 6 < 14
+	VERTEX: 15
+32 < 20 < 5 < 25 < 10 < 29 < 15
+32 < 20 < 5 < 29 < 10 < 25 < 15
+	VERTEX: 16
+32 < 16 < 1 < 7 < 16
+	VERTEX: 17
+32 < 6 < 13 < 19 < 17
+32 < 17 < 19 < 31 < 17
+	VERTEX: 18
+32 < 29 < 22 < 9 < 15 < 22 < 9 < 8 < 18
+	VERTEX: 19
+32 < 6 < 13 < 17 < 19
+	VERTEX: 20
+32 < 27 < 29 < 10 < 25 < 29 < 5 < 20
+32 < 27 < 29 < 5 < 25 < 10 < 29 < 20
+32 < 27 < 29 < 10 < 25 < 5 < 29 < 20
+	VERTEX: 21
+32 < 14 < 6 < 13 < 17 < 31 < 21
+32 < 13 < 17 < 19 < 21
+	VERTEX: 22
+	VERTEX: 23
+32 < 28 < 11 < 4 < 28 < 23
+32 < 14 < 6 < 28 < 11 < 4 < 23
+32 < 14 < 6 < 28 < 4 < 11 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 18 < 9 < 15 < 10 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 28 < 11 < 4 < 23 < 28
+32 < 2 < 3 < 23 < 2 < 28
+32 < 27 < 29 < 22 < 9 < 11 < 28
+	VERTEX: 29
+32 < 18 < 8 < 9 < 22 < 15 < 9 < 22 < 29
+32 < 18 < 8 < 22 < 9 < 15 < 22 < 9 < 29
+32 < 20 < 5 < 25 < 10 < 15 < 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+32 < 16 < 1 < 7 < 16 < 32
+32 < 12 < 1 < 7 < 6 < 14 < 32
+32 < 27 < 29 < 5 < 25 < 10 < 29 < 20 < 32
+CAPACITY: 72
+	VERTEX: 1
+	VERTEX: 2
+	VERTEX: 3
+32 < 6 < 3 < 2 < 23 < 4 < 3
+	VERTEX: 4
+32 < 8 < 11 < 4 < 23 < 3 < 4
+32 < 6 < 3 < 23 < 2 < 3 < 4
+	VERTEX: 5
+32 < 18 < 9 < 22 < 15 < 9 < 22 < 29 < 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 6 < 3 < 2 < 23 < 4 < 8
+	VERTEX: 9
+32 < 27 < 29 < 10 < 15 < 22 < 9
+32 < 27 < 29 < 10 < 25 < 29 < 9
+	VERTEX: 10
+32 < 27 < 29 < 22 < 9 < 15 < 10
+32 < 27 < 29 < 9 < 22 < 15 < 10
+	VERTEX: 11
+32 < 6 < 3 < 2 < 4 < 11
+32 < 29 < 10 < 15 < 9 < 22 < 8 < 11
+32 < 14 < 6 < 13 < 2 < 3 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 12 < 1 < 7 < 13
+32 < 2 < 3 < 23 < 2 < 13
+	VERTEX: 14
+	VERTEX: 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+	VERTEX: 19
+	VERTEX: 20
+	VERTEX: 21
+	VERTEX: 22
+32 < 27 < 29 < 10 < 15 < 9 < 22
+32 < 2 < 3 < 23 < 4 < 11 < 22
+32 < 26 < 6 < 28 < 4 < 11 < 8 < 22
+	VERTEX: 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 18 < 9 < 15 < 29 < 5 < 25
+32 < 8 < 22 < 9 < 15 < 25
+32 < 8 < 9 < 22 < 15 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 26 < 6 < 13 < 2 < 3 < 28
+32 < 26 < 6 < 13 < 3 < 2 < 28
+	VERTEX: 29
+	VERTEX: 30
+32 < 12 < 1 < 16 < 30
+32 < 16 < 1 < 12 < 30
+	VERTEX: 31
+	VERTEX: 32
+32 < 12 < 1 < 16 < 30 < 32
+CAPACITY: 73
+	VERTEX: 1
+	VERTEX: 2
+32 < 16 < 6 < 13 < 3 < 2
+32 < 31 < 19 < 17 < 2
+	VERTEX: 3
+32 < 6 < 28 < 4 < 2 < 3
+	VERTEX: 4
+32 < 29 < 15 < 9 < 11 < 4
+32 < 6 < 3 < 2 < 28 < 4
+32 < 28 < 4 < 11 < 8 < 4
+	VERTEX: 5
+32 < 29 < 22 < 9 < 15 < 22 < 9 < 29 < 5
+	VERTEX: 6
+32 < 26 < 7 < 13 < 2 < 3 < 6
+32 < 26 < 7 < 13 < 3 < 2 < 6
+	VERTEX: 7
+	VERTEX: 8
+	VERTEX: 9
+	VERTEX: 10
+32 < 18 < 9 < 22 < 15 < 9 < 22 < 29 < 10
+	VERTEX: 11
+32 < 18 < 9 < 15 < 22 < 9 < 11
+32 < 18 < 9 < 22 < 15 < 9 < 11
+32 < 20 < 5 < 29 < 15 < 9 < 22 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 26 < 6 < 13 < 3 < 2 < 13
+32 < 26 < 6 < 13 < 2 < 3 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 20 < 5 < 29 < 10 < 25 < 29 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 26 < 6 < 13 < 19 < 17
+32 < 6 < 28 < 3 < 2 < 17
+	VERTEX: 18
+32 < 27 < 29 < 10 < 15 < 22 < 9 < 18
+	VERTEX: 19
+32 < 26 < 6 < 13 < 17 < 19
+32 < 6 < 13 < 21 < 31 < 19
+	VERTEX: 20
+32 < 18 < 9 < 22 < 15 < 9 < 22 < 29 < 20
+	VERTEX: 21
+32 < 31 < 17 < 19 < 31 < 21
+32 < 31 < 19 < 17 < 31 < 21
+32 < 26 < 13 < 17 < 19 < 21
+	VERTEX: 22
+32 < 20 < 5 < 25 < 10 < 15 < 22
+	VERTEX: 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 20 < 5 < 25 < 10 < 29 < 25
+32 < 20 < 25 < 10 < 29 < 5 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 6 < 3 < 2 < 4 < 28
+32 < 14 < 6 < 13 < 2 < 3 < 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 21 < 31 < 19 < 17 < 31
+32 < 21 < 31 < 17 < 19 < 31
+	VERTEX: 32
+32 < 18 < 9 < 22 < 15 < 9 < 22 < 29 < 20 < 32
+CAPACITY: 74
+	VERTEX: 1
+	VERTEX: 2
+32 < 8 < 11 < 4 < 23 < 3 < 2
+32 < 26 < 7 < 13 < 17 < 2
+	VERTEX: 3
+32 < 8 < 11 < 4 < 23 < 2 < 3
+32 < 6 < 28 < 11 < 4 < 23 < 3
+	VERTEX: 4
+32 < 6 < 13 < 3 < 2 < 4
+32 < 18 < 8 < 4 < 28 < 11 < 4
+	VERTEX: 5
+	VERTEX: 6
+32 < 16 < 6 < 13 < 7 < 6
+32 < 3 < 2 < 23 < 3 < 2 < 6
+	VERTEX: 7
+32 < 12 < 1 < 16 < 7
+32 < 16 < 1 < 12 < 7
+	VERTEX: 8
+32 < 2 < 3 < 23 < 4 < 11 < 8
+32 < 8 < 22 < 9 < 15 < 22 < 9 < 8
+	VERTEX: 9
+32 < 14 < 6 < 18 < 9 < 22 < 15 < 9
+32 < 20 < 5 < 29 < 10 < 25 < 5 < 29 < 9
+32 < 29 < 10 < 15 < 9 < 22 < 8 < 9
+	VERTEX: 10
+32 < 29 < 15 < 22 < 9 < 15 < 10
+32 < 29 < 22 < 9 < 15 < 22 < 9 < 29 < 10
+	VERTEX: 11
+32 < 26 < 6 < 3 < 2 < 4 < 11
+32 < 8 < 11 < 4 < 28 < 8 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 14 < 6 < 13 < 3 < 2 < 13
+32 < 14 < 6 < 13 < 2 < 3 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 29 < 10 < 15 < 22 < 9 < 15
+32 < 29 < 10 < 15 < 9 < 22 < 15
+	VERTEX: 16
+32 < 12 < 1 < 7 < 16
+	VERTEX: 17
+32 < 14 < 6 < 13 < 19 < 17
+32 < 6 < 13 < 3 < 2 < 17
+	VERTEX: 18
+	VERTEX: 19
+32 < 14 < 6 < 13 < 17 < 19
+32 < 16 < 7 < 13 < 19
+	VERTEX: 20
+32 < 29 < 22 < 9 < 15 < 22 < 9 < 29 < 20
+	VERTEX: 21
+32 < 16 < 7 < 6 < 13 < 21
+	VERTEX: 22
+	VERTEX: 23
+32 < 8 < 11 < 4 < 2 < 3 < 23
+32 < 8 < 11 < 4 < 3 < 2 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 29 < 5 < 25 < 10 < 29 < 5 < 25
+32 < 8 < 22 < 9 < 15 < 29 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 8 < 22 < 9 < 11 < 4 < 28
+32 < 18 < 9 < 15 < 22 < 9 < 28
+	VERTEX: 29
+32 < 27 < 29 < 22 < 9 < 15 < 10 < 29
+32 < 27 < 29 < 10 < 15 < 9 < 22 < 29
+32 < 27 < 29 < 10 < 15 < 22 < 9 < 29
+	VERTEX: 30
+32 < 12 < 1 < 16 < 26 < 30
+	VERTEX: 31
+	VERTEX: 32
+32 < 12 < 1 < 7 < 16 < 32
+32 < 12 < 1 < 16 < 7 < 32
+CAPACITY: 75
+	VERTEX: 1
+	VERTEX: 2
+32 < 18 < 8 < 11 < 4 < 23 < 3 < 2
+32 < 8 < 11 < 4 < 28 < 2
+	VERTEX: 3
+32 < 18 < 8 < 11 < 4 < 23 < 2 < 3
+	VERTEX: 4
+32 < 27 < 29 < 22 < 9 < 11 < 4
+32 < 11 < 4 < 28 < 23 < 4
+	VERTEX: 5
+32 < 29 < 15 < 22 < 9 < 15 < 29 < 5
+32 < 29 < 10 < 25 < 29 < 10 < 25 < 5
+	VERTEX: 6
+32 < 18 < 8 < 11 < 4 < 23 < 28 < 6
+32 < 28 < 11 < 4 < 28 < 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 18 < 8 < 22 < 9 < 15 < 22 < 9 < 8
+32 < 18 < 8 < 9 < 22 < 15 < 9 < 22 < 8
+	VERTEX: 9
+32 < 20 < 5 < 29 < 9 < 22 < 15 < 9
+32 < 20 < 5 < 29 < 9 < 15 < 22 < 9
+	VERTEX: 10
+32 < 29 < 10 < 25 < 29 < 5 < 25 < 10
+	VERTEX: 11
+32 < 14 < 6 < 3 < 2 < 4 < 11
+32 < 18 < 8 < 11 < 4 < 28 < 8 < 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 2 < 3 < 23 < 2 < 17
+	VERTEX: 18
+32 < 2 < 3 < 23 < 4 < 11 < 8 < 18
+32 < 8 < 22 < 9 < 15 < 22 < 9 < 8 < 18
+	VERTEX: 19
+32 < 26 < 6 < 13 < 21 < 31 < 19
+32 < 26 < 6 < 13 < 31 < 21 < 19
+	VERTEX: 20
+	VERTEX: 21
+32 < 26 < 7 < 21 < 31 < 19 < 21
+	VERTEX: 22
+32 < 20 < 5 < 25 < 10 < 29 < 15 < 22
+	VERTEX: 23
+32 < 18 < 8 < 11 < 4 < 2 < 3 < 23
+32 < 18 < 8 < 11 < 4 < 3 < 2 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 18 < 9 < 22 < 15 < 10 < 25
+32 < 27 < 29 < 22 < 9 < 29 < 5 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 6 < 28 < 11 < 4 < 28
+32 < 6 < 28 < 4 < 11 < 28
+32 < 8 < 28 < 4 < 11 < 8 < 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+CAPACITY: 76
+	VERTEX: 1
+	VERTEX: 2
+32 < 18 < 8 < 11 < 4 < 28 < 2
+32 < 29 < 22 < 9 < 11 < 4 < 2
+32 < 21 < 19 < 17 < 2
+	VERTEX: 3
+32 < 3 < 2 < 23 < 3 < 2 < 23 < 3
+	VERTEX: 4
+32 < 18 < 23 < 4 < 11 < 28 < 4
+32 < 26 < 6 < 13 < 3 < 2 < 4
+32 < 26 < 6 < 13 < 2 < 3 < 4
+	VERTEX: 5
+	VERTEX: 6
+	VERTEX: 7
+32 < 12 < 1 < 16 < 26 < 7
+	VERTEX: 8
+32 < 29 < 22 < 9 < 11 < 4 < 28 < 8
+32 < 18 < 8 < 28 < 4 < 11 < 28 < 8
+	VERTEX: 9
+32 < 6 < 28 < 4 < 11 < 9
+32 < 8 < 11 < 4 < 28 < 8 < 9
+32 < 8 < 28 < 4 < 11 < 8 < 9
+	VERTEX: 10
+32 < 29 < 15 < 22 < 9 < 15 < 29 < 10
+32 < 27 < 29 < 22 < 9 < 29 < 25 < 10
+	VERTEX: 11
+32 < 8 < 11 < 4 < 23 < 28 < 11
+32 < 8 < 11 < 4 < 28 < 23 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 8 < 11 < 4 < 2 < 13
+32 < 8 < 11 < 4 < 28 < 3 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 27 < 29 < 25 < 10 < 15
+32 < 29 < 10 < 15 < 9 < 22 < 29 < 15
+32 < 27 < 29 < 10 < 25 < 15
+	VERTEX: 16
+32 < 16 < 1 < 12 < 16
+32 < 12 < 1 < 7 < 26 < 16
+	VERTEX: 17
+32 < 26 < 6 < 13 < 3 < 2 < 17
+32 < 21 < 19 < 31 < 21 < 17
+32 < 21 < 31 < 19 < 21 < 17
+	VERTEX: 18
+32 < 18 < 8 < 22 < 9 < 15 < 22 < 9 < 8 < 18
+32 < 20 < 5 < 29 < 9 < 15 < 22 < 9 < 18
+	VERTEX: 19
+32 < 19 < 17 < 31 < 19
+32 < 14 < 6 < 13 < 31 < 21 < 19
+	VERTEX: 20
+32 < 18 < 9 < 15 < 22 < 9 < 29 < 5 < 20
+32 < 29 < 15 < 22 < 9 < 15 < 29 < 20
+32 < 29 < 10 < 25 < 29 < 10 < 25 < 20
+	VERTEX: 21
+32 < 21 < 31 < 19 < 17 < 21
+32 < 21 < 17 < 19 < 31 < 21
+32 < 21 < 31 < 17 < 19 < 21
+	VERTEX: 22
+	VERTEX: 23
+32 < 11 < 4 < 23 < 3 < 2 < 23
+32 < 2 < 3 < 23 < 11 < 4 < 23
+32 < 2 < 3 < 23 < 4 < 11 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 29 < 22 < 9 < 15 < 10 < 25
+32 < 18 < 9 < 22 < 15 < 29 < 5 < 25
+32 < 27 < 29 < 10 < 15 < 25
+	VERTEX: 26
+32 < 12 < 1 < 7 < 16 < 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 14 < 6 < 3 < 2 < 4 < 28
+32 < 18 < 8 < 28 < 4 < 11 < 8 < 28
+	VERTEX: 29
+32 < 29 < 10 < 15 < 22 < 9 < 15 < 29
+32 < 29 < 15 < 22 < 9 < 15 < 10 < 29
+32 < 29 < 10 < 15 < 9 < 22 < 15 < 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+CAPACITY: 77
+	VERTEX: 1
+	VERTEX: 2
+32 < 28 < 11 < 4 < 23 < 2
+32 < 11 < 4 < 23 < 28 < 2
+	VERTEX: 3
+32 < 28 < 11 < 4 < 28 < 23 < 3
+32 < 14 < 6 < 28 < 11 < 4 < 23 < 3
+	VERTEX: 4
+32 < 29 < 15 < 22 < 9 < 11 < 4
+32 < 14 < 6 < 13 < 3 < 2 < 4
+	VERTEX: 5
+32 < 8 < 9 < 22 < 15 < 9 < 22 < 29 < 5
+32 < 8 < 22 < 9 < 15 < 22 < 9 < 29 < 5
+	VERTEX: 6
+	VERTEX: 7
+	VERTEX: 8
+	VERTEX: 9
+32 < 18 < 8 < 11 < 4 < 28 < 8 < 9
+32 < 20 < 5 < 29 < 22 < 9 < 15 < 29 < 9
+	VERTEX: 10
+32 < 18 < 9 < 22 < 15 < 29 < 25 < 10
+	VERTEX: 11
+32 < 18 < 8 < 11 < 4 < 23 < 28 < 11
+32 < 18 < 8 < 11 < 4 < 28 < 23 < 11
+	VERTEX: 12
+32 < 12 < 1 < 7 < 12
+	VERTEX: 13
+32 < 26 < 7 < 13 < 3 < 2 < 13
+32 < 26 < 7 < 13 < 2 < 3 < 13
+	VERTEX: 14
+	VERTEX: 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 26 < 7 < 13 < 19 < 17
+32 < 14 < 6 < 13 < 3 < 2 < 17
+32 < 16 < 6 < 13 < 21 < 17
+	VERTEX: 18
+	VERTEX: 19
+32 < 26 < 7 < 13 < 17 < 19
+	VERTEX: 20
+	VERTEX: 21
+	VERTEX: 22
+	VERTEX: 23
+32 < 8 < 28 < 4 < 11 < 28 < 23
+32 < 8 < 28 < 11 < 4 < 28 < 23
+32 < 2 < 3 < 23 < 28 < 4 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 29 < 15 < 9 < 22 < 29 < 5 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 26 < 6 < 28 < 11 < 4 < 28
+32 < 26 < 6 < 28 < 4 < 11 < 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+32 < 12 < 1 < 7 < 12 < 32
+CAPACITY: 78
+	VERTEX: 1
+	VERTEX: 2
+32 < 18 < 23 < 4 < 11 < 28 < 2
+	VERTEX: 3
+	VERTEX: 4
+32 < 18 < 9 < 15 < 22 < 9 < 4
+32 < 18 < 9 < 22 < 15 < 9 < 4
+	VERTEX: 5
+32 < 18 < 8 < 9 < 22 < 15 < 9 < 22 < 29 < 5
+32 < 18 < 9 < 15 < 10 < 25 < 5
+32 < 18 < 8 < 22 < 9 < 15 < 22 < 9 < 29 < 5
+	VERTEX: 6
+32 < 8 < 11 < 4 < 2 < 3 < 6
+32 < 8 < 11 < 4 < 3 < 2 < 6
+	VERTEX: 7
+32 < 16 < 7 < 13 < 6 < 7
+32 < 16 < 7 < 6 < 13 < 7
+	VERTEX: 8
+32 < 6 < 3 < 2 < 4 < 11 < 8
+32 < 27 < 29 < 10 < 15 < 9 < 22 < 8
+32 < 27 < 29 < 10 < 15 < 22 < 9 < 8
+	VERTEX: 9
+32 < 26 < 6 < 28 < 4 < 11 < 9
+32 < 18 < 8 < 11 < 4 < 28 < 8 < 18 < 9
+	VERTEX: 10
+32 < 8 < 9 < 22 < 15 < 9 < 22 < 29 < 10
+32 < 8 < 22 < 9 < 15 < 22 < 9 < 29 < 10
+32 < 29 < 15 < 9 < 22 < 29 < 25 < 10
+	VERTEX: 11
+32 < 29 < 22 < 9 < 15 < 22 < 9 < 11
+32 < 8 < 9 < 22 < 15 < 9 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 3 < 2 < 23 < 3 < 2 < 13
+32 < 2 < 3 < 23 < 2 < 3 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 27 < 29 < 10 < 25 < 29 < 15
+32 < 27 < 29 < 25 < 10 < 29 < 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+	VERTEX: 19
+	VERTEX: 20
+32 < 27 < 29 < 5 < 25 < 10 < 29 < 5 < 20
+32 < 8 < 9 < 22 < 15 < 9 < 22 < 29 < 20
+32 < 8 < 22 < 9 < 15 < 22 < 9 < 29 < 20
+	VERTEX: 21
+	VERTEX: 22
+32 < 14 < 6 < 18 < 9 < 22 < 15 < 9 < 22
+32 < 29 < 10 < 15 < 22 < 9 < 15 < 22
+	VERTEX: 23
+32 < 29 < 22 < 9 < 11 < 4 < 28 < 23
+32 < 18 < 8 < 28 < 4 < 11 < 28 < 23
+32 < 20 < 5 < 29 < 22 < 9 < 11 < 4 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 29 < 10 < 15 < 9 < 22 < 29 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 14 < 6 < 28 < 11 < 4 < 28
+32 < 14 < 6 < 28 < 4 < 11 < 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+32 < 16 < 7 < 13 < 6 < 7 < 32
+32 < 27 < 29 < 5 < 25 < 10 < 29 < 5 < 20 < 32
+32 < 8 < 9 < 22 < 15 < 9 < 22 < 29 < 20 < 32
+CAPACITY: 79
+	VERTEX: 1
+	VERTEX: 2
+32 < 26 < 7 < 21 < 31 < 17 < 2
+32 < 29 < 10 < 15 < 9 < 22 < 8 < 2
+	VERTEX: 3
+	VERTEX: 4
+32 < 8 < 11 < 4 < 28 < 8 < 4
+32 < 8 < 28 < 4 < 11 < 8 < 4
+32 < 8 < 11 < 4 < 28 < 3 < 4
+	VERTEX: 5
+	VERTEX: 6
+32 < 18 < 8 < 11 < 4 < 2 < 3 < 6
+32 < 18 < 8 < 11 < 4 < 3 < 2 < 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 6 < 3 < 2 < 4 < 28 < 8
+	VERTEX: 9
+32 < 20 < 5 < 29 < 22 < 9 < 15 < 22 < 9
+32 < 14 < 6 < 28 < 4 < 11 < 9
+	VERTEX: 10
+32 < 18 < 8 < 9 < 22 < 15 < 9 < 22 < 29 < 10
+32 < 18 < 8 < 22 < 9 < 15 < 22 < 9 < 29 < 10
+32 < 20 < 5 < 25 < 10 < 29 < 15 < 10
+	VERTEX: 11
+32 < 18 < 9 < 15 < 22 < 9 < 8 < 11
+32 < 18 < 8 < 9 < 22 < 15 < 9 < 11
+	VERTEX: 12
+32 < 12 < 1 < 16 < 12
+	VERTEX: 13
+32 < 26 < 7 < 21 < 31 < 19 < 13
+32 < 18 < 8 < 11 < 4 < 28 < 23 < 13
+	VERTEX: 14
+	VERTEX: 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 8 < 11 < 4 < 2 < 17
+	VERTEX: 18
+32 < 6 < 3 < 2 < 4 < 11 < 8 < 18
+32 < 14 < 6 < 28 < 4 < 11 < 28 < 18
+	VERTEX: 19
+32 < 3 < 2 < 17 < 31 < 19
+32 < 19 < 17 < 21 < 19
+	VERTEX: 20
+32 < 18 < 8 < 9 < 22 < 15 < 9 < 22 < 29 < 20
+32 < 18 < 8 < 22 < 9 < 15 < 22 < 9 < 29 < 20
+32 < 18 < 9 < 15 < 10 < 25 < 20
+	VERTEX: 21
+	VERTEX: 22
+32 < 20 < 5 < 29 < 9 < 22 < 15 < 9 < 22
+	VERTEX: 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 20 < 5 < 29 < 9 < 15 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 3 < 2 < 17 < 19 < 31
+32 < 26 < 7 < 31 < 19 < 17 < 31
+	VERTEX: 32
+32 < 12 < 1 < 16 < 12 < 32
+32 < 18 < 8 < 9 < 22 < 15 < 9 < 22 < 29 < 20 < 32
+CAPACITY: 80
+	VERTEX: 1
+	VERTEX: 2
+32 < 8 < 22 < 9 < 11 < 4 < 2
+32 < 7 < 19 < 17 < 2
+32 < 1 < 21 < 31 < 17 < 2
+	VERTEX: 3
+32 < 8 < 11 < 4 < 3 < 2 < 23 < 3
+	VERTEX: 4
+32 < 8 < 11 < 4 < 23 < 11 < 4
+32 < 26 < 7 < 13 < 3 < 2 < 4
+	VERTEX: 5
+32 < 20 < 5 < 25 < 10 < 29 < 25 < 5
+	VERTEX: 6
+32 < 11 < 4 < 23 < 3 < 2 < 6
+32 < 8 < 11 < 4 < 23 < 2 < 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 26 < 6 < 3 < 2 < 4 < 11 < 8
+32 < 8 < 22 < 9 < 11 < 4 < 28 < 8
+	VERTEX: 9
+32 < 27 < 29 < 9 < 22 < 15 < 9
+32 < 18 < 9 < 22 < 15 < 9 < 22 < 18 < 9
+	VERTEX: 10
+	VERTEX: 11
+32 < 6 < 3 < 2 < 23 < 4 < 11
+32 < 14 < 6 < 13 < 2 < 3 < 23 < 11
+32 < 8 < 11 < 4 < 2 < 3 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 21 < 31 < 19 < 17 < 13
+32 < 21 < 31 < 17 < 19 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 20 < 5 < 29 < 10 < 25 < 5 < 29 < 15
+	VERTEX: 16
+32 < 16 < 7 < 13 < 6 < 16
+32 < 16 < 6 < 13 < 7 < 16
+	VERTEX: 17
+32 < 6 < 13 < 31 < 19 < 17
+32 < 31 < 17 < 19 < 31 < 17
+32 < 26 < 7 < 13 < 3 < 2 < 17
+	VERTEX: 18
+32 < 20 < 5 < 29 < 22 < 9 < 15 < 22 < 9 < 18
+32 < 20 < 5 < 29 < 9 < 22 < 15 < 9 < 22 < 18
+	VERTEX: 19
+32 < 6 < 13 < 31 < 17 < 19
+32 < 6 < 13 < 17 < 31 < 19
+	VERTEX: 20
+32 < 18 < 9 < 22 < 15 < 9 < 22 < 29 < 5 < 20
+	VERTEX: 21
+32 < 13 < 17 < 19 < 31 < 21
+32 < 6 < 13 < 21 < 31 < 17 < 21
+	VERTEX: 22
+	VERTEX: 23
+32 < 6 < 3 < 2 < 4 < 11 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 8 < 22 < 9 < 15 < 10 < 25
+32 < 20 < 5 < 25 < 10 < 29 < 5 < 25
+32 < 27 < 29 < 25 < 10 < 29 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 26 < 6 < 13 < 2 < 3 < 23 < 28
+32 < 18 < 9 < 15 < 22 < 9 < 8 < 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 6 < 13 < 17 < 19 < 31
+32 < 6 < 13 < 19 < 17 < 31
+	VERTEX: 32
+32 < 18 < 9 < 22 < 15 < 9 < 22 < 29 < 5 < 20 < 32
+CAPACITY: 81
+	VERTEX: 1
+32 < 16 < 6 < 13 < 7 < 1
+	VERTEX: 2
+32 < 8 < 11 < 4 < 28 < 3 < 2
+32 < 6 < 28 < 11 < 4 < 2
+	VERTEX: 3
+32 < 8 < 11 < 4 < 28 < 2 < 3
+32 < 18 < 8 < 11 < 4 < 3 < 2 < 23 < 3
+	VERTEX: 4
+32 < 11 < 4 < 28 < 11 < 4
+32 < 8 < 11 < 4 < 28 < 23 < 4
+	VERTEX: 5
+32 < 27 < 29 < 22 < 9 < 15 < 10 < 29 < 5
+32 < 27 < 29 < 10 < 15 < 9 < 22 < 29 < 5
+	VERTEX: 6
+32 < 16 < 1 < 7 < 13 < 6
+32 < 8 < 28 < 4 < 11 < 28 < 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 14 < 6 < 3 < 2 < 4 < 11 < 8
+32 < 6 < 28 < 4 < 11 < 28 < 8
+	VERTEX: 9
+32 < 18 < 9 < 22 < 15 < 9 < 22 < 29 < 9
+32 < 20 < 5 < 29 < 15 < 9 < 22 < 8 < 9
+	VERTEX: 10
+32 < 20 < 5 < 25 < 10 < 29 < 25 < 10
+	VERTEX: 11
+32 < 18 < 8 < 11 < 4 < 2 < 3 < 11
+32 < 6 < 28 < 4 < 11 < 8 < 18 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 16 < 1 < 7 < 6 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 18 < 9 < 15 < 22 < 9 < 15
+32 < 20 < 5 < 29 < 15 < 9 < 22 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 3 < 2 < 23 < 3 < 2 < 17
+	VERTEX: 18
+32 < 27 < 29 < 9 < 22 < 15 < 9 < 18
+32 < 26 < 6 < 3 < 2 < 4 < 11 < 8 < 18
+32 < 6 < 3 < 2 < 23 < 4 < 11 < 18
+	VERTEX: 19
+32 < 21 < 19 < 31 < 21 < 19
+	VERTEX: 20
+	VERTEX: 21
+	VERTEX: 22
+	VERTEX: 23
+32 < 6 < 3 < 2 < 4 < 28 < 23
+32 < 29 < 15 < 9 < 11 < 4 < 23
+32 < 6 < 28 < 4 < 2 < 3 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 18 < 8 < 22 < 9 < 15 < 10 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 6 < 3 < 2 < 23 < 4 < 28
+32 < 14 < 6 < 13 < 2 < 3 < 23 < 28
+32 < 8 < 11 < 4 < 2 < 3 < 28
+	VERTEX: 29
+32 < 20 < 5 < 29 < 22 < 9 < 15 < 22 < 9 < 29
+32 < 20 < 5 < 29 < 9 < 22 < 15 < 9 < 22 < 29
+32 < 20 < 5 < 25 < 10 < 29 < 15 < 10 < 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+32 < 16 < 6 < 13 < 7 < 1 < 32
+CAPACITY: 82
+	VERTEX: 1
+	VERTEX: 2
+32 < 18 < 8 < 11 < 4 < 28 < 3 < 2
+32 < 6 < 3 < 23 < 2 < 3 < 23 < 2
+32 < 26 < 7 < 19 < 17 < 2
+	VERTEX: 3
+32 < 18 < 8 < 11 < 4 < 28 < 2 < 3
+32 < 11 < 4 < 23 < 3 < 2 < 23 < 3
+	VERTEX: 4
+32 < 18 < 8 < 11 < 4 < 28 < 23 < 4
+32 < 18 < 8 < 11 < 4 < 23 < 28 < 4
+32 < 18 < 9 < 22 < 15 < 9 < 22 < 4
+	VERTEX: 5
+32 < 18 < 9 < 22 < 15 < 10 < 25 < 5
+	VERTEX: 6
+32 < 29 < 22 < 9 < 11 < 4 < 28 < 6
+32 < 18 < 8 < 28 < 4 < 11 < 28 < 6
+	VERTEX: 7
+	VERTEX: 8
+	VERTEX: 9
+32 < 29 < 15 < 9 < 22 < 15 < 9
+32 < 6 < 28 < 4 < 11 < 8 < 9
+32 < 18 < 9 < 15 < 22 < 9 < 8 < 18 < 9
+	VERTEX: 10
+32 < 29 < 10 < 15 < 22 < 9 < 15 < 10
+32 < 29 < 10 < 15 < 9 < 22 < 15 < 10
+32 < 27 < 29 < 10 < 15 < 9 < 22 < 29 < 10
+	VERTEX: 11
+32 < 26 < 6 < 3 < 2 < 23 < 4 < 11
+32 < 8 < 22 < 9 < 15 < 22 < 9 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 8 < 11 < 4 < 2 < 3 < 13
+32 < 8 < 11 < 4 < 3 < 2 < 13
+	VERTEX: 14
+	VERTEX: 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 26 < 7 < 21 < 31 < 19 < 17
+32 < 26 < 7 < 19 < 31 < 21 < 17
+	VERTEX: 18
+32 < 14 < 6 < 3 < 2 < 4 < 11 < 8 < 18
+	VERTEX: 19
+32 < 26 < 7 < 21 < 31 < 17 < 19
+32 < 26 < 6 < 13 < 17 < 31 < 19
+32 < 16 < 6 < 13 < 21 < 19
+	VERTEX: 20
+32 < 27 < 29 < 22 < 9 < 15 < 10 < 29 < 20
+32 < 27 < 29 < 10 < 15 < 9 < 22 < 29 < 20
+	VERTEX: 21
+32 < 26 < 13 < 17 < 19 < 31 < 21
+32 < 3 < 2 < 17 < 19 < 21
+	VERTEX: 22
+32 < 6 < 3 < 2 < 4 < 11 < 8 < 22
+	VERTEX: 23
+32 < 8 < 11 < 4 < 23 < 3 < 2 < 23
+32 < 8 < 11 < 4 < 23 < 2 < 3 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 20 < 5 < 29 < 10 < 25 < 5 < 29 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 18 < 8 < 11 < 4 < 2 < 3 < 28
+32 < 18 < 8 < 11 < 4 < 3 < 2 < 28
+	VERTEX: 29
+32 < 27 < 29 < 9 < 22 < 15 < 9 < 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 26 < 6 < 13 < 17 < 19 < 31
+32 < 26 < 6 < 13 < 19 < 17 < 31
+32 < 26 < 13 < 17 < 19 < 21 < 31
+	VERTEX: 32
+32 < 27 < 29 < 22 < 9 < 15 < 10 < 29 < 20 < 32
+CAPACITY: 83
+	VERTEX: 1
+	VERTEX: 2
+32 < 28 < 11 < 4 < 23 < 3 < 2
+32 < 8 < 11 < 4 < 28 < 23 < 2
+32 < 8 < 28 < 11 < 4 < 23 < 2
+	VERTEX: 3
+32 < 28 < 11 < 4 < 23 < 2 < 3
+32 < 8 < 28 < 4 < 11 < 28 < 23 < 3
+	VERTEX: 4
+32 < 2 < 3 < 23 < 28 < 11 < 4
+32 < 29 < 22 < 9 < 15 < 22 < 9 < 4
+32 < 8 < 9 < 22 < 15 < 9 < 4
+	VERTEX: 5
+32 < 29 < 22 < 9 < 15 < 10 < 25 < 5
+32 < 29 < 10 < 15 < 22 < 9 < 15 < 29 < 5
+32 < 29 < 15 < 22 < 9 < 15 < 10 < 29 < 5
+	VERTEX: 6
+32 < 6 < 13 < 3 < 2 < 13 < 6
+32 < 29 < 22 < 9 < 15 < 22 < 9 < 8 < 18 < 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 26 < 6 < 28 < 4 < 11 < 28 < 8
+32 < 26 < 6 < 28 < 11 < 4 < 28 < 8
+32 < 29 < 15 < 22 < 9 < 11 < 4 < 8
+	VERTEX: 9
+32 < 6 < 28 < 4 < 11 < 8 < 18 < 9
+	VERTEX: 10
+	VERTEX: 11
+32 < 14 < 6 < 3 < 2 < 23 < 4 < 11
+32 < 8 < 28 < 11 < 4 < 28 < 11
+32 < 18 < 9 < 22 < 15 < 9 < 22 < 8 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 18 < 8 < 11 < 4 < 2 < 3 < 13
+32 < 18 < 8 < 11 < 4 < 3 < 2 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 27 < 29 < 5 < 25 < 10 < 15
+32 < 18 < 9 < 15 < 22 < 9 < 29 < 15
+	VERTEX: 16
+32 < 16 < 1 < 7 < 6 < 16
+	VERTEX: 17
+32 < 1 < 21 < 31 < 19 < 17
+32 < 21 < 17 < 19 < 31 < 17
+32 < 17 < 19 < 31 < 21 < 17
+	VERTEX: 18
+32 < 29 < 15 < 9 < 22 < 15 < 9 < 18
+	VERTEX: 19
+32 < 1 < 21 < 31 < 17 < 19
+32 < 14 < 6 < 13 < 17 < 31 < 19
+	VERTEX: 20
+32 < 29 < 10 < 25 < 29 < 10 < 25 < 5 < 20
+32 < 18 < 9 < 22 < 15 < 10 < 25 < 20
+	VERTEX: 21
+32 < 6 < 13 < 17 < 19 < 21
+32 < 6 < 13 < 19 < 17 < 21
+32 < 17 < 19 < 31 < 17 < 21
+	VERTEX: 22
+	VERTEX: 23
+32 < 18 < 8 < 11 < 4 < 23 < 3 < 2 < 23
+32 < 18 < 8 < 11 < 4 < 23 < 2 < 3 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 20 < 5 < 29 < 22 < 9 < 15 < 25
+32 < 20 < 5 < 29 < 9 < 22 < 15 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 2 < 3 < 23 < 4 < 11 < 28
+32 < 26 < 6 < 3 < 2 < 23 < 4 < 28
+	VERTEX: 29
+32 < 18 < 9 < 15 < 22 < 9 < 15 < 29
+32 < 20 < 5 < 25 < 10 < 29 < 25 < 10 < 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 14 < 6 < 13 < 17 < 19 < 31
+32 < 14 < 6 < 13 < 19 < 17 < 31
+	VERTEX: 32
+32 < 18 < 9 < 22 < 15 < 10 < 25 < 20 < 32
+CAPACITY: 84
+	VERTEX: 1
+	VERTEX: 2
+32 < 18 < 8 < 11 < 4 < 28 < 23 < 2
+32 < 14 < 6 < 28 < 11 < 4 < 2
+	VERTEX: 3
+32 < 29 < 22 < 9 < 11 < 4 < 28 < 23 < 3
+32 < 14 < 6 < 28 < 4 < 11 < 28 < 3
+32 < 14 < 6 < 28 < 11 < 4 < 28 < 3
+	VERTEX: 4
+32 < 26 < 6 < 13 < 2 < 3 < 23 < 4
+32 < 18 < 9 < 15 < 22 < 9 < 8 < 4
+32 < 18 < 8 < 9 < 22 < 15 < 9 < 4
+	VERTEX: 5
+	VERTEX: 6
+32 < 12 < 1 < 7 < 13 < 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 14 < 6 < 28 < 4 < 11 < 28 < 8
+32 < 14 < 6 < 28 < 11 < 4 < 28 < 8
+32 < 14 < 6 < 18 < 9 < 22 < 15 < 9 < 22 < 8
+	VERTEX: 9
+32 < 27 < 29 < 22 < 9 < 15 < 22 < 9
+32 < 2 < 3 < 23 < 4 < 11 < 9
+32 < 26 < 6 < 28 < 4 < 11 < 8 < 9
+	VERTEX: 10
+32 < 29 < 10 < 15 < 22 < 9 < 15 < 29 < 10
+	VERTEX: 11
+32 < 29 < 22 < 9 < 11 < 4 < 28 < 11
+32 < 29 < 22 < 9 < 15 < 22 < 9 < 8 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 12 < 1 < 7 < 6 < 13
+32 < 11 < 4 < 23 < 3 < 2 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 29 < 10 < 15 < 9 < 22 < 29 < 10 < 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+	VERTEX: 19
+	VERTEX: 20
+32 < 29 < 22 < 9 < 15 < 10 < 25 < 20
+32 < 29 < 10 < 15 < 22 < 9 < 15 < 29 < 20
+32 < 29 < 15 < 22 < 9 < 15 < 10 < 29 < 20
+	VERTEX: 21
+	VERTEX: 22
+32 < 27 < 29 < 9 < 22 < 15 < 9 < 22
+32 < 6 < 3 < 2 < 23 < 4 < 11 < 22
+	VERTEX: 23
+32 < 18 < 23 < 4 < 11 < 28 < 4 < 23
+32 < 18 < 8 < 11 < 4 < 28 < 2 < 23
+	VERTEX: 24
+	VERTEX: 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 14 < 6 < 3 < 2 < 23 < 4 < 28
+32 < 18 < 9 < 22 < 15 < 9 < 22 < 8 < 28
+32 < 14 < 6 < 28 < 4 < 11 < 8 < 28
+	VERTEX: 29
+32 < 29 < 15 < 9 < 22 < 15 < 9 < 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+32 < 29 < 22 < 9 < 15 < 10 < 25 < 20 < 32
+CAPACITY: 85
+	VERTEX: 1
+	VERTEX: 2
+32 < 21 < 31 < 19 < 17 < 2
+32 < 18 < 9 < 22 < 15 < 9 < 22 < 18 < 2
+	VERTEX: 3
+	VERTEX: 4
+32 < 14 < 6 < 13 < 2 < 3 < 23 < 4
+32 < 8 < 11 < 4 < 3 < 2 < 4
+	VERTEX: 5
+	VERTEX: 6
+32 < 26 < 6 < 13 < 3 < 2 < 13 < 6
+32 < 6 < 28 < 4 < 2 < 3 < 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 20 < 5 < 29 < 22 < 9 < 15 < 22 < 9 < 8
+32 < 20 < 5 < 29 < 9 < 22 < 15 < 9 < 22 < 8
+	VERTEX: 9
+32 < 20 < 5 < 25 < 10 < 15 < 9
+32 < 18 < 9 < 22 < 15 < 9 < 22 < 8 < 9
+	VERTEX: 10
+	VERTEX: 11
+32 < 28 < 11 < 4 < 28 < 23 < 11
+32 < 14 < 6 < 28 < 11 < 4 < 23 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 18 < 8 < 11 < 4 < 23 < 2 < 13
+32 < 18 < 8 < 11 < 4 < 28 < 23 < 3 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 18 < 9 < 22 < 15 < 9 < 22 < 15
+32 < 18 < 22 < 9 < 15 < 22 < 9 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 8 < 11 < 4 < 3 < 2 < 17
+	VERTEX: 18
+32 < 27 < 29 < 22 < 9 < 15 < 22 < 9 < 18
+32 < 27 < 29 < 9 < 22 < 15 < 9 < 22 < 18
+	VERTEX: 19
+32 < 31 < 19 < 17 < 31 < 19
+32 < 2 < 17 < 31 < 21 < 19
+	VERTEX: 20
+32 < 8 < 9 < 22 < 15 < 9 < 22 < 29 < 5 < 20
+	VERTEX: 21
+32 < 21 < 31 < 17 < 19 < 31 < 21
+32 < 21 < 31 < 19 < 17 < 31 < 21
+32 < 26 < 6 < 13 < 17 < 19 < 21
+	VERTEX: 22
+32 < 18 < 9 < 15 < 22 < 9 < 15 < 22
+	VERTEX: 23
+32 < 29 < 15 < 22 < 9 < 11 < 4 < 23
+32 < 26 < 6 < 28 < 4 < 11 < 28 < 23
+32 < 26 < 6 < 28 < 11 < 4 < 28 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 18 < 9 < 15 < 22 < 9 < 29 < 25
+32 < 20 < 5 < 29 < 22 < 9 < 15 < 29 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 20 < 5 < 29 < 22 < 9 < 11 < 4 < 28
+32 < 2 < 3 < 23 < 2 < 3 < 23 < 28
+	VERTEX: 29
+	VERTEX: 30
+32 < 16 < 1 < 7 < 16 < 30
+	VERTEX: 31
+	VERTEX: 32
+32 < 8 < 9 < 22 < 15 < 9 < 22 < 29 < 5 < 20 < 32
+CAPACITY: 86
+	VERTEX: 1
+	VERTEX: 2
+32 < 26 < 6 < 13 < 2 < 3 < 23 < 2
+32 < 29 < 22 < 9 < 15 < 22 < 9 < 18 < 2
+	VERTEX: 3
+32 < 6 < 3 < 2 < 4 < 11 < 23 < 3
+32 < 8 < 11 < 4 < 23 < 11 < 4 < 3
+32 < 6 < 3 < 2 < 23 < 4 < 11 < 3
+	VERTEX: 4
+32 < 18 < 8 < 11 < 4 < 3 < 2 < 4
+32 < 18 < 8 < 11 < 4 < 2 < 3 < 4
+	VERTEX: 5
+	VERTEX: 6
+32 < 8 < 11 < 4 < 23 < 3 < 2 < 6
+32 < 8 < 11 < 4 < 23 < 2 < 3 < 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 6 < 3 < 2 < 23 < 4 < 11 < 8
+32 < 27 < 29 < 9 < 22 < 15 < 9 < 8
+	VERTEX: 9
+32 < 29 < 15 < 22 < 9 < 15 < 22 < 9
+32 < 8 < 9 < 22 < 15 < 9 < 22 < 29 < 9
+32 < 18 < 9 < 22 < 15 < 9 < 22 < 8 < 18 < 9
+	VERTEX: 10
+	VERTEX: 11
+32 < 27 < 29 < 10 < 15 < 22 < 9 < 11
+32 < 27 < 29 < 10 < 15 < 9 < 22 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 3 < 2 < 17 < 19 < 13
+32 < 26 < 7 < 31 < 19 < 17 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 29 < 22 < 9 < 15 < 22 < 9 < 15
+32 < 27 < 29 < 10 < 25 < 29 < 10 < 15
+	VERTEX: 16
+32 < 12 < 1 < 7 < 6 < 16
+	VERTEX: 17
+32 < 18 < 8 < 11 < 4 < 3 < 2 < 17
+32 < 6 < 28 < 4 < 2 < 17
+	VERTEX: 18
+32 < 20 < 5 < 29 < 22 < 9 < 15 < 22 < 9 < 8 < 18
+32 < 20 < 5 < 25 < 10 < 15 < 9 < 18
+32 < 20 < 5 < 29 < 9 < 22 < 15 < 9 < 22 < 8 < 18
+	VERTEX: 19
+	VERTEX: 20
+32 < 18 < 8 < 9 < 22 < 15 < 9 < 22 < 29 < 5 < 20
+32 < 18 < 9 < 15 < 10 < 25 < 5 < 20
+	VERTEX: 21
+32 < 14 < 6 < 13 < 17 < 19 < 21
+32 < 14 < 6 < 13 < 19 < 17 < 21
+	VERTEX: 22
+32 < 29 < 15 < 9 < 22 < 15 < 9 < 22
+32 < 26 < 6 < 3 < 2 < 23 < 4 < 11 < 22
+	VERTEX: 23
+32 < 14 < 6 < 28 < 4 < 11 < 28 < 23
+32 < 14 < 6 < 28 < 11 < 4 < 28 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 29 < 10 < 15 < 9 < 22 < 29 < 10 < 25
+	VERTEX: 26
+32 < 12 < 1 < 7 < 13 < 6 < 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 14 < 6 < 28 < 11 < 4 < 23 < 28
+	VERTEX: 29
+32 < 27 < 29 < 22 < 9 < 15 < 22 < 9 < 29
+32 < 27 < 29 < 9 < 22 < 15 < 9 < 22 < 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 26 < 7 < 13 < 17 < 19 < 31
+32 < 26 < 7 < 13 < 19 < 17 < 31
+	VERTEX: 32
+32 < 12 < 1 < 7 < 13 < 6 < 26 < 32
+32 < 18 < 8 < 9 < 22 < 15 < 9 < 22 < 29 < 5 < 20 < 32
+CAPACITY: 87
+	VERTEX: 1
+	VERTEX: 2
+32 < 6 < 28 < 11 < 4 < 3 < 2
+32 < 14 < 6 < 13 < 2 < 3 < 23 < 2
+32 < 6 < 3 < 2 < 23 < 4 < 2
+	VERTEX: 3
+32 < 6 < 28 < 11 < 4 < 2 < 3
+32 < 11 < 4 < 28 < 11 < 4 < 3
+	VERTEX: 4
+32 < 8 < 11 < 4 < 28 < 11 < 4
+32 < 11 < 4 < 23 < 3 < 2 < 4
+32 < 8 < 11 < 4 < 28 < 23 < 3 < 4
+	VERTEX: 5
+32 < 8 < 22 < 9 < 15 < 10 < 25 < 5
+	VERTEX: 6
+32 < 18 < 8 < 11 < 4 < 23 < 3 < 2 < 6
+32 < 18 < 8 < 11 < 4 < 23 < 2 < 3 < 6
+	VERTEX: 7
+32 < 6 < 13 < 3 < 2 < 13 < 7
+	VERTEX: 8
+32 < 6 < 3 < 2 < 23 < 4 < 28 < 8
+32 < 11 < 4 < 28 < 11 < 4 < 8
+32 < 8 < 11 < 4 < 28 < 23 < 4 < 8
+	VERTEX: 9
+32 < 20 < 5 < 25 < 10 < 29 < 15 < 9
+32 < 18 < 8 < 9 < 22 < 15 < 9 < 22 < 29 < 9
+32 < 29 < 22 < 9 < 15 < 22 < 9 < 8 < 18 < 9
+	VERTEX: 10
+	VERTEX: 11
+32 < 6 < 3 < 2 < 28 < 4 < 11
+32 < 6 < 3 < 2 < 4 < 28 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 6 < 13 < 19 < 17 < 13
+32 < 6 < 13 < 17 < 19 < 13
+	VERTEX: 14
+32 < 12 < 1 < 7 < 13 < 6 < 14
+	VERTEX: 15
+32 < 18 < 9 < 22 < 15 < 9 < 22 < 29 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 13 < 17 < 31 < 19 < 17
+32 < 13 < 17 < 19 < 31 < 17
+32 < 6 < 13 < 17 < 31 < 21 < 17
+	VERTEX: 18
+32 < 6 < 3 < 2 < 23 < 4 < 11 < 8 < 18
+32 < 29 < 15 < 22 < 9 < 15 < 22 < 9 < 18
+32 < 29 < 15 < 9 < 22 < 15 < 9 < 22 < 18
+	VERTEX: 19
+32 < 26 < 7 < 19 < 31 < 21 < 19
+	VERTEX: 20
+	VERTEX: 21
+32 < 26 < 6 < 13 < 21 < 31 < 19 < 21
+	VERTEX: 22
+32 < 14 < 6 < 3 < 2 < 23 < 4 < 11 < 22
+32 < 18 < 9 < 15 < 22 < 9 < 15 < 29 < 22
+	VERTEX: 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 27 < 29 < 10 < 25 < 29 < 5 < 25
+32 < 27 < 29 < 5 < 25 < 10 < 29 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 6 < 3 < 2 < 4 < 11 < 28
+	VERTEX: 29
+32 < 18 < 9 < 22 < 15 < 9 < 22 < 15 < 29
+32 < 18 < 22 < 9 < 15 < 22 < 9 < 15 < 29
+32 < 20 < 5 < 25 < 10 < 15 < 9 < 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+32 < 12 < 1 < 7 < 13 < 6 < 14 < 32
+32 < 6 < 13 < 3 < 2 < 13 < 7 < 32
+CAPACITY: 88
+	VERTEX: 1
+	VERTEX: 2
+32 < 6 < 28 < 4 < 11 < 8 < 18 < 2
+	VERTEX: 3
+32 < 8 < 11 < 4 < 23 < 3 < 2 < 23 < 3
+32 < 18 < 8 < 11 < 4 < 28 < 23 < 4 < 3
+32 < 26 < 6 < 3 < 2 < 23 < 4 < 11 < 3
+	VERTEX: 4
+32 < 18 < 8 < 11 < 4 < 28 < 11 < 4
+32 < 8 < 28 < 4 < 11 < 28 < 4
+	VERTEX: 5
+32 < 18 < 8 < 22 < 9 < 15 < 10 < 25 < 5
+32 < 20 < 5 < 29 < 9 < 22 < 15 < 9 < 22 < 29 < 5
+32 < 20 < 5 < 29 < 22 < 9 < 15 < 22 < 9 < 29 < 5
+	VERTEX: 6
+32 < 18 < 8 < 11 < 4 < 28 < 2 < 6
+32 < 3 < 2 < 23 < 3 < 2 < 23 < 3 < 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 26 < 6 < 3 < 2 < 23 < 4 < 11 < 8
+32 < 29 < 15 < 9 < 22 < 15 < 9 < 8
+	VERTEX: 9
+32 < 6 < 3 < 2 < 4 < 11 < 9
+	VERTEX: 10
+32 < 20 < 5 < 25 < 10 < 29 < 5 < 25 < 10
+	VERTEX: 11
+32 < 6 < 13 < 3 < 2 < 4 < 11
+32 < 8 < 22 < 9 < 11 < 4 < 28 < 11
+	VERTEX: 12
+	VERTEX: 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 29 < 22 < 9 < 15 < 22 < 9 < 29 < 15
+32 < 20 < 5 < 29 < 10 < 25 < 5 < 29 < 10 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 18 < 8 < 11 < 4 < 23 < 2 < 17
+	VERTEX: 18
+	VERTEX: 19
+32 < 21 < 19 < 31 < 17 < 19
+32 < 21 < 19 < 17 < 31 < 19
+	VERTEX: 20
+32 < 8 < 22 < 9 < 15 < 10 < 25 < 20
+	VERTEX: 21
+32 < 19 < 17 < 31 < 19 < 21
+	VERTEX: 22
+32 < 29 < 15 < 9 < 22 < 15 < 9 < 29 < 22
+	VERTEX: 23
+32 < 8 < 11 < 4 < 23 < 11 < 4 < 23
+32 < 6 < 3 < 2 < 23 < 4 < 11 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 27 < 29 < 10 < 25 < 29 < 10 < 25
+32 < 27 < 29 < 22 < 9 < 15 < 25
+32 < 27 < 29 < 9 < 22 < 15 < 25
+	VERTEX: 26
+32 < 8 < 11 < 4 < 23 < 3 < 2 < 6 < 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 29 < 15 < 9 < 11 < 4 < 28
+32 < 6 < 28 < 4 < 2 < 3 < 28
+32 < 16 < 6 < 13 < 3 < 2 < 28
+	VERTEX: 29
+32 < 29 < 22 < 9 < 15 < 22 < 9 < 15 < 29
+32 < 29 < 15 < 9 < 22 < 15 < 9 < 22 < 29
+32 < 29 < 15 < 22 < 9 < 15 < 22 < 9 < 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+32 < 8 < 22 < 9 < 15 < 10 < 25 < 20 < 32
+CAPACITY: 89
+	VERTEX: 1
+	VERTEX: 2
+32 < 8 < 11 < 4 < 28 < 23 < 3 < 2
+32 < 6 < 28 < 11 < 4 < 23 < 2
+32 < 26 < 6 < 3 < 2 < 23 < 4 < 2
+	VERTEX: 3
+32 < 8 < 11 < 4 < 28 < 23 < 2 < 3
+32 < 18 < 8 < 11 < 4 < 23 < 3 < 2 < 23 < 3
+	VERTEX: 4
+32 < 18 < 8 < 28 < 4 < 11 < 28 < 4
+32 < 2 < 3 < 23 < 2 < 3 < 23 < 4
+	VERTEX: 5
+	VERTEX: 6
+32 < 26 < 6 < 28 < 4 < 11 < 28 < 6
+32 < 26 < 7 < 13 < 3 < 2 < 13 < 6
+	VERTEX: 7
+32 < 31 < 17 < 19 < 31 < 21 < 7
+32 < 21 < 31 < 17 < 19 < 31 < 7
+	VERTEX: 8
+32 < 14 < 6 < 3 < 2 < 23 < 4 < 11 < 8
+32 < 2 < 3 < 23 < 4 < 11 < 28 < 8
+	VERTEX: 9
+32 < 20 < 5 < 25 < 10 < 15 < 22 < 9
+32 < 6 < 3 < 2 < 4 < 28 < 9
+	VERTEX: 10
+32 < 18 < 9 < 15 < 22 < 9 < 15 < 10
+32 < 20 < 5 < 29 < 9 < 22 < 15 < 9 < 22 < 29 < 10
+	VERTEX: 11
+32 < 11 < 4 < 28 < 23 < 4 < 11
+32 < 6 < 28 < 11 < 4 < 28 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 21 < 31 < 17 < 19 < 31 < 13
+32 < 31 < 17 < 19 < 31 < 21 < 13
+	VERTEX: 14
+32 < 8 < 11 < 4 < 23 < 3 < 2 < 6 < 14
+32 < 27 < 29 < 9 < 22 < 15 < 9 < 22 < 29 < 14
+32 < 27 < 29 < 22 < 9 < 15 < 22 < 9 < 29 < 14
+	VERTEX: 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 26 < 13 < 17 < 31 < 19 < 17
+32 < 26 < 13 < 17 < 19 < 31 < 17
+32 < 26 < 6 < 13 < 17 < 31 < 21 < 17
+	VERTEX: 18
+32 < 26 < 6 < 3 < 2 < 23 < 4 < 11 < 8 < 18
+	VERTEX: 19
+	VERTEX: 20
+32 < 27 < 29 < 22 < 9 < 15 < 10 < 29 < 5 < 20
+32 < 20 < 5 < 29 < 9 < 22 < 15 < 9 < 22 < 29 < 20
+	VERTEX: 21
+32 < 26 < 7 < 13 < 17 < 19 < 21
+32 < 26 < 7 < 13 < 19 < 17 < 21
+	VERTEX: 22
+32 < 20 < 5 < 25 < 10 < 15 < 9 < 22
+32 < 18 < 22 < 9 < 15 < 22 < 9 < 15 < 22
+32 < 20 < 5 < 29 < 22 < 9 < 15 < 22 < 9 < 8 < 22
+	VERTEX: 23
+32 < 11 < 4 < 28 < 11 < 4 < 23
+32 < 6 < 3 < 2 < 23 < 4 < 28 < 23
+32 < 8 < 11 < 4 < 28 < 3 < 2 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 18 < 9 < 22 < 15 < 9 < 22 < 29 < 25
+	VERTEX: 26
+32 < 18 < 8 < 11 < 4 < 23 < 2 < 3 < 6 < 26
+32 < 18 < 8 < 11 < 4 < 23 < 3 < 2 < 6 < 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 26 < 6 < 3 < 2 < 4 < 11 < 28
+32 < 8 < 11 < 4 < 2 < 3 < 23 < 28
+32 < 6 < 13 < 3 < 2 < 4 < 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 6 < 13 < 31 < 19 < 17 < 31
+32 < 6 < 13 < 31 < 17 < 19 < 31
+	VERTEX: 32
+32 < 18 < 8 < 11 < 4 < 23 < 2 < 3 < 6 < 26 < 32
+32 < 27 < 29 < 22 < 9 < 15 < 10 < 29 < 5 < 20 < 32
+CAPACITY: 90
+	VERTEX: 1
+32 < 16 < 1 < 7 < 16 < 1
+	VERTEX: 2
+32 < 18 < 8 < 11 < 4 < 28 < 23 < 3 < 2
+32 < 14 < 6 < 3 < 2 < 23 < 4 < 2
+	VERTEX: 3
+32 < 18 < 8 < 11 < 4 < 28 < 23 < 2 < 3
+32 < 14 < 6 < 3 < 2 < 23 < 4 < 28 < 3
+	VERTEX: 4
+32 < 28 < 11 < 4 < 28 < 23 < 4
+	VERTEX: 5
+32 < 18 < 9 < 15 < 22 < 9 < 15 < 29 < 5
+	VERTEX: 6
+32 < 3 < 2 < 23 < 3 < 2 < 13 < 6
+32 < 14 < 6 < 28 < 4 < 11 < 28 < 6
+	VERTEX: 7
+32 < 14 < 6 < 13 < 3 < 2 < 13 < 7
+	VERTEX: 8
+32 < 27 < 29 < 22 < 9 < 15 < 22 < 9 < 8
+32 < 27 < 29 < 9 < 22 < 15 < 9 < 22 < 8
+32 < 14 < 6 < 3 < 2 < 23 < 4 < 28 < 8
+	VERTEX: 9
+32 < 29 < 10 < 15 < 9 < 22 < 15 < 9
+32 < 26 < 6 < 3 < 2 < 4 < 11 < 9
+	VERTEX: 10
+	VERTEX: 11
+32 < 18 < 23 < 4 < 11 < 28 < 4 < 11
+32 < 11 < 4 < 23 < 3 < 2 < 23 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 8 < 11 < 4 < 23 < 3 < 2 < 13
+32 < 8 < 11 < 4 < 23 < 2 < 3 < 13
+	VERTEX: 14
+32 < 18 < 8 < 11 < 4 < 23 < 2 < 3 < 6 < 14
+32 < 18 < 8 < 11 < 4 < 23 < 3 < 2 < 6 < 14
+	VERTEX: 15
+32 < 8 < 22 < 9 < 15 < 22 < 9 < 15
+32 < 8 < 9 < 22 < 15 < 9 < 22 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 14 < 6 < 13 < 17 < 31 < 21 < 17
+32 < 13 < 17 < 19 < 21 < 17
+	VERTEX: 18
+32 < 14 < 6 < 3 < 2 < 23 < 4 < 11 < 8 < 18
+32 < 20 < 5 < 25 < 10 < 15 < 22 < 9 < 18
+	VERTEX: 19
+	VERTEX: 20
+32 < 18 < 9 < 22 < 15 < 10 < 25 < 5 < 20
+	VERTEX: 21
+	VERTEX: 22
+32 < 29 < 22 < 9 < 15 < 22 < 9 < 15 < 22
+	VERTEX: 23
+32 < 18 < 8 < 11 < 4 < 28 < 3 < 2 < 23
+32 < 18 < 8 < 11 < 4 < 28 < 2 < 3 < 23
+32 < 26 < 6 < 3 < 2 < 23 < 4 < 11 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 20 < 5 < 29 < 10 < 25 < 5 < 29 < 10 < 25
+32 < 29 < 22 < 9 < 15 < 22 < 9 < 29 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 27 < 29 < 22 < 9 < 11 < 4 < 28
+32 < 14 < 6 < 3 < 2 < 4 < 11 < 28
+	VERTEX: 29
+32 < 20 < 5 < 25 < 10 < 29 < 5 < 25 < 10 < 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+32 < 18 < 8 < 11 < 4 < 23 < 2 < 3 < 6 < 14 < 32
+32 < 18 < 9 < 22 < 15 < 10 < 25 < 5 < 20 < 32
+CAPACITY: 91
+	VERTEX: 1
+32 < 12 < 1 < 7 < 13 < 1
+	VERTEX: 2
+32 < 2 < 3 < 23 < 2 < 3 < 23 < 2
+32 < 26 < 7 < 31 < 19 < 17 < 2
+	VERTEX: 3
+32 < 21 < 31 < 19 < 17 < 2 < 3
+	VERTEX: 4
+32 < 27 < 29 < 10 < 15 < 22 < 9 < 4
+32 < 27 < 29 < 10 < 15 < 9 < 22 < 4
+	VERTEX: 5
+32 < 29 < 15 < 9 < 22 < 15 < 9 < 29 < 5
+	VERTEX: 6
+32 < 6 < 3 < 2 < 4 < 11 < 8 < 18 < 6
+	VERTEX: 7
+	VERTEX: 8
+32 < 20 < 5 < 25 < 10 < 15 < 9 < 8
+32 < 27 < 29 < 22 < 9 < 15 < 22 < 9 < 18 < 8
+	VERTEX: 9
+32 < 14 < 6 < 3 < 2 < 4 < 11 < 9
+32 < 2 < 3 < 23 < 4 < 11 < 8 < 18 < 9
+32 < 27 < 29 < 22 < 9 < 11 < 4 < 9
+	VERTEX: 10
+32 < 18 < 9 < 15 < 22 < 9 < 15 < 29 < 10
+	VERTEX: 11
+32 < 26 < 6 < 28 < 11 < 4 < 28 < 11
+32 < 8 < 28 < 4 < 11 < 28 < 23 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 18 < 8 < 11 < 4 < 23 < 3 < 2 < 13
+32 < 18 < 8 < 11 < 4 < 23 < 2 < 3 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 18 < 8 < 22 < 9 < 15 < 22 < 9 < 15
+32 < 18 < 8 < 9 < 22 < 15 < 9 < 22 < 15
+32 < 18 < 9 < 15 < 22 < 9 < 29 < 10 < 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+32 < 27 < 29 < 22 < 9 < 15 < 22 < 9 < 8 < 18
+	VERTEX: 19
+32 < 21 < 19 < 17 < 21 < 19
+	VERTEX: 20
+32 < 29 < 22 < 9 < 15 < 10 < 25 < 5 < 20
+32 < 29 < 10 < 15 < 22 < 9 < 15 < 29 < 5 < 20
+32 < 18 < 9 < 15 < 22 < 9 < 15 < 29 < 20
+	VERTEX: 21
+32 < 3 < 2 < 17 < 19 < 31 < 21
+32 < 26 < 7 < 31 < 19 < 17 < 31 < 21
+32 < 3 < 2 < 17 < 31 < 19 < 21
+	VERTEX: 22
+	VERTEX: 23
+32 < 2 < 3 < 23 < 28 < 11 < 4 < 23
+32 < 2 < 3 < 23 < 4 < 11 < 28 < 23
+32 < 28 < 11 < 4 < 23 < 3 < 2 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 20 < 5 < 29 < 22 < 9 < 15 < 10 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 11 < 4 < 23 < 3 < 2 < 23 < 28
+	VERTEX: 29
+32 < 20 < 5 < 25 < 10 < 15 < 9 < 22 < 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 26 < 7 < 21 < 31 < 19 < 17 < 31
+32 < 26 < 7 < 21 < 31 < 17 < 19 < 31
+32 < 3 < 2 < 17 < 19 < 21 < 31
+	VERTEX: 32
+32 < 29 < 22 < 9 < 15 < 10 < 25 < 5 < 20 < 32
+32 < 18 < 9 < 15 < 22 < 9 < 15 < 29 < 20 < 32
+CAPACITY: 92
+	VERTEX: 1
+32 < 31 < 17 < 19 < 31 < 21 < 1
+32 < 21 < 31 < 17 < 19 < 31 < 1
+32 < 21 < 31 < 19 < 17 < 31 < 1
+	VERTEX: 2
+32 < 28 < 11 < 4 < 28 < 23 < 2
+32 < 6 < 13 < 19 < 17 < 2
+	VERTEX: 3
+	VERTEX: 4
+32 < 16 < 6 < 13 < 3 < 2 < 4
+32 < 6 < 28 < 4 < 2 < 3 < 4
+	VERTEX: 5
+	VERTEX: 6
+32 < 21 < 31 < 19 < 17 < 13 < 6
+32 < 20 < 5 < 29 < 22 < 9 < 15 < 22 < 9 < 18 < 6
+32 < 8 < 11 < 4 < 3 < 2 < 23 < 3 < 6
+	VERTEX: 7
+32 < 21 < 17 < 19 < 31 < 21 < 7
+32 < 21 < 31 < 19 < 17 < 21 < 7
+	VERTEX: 8
+32 < 29 < 15 < 9 < 22 < 15 < 9 < 22 < 8
+32 < 29 < 15 < 22 < 9 < 15 < 22 < 9 < 8
+	VERTEX: 9
+32 < 29 < 15 < 22 < 9 < 15 < 10 < 29 < 9
+32 < 29 < 10 < 15 < 22 < 9 < 15 < 29 < 9
+	VERTEX: 10
+32 < 29 < 15 < 9 < 22 < 15 < 9 < 29 < 10
+	VERTEX: 11
+32 < 14 < 6 < 28 < 11 < 4 < 28 < 11
+32 < 29 < 22 < 9 < 11 < 4 < 28 < 23 < 11
+	VERTEX: 12
+32 < 16 < 1 < 7 < 16 < 12
+	VERTEX: 13
+32 < 21 < 17 < 19 < 31 < 21 < 13
+32 < 21 < 31 < 19 < 17 < 21 < 13
+32 < 19 < 17 < 31 < 19 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 8 < 9 < 22 < 15 < 9 < 22 < 29 < 15
+32 < 8 < 22 < 9 < 15 < 22 < 9 < 29 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 21 < 31 < 17 < 19 < 31 < 17
+32 < 6 < 13 < 21 < 31 < 19 < 17
+32 < 31 < 17 < 19 < 31 < 21 < 17
+	VERTEX: 18
+	VERTEX: 19
+32 < 6 < 13 < 21 < 31 < 17 < 19
+32 < 7 < 19 < 17 < 31 < 19
+32 < 6 < 13 < 17 < 31 < 21 < 19
+	VERTEX: 20
+32 < 29 < 15 < 9 < 22 < 15 < 9 < 29 < 20
+	VERTEX: 21
+32 < 6 < 13 < 17 < 19 < 31 < 21
+32 < 6 < 13 < 31 < 19 < 17 < 21
+	VERTEX: 22
+32 < 29 < 22 < 9 < 15 < 22 < 9 < 15 < 29 < 22
+	VERTEX: 23
+32 < 14 < 6 < 3 < 2 < 23 < 4 < 28 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 29 < 15 < 22 < 9 < 15 < 29 < 25
+32 < 18 < 9 < 15 < 22 < 9 < 29 < 5 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 29 < 15 < 22 < 9 < 11 < 4 < 28
+32 < 28 < 11 < 4 < 23 < 2 < 28
+	VERTEX: 29
+32 < 8 < 22 < 9 < 15 < 22 < 9 < 15 < 29
+32 < 8 < 9 < 22 < 15 < 9 < 22 < 15 < 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 1 < 21 < 31 < 19 < 17 < 31
+32 < 1 < 21 < 31 < 17 < 19 < 31
+32 < 6 < 13 < 17 < 19 < 21 < 31
+	VERTEX: 32
+32 < 31 < 17 < 19 < 31 < 21 < 1 < 32
+32 < 21 < 17 < 19 < 31 < 21 < 7 < 32
+CAPACITY: 93
+	VERTEX: 1
+32 < 12 < 1 < 16 < 7 < 1
+32 < 12 < 1 < 7 < 16 < 1
+	VERTEX: 2
+	VERTEX: 3
+32 < 8 < 11 < 4 < 28 < 11 < 4 < 3
+32 < 6 < 3 < 2 < 4 < 11 < 28 < 3
+	VERTEX: 4
+32 < 8 < 11 < 4 < 23 < 3 < 2 < 4
+32 < 8 < 11 < 4 < 2 < 3 < 23 < 4
+32 < 8 < 11 < 4 < 23 < 2 < 3 < 4
+	VERTEX: 5
+32 < 27 < 29 < 9 < 22 < 15 < 9 < 22 < 29 < 5
+32 < 27 < 29 < 22 < 9 < 15 < 22 < 9 < 29 < 5
+32 < 29 < 10 < 15 < 9 < 22 < 29 < 10 < 25 < 5
+	VERTEX: 6
+32 < 8 < 11 < 4 < 28 < 3 < 2 < 6
+32 < 8 < 11 < 4 < 28 < 2 < 3 < 6
+	VERTEX: 7
+32 < 26 < 7 < 13 < 3 < 2 < 13 < 7
+	VERTEX: 8
+32 < 6 < 3 < 2 < 28 < 4 < 11 < 8
+32 < 8 < 11 < 4 < 28 < 11 < 4 < 8
+	VERTEX: 9
+	VERTEX: 10
+32 < 18 < 9 < 22 < 15 < 9 < 22 < 15 < 10
+32 < 18 < 22 < 9 < 15 < 22 < 9 < 15 < 10
+	VERTEX: 11
+32 < 20 < 5 < 29 < 22 < 9 < 15 < 22 < 9 < 11
+32 < 20 < 5 < 29 < 9 < 22 < 15 < 9 < 22 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 26 < 7 < 13 < 19 < 17 < 13
+32 < 26 < 7 < 13 < 17 < 19 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 18 < 8 < 9 < 22 < 15 < 9 < 22 < 29 < 15
+32 < 27 < 29 < 10 < 25 < 5 < 29 < 10 < 15
+32 < 18 < 8 < 22 < 9 < 15 < 22 < 9 < 29 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 8 < 11 < 4 < 23 < 3 < 2 < 17
+	VERTEX: 18
+32 < 29 < 15 < 9 < 22 < 15 < 9 < 22 < 8 < 18
+32 < 29 < 15 < 22 < 9 < 15 < 22 < 9 < 8 < 18
+	VERTEX: 19
+	VERTEX: 20
+	VERTEX: 21
+	VERTEX: 22
+32 < 14 < 6 < 3 < 2 < 23 < 4 < 11 < 8 < 22
+	VERTEX: 23
+32 < 21 < 31 < 19 < 17 < 2 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 18 < 9 < 15 < 22 < 9 < 29 < 10 < 25
+32 < 20 < 5 < 25 < 10 < 15 < 25
+32 < 18 < 8 < 9 < 22 < 15 < 9 < 22 < 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 6 < 3 < 2 < 4 < 11 < 8 < 28
+32 < 27 < 29 < 10 < 15 < 9 < 22 < 8 < 28
+32 < 29 < 22 < 9 < 15 < 22 < 9 < 11 < 28
+	VERTEX: 29
+32 < 18 < 8 < 22 < 9 < 15 < 22 < 9 < 15 < 29
+32 < 18 < 8 < 9 < 22 < 15 < 9 < 22 < 15 < 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+32 < 12 < 1 < 7 < 16 < 1 < 32
+32 < 12 < 1 < 16 < 7 < 1 < 32
+CAPACITY: 94
+	VERTEX: 1
+	VERTEX: 2
+32 < 26 < 6 < 13 < 19 < 17 < 2
+32 < 29 < 15 < 9 < 11 < 4 < 2
+	VERTEX: 3
+32 < 18 < 8 < 11 < 4 < 28 < 11 < 4 < 3
+32 < 8 < 11 < 4 < 23 < 11 < 4 < 23 < 3
+32 < 6 < 3 < 2 < 23 < 4 < 11 < 23 < 3
+	VERTEX: 4
+32 < 6 < 28 < 4 < 11 < 28 < 4
+32 < 18 < 8 < 11 < 4 < 23 < 3 < 2 < 4
+	VERTEX: 5
+32 < 18 < 9 < 22 < 15 < 9 < 22 < 15 < 29 < 5
+	VERTEX: 6
+32 < 8 < 11 < 4 < 2 < 3 < 13 < 6
+32 < 18 < 8 < 11 < 4 < 28 < 3 < 2 < 6
+	VERTEX: 7
+32 < 3 < 2 < 23 < 3 < 2 < 13 < 7
+32 < 8 < 11 < 4 < 2 < 3 < 6 < 7
+	VERTEX: 8
+32 < 6 < 13 < 3 < 2 < 4 < 11 < 8
+32 < 18 < 8 < 11 < 4 < 28 < 11 < 4 < 8
+	VERTEX: 9
+32 < 29 < 10 < 15 < 22 < 9 < 15 < 22 < 9
+32 < 6 < 3 < 2 < 4 < 11 < 8 < 9
+32 < 27 < 29 < 10 < 15 < 9 < 22 < 8 < 9
+	VERTEX: 10
+32 < 29 < 22 < 9 < 15 < 22 < 9 < 15 < 10
+32 < 27 < 29 < 9 < 22 < 15 < 9 < 22 < 29 < 10
+32 < 27 < 29 < 22 < 9 < 15 < 22 < 9 < 29 < 10
+	VERTEX: 11
+32 < 27 < 29 < 9 < 22 < 15 < 9 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 8 < 11 < 4 < 2 < 3 < 6 < 13
+32 < 16 < 7 < 13 < 6 < 7 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 27 < 29 < 10 < 15 < 22 < 9 < 15
+32 < 27 < 29 < 10 < 15 < 9 < 22 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 26 < 6 < 13 < 21 < 31 < 19 < 17
+32 < 18 < 8 < 11 < 4 < 23 < 3 < 2 < 17
+	VERTEX: 18
+	VERTEX: 19
+32 < 26 < 6 < 13 < 21 < 31 < 17 < 19
+32 < 26 < 7 < 19 < 17 < 31 < 19
+32 < 26 < 6 < 13 < 17 < 31 < 21 < 19
+	VERTEX: 20
+32 < 27 < 29 < 9 < 22 < 15 < 9 < 22 < 29 < 20
+32 < 27 < 29 < 22 < 9 < 15 < 22 < 9 < 29 < 20
+32 < 29 < 10 < 15 < 9 < 22 < 29 < 10 < 25 < 20
+	VERTEX: 21
+32 < 26 < 6 < 13 < 17 < 19 < 31 < 21
+32 < 26 < 6 < 13 < 19 < 17 < 31 < 21
+32 < 26 < 7 < 21 < 31 < 19 < 17 < 21
+	VERTEX: 22
+32 < 29 < 10 < 15 < 9 < 22 < 15 < 9 < 22
+32 < 8 < 22 < 9 < 15 < 22 < 9 < 15 < 22
+	VERTEX: 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 27 < 29 < 5 < 25 < 10 < 29 < 5 < 25
+32 < 8 < 9 < 22 < 15 < 9 < 22 < 29 < 25
+32 < 8 < 22 < 9 < 15 < 22 < 9 < 29 < 25
+	VERTEX: 26
+32 < 21 < 31 < 19 < 17 < 13 < 6 < 26
+	VERTEX: 27
+	VERTEX: 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 26 < 6 < 13 < 17 < 19 < 21 < 31
+	VERTEX: 32
+32 < 21 < 31 < 19 < 17 < 13 < 6 < 26 < 32
+32 < 27 < 29 < 9 < 22 < 15 < 9 < 22 < 29 < 20 < 32
+32 < 3 < 2 < 23 < 3 < 2 < 13 < 7 < 32
+CAPACITY: 95
+	VERTEX: 1
+32 < 21 < 17 < 19 < 31 < 21 < 1
+32 < 21 < 31 < 19 < 17 < 21 < 1
+	VERTEX: 2
+32 < 6 < 28 < 11 < 4 < 23 < 3 < 2
+32 < 8 < 11 < 4 < 2 < 3 < 23 < 2
+	VERTEX: 3
+32 < 6 < 28 < 11 < 4 < 23 < 2 < 3
+32 < 11 < 4 < 28 < 11 < 4 < 23 < 3
+32 < 6 < 3 < 2 < 23 < 4 < 28 < 23 < 3
+	VERTEX: 4
+32 < 8 < 11 < 4 < 23 < 28 < 11 < 4
+32 < 11 < 4 < 23 < 3 < 2 < 23 < 4
+	VERTEX: 5
+32 < 29 < 15 < 9 < 22 < 15 < 9 < 22 < 29 < 5
+32 < 29 < 22 < 9 < 15 < 22 < 9 < 15 < 29 < 5
+32 < 27 < 29 < 10 < 25 < 29 < 10 < 25 < 5
+	VERTEX: 6
+32 < 28 < 11 < 4 < 23 < 3 < 2 < 6
+32 < 28 < 11 < 4 < 23 < 2 < 3 < 6
+	VERTEX: 7
+32 < 3 < 2 < 17 < 19 < 31 < 7
+32 < 18 < 8 < 11 < 4 < 2 < 3 < 6 < 7
+32 < 26 < 7 < 31 < 19 < 17 < 31 < 7
+	VERTEX: 8
+32 < 11 < 4 < 28 < 23 < 4 < 11 < 8
+32 < 20 < 5 < 25 < 10 < 15 < 9 < 22 < 8
+	VERTEX: 9
+32 < 6 < 3 < 2 < 4 < 11 < 8 < 18 < 9
+32 < 14 < 6 < 28 < 4 < 11 < 28 < 18 < 9
+	VERTEX: 10
+32 < 18 < 9 < 22 < 15 < 9 < 22 < 15 < 29 < 10
+32 < 27 < 29 < 10 < 25 < 29 < 5 < 25 < 10
+	VERTEX: 11
+32 < 8 < 11 < 4 < 28 < 23 < 4 < 11
+32 < 6 < 3 < 2 < 23 < 4 < 28 < 11
+32 < 6 < 28 < 4 < 11 < 28 < 8 < 11
+	VERTEX: 12
+32 < 12 < 1 < 7 < 16 < 12
+	VERTEX: 13
+32 < 3 < 2 < 17 < 19 < 31 < 13
+32 < 3 < 2 < 17 < 31 < 19 < 13
+	VERTEX: 14
+32 < 21 < 31 < 19 < 17 < 13 < 6 < 14
+	VERTEX: 15
+32 < 18 < 9 < 22 < 15 < 9 < 22 < 29 < 10 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 19 < 17 < 31 < 19 < 17
+32 < 21 < 17 < 19 < 31 < 21 < 17
+32 < 18 < 8 < 11 < 4 < 28 < 2 < 17
+	VERTEX: 18
+32 < 29 < 10 < 15 < 22 < 9 < 15 < 22 < 9 < 18
+32 < 6 < 13 < 3 < 2 < 4 < 11 < 8 < 18
+	VERTEX: 19
+32 < 17 < 19 < 31 < 17 < 19
+32 < 14 < 6 < 13 < 17 < 31 < 21 < 19
+	VERTEX: 20
+32 < 8 < 22 < 9 < 15 < 10 < 25 < 5 < 20
+32 < 18 < 9 < 22 < 15 < 9 < 22 < 15 < 29 < 20
+	VERTEX: 21
+32 < 14 < 6 < 13 < 17 < 19 < 31 < 21
+32 < 1 < 21 < 31 < 19 < 17 < 21
+	VERTEX: 22
+32 < 18 < 8 < 22 < 9 < 15 < 22 < 9 < 15 < 22
+	VERTEX: 23
+32 < 8 < 11 < 4 < 28 < 11 < 4 < 23
+32 < 6 < 3 < 2 < 4 < 11 < 28 < 23
+32 < 6 < 28 < 11 < 4 < 2 < 3 < 23
+	VERTEX: 24
+32 < 12 < 1 < 7 < 6 < 14 < 24
+	VERTEX: 25
+32 < 27 < 29 < 10 < 25 < 5 < 29 < 10 < 25
+32 < 18 < 8 < 9 < 22 < 15 < 9 < 22 < 29 < 25
+	VERTEX: 26
+32 < 8 < 11 < 4 < 28 < 3 < 2 < 6 < 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 6 < 3 < 2 < 23 < 4 < 11 < 28
+32 < 8 < 11 < 4 < 23 < 11 < 4 < 28
+	VERTEX: 29
+32 < 18 < 9 < 22 < 15 < 9 < 22 < 15 < 10 < 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 14 < 6 < 13 < 17 < 19 < 21 < 31
+	VERTEX: 32
+32 < 21 < 31 < 19 < 17 < 13 < 6 < 14 < 32
+32 < 12 < 1 < 7 < 6 < 14 < 24 < 32
+CAPACITY: 96
+	VERTEX: 1
+32 < 12 < 1 < 7 < 12 < 1
+	VERTEX: 2
+32 < 18 < 8 < 11 < 4 < 2 < 3 < 23 < 2
+32 < 27 < 29 < 22 < 9 < 11 < 4 < 2
+	VERTEX: 3
+	VERTEX: 4
+32 < 18 < 8 < 11 < 4 < 23 < 28 < 11 < 4
+32 < 26 < 6 < 28 < 4 < 11 < 28 < 4
+32 < 8 < 28 < 4 < 11 < 28 < 23 < 4
+	VERTEX: 5
+	VERTEX: 6
+32 < 18 < 8 < 11 < 4 < 28 < 23 < 2 < 6
+32 < 14 < 6 < 3 < 2 < 23 < 4 < 28 < 6
+32 < 29 < 22 < 9 < 11 < 4 < 28 < 23 < 3 < 6
+	VERTEX: 7
+32 < 21 < 31 < 19 < 17 < 13 < 7
+32 < 6 < 13 < 17 < 19 < 31 < 7
+32 < 6 < 13 < 31 < 19 < 17 < 7
+	VERTEX: 8
+32 < 18 < 23 < 4 < 11 < 28 < 4 < 11 < 8
+32 < 27 < 29 < 22 < 9 < 11 < 4 < 28 < 8
+32 < 29 < 10 < 15 < 9 < 22 < 15 < 9 < 8
+	VERTEX: 9
+32 < 6 < 3 < 2 < 23 < 4 < 11 < 9
+32 < 26 < 6 < 3 < 2 < 4 < 11 < 8 < 9
+32 < 8 < 11 < 4 < 23 < 11 < 4 < 9
+	VERTEX: 10
+32 < 29 < 15 < 9 < 22 < 15 < 9 < 22 < 29 < 10
+32 < 29 < 22 < 9 < 15 < 22 < 9 < 15 < 29 < 10
+	VERTEX: 11
+32 < 18 < 8 < 11 < 4 < 28 < 23 < 4 < 11
+32 < 8 < 11 < 4 < 23 < 2 < 3 < 23 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 6 < 13 < 31 < 19 < 17 < 13
+32 < 6 < 13 < 17 < 19 < 31 < 13
+32 < 6 < 13 < 31 < 17 < 19 < 13
+	VERTEX: 14
+32 < 8 < 11 < 4 < 28 < 3 < 2 < 6 < 14
+	VERTEX: 15
+32 < 27 < 29 < 22 < 9 < 15 < 10 < 29 < 15
+32 < 27 < 29 < 10 < 15 < 9 < 22 < 29 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 28 < 11 < 4 < 23 < 2 < 17
+	VERTEX: 18
+32 < 8 < 11 < 4 < 28 < 11 < 4 < 23 < 18
+32 < 11 < 4 < 28 < 23 < 4 < 11 < 8 < 18
+	VERTEX: 19
+	VERTEX: 20
+32 < 18 < 8 < 22 < 9 < 15 < 10 < 25 < 5 < 20
+32 < 29 < 15 < 9 < 22 < 15 < 9 < 22 < 29 < 20
+	VERTEX: 21
+	VERTEX: 22
+	VERTEX: 23
+32 < 18 < 8 < 11 < 4 < 28 < 11 < 4 < 23
+32 < 29 < 15 < 9 < 11 < 4 < 28 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 27 < 29 < 22 < 9 < 15 < 10 < 25
+32 < 18 < 9 < 22 < 15 < 9 < 22 < 29 < 5 < 25
+	VERTEX: 26
+32 < 8 < 11 < 4 < 2 < 3 < 13 < 6 < 26
+32 < 18 < 8 < 11 < 4 < 28 < 3 < 2 < 6 < 26
+	VERTEX: 27
+32 < 29 < 10 < 15 < 22 < 9 < 15 < 29 < 27
+32 < 29 < 15 < 22 < 9 < 15 < 10 < 29 < 27
+	VERTEX: 28
+32 < 11 < 4 < 28 < 11 < 4 < 28
+32 < 29 < 15 < 9 < 11 < 4 < 23 < 28
+32 < 8 < 11 < 4 < 28 < 3 < 2 < 28
+	VERTEX: 29
+32 < 29 < 22 < 9 < 15 < 22 < 9 < 15 < 10 < 29
+32 < 29 < 10 < 15 < 9 < 22 < 15 < 9 < 22 < 29
+32 < 29 < 10 < 15 < 22 < 9 < 15 < 22 < 9 < 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 13 < 17 < 31 < 19 < 17 < 31
+	VERTEX: 32
+32 < 29 < 10 < 15 < 22 < 9 < 15 < 29 < 27 < 32
+32 < 18 < 8 < 22 < 9 < 15 < 10 < 25 < 5 < 20 < 32
+32 < 8 < 11 < 4 < 2 < 3 < 13 < 6 < 26 < 32
+CAPACITY: 97
+	VERTEX: 1
+32 < 16 < 7 < 13 < 6 < 7 < 1
+32 < 3 < 2 < 23 < 3 < 2 < 13 < 1
+	VERTEX: 2
+32 < 3 < 2 < 23 < 3 < 2 < 23 < 3 < 2
+32 < 18 < 23 < 4 < 11 < 28 < 4 < 2
+	VERTEX: 3
+32 < 2 < 3 < 23 < 2 < 3 < 23 < 2 < 3
+32 < 2 < 3 < 23 < 4 < 11 < 28 < 23 < 3
+32 < 2 < 3 < 23 < 28 < 11 < 4 < 23 < 3
+	VERTEX: 4
+32 < 29 < 22 < 9 < 15 < 22 < 9 < 11 < 4
+32 < 14 < 6 < 28 < 4 < 11 < 28 < 4
+32 < 29 < 22 < 9 < 11 < 4 < 28 < 23 < 4
+	VERTEX: 5
+32 < 20 < 5 < 29 < 10 < 25 < 5 < 29 < 10 < 25 < 5
+	VERTEX: 6
+32 < 27 < 29 < 22 < 9 < 15 < 22 < 9 < 18 < 6
+32 < 21 < 31 < 19 < 17 < 2 < 6
+32 < 27 < 29 < 9 < 22 < 15 < 9 < 22 < 18 < 6
+	VERTEX: 7
+32 < 16 < 1 < 7 < 13 < 6 < 7
+	VERTEX: 8
+	VERTEX: 9
+32 < 20 < 5 < 29 < 15 < 9 < 22 < 15 < 9
+32 < 14 < 6 < 3 < 2 < 4 < 11 < 8 < 9
+	VERTEX: 10
+32 < 18 < 9 < 22 < 15 < 9 < 22 < 29 < 25 < 10
+32 < 20 < 5 < 25 < 10 < 15 < 22 < 9 < 10
+	VERTEX: 11
+32 < 26 < 6 < 3 < 2 < 23 < 4 < 28 < 11
+32 < 18 < 8 < 11 < 4 < 23 < 2 < 3 < 23 < 11
+32 < 26 < 6 < 28 < 4 < 11 < 28 < 8 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 8 < 11 < 4 < 28 < 3 < 2 < 13
+32 < 8 < 11 < 4 < 28 < 2 < 3 < 13
+	VERTEX: 14
+32 < 8 < 11 < 4 < 2 < 3 < 13 < 6 < 14
+32 < 18 < 8 < 11 < 4 < 28 < 3 < 2 < 6 < 14
+	VERTEX: 15
+32 < 20 < 5 < 29 < 9 < 15 < 22 < 9 < 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+32 < 18 < 8 < 11 < 4 < 28 < 11 < 4 < 23 < 18
+32 < 18 < 23 < 4 < 11 < 28 < 4 < 11 < 8 < 18
+	VERTEX: 19
+32 < 21 < 31 < 19 < 17 < 31 < 19
+32 < 31 < 17 < 19 < 31 < 21 < 19
+	VERTEX: 20
+	VERTEX: 21
+32 < 31 < 19 < 17 < 31 < 19 < 21
+	VERTEX: 22
+	VERTEX: 23
+32 < 8 < 11 < 4 < 28 < 23 < 3 < 2 < 23
+32 < 8 < 11 < 4 < 28 < 23 < 2 < 3 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 18 < 9 < 22 < 15 < 9 < 22 < 29 < 10 < 25
+	VERTEX: 26
+32 < 28 < 11 < 4 < 23 < 2 < 3 < 6 < 26
+32 < 28 < 11 < 4 < 23 < 3 < 2 < 6 < 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 18 < 8 < 11 < 4 < 28 < 23 < 4 < 28
+32 < 26 < 6 < 3 < 2 < 23 < 4 < 11 < 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 21 < 19 < 31 < 17 < 19 < 31
+	VERTEX: 32
+32 < 8 < 11 < 4 < 2 < 3 < 13 < 6 < 14 < 32
+32 < 28 < 11 < 4 < 23 < 2 < 3 < 6 < 26 < 32
+32 < 16 < 7 < 13 < 6 < 7 < 1 < 32
+CAPACITY: 98
+	VERTEX: 1
+32 < 12 < 1 < 16 < 12 < 1
+32 < 3 < 2 < 17 < 19 < 31 < 1
+32 < 26 < 7 < 31 < 19 < 17 < 31 < 1
+	VERTEX: 2
+32 < 28 < 11 < 4 < 28 < 23 < 3 < 2
+32 < 8 < 28 < 4 < 11 < 28 < 23 < 2
+	VERTEX: 3
+32 < 28 < 11 < 4 < 28 < 23 < 2 < 3
+	VERTEX: 4
+32 < 20 < 5 < 29 < 22 < 9 < 15 < 22 < 9 < 4
+32 < 20 < 5 < 29 < 9 < 22 < 15 < 9 < 22 < 4
+	VERTEX: 5
+32 < 20 < 5 < 29 < 22 < 9 < 15 < 10 < 25 < 5
+32 < 20 < 5 < 25 < 10 < 15 < 9 < 22 < 29 < 5
+	VERTEX: 6
+32 < 3 < 2 < 17 < 19 < 13 < 6
+	VERTEX: 7
+32 < 8 < 11 < 4 < 2 < 3 < 13 < 7
+32 < 26 < 13 < 17 < 19 < 31 < 21 < 7
+32 < 26 < 7 < 21 < 31 < 19 < 17 < 7
+	VERTEX: 8
+32 < 29 < 15 < 22 < 9 < 11 < 4 < 28 < 8
+	VERTEX: 9
+32 < 26 < 6 < 3 < 2 < 23 < 4 < 11 < 9
+32 < 14 < 6 < 3 < 2 < 4 < 11 < 8 < 18 < 9
+	VERTEX: 10
+32 < 8 < 22 < 9 < 15 < 22 < 9 < 15 < 10
+32 < 8 < 9 < 22 < 15 < 9 < 22 < 15 < 10
+	VERTEX: 11
+32 < 27 < 29 < 22 < 9 < 15 < 22 < 9 < 11
+32 < 14 < 6 < 3 < 2 < 23 < 4 < 28 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 26 < 7 < 21 < 31 < 19 < 17 < 13
+32 < 26 < 6 < 13 < 17 < 19 < 31 < 13
+	VERTEX: 14
+32 < 28 < 11 < 4 < 23 < 2 < 3 < 6 < 14
+32 < 28 < 11 < 4 < 23 < 3 < 2 < 6 < 14
+	VERTEX: 15
+32 < 29 < 15 < 22 < 9 < 15 < 10 < 29 < 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 3 < 2 < 17 < 31 < 19 < 17
+32 < 3 < 2 < 17 < 19 < 31 < 17
+	VERTEX: 18
+32 < 20 < 5 < 29 < 15 < 9 < 22 < 15 < 9 < 18
+	VERTEX: 19
+	VERTEX: 20
+32 < 18 < 9 < 15 < 22 < 9 < 15 < 29 < 5 < 20
+32 < 20 < 5 < 29 < 10 < 25 < 5 < 29 < 10 < 25 < 20
+	VERTEX: 21
+32 < 26 < 7 < 13 < 17 < 19 < 31 < 21
+32 < 26 < 7 < 13 < 19 < 17 < 31 < 21
+	VERTEX: 22
+32 < 27 < 29 < 10 < 15 < 22 < 9 < 15 < 22
+	VERTEX: 23
+32 < 18 < 8 < 11 < 4 < 28 < 23 < 3 < 2 < 23
+32 < 18 < 8 < 11 < 4 < 28 < 23 < 2 < 3 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 29 < 15 < 22 < 9 < 15 < 10 < 25
+32 < 27 < 29 < 22 < 9 < 15 < 10 < 29 < 25
+32 < 27 < 29 < 10 < 15 < 9 < 22 < 29 < 25
+	VERTEX: 26
+32 < 21 < 31 < 19 < 17 < 13 < 7 < 26
+32 < 6 < 13 < 17 < 19 < 31 < 13 < 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 14 < 6 < 3 < 2 < 23 < 4 < 11 < 28
+32 < 2 < 3 < 23 < 28 < 11 < 4 < 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+32 < 26 < 13 < 17 < 31 < 19 < 17 < 31
+32 < 26 < 7 < 13 < 17 < 19 < 21 < 31
+	VERTEX: 32
+32 < 18 < 9 < 15 < 22 < 9 < 15 < 29 < 5 < 20 < 32
+32 < 28 < 11 < 4 < 23 < 2 < 3 < 6 < 14 < 32
+CAPACITY: 99
+	VERTEX: 1
+32 < 6 < 13 < 17 < 19 < 31 < 1
+32 < 13 < 17 < 19 < 31 < 21 < 1
+	VERTEX: 2
+32 < 29 < 22 < 9 < 11 < 4 < 28 < 23 < 2
+32 < 14 < 6 < 28 < 4 < 11 < 28 < 2
+	VERTEX: 3
+	VERTEX: 4
+32 < 6 < 3 < 2 < 4 < 11 < 23 < 4
+32 < 26 < 6 < 3 < 2 < 4 < 11 < 8 < 4
+	VERTEX: 5
+32 < 8 < 22 < 9 < 15 < 22 < 9 < 15 < 29 < 5
+	VERTEX: 6
+32 < 6 < 28 < 11 < 4 < 2 < 3 < 6
+32 < 6 < 3 < 2 < 4 < 11 < 28 < 6
+32 < 6 < 13 < 17 < 19 < 13 < 6
+	VERTEX: 7
+32 < 1 < 21 < 31 < 19 < 17 < 7
+32 < 18 < 8 < 11 < 4 < 2 < 3 < 13 < 7
+	VERTEX: 8
+	VERTEX: 9
+32 < 14 < 6 < 3 < 2 < 23 < 4 < 11 < 9
+32 < 18 < 9 < 15 < 22 < 9 < 15 < 29 < 9
+32 < 26 < 6 < 28 < 4 < 11 < 28 < 8 < 9
+	VERTEX: 10
+32 < 18 < 8 < 22 < 9 < 15 < 22 < 9 < 15 < 10
+32 < 18 < 8 < 9 < 22 < 15 < 9 < 22 < 15 < 10
+32 < 20 < 5 < 25 < 10 < 15 < 9 < 22 < 29 < 10
+	VERTEX: 11
+32 < 20 < 5 < 29 < 22 < 9 < 15 < 22 < 9 < 8 < 11
+32 < 20 < 5 < 25 < 10 < 15 < 9 < 11
+32 < 20 < 5 < 29 < 9 < 22 < 15 < 9 < 22 < 8 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 1 < 21 < 31 < 19 < 17 < 13
+32 < 14 < 6 < 13 < 17 < 19 < 31 < 13
+32 < 1 < 21 < 31 < 17 < 19 < 13
+	VERTEX: 14
+32 < 29 < 10 < 15 < 9 < 22 < 15 < 9 < 22 < 29 < 14
+32 < 29 < 22 < 9 < 15 < 22 < 9 < 15 < 10 < 29 < 14
+	VERTEX: 15
+	VERTEX: 16
+	VERTEX: 17
+32 < 6 < 13 < 17 < 31 < 19 < 17
+32 < 6 < 13 < 17 < 19 < 31 < 17
+32 < 13 < 17 < 19 < 31 < 21 < 17
+	VERTEX: 18
+	VERTEX: 19
+	VERTEX: 20
+32 < 20 < 5 < 25 < 10 < 15 < 9 < 22 < 29 < 20
+32 < 20 < 5 < 29 < 22 < 9 < 15 < 10 < 25 < 20
+	VERTEX: 21
+32 < 13 < 17 < 19 < 31 < 17 < 21
+32 < 13 < 17 < 31 < 19 < 17 < 21
+	VERTEX: 22
+	VERTEX: 23
+32 < 21 < 31 < 19 < 17 < 2 < 3 < 23
+	VERTEX: 24
+	VERTEX: 25
+	VERTEX: 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 18 < 8 < 11 < 4 < 28 < 23 < 2 < 28
+32 < 27 < 29 < 22 < 9 < 15 < 22 < 9 < 28
+32 < 27 < 29 < 9 < 22 < 15 < 9 < 22 < 28
+	VERTEX: 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+32 < 29 < 10 < 15 < 9 < 22 < 15 < 9 < 22 < 29 < 14 < 32
+32 < 20 < 5 < 25 < 10 < 15 < 9 < 22 < 29 < 20 < 32
+32 < 6 < 13 < 17 < 19 < 31 < 1 < 32
+CAPACITY: 100
+	VERTEX: 1
+	VERTEX: 2
+32 < 6 < 3 < 2 < 4 < 11 < 8 < 18 < 2
+	VERTEX: 3
+32 < 6 < 28 < 4 < 11 < 28 < 4 < 3
+	VERTEX: 4
+32 < 6 < 3 < 2 < 4 < 28 < 23 < 4
+32 < 8 < 11 < 4 < 28 < 3 < 2 < 4
+32 < 8 < 11 < 4 < 28 < 2 < 3 < 4
+	VERTEX: 5
+32 < 18 < 8 < 22 < 9 < 15 < 22 < 9 < 15 < 29 < 5
+32 < 18 < 9 < 15 < 22 < 9 < 29 < 10 < 25 < 5
+	VERTEX: 6
+32 < 8 < 11 < 4 < 23 < 3 < 2 < 23 < 3 < 6
+32 < 29 < 15 < 9 < 11 < 4 < 28 < 6
+32 < 8 < 11 < 4 < 23 < 11 < 4 < 23 < 6
+	VERTEX: 7
+32 < 12 < 1 < 7 < 13 < 6 < 7
+32 < 12 < 1 < 7 < 6 < 13 < 7
+	VERTEX: 8
+32 < 29 < 10 < 15 < 9 < 22 < 15 < 9 < 22 < 8
+32 < 29 < 10 < 15 < 22 < 9 < 15 < 22 < 9 < 8
+32 < 6 < 28 < 4 < 11 < 28 < 4 < 8
+	VERTEX: 9
+32 < 6 < 3 < 2 < 23 < 4 < 11 < 22 < 9
+32 < 14 < 6 < 28 < 4 < 11 < 28 < 8 < 9
+	VERTEX: 10
+32 < 8 < 22 < 9 < 15 < 22 < 9 < 15 < 29 < 10
+	VERTEX: 11
+32 < 29 < 15 < 22 < 9 < 15 < 22 < 9 < 11
+32 < 29 < 15 < 9 < 22 < 15 < 9 < 22 < 11
+	VERTEX: 12
+	VERTEX: 13
+32 < 18 < 8 < 11 < 4 < 28 < 23 < 2 < 13
+32 < 29 < 22 < 9 < 11 < 4 < 28 < 23 < 3 < 13
+	VERTEX: 14
+	VERTEX: 15
+32 < 14 < 6 < 18 < 9 < 22 < 15 < 9 < 22 < 15
+32 < 8 < 9 < 22 < 15 < 9 < 22 < 29 < 10 < 15
+	VERTEX: 16
+	VERTEX: 17
+	VERTEX: 18
+	VERTEX: 19
+32 < 21 < 17 < 19 < 31 < 21 < 19
+32 < 21 < 31 < 19 < 17 < 21 < 19
+	VERTEX: 20
+32 < 8 < 22 < 9 < 15 < 22 < 9 < 15 < 29 < 20
+	VERTEX: 21
+32 < 21 < 19 < 17 < 31 < 19 < 21
+32 < 21 < 19 < 31 < 17 < 19 < 21
+	VERTEX: 22
+32 < 6 < 3 < 2 < 23 < 4 < 11 < 9 < 22
+	VERTEX: 23
+32 < 29 < 15 < 22 < 9 < 11 < 4 < 28 < 23
+	VERTEX: 24
+	VERTEX: 25
+32 < 29 < 10 < 15 < 22 < 9 < 15 < 29 < 25
+32 < 29 < 15 < 22 < 9 < 15 < 10 < 29 < 25
+	VERTEX: 26
+32 < 8 < 11 < 4 < 2 < 3 < 13 < 7 < 26
+32 < 26 < 7 < 21 < 31 < 19 < 17 < 13 < 26
+	VERTEX: 27
+	VERTEX: 28
+32 < 20 < 5 < 29 < 22 < 9 < 15 < 22 < 9 < 8 < 28
+32 < 21 < 31 < 19 < 17 < 2 < 28
+	VERTEX: 29
+32 < 8 < 22 < 9 < 15 < 22 < 9 < 15 < 10 < 29
+	VERTEX: 30
+	VERTEX: 31
+	VERTEX: 32
+32 < 8 < 22 < 9 < 15 < 22 < 9 < 15 < 29 < 20 < 32
+32 < 8 < 11 < 4 < 2 < 3 < 13 < 7 < 26 < 32
+32 < 26 < 7 < 21 < 31 < 19 < 17 < 13 < 26 < 32
+blabla1
