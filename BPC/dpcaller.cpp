@@ -49,6 +49,7 @@ void DPCaller::getData(vector<QR*> &qroutes){
         //add the edge to come back from i to the depot
         length += oracle->getLength(path[1], oracle->getDepot());
 
+        //printf("length %f\n", length);
         //ignore non negative paths
         if(mode == 1 && length > -eps)
             continue;

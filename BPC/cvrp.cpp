@@ -9,7 +9,6 @@
 #include "mygraphlib.h"
 #include "myutils.h"
 #include "cvrp.h"
-#include "cvrpalgs.h"
 #include "cvrpalgsscip.h"
 #include <regex>
 
@@ -19,10 +18,8 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     Params params;
-    bool useScip = false;
-    bool shouldPrice = false;
 
-    readCheckParams(params, argc, argv, &useScip, &shouldPrice);
+    readCheckParams(params, argc, argv);
 
     // Variables that represent the CVRP
     ListGraph        g;
@@ -43,7 +40,7 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
-    // Initialize the LPD-TSP instance with the read values
+    // Initialize the CVRP instance with the read values
     CVRPInstance l(g, vname, weight, dual, posx, posy, depot, capacity, demand, nroutes, int2node);
 
     // Initialize a solution
@@ -54,20 +51,46 @@ int main(int argc, char *argv[])
         cout << instanceDescriptionAsString(l) << endl;
     }
 
+    l.testing = true;
+    l.shouldPrice = true;
+    SCIPexact(l, ts, params.timeLimit);
+
+    // Now we will compare using B&C with B&C&P at the root node
+    l.testing = true;
+
     double  elapsedTime = DBL_MAX;
+    double time_bc, lb_bc;
+    double time_bcp, lb_bcp;
+
+    //test branch-and-cut
     clock_t before  = clock();
-
-    if(useScip){
-        printf("Using SCIP\n");
-        l.shouldPrice = shouldPrice;
-        SCIPexact(l, ts, params.timeLimit);
-    }
-    else{
-        printf("Using Gurobi\n");
-        exact(l, ts, params.timeLimit);
-    }
-
+    l.shouldPrice = false;
+    SCIPexact(l, ts, params.timeLimit);
     clock_t after = clock();
+    time_bc = (double) (after - before) / CLOCKS_PER_SEC;
+    lb_bc = ts.cost;
+
+    //test branch-cut-and-price
+    ts.tour.clear();
+    before = clock();
+    l.shouldPrice = true;
+    SCIPexact(l, ts, params.timeLimit);
+    after = clock();
+    time_bcp = (double) (after - before) / CLOCKS_PER_SEC;
+    lb_bcp = ts.cost;
+    ts.tour.clear();
+
+    //check if we should use B&C or B&C&P according to fukasawa rules
+    if(time_bcp < 10 * time_bc && lb_bcp >= 1.03 * lb_bc)
+        l.shouldPrice = true;
+    else
+        l.shouldPrice = false;
+
+    //run the algorithm for real!
+    l.testing = false;
+    before = clock();
+    SCIPexact(l, ts, params.timeLimit);
+    after = clock();
     elapsedTime = (double) (after - before) / CLOCKS_PER_SEC;
 
     printf("Elapsed time: %f\n", elapsedTime);
@@ -122,7 +145,7 @@ CVRPSolution::CVRPSolution()
     upperBound = DBL_MAX;
 }
 //------------------------------------------------------------------------------
-void readCheckParams(Params &params, int argc, char *argv[], bool *useScip, bool *shouldPrice)
+void readCheckParams(Params &params, int argc, char *argv[])
 {
     params.alg        = NONE;
     params.timeLimit  = 0;
@@ -164,16 +187,6 @@ void readCheckParams(Params &params, int argc, char *argv[], bool *useScip, bool
             continue;
         }
 
-        if( arg.find("-s") == 0){
-            *useScip = true;
-            continue;
-        }
-
-        if( arg.find("-p") == 0){
-            *shouldPrice = true;
-            continue;
-        }
-
         cerr << "Parametro invalido: \"" << arg << "\"" << " (ou parametro faltando)" << endl;
         showUsage();
         exit(1);
@@ -208,8 +221,6 @@ void showUsage()
          << "-t <time> Informa o tempo limite em segundos dado por <time>. Caso não seja informado, considera-se 30s.\n"
          << "-i <in>   Informa arquivo de entrada <in>\n"
          << "-o <out>  Informa arquivo de saida <out>\n"
-         << "-s Utiliza o SCIP ao invés do GUROBI.\n"
-         << "-p Realiza o geracao de colunas.\n"
          << "-g Adicionalmente, -g mostra um gráfico da solução.\n"
          << flush;
 }

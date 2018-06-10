@@ -29,11 +29,11 @@ private:
 
 public:
     VarPool(CVRPInstance &cvrp);
+    ~VarPool();
     void addVarInfo(Edge e, QR *qr);
     double getEdgeValue(SCIP* scip, SCIP_SOL* sol, Edge e);
     void addEdgeVar(SCIP *scip, SCIP_ROW* row, Edge e, double coef);
     void addEdgeVar(SCIP *scip, SCIP_CONS* cons, Edge e, double coef);
-    void freeVarPool();
 };
 
 

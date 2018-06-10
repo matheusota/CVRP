@@ -10,7 +10,6 @@
 #include <lemon/adaptors.h>
 #include <lemon/connectivity.h>
 #include "mygraphlib.h"
-#include "cvrpalgs.h"
 #include <lemon/preflow.h>
 #include "cvrpcutscallbackscip.h"
 #include "cvrppricerscip.h"

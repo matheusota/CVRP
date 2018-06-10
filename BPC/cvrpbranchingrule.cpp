@@ -32,9 +32,12 @@ void CVRPBranchingRule::initializeCVRPSEPConstants(CVRPInstance &cvrp, CnstrMgrP
     }
 }
 
-//add variable to a cons and update consPool
+//add variable to a cons (if pricing, the consPool update will be done by the branching manager)
 void CVRPBranchingRule::addVarToCons(SCIP *scip, Edge e, SCIP_CONS* cons, double coef){
-    varPool->addEdgeVar(scip, cons, e, coef);
+    if(cvrp.shouldPrice)
+        varPool->addEdgeVar(scip, cons, e, coef);
+    else
+        SCIPaddCoefLinear(scip, cons, x[e], coef);
 }
 
 //return the expression for x(delta(S))
@@ -77,6 +80,10 @@ int CVRPBranchingRule::checkForDepot(int i){
 //main branching routine
 SCIP_RETCODE CVRPBranchingRule::branchingRoutine(SCIP *scip, SCIP_RESULT* result){
     *result = SCIP_DIDNOTRUN;
+
+    //interrupt if testing
+    if(cvrp.testing)
+        SCIPinterruptSolve(scip);
 
     //we will use this list to add the branching decision in the cutspool (if pricing)
     list<int> edgesList;
@@ -259,20 +266,22 @@ SCIP_RETCODE CVRPBranchingRule::branchingRoutine(SCIP *scip, SCIP_RESULT* result
     SCIP_CALL(SCIPaddConsNode(scip, child2, cons2, NULL));
 
     //add the managers
-    SCIP_CONS* manager1;
-    SCIP_CONS* manager2;
+    if(cvrp.shouldPrice){
+        SCIP_CONS* manager1;
+        SCIP_CONS* manager2;
 
-    SCIP_CALL(branchingManager->SCIPcreateBranchingManager(scip, cons1, &manager1, "manager1",
-        FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, edgesList));
+        SCIP_CALL(branchingManager->SCIPcreateBranchingManager(scip, cons1, &manager1, "manager1",
+            FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, edgesList));
 
-    SCIP_CALL(branchingManager->SCIPcreateBranchingManager(scip, cons2, &manager2, "manager2",
-        FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, edgesList));
+        SCIP_CALL(branchingManager->SCIPcreateBranchingManager(scip, cons2, &manager2, "manager2",
+            FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, edgesList));
 
-    SCIP_CALL(SCIPaddConsNode(scip, child1, manager1, NULL));
-    SCIP_CALL(SCIPaddConsNode(scip, child2, manager2, NULL));
+        SCIP_CALL(SCIPaddConsNode(scip, child1, manager1, NULL));
+        SCIP_CALL(SCIPaddConsNode(scip, child2, manager2, NULL));
 
-    SCIP_CALL(SCIPreleaseCons(scip, &manager1));
-    SCIP_CALL(SCIPreleaseCons(scip, &manager2));
+        SCIP_CALL(SCIPreleaseCons(scip, &manager1));
+        SCIP_CALL(SCIPreleaseCons(scip, &manager2));
+    }
 
     //release stuff
     SCIP_CALL(SCIPreleaseCons(scip, &cons1));

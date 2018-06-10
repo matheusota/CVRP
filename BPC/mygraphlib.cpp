@@ -759,7 +759,7 @@ int ViewListGraph2(ListGraph &g,
         else
             color = RED;
 
-        myfile << "\t" << "\"" << to_string(vname[v]).c_str() << "(" << to_string(int(demand[v])).c_str() << ")\"" << "[style = \"bold\", color=\""
+        myfile << "\t" << "\"" << to_string(vname[v]).c_str() << "\n(" << to_string(int(demand[v])).c_str() << ")\"" << "[style = \"bold\", color=\""
         << ColorName(color).c_str() << "\", pos = \"" << factor*(px[v]-minpx)/delta << "," <<
            factor*(py[v]-minpy)/delta << "!\" ];\n";
     }
@@ -781,8 +781,8 @@ int ViewListGraph2(ListGraph &g,
                 color = 1;
         }
 
-        myfile << "\t" << "\"" << to_string(u).c_str() << "(" << to_string(int(demand[nodeu])).c_str() << ")\" -- \""
-               << to_string(v).c_str() << "(" << to_string(int(demand[nodev])).c_str() << ")\""
+        myfile << "\t" << "\"" << to_string(u).c_str() << "\n(" << to_string(int(demand[nodeu])).c_str() << ")\" -- \""
+               << to_string(v).c_str() << "\n(" << to_string(int(demand[nodev])).c_str() << ")\""
                << " [style = \"bold\", label = \"\", color=\"" << ColorName(color).c_str() << "\" ];\n";
     }
 

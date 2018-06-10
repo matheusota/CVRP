@@ -70,6 +70,7 @@ class CVRPInstance
         NodePosMap   &demand;
         int nroutes;
         bool shouldPrice;
+        bool testing;
 };
 
 class QR{
@@ -115,7 +116,7 @@ typedef enum ENUM_SOLUTION_STATUS
     OK
 } SOLUTION_STATUS;
 
-void            readCheckParams(Params &params, int argc, char *argv[], bool *useScip, bool *shouldPrice);
+void            readCheckParams(Params &params, int argc, char *argv[]);
 void            showUsage();
 void            IgnoreComments(ifstream &ifile);  // Implemented in mygraphlib.cpp
 bool            readCVRP(string       filename,

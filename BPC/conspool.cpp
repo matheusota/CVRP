@@ -59,7 +59,7 @@ list<ConsInfo*> ConsPool::getConsInfo(Edge e){
     return consMap[e];
 }
 
-void ConsPool::freeConsPool(){
+ConsPool::~ConsPool(){
     for(EdgeIt e(cvrp.g); e != INVALID; ++e){
         for (list<ConsInfo*>::iterator it = consMap[e].begin(); it != consMap[e].end(); ++it){
             free(*it);

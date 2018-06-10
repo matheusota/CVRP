@@ -34,7 +34,7 @@ void VarPool::addEdgeVar(SCIP *scip, SCIP_CONS* cons, Edge e, double coef){
     }
 }
 
-void VarPool::freeVarPool(){
+VarPool::~VarPool(){
     for(EdgeIt e(cvrp.g); e != INVALID; ++e){
         for (list<VarInfo*>::iterator it = varMap[e].begin(); it != varMap[e].end(); ++it){
             free(*it);

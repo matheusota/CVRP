@@ -38,6 +38,7 @@ private:
 public:
     EdgePriceInfoMap consMap;
     ConsPool(CVRPInstance &cvrp);
+    ~ConsPool();
     void addConsInfo(Edge e, double coef, SCIP_ROW *row);
     void addConsInfoTranslate(Edge e, double coef, SCIP_CONS *cons);
     void addConsInfo(Edge e, double coef, SCIP_CONS *cons);
@@ -46,7 +47,6 @@ public:
     void removeConsInfo(Edge e, SCIP_ROW *row);
     void removeConsInfo(int e, SCIP_CONS *cons);
     list<ConsInfo*> getConsInfo(Edge e);
-    void freeConsPool();
 };
 
 #endif // CONSPOOL_H

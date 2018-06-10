@@ -50,8 +50,8 @@ class CVRPCutsCallbackSCIP: public scip::ObjConshdlr{
         virtual SCIP_DECL_CONSLOCK(scip_lock);
 
         CVRPCutsCallbackSCIP(SCIP *scip, CVRPInstance &cvrp, ConsPool *consPool_, VarPool *varPool_, EdgeSCIPVarMap &x);
+        ~CVRPCutsCallbackSCIP();
         void initializeCVRPSEPConstants(CVRPInstance &cvrp);
-        void freeDemand();
 
         SCIP_RETCODE SCIPcreateCVRPCuts(
            SCIP*                 scip,               /**< SCIP data structure */

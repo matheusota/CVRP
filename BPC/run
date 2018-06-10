@@ -1,1 +1,1 @@
-./cvrp.e -i in/kinder-n5-k2.vrp -o out/kinder-n5-k2.vrp -t 3000 -s -g
+./cvrp.e -i in/P-n16-k8.vrp -o out/P-n16-k8.vrp -t 3000 -g

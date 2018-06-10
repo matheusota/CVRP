@@ -1,7 +1,7 @@
 #include "cvrpalgsscip.h"
 
 //convert a graph from the solution vector x to a matrix form
-void toMatrix(VarPool *varPool, CVRPInstance &l, int **m, int n, SCIP *scip, SCIP_SOL* sol){
+void toMatrix(EdgeSCIPVarMap &x, CVRPInstance &l, int **m, int n, SCIP *scip, SCIP_SOL* sol){
     //initialize matrix
     for(int i = 0; i < n; i++){
         for(int j = 0; j < n; j++)
@@ -10,16 +10,27 @@ void toMatrix(VarPool *varPool, CVRPInstance &l, int **m, int n, SCIP *scip, SCI
 
     //put each edge on the matrix
     for(EdgeIt e(l.g); e != INVALID; ++e){
-        double aux = varPool->getEdgeValue(scip, sol, e);
-        if(aux > 0.1){
+        if(SCIPgetSolVal(scip, sol, x[e]) > 0.1){
             int u = l.g.id(l.g.u(e));
             int v = l.g.id(l.g.v(e));
-            int value = int(aux + 0.5);
+            int value = int(SCIPgetSolVal(scip, sol, x[e]) + 0.5);
             m[u][v] = value;
             m[v][u] = value;
         }
     }
 }
+
+//given a row it finds the first nonzero column
+//return -1 if none exists
+int findNonZeroColumn(int row, int **m, int n){
+    for(int j = 0; j < n; j++){
+        if (m[row][j])
+            return j;
+    }
+
+    return -1;
+}
+
 
 bool SCIPexact(CVRPInstance &l, CVRPSolution  &s, int tl){
     //set initial clock
@@ -44,7 +55,7 @@ bool SCIPexact(CVRPInstance &l, CVRPSolution  &s, int tl){
     EdgeSCIPVarMap x(l.g);
 
     //set some parameters
-    SCIP_CALL(SCIPsetIntParam(scip, "display/verblevel", 5));
+    //SCIP_CALL(SCIPsetIntParam(scip, "display/verblevel", 5));
     SCIP_CALL(SCIPsetIntParam(scip, "presolving/maxrestarts", 0));
     SCIP_CALL(SCIPsetIntParam(scip, "presolving/maxrounds", 0));
     SCIP_CALL(SCIPincludeDefaultPlugins(scip));
@@ -62,57 +73,91 @@ bool SCIPexact(CVRPInstance &l, CVRPSolution  &s, int tl){
 
     //---------------------------------------------------------------------------
     //now we add the model constraints
-    //since we will still run the pricing, the constraints are initialized with no variables
 
     //initialize edge variables
     for(EdgeIt e(l.g); e != INVALID; ++e){
         ScipVar* var;
-        var = new ScipIntVar(scip, 0.0, 2.0, 0);
+        if(l.shouldPrice)
+            var = new ScipIntVar(scip, 0.0, 2.0, 0);
+        else
+            var = new ScipIntVar(scip, 0.0, 2.0, l.weight[e]);
+
         x[e] = var->var;
     }
 
-    //translation constraints
-    for(EdgeIt e(l.g); e != INVALID; ++e){
-        ScipConsPrice *cons = new ScipConsPrice(scip, 0.0, 0.0);
-        cons->addVar(x[e], -1.0);
-        consPool->addConsInfoTranslate(e, 1, cons->cons);
-        cons->commit();
-    }
-
-    //add constraint x_in + x_out == 2 (forall i \in V \ {0})
-    for(NodeIt v(l.g); v != INVALID; ++v){
-        if(l.vname[v] != 0){
-            ScipConsPrice *cons = new ScipConsPrice(scip, 2.0, 2.0);
-            (*nodeMap)[v] = cons->cons;
+    //constraints added if using Branch-Cut-and-Price
+    if(l.shouldPrice){
+        //translation constraints
+        for(EdgeIt e(l.g); e != INVALID; ++e){
+            ScipConsPrice *cons = new ScipConsPrice(scip, 0.0, 0.0);
+            cons->addVar(x[e], -1.0);
+            consPool->addConsInfoTranslate(e, 1, cons->cons);
             cons->commit();
-            delete cons;
+        }
+
+        //add constraint x(\delta(i)) == 2 (forall i \in V \ {0})
+        for(NodeIt v(l.g); v != INVALID; ++v){
+            if(l.vname[v] != 0){
+                ScipConsPrice *cons = new ScipConsPrice(scip, 2.0, 2.0);
+                (*nodeMap)[v] = cons->cons;
+                cons->commit();
+                delete cons;
+            }
+        }
+
+        //add constraint x(\delta(0)) == 2K
+        ScipConsPrice *cons_depot = new ScipConsPrice(scip, 2.0 * l.nroutes, 2.0 * l.nroutes);
+        (*nodeMap)[l.int2node[0]] = cons_depot->cons;
+        cons_depot->commit();
+        delete cons_depot;
+
+        //add constraint x_e <= 1
+        for(EdgeIt e(l.g); e != INVALID; ++e){
+            if(l.vname[l.g.u(e)] != 0 && l.vname[l.g.v(e)] != 0){
+                ScipConsPrice *cons = new ScipConsPrice(scip, -SCIPinfinity(scip), 1);
+                consPool->addConsInfo(e, 1, cons->cons);
+                cons->commit();
+                delete cons;
+            }
         }
     }
 
-    //add constraint x(\delta(0)) == 2K
-    ScipConsPrice *cons_depot = new ScipConsPrice(scip, 2.0 * l.nroutes, 2.0 * l.nroutes);
-    (*nodeMap)[l.int2node[0]] = cons_depot->cons;
-    cons_depot->commit();
-    delete cons_depot;
+    //constraints added if using pure Branch-and-Cut
+    else{
+        //add constraint x(\delta(i)) == 2 (forall i \in V \ {0})
+        for(NodeIt v(l.g); v != INVALID; ++v){
+            if(l.vname[v] != 0){
+                ScipCons *cons = new ScipCons(scip, 2.0, 2.0);
 
-    //add constraint x_e <= 1
-    for(EdgeIt e(l.g); e != INVALID; ++e){
-        if(l.vname[l.g.u(e)] != 0 && l.vname[l.g.v(e)] != 0){
-            ScipConsPrice *cons = new ScipConsPrice(scip, -SCIPinfinity(scip), 1);
-            consPool->addConsInfo(e, 1, cons->cons);
-            cons->commit();
-            delete cons;
+                for(IncEdgeIt e(l.g, v); e != INVALID; ++e){
+                    cons->addVar(x[e], 1.0);
+                }
+                cons->commit();
+            }
         }
+
+        //add constraint x(\delta(0)) == 2K
+        ScipCons *cons_depot = new ScipCons(scip, 2.0 * l.nroutes, 2.0 * l.nroutes);
+
+        for(IncEdgeIt e(l.g, l.depot); e != INVALID; ++e){
+            cons_depot->addVar(x[e], 1.0);
+        }
+
+        cons_depot->commit();
     }
 
-    //insert pricer in the model
-    pricer = new CVRPPricerSCIP(scip, l, *translateMap, *nodeMap, consPool, varPool, x);
-    SCIP_CALL(SCIPincludeObjPricer(scip, pricer, TRUE));
-    SCIP_CALL(SCIPactivatePricer(scip, SCIPfindPricer(scip, "CVRPPricer")));
+    //---------------------------------------------------------------------------
+    // once we have the constraints, we now insert the plugins
+    if(l.shouldPrice){
+        //insert pricer in the model
+        pricer = new CVRPPricerSCIP(scip, l, *translateMap, *nodeMap, consPool, varPool, x);
+        SCIP_CALL(SCIPincludeObjPricer(scip, pricer, TRUE));
+        SCIP_CALL(SCIPactivatePricer(scip, SCIPfindPricer(scip, "CVRPPricer")));
 
-    //insert branching manager
-    branchingManager = new CVRPBranchingManager(scip, l, consPool);
-    SCIP_CALL(SCIPincludeObjConshdlr(scip, branchingManager, TRUE));
+        //insert branching manager
+        branchingManager = new CVRPBranchingManager(scip, l, consPool);
+        SCIP_CALL(SCIPincludeObjConshdlr(scip, branchingManager, TRUE));
+    }
 
     //include cvrpsep cuts
     CVRPCutsCallbackSCIP cuts = CVRPCutsCallbackSCIP(scip, l, consPool, varPool, x);
@@ -137,7 +182,7 @@ bool SCIPexact(CVRPInstance &l, CVRPSolution  &s, int tl){
 
         //SCIP tries to solve the LP
         SCIP_CALL(SCIPsolve(scip));
-        SCIP_CALL(SCIPprintStatistics(scip, NULL));
+        //SCIP_CALL(SCIPprintStatistics(scip, NULL));
 
         //reached time limit
         if(SCIPgetStatus(scip) == SCIP_STATUS_TIMELIMIT){
@@ -156,14 +201,14 @@ bool SCIPexact(CVRPInstance &l, CVRPSolution  &s, int tl){
             for(int i = 0; i < l.n; i++)
                 matrix[i] = new int[l.n];
 
-            toMatrix(varPool, l, matrix, l.n, scip, sol);
+            toMatrix(x, l, matrix, l.n, scip, sol);
 
             //print variable values
+            /*
             for(EdgeIt e(l.g); e != INVALID; ++e){
-                double aux = varPool->getEdgeValue(scip, sol, e);
-                if(aux > 0.9)
-                    cout << "x[" << l.vname[l.g.u(e)] << "][" << l.vname[l.g.v(e)] << "]" << endl;
-            }
+                double aux = SCIPgetSolVal(scip, sol, x[e]);
+                cout << "x[" << l.vname[l.g.u(e)] << "][" << l.vname[l.g.v(e)] << "] = " << aux << endl;
+            }*/
 
             //construct solution
             int i = 0;
@@ -181,12 +226,13 @@ bool SCIPexact(CVRPInstance &l, CVRPSolution  &s, int tl){
                 delete[] matrix[i];
             delete[] matrix;
 
-            delete pricer;
-            delete nodeMap;
-            delete translateMap;
-            delete branchingManager;
-            delete consPool;
-            cuts.freeDemand();
+            if(l.shouldPrice){
+                delete pricer;
+                delete nodeMap;
+                delete translateMap;
+                delete branchingManager;
+                delete consPool;
+            }
         }
     }
 

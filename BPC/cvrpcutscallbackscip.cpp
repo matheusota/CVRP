@@ -110,7 +110,7 @@ SCIP_DECL_CONSENFOLP(CVRPCutsCallbackSCIP::scip_enfolp)
     else{
         bool feasible;
         *result = SCIP_DIDNOTFIND;
-        //SCIP_CALL(addCVRPCuts(scip, conshdlr, NULL, result, &feasible));
+        SCIP_CALL(addCVRPCuts(scip, conshdlr, NULL, result, &feasible));
 
         if(*result == SCIP_DIDNOTFIND)
             *result = SCIP_INFEASIBLE;
@@ -153,12 +153,17 @@ SCIP_DECL_CONSLOCK(CVRPCutsCallbackSCIP::scip_lock)
 
 //add variable to a row (and update consPool if pricing)
 void CVRPCutsCallbackSCIP::addVarToRow(SCIP *scip, Edge e, SCIP_ROW* row, double coef){
-    varPool->addEdgeVar(scip, row, e, coef);
-    consPool->addConsInfo(e, coef, row);
+    if(cvrp.shouldPrice){
+        varPool->addEdgeVar(scip, row, e, coef);
+        consPool->addConsInfo(e, coef, row);
+    }
+    else{
+        SCIPaddVarToRow(scip, row, x[e], coef);
+    }
 }
 
-//SPECIFIC CVRP STUFF
-void CVRPCutsCallbackSCIP::freeDemand(){
+//free Data Structure created for CVRPSEP package
+CVRPCutsCallbackSCIP::~CVRPCutsCallbackSCIP(){
     CMGR_FreeMemCMgr(&MyCutsCMP);
     CMGR_FreeMemCMgr(&MyOldCutsCMP);
     delete[] Demand;
@@ -264,7 +269,8 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addCapacityCuts(int i, SCIP* scip, SCIP_CONSH
             *result = SCIP_CUTOFF;
     }
 
-    //SCIP_CALL(SCIPreleaseRow(scip, &row));
+    //if(!cvrp.shouldPrice)
+        //SCIP_CALL(SCIPreleaseRow(scip, &row));
 }
 
 //add FCI cuts
@@ -511,110 +517,164 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addHypotourCuts(int i, SCIP* scip, SCIP_CONSH
 }
 
 bool CVRPCutsCallbackSCIP::checkFeasibilityCVRP(SCIP* scip, SCIP_SOL* sol){
-    //printf("feasibility\n");
-    //count number of edges x_e > 0
-    int nedges = 0;
+    //if we are testing, we just check if we can find a capacity cut
+    if(cvrp.testing){
+        //count number of edges x_e > 0 and set their values to the map
+        int nedges = 0;
+        EdgeValueMap edgeValue(cvrp.g);
 
-    //first we are going to create a graph from the solution
-    ListGraph g;
-    NodeIntMap vname(g);
-    NodePosMap demand(g);
-    ListGraph::EdgeMap<int> edgeCount(g);
-    bool integer = true;
-    double aux;
+        for(EdgeIt e(cvrp.g); e != INVALID; ++e){
+            double aux = SCIPgetSolVal(scip, sol, x[e]);
+            edgeValue[e] = aux;
+            if(aux > EpsForIntegrality)
+                nedges++;
+        }
 
-    //create an auxiliary graph
-    for(int i = 0; i < cvrp.n; i++){
-        Node v = g.addNode();
-        vname[v] = i;
+        //populate EdgeTail, EdgeHead and EdgeX
+        int *EdgeTail, *EdgeHead, i = 1;
+        double *EdgeX;
 
-        if(i > 0)
-            demand[v] = cvrp.demand[cvrp.int2node[i]];
+        EdgeTail = new int[nedges + 1];
+        EdgeHead = new int[nedges + 1];
+        EdgeX = new double[nedges + 1];
+
+        for(EdgeIt e(cvrp.g); e != INVALID; ++e){
+            if(edgeValue[e] > EpsForIntegrality){
+                int u = cvrp.vname[cvrp.g.u(e)];
+                if(u == 0)
+                    u = cvrp.n;
+
+                int v = cvrp.vname[cvrp.g.v(e)];
+                if(v == 0)
+                    v = cvrp.n;
+
+                EdgeTail[i] = u;
+                EdgeHead[i] = v;
+                EdgeX[i] = edgeValue[e];
+                i++;
+            }
+        }
+
+        CnstrMgrPointer tmpCuts;
+        CMGR_CreateCMgr(&tmpCuts,100);
+        //get capacity separation cuts
+        MaxCapViolation = 0;
+        CAPSEP_SeparateCapCuts(NoOfCustomers, Demand, CAP, nedges, EdgeTail, EdgeHead,
+            EdgeX, MyOldCutsCMP,MaxNoOfCapCuts, EpsForIntegrality,
+            &IntegerAndFeasible, &MaxCapViolation, tmpCuts);
+
+        int s = tmpCuts -> Size;
+        CMGR_FreeMemCMgr(&tmpCuts);
+        //no capacity cut found, solution is feasible
+        if (s == 0)
+            return true;
+        //a capacity cut was found, solution is not feasible yet
         else
-            demand[v] = 0;
+            return false;
     }
+    //this will traverse the graph and check if edges are integers
+    else{
+        //first we are going to create a graph from the solution
+        ListGraph g;
+        NodeIntMap vname(g);
+        NodePosMap demand(g);
+        ListGraph::EdgeMap<int> edgeCount(g);
+        bool integer = true;
+        double aux;
 
-    for(EdgeIt e(cvrp.g); e != INVALID; ++e){
-        aux = SCIPgetSolVal(scip, sol, x[e]);
-        if(std::abs(std::round(aux) - aux) > EpsForIntegrality){
-            //solution is not integer
-            integer = false;
-            break;
+        //create an auxiliary graph
+        for(int i = 0; i < cvrp.n; i++){
+            Node v = g.addNode();
+            vname[v] = i;
+
+            if(i > 0)
+                demand[v] = cvrp.demand[cvrp.int2node[i]];
+            else
+                demand[v] = 0;
         }
-        else if(std::round(aux) == 1 || std::round(aux) == 2){
-            //assign this edge on the copy graph
-            int nameu = cvrp.vname[cvrp.g.u(e)];
-            int namev = cvrp.vname[cvrp.g.v(e)];
-            Edge e = g.addEdge(g.nodeFromId(nameu), g.nodeFromId(namev));
-            edgeCount[e] = int(std::round(aux));
-            //printf("count[%d][%d] = %d\n", nameu, namev, edgeCount[e]);
-        }
-    }
 
-    if(!integer)
-        return false;
-
-    //now we are going to walk through the graph
-    Node curr = g.nodeFromId(0);
-    Node next;
-    int count = 1;
-    double load = 0.0;
-    bool flag;
-    while(true){
-        flag = true;
-
-        //get next node
-        IncEdgeIt e(g, curr);
-        for(; e != INVALID; ++e){
-            if(vname[g.u(e)] == vname[curr]){
-                next = g.v(e);
-                flag = false;
+        for(EdgeIt e(cvrp.g); e != INVALID; ++e){
+            aux = SCIPgetSolVal(scip, sol, x[e]);
+            if(std::abs(std::round(aux) - aux) > EpsForIntegrality){
+                //solution is not integer
+                integer = false;
                 break;
             }
-            else if(vname[g.v(e)] == vname[curr]){
-                next = g.u(e);
-                flag = false;
-                break;
+            else if(std::round(aux) == 1 || std::round(aux) == 2){
+                //assign this edge on the copy graph
+                int nameu = cvrp.vname[cvrp.g.u(e)];
+                int namev = cvrp.vname[cvrp.g.v(e)];
+                Edge e = g.addEdge(g.nodeFromId(nameu), g.nodeFromId(namev));
+                edgeCount[e] = int(std::round(aux));
+                //printf("count[%d][%d] = %d\n", nameu, namev, edgeCount[e]);
             }
         }
 
-        //no edges
-        if(flag)
-            break;
+        if(!integer)
+            return false;
 
-        //this edge goes and comes back to depot
-        if(edgeCount[e] == 2){
-            if(demand[next] > cvrp.capacity)
-                return false;
+        //now we are going to walk through the graph
+        Node curr = g.nodeFromId(0);
+        Node next;
+        int count = 1;
+        double load = 0.0;
+        bool flag;
+        while(true){
+            flag = true;
 
-            count++;
-            curr = g.nodeFromId(0);
-            g.erase(e);
-        }
-        //we are coming back to depot
-        else if(vname[next] == 0){
-            curr = g.nodeFromId(0);
-            g.erase(e);
-            load = 0.0;
-        }
-        //new vertex
-        else{
-            load += demand[next];
-            if(load > cvrp.capacity)
-                return false;
+            //get next node
+            IncEdgeIt e(g, curr);
+            for(; e != INVALID; ++e){
+                if(vname[g.u(e)] == vname[curr]){
+                    next = g.v(e);
+                    flag = false;
+                    break;
+                }
+                else if(vname[g.v(e)] == vname[curr]){
+                    next = g.u(e);
+                    flag = false;
+                    break;
+                }
+            }
 
-            curr = next;
-            g.erase(e);
-            count++;
+            //no edges
+            if(flag)
+                break;
+
+            //this edge goes and comes back to depot
+            if(edgeCount[e] == 2){
+                if(demand[next] > cvrp.capacity)
+                    return false;
+
+                count++;
+                curr = g.nodeFromId(0);
+                g.erase(e);
+            }
+            //we are coming back to depot
+            else if(vname[next] == 0){
+                curr = g.nodeFromId(0);
+                g.erase(e);
+                load = 0.0;
+            }
+            //new vertex
+            else{
+                load += demand[next];
+                if(load > cvrp.capacity)
+                    return false;
+
+                curr = next;
+                g.erase(e);
+                count++;
+            }
         }
+
+        if(count == cvrp.n){
+            //printf("solved!\n");
+            return true;
+        }
+        else
+            return false;
     }
-
-    if(count == cvrp.n){
-        //printf("solved!\n");
-        return true;
-    }
-    else
-        return false;
 }
 
 SCIP_RETCODE CVRPCutsCallbackSCIP::addCVRPCuts(SCIP* scip, SCIP_CONSHDLR* conshdlr, SCIP_SOL* sol, SCIP_RESULT* result, bool feasible){
@@ -644,8 +704,6 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addCVRPCuts(SCIP* scip, SCIP_CONSHDLR* conshd
 
     for(EdgeIt e(cvrp.g); e != INVALID; ++e){
         if(edgeValue[e] > EpsForIntegrality){
-            //printf("x1[%d][%d] = %f\n", cvrp.vname[cvrp.g.u(e)], cvrp.vname[cvrp.g.v(e)], edgeValue[e]);
-            //printf("x2[%d][%d] = %f\n", cvrp.vname[cvrp.g.u(e)], cvrp.vname[cvrp.g.v(e)], SCIPgetSolVal(scip, sol, x[e]));
             int u = cvrp.vname[cvrp.g.u(e)];
             if(u == 0)
                 u = cvrp.n;
@@ -667,7 +725,6 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addCVRPCuts(SCIP* scip, SCIP_CONSHDLR* conshd
         EdgeX, MyOldCutsCMP,MaxNoOfCapCuts, EpsForIntegrality,
         &IntegerAndFeasible, &MaxCapViolation, MyCutsCMP);
 
-    SCIPdebugMessage("got capacity cuts\n");
     //Optimal solution found
     if (IntegerAndFeasible){
         //free edges arrays

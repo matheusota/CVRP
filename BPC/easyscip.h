@@ -29,20 +29,22 @@ namespace easyscip {
             }
     };
 
+    class ScipContVar: public ScipVar {
+        public:
+            ScipContVar(SCIP *scip, double lower_bound, double upper_bound,
+            double objective) {
+                SCIPcreateVar(scip, &var, "variable", lower_bound, upper_bound,
+                    objective, SCIP_VARTYPE_CONTINUOUS, TRUE, FALSE, NULL, NULL, NULL, NULL, NULL);
+                SCIPaddVar(scip, var);
+            }
+    };
+
     class ScipPriceBinVar: public ScipVar {
         public:
             ScipPriceBinVar(SCIP *scip, double objective) {
                 SCIPcreateVar(scip, &var, NULL, 0.0, SCIPinfinity(scip), objective, SCIP_VARTYPE_CONTINUOUS,
                         TRUE, FALSE, NULL, NULL, NULL, NULL, NULL);
                 SCIPaddPricedVar(scip, var, 1.0);
-            }
-    };
-
-    class ScipPriceBinVar2: public ScipVar {
-        public:
-            ScipPriceBinVar2(SCIP *scip, double objective) {
-                SCIPcreateVar(scip, &var, NULL, 0.0, SCIPinfinity(scip), objective, SCIP_VARTYPE_CONTINUOUS,
-                        TRUE, FALSE, NULL, NULL, NULL, NULL, NULL);
             }
     };
 
