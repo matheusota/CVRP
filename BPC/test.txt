@@ -1,0 +1,130 @@
+INPUT
+n          : 32
+m          : 496
+k          : 5
+capacity   : 100
+depot      : 0
+
+presolving:
+presolving (0 rounds: 0 fast, 0 medium, 0 exhaustive):
+ 0 deleted vars, 0 deleted constraints, 0 added constraints, 0 tightened bounds, 0 added holes, 0 changed sides, 0 changed coefficients
+ 0 implications, 0 cliques
+presolved problem has 528 variables (465 bin, 31 int, 0 impl, 32 cont) and 994 constraints
+      1 constraints of type <CVRPCuts>
+    993 constraints of type <linear>
+Presolving Time: 0.00
+
+[cvrpcutscallbackscip.cpp:138] debug: conscheck
+[cvrppricerscip.cpp:170] debug: pricerredcost
+ time | node  | left  |LP iter|LP it/n| mem |mdpt |frac |vars |cons |cols |rows |cuts |confs|strbr|  dualbound   | primalbound  |  gap   
+  0.0s|     1 |     0 |    10 |     - |4087k|   0 |   0 | 559 | 994 | 559 | 993 |   0 |   0 |   0 |      --      |      --      |    Inf 
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+  1.8s|     1 |     0 |  1133 |     - |  12M|   0 |  27 |1748 | 994 |1748 | 993 |   0 |   0 |   0 | 7.693333e+02 |      --      |    Inf 
+[cvrpcutscallbackscip.cpp:85] debug: consepalp
+[cvrpcutscallbackscip.cpp:694] debug: cuts
+[cvrpcutscallbackscip.cpp:784] debug: adding cuts
+[cvrpcutscallbackscip.cpp:106] debug: consenfolp
+[cvrpcutscallbackscip.cpp:694] debug: cuts
+[cvrpcutscallbackscip.cpp:784] debug: adding cuts
+[cvrppricerscip.cpp:170] debug: pricerredcost
+  2.0s|     1 |     0 |  1133 |     - |  15M|   0 |  27 |1748 | 994 |1748 | 993 |   0 |   0 |   0 | 7.693333e+02 |      --      |    Inf 
+  2.0s|     1 |     2 |  1133 |     - |  16M|   0 |  27 |1750 | 994 |1748 | 993 |   0 |   0 |   0 | 7.693333e+02 |      --      |    Inf 
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+[cvrppricerscip.cpp:170] debug: pricerredcost
+pressed CTRL-C 1 times (5 times for forcing termination)
+[cvrpcutscallbackscip.cpp:85] debug: consepalp
+[cvrpcutscallbackscip.cpp:694] debug: cuts
+[cvrpcutscallbackscip.cpp:784] debug: adding cuts
+
+SCIP Status        : solving was interrupted [user interrupt]
+Solving Time (sec) : 2.89
+Solving Nodes      : 2
+Primal Bound       : +1.00000000000000e+20 (0 solutions)
+Dual Bound         : +7.69333333333333e+02
+Gap                : infinite
+Elapsed time: 2.968902
+Columns Generated: 1506
+Rows Generated: 10
+

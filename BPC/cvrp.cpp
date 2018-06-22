@@ -53,7 +53,6 @@ int main(int argc, char *argv[])
 
     l.testing = true;
     l.shouldPrice = true;
-    SCIPexact(l, ts, params.timeLimit);
 
     // Now we will compare using B&C with B&C&P at the root node
     l.testing = true;
@@ -63,6 +62,7 @@ int main(int argc, char *argv[])
     double time_bcp, lb_bcp;
 
     //test branch-and-cut
+    /*
     clock_t before  = clock();
     l.shouldPrice = false;
     SCIPexact(l, ts, params.timeLimit);
@@ -70,6 +70,7 @@ int main(int argc, char *argv[])
     time_bc = (double) (after - before) / CLOCKS_PER_SEC;
     lb_bc = ts.cost;
 
+    printf("finished BC\n");
     //test branch-cut-and-price
     ts.tour.clear();
     before = clock();
@@ -80,20 +81,32 @@ int main(int argc, char *argv[])
     lb_bcp = ts.cost;
     ts.tour.clear();
 
+    printf("finished BCP\n");
+    */
     //check if we should use B&C or B&C&P according to fukasawa rules
-    if(time_bcp < 10 * time_bc && lb_bcp >= 1.03 * lb_bc)
+    /*
+    if(time_bcp < 10 * time_bc && lb_bcp >= 1.01 * lb_bc){
         l.shouldPrice = true;
-    else
+        printf("choosed BCP\n");
+    }
+    else{
         l.shouldPrice = false;
+        printf("choosed BC\n");
+    }*/
 
     //run the algorithm for real!
+    l.shouldPrice = true;
     l.testing = false;
-    before = clock();
+    l.ncolumns = 0;
+    l.nrows = 0;
+    clock_t before = clock();
     SCIPexact(l, ts, params.timeLimit);
-    after = clock();
+    clock_t after = clock();
     elapsedTime = (double) (after - before) / CLOCKS_PER_SEC;
 
     printf("Elapsed time: %f\n", elapsedTime);
+    printf("Columns Generated: %lld\n", l.ncolumns);
+    printf("Rows Generated: %lld\n", l.nrows);
 
     // Show a graphical solution
     if(params.verbosity == GRAPH){

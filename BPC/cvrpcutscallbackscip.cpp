@@ -3,7 +3,7 @@
 void CVRPCutsCallbackSCIP::initializeCVRPSEPConstants(CVRPInstance &cvrp){
     NoOfCustomers = cvrp.n - 1;
     CAP = cvrp.capacity;
-    EpsForIntegrality = 0.00001;
+    EpsForIntegrality = 0.0001;
     MaxNoOfCapCuts = 50;
     MaxNoOfFCITreeNodes = 100;
     MaxNoOfFCICuts = 10;
@@ -112,8 +112,10 @@ SCIP_DECL_CONSENFOLP(CVRPCutsCallbackSCIP::scip_enfolp)
         *result = SCIP_DIDNOTFIND;
         SCIP_CALL(addCVRPCuts(scip, conshdlr, NULL, result, &feasible));
 
-        if(*result == SCIP_DIDNOTFIND)
-            *result = SCIP_INFEASIBLE;
+        if(*result == SCIP_DIDNOTFIND){
+            branchingRoutine(scip, result);
+            *result = SCIP_BRANCHED;
+        }
     }
 
     return SCIP_OKAY;
@@ -263,6 +265,8 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addCapacityCuts(int i, SCIP* scip, SCIP_CONSH
     SCIP_CALL(SCIPflushRowExtensions(scip, row));
     if(SCIPisCutEfficacious(scip, sol, row)){
         SCIP_Bool infeasible;
+        ScipVar* artifVar = new ScipContVar(scip, 0.0, SCIPinfinity(scip), 100000);
+        SCIPaddVarToRow(scip, row, artifVar->var, -1.0);
         SCIP_CALL(SCIPaddCut(scip, sol, row, FALSE, &infeasible));
 
         if(infeasible)
@@ -321,6 +325,8 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addFCICuts(int i, SCIP* scip, SCIP_CONSHDLR* 
     SCIP_CALL(SCIPflushRowExtensions(scip, row));
     if(SCIPisCutEfficacious(scip, sol, row)){
         SCIP_Bool infeasible;
+        ScipVar* artifVar = new ScipContVar(scip, 0.0, SCIPinfinity(scip), 100000);
+        SCIPaddVarToRow(scip, row, artifVar->var, 1.0);
         SCIP_CALL(SCIPaddCut(scip, sol, row, FALSE, &infeasible));
 
         if(infeasible)
@@ -383,6 +389,8 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addMultistarCuts(int i, SCIP* scip, SCIP_CONS
     SCIP_CALL(SCIPflushRowExtensions(scip, row));
     if(SCIPisCutEfficacious(scip, sol, row)){
         SCIP_Bool infeasible;
+        ScipVar* artifVar = new ScipContVar(scip, 0.0, SCIPinfinity(scip), 100000);
+        SCIPaddVarToRow(scip, row, artifVar->var, 1.0);
         SCIP_CALL(SCIPaddCut(scip, sol, row, FALSE, &infeasible));
 
         if(infeasible)
@@ -451,6 +459,8 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addCombCuts(int i, SCIP* scip, SCIP_CONSHDLR*
     SCIP_CALL(SCIPflushRowExtensions(scip, row));
     if(SCIPisCutEfficacious(scip, sol, row)){
         SCIP_Bool infeasible;
+        ScipVar* artifVar = new ScipContVar(scip, 0.0, SCIPinfinity(scip), 100000);
+        SCIPaddVarToRow(scip, row, artifVar->var, 1.0);
         SCIP_CALL(SCIPaddCut(scip, sol, row, FALSE, &infeasible));
 
         if(infeasible)
@@ -503,6 +513,8 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addHypotourCuts(int i, SCIP* scip, SCIP_CONSH
     SCIP_CALL(SCIPflushRowExtensions(scip, row));
     if(SCIPisCutEfficacious(scip, sol, row)){
         SCIP_Bool infeasible;
+        ScipVar* artifVar = new ScipContVar(scip, 0.0, SCIPinfinity(scip), 100000);
+        SCIPaddVarToRow(scip, row, artifVar->var, -1.0);
         SCIP_CALL(SCIPaddCut(scip, sol, row, FALSE, &infeasible));
 
         if(infeasible)
@@ -769,6 +781,7 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addCVRPCuts(SCIP* scip, SCIP_CONSHDLR* conshd
         return SCIP_OKAY;
     }
     else{
+        cvrp.nrows += MyCutsCMP -> Size;
         *result = SCIP_SEPARATED;
         SCIPdebugMessage("adding cuts\n");
         //read the cuts from MyCutsCMP, and add them to the LP
@@ -798,4 +811,262 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addCVRPCuts(SCIP* scip, SCIP_CONSHDLR* conshd
 
         return SCIP_OKAY;
     }
+}
+
+//add variable to a cons (if pricing, the consPool update will be done by the branching manager)
+void CVRPCutsCallbackSCIP::addVarToCons(SCIP *scip, Edge e, SCIP_CONS* cons, double coef){
+    if(cvrp.shouldPrice)
+        varPool->addEdgeVar(scip, cons, e, coef);
+    else
+        SCIPaddCoefLinear(scip, cons, x[e], coef);
+}
+
+//return the expression for x(delta(S))
+SCIP_RETCODE CVRPCutsCallbackSCIP::getDeltaExpr(int *S, int size, SCIP* scip, SCIP_CONS* cons, double coef, list<int> &edgesList, bool flag){
+    bool set[cvrp.n];
+
+    //create a set for fast checking
+    fill_n(set, cvrp.n, false);
+    for(int i = 1; i <= size; i++){
+        set[S[i]] = true;
+    }
+
+    //get the expression
+    for(int i = 0; i < cvrp.n; i++){
+        if(!set[i]){
+            for(int j = 1; j <= size; j++){
+                Node u = cvrp.g.nodeFromId(i);
+                Node v = cvrp.g.nodeFromId(S[j]);
+                Edge e = findEdge(cvrp.g,u,v);
+
+                if(e == INVALID)
+                    e = findEdge(cvrp.g, v, u);
+
+                addVarToCons(scip, e, cons, coef);
+                if(flag)
+                    edgesList.push_back(cvrp.g.id(e));
+            }
+        }
+    }
+}
+
+//main branching routine
+SCIP_RETCODE CVRPCutsCallbackSCIP::branchingRoutine(SCIP *scip, SCIP_RESULT* result){
+    *result = SCIP_DIDNOTRUN;
+
+    //interrupt if testing
+    if(cvrp.testing)
+        SCIPinterruptSolve(scip);
+
+    //we will use this list to add the branching decision in the cutspool (if pricing)
+    list<int> edgesList;
+
+    int nedges = 0;
+    EdgeValueMap edgeValue(cvrp.g);
+    for(EdgeIt e(cvrp.g); e != INVALID; ++e){
+        double aux = SCIPgetSolVal(scip, NULL, x[e]);
+        edgeValue[e] = aux;
+        if(aux > EpsForIntegrality)
+            nedges++;
+    }
+
+    //populate EdgeTail, EdgeHead and EdgeX
+    int *EdgeTail, *EdgeHead, i = 1;
+    double *EdgeX;
+
+    EdgeTail = new int[nedges + 1];
+    EdgeHead = new int[nedges + 1];
+    EdgeX = new double[nedges + 1];
+
+    for(EdgeIt e(cvrp.g); e != INVALID; ++e){
+        if(edgeValue[e] > EpsForIntegrality){
+            int u = cvrp.vname[cvrp.g.u(e)];
+            if(u == 0)
+                u = cvrp.n;
+
+            int v = cvrp.vname[cvrp.g.v(e)];
+            if(v == 0)
+                v = cvrp.n;
+
+            EdgeTail[i] = u;
+            EdgeHead[i] = v;
+            EdgeX[i] = edgeValue[e];
+            i++;
+
+            //printf("x[%d, %d] = %f\n", u, v, EdgeX[i - 1]);
+        }
+    }
+
+    //get branching candidates
+    int MaxNoOfSets;
+    double BoundaryTarget;
+    CnstrMgrPointer SetsCMP;
+
+    BoundaryTarget = 3.0;
+
+    MaxNoOfSets = NoOfCustomers;
+    CMGR_CreateCMgr(&SetsCMP,MaxNoOfSets);
+
+    BRNCHING_GetCandidateSets(NoOfCustomers, Demand, CAP, nedges, EdgeTail, EdgeHead, EdgeX,
+        MyOldCutsCMP, BoundaryTarget, 1, SetsCMP);
+
+    //free edges arrays
+    delete[] EdgeTail;
+    delete[] EdgeHead;
+    delete[] EdgeX;
+
+    double RHS;
+    double LB, LB1, LB2;
+    unsigned int lperror, cutoff;
+
+    int count = 0;
+    int winner = 0;
+    LB = 0;
+
+    //we need probing to compute lower bounds
+    /*
+    SCIP_CALL(SCIPstartProbing(scip));
+    for(int i = 0; i < SetsCMP->Size; i++){
+        int ListSize = SetsCMP->CPL[i]->IntListSize;
+        int List[ListSize + 1];
+        for (int j = 1; j <= ListSize; j++){
+            List[j] = checkForDepot(SetsCMP->CPL[i]->IntList[j]);
+        }
+
+        // Now List contains the numbers of the customers in
+        // the i’th candidate set for S.
+        // The boundary x^*(\delta(S)) of this S is RHS.
+        RHS = SetsCMP->CPL[i]->RHS;
+
+        //create a new node in probing mode
+        SCIP_CALL(SCIPnewProbingNode(scip));
+        SCIP_NODE* node1 = SCIPgetCurrentNode(scip);
+
+        //add one contraint
+        SCIP_CONS* cons1;
+
+        //create constraint
+        SCIP_CALL(SCIPcreateConsLinear(scip, &cons1, "branching1", 0, NULL, NULL, 2.0, 2.0,
+            TRUE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE));
+
+        getDeltaExpr(List, ListSize, scip, cons1, 1.0, edgesList, false);
+
+        //add and release contraint
+        SCIP_CALL(SCIPaddConsNode(scip, node1, cons1, NULL));
+        SCIP_CALL(SCIPreleaseCons(scip, &cons1));
+
+        //solve it!
+        SCIP_CALL(SCIPsolveProbingLP(scip, -1, &lperror, &cutoff));
+
+        //the child was fathomed, so we will branch on this set
+        if(cutoff){
+            winner = i;
+            SCIP_CALL(SCIPbacktrackProbing(scip, 0));
+            break;
+        }
+
+        //get lower bound
+        LB1 = SCIPgetLPObjval(scip);
+
+        //backtrack to parent
+        SCIP_CALL(SCIPbacktrackProbing(scip, 0));
+
+        //now repeat the process to the other node
+        SCIP_CALL(SCIPnewProbingNode(scip));
+        SCIP_NODE* node2 = SCIPgetCurrentNode(scip);
+        SCIP_CONS* cons2;
+        SCIP_CALL(SCIPcreateConsLinear(scip, &cons2, "branching2", 0, NULL, NULL, 4.0, SCIPinfinity(scip),
+            TRUE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE));
+        getDeltaExpr(List, ListSize, scip, cons2, 1.0, edgesList, false);
+        SCIP_CALL(SCIPaddConsNode(scip, node2, cons2, NULL));
+        SCIP_CALL(SCIPreleaseCons(scip, &cons2));
+        SCIP_CALL(SCIPsolveProbingLP(scip, -1, &lperror, &cutoff));
+        if(cutoff){
+            winner = i;
+            SCIP_CALL(SCIPbacktrackProbing(scip, 0));
+            break;
+        }
+        LB2 = SCIPgetLPObjval(scip);
+        SCIP_CALL(SCIPbacktrackProbing(scip, 0));
+
+        //use Lysgaard rules to compare the lowerbounds
+        if(LB < min(LB1, LB2)){
+            LB = min(LB1, LB2);
+            winner = i;
+            count = 0;
+        }
+        else{
+            count++;
+        }
+
+        //last two sets have not yielded any improvement
+        if(count == 2){
+            winner = i;
+            break;
+        }
+    }
+    SCIP_CALL(SCIPendProbing(scip));
+    */
+
+    //get back the list of nodes for the selected set
+    int ListSize = SetsCMP->CPL[winner]->IntListSize;
+    int List[ListSize + 1];
+    for (int j = 1; j <= ListSize; j++){
+        List[j] = checkForDepot(SetsCMP->CPL[winner]->IntList[j]);
+    }
+
+    SCIP_NODE* child1;
+    SCIP_NODE* child2;
+    SCIP_CONS* cons1;
+    SCIP_CONS* cons2;
+
+    //create constraints
+    SCIP_CALL(SCIPcreateConsLinear(scip, &cons1, "branching1", 0, NULL, NULL, 2.0, 2.0,
+        TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE, TRUE));
+
+    SCIP_CALL(SCIPcreateConsLinear(scip, &cons2, "branching2", 0, NULL, NULL, 4.0, SCIPinfinity(scip),
+        TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE, TRUE));
+
+    //add the child node to scip
+    SCIP_CALL(SCIPcreateChild(scip, &child1, 0.0, SCIPgetLocalTransEstimate(scip)));
+    SCIP_CALL(SCIPcreateChild(scip, &child2, 0.0, SCIPgetLocalTransEstimate(scip)));
+
+    //add constraints to childs
+    getDeltaExpr(List, ListSize, scip, cons1, 1.0, edgesList, false);
+    getDeltaExpr(List, ListSize, scip, cons2, 1.0, edgesList, true);
+
+    SCIP_CALL(SCIPaddConsNode(scip, child1, cons1, NULL));
+    SCIP_CALL(SCIPaddConsNode(scip, child2, cons2, NULL));
+
+    ScipVar* artifVar1 = new ScipContVar(scip, 0.0, SCIPinfinity(scip), 100000);
+    SCIPaddCoefLinear(scip, cons1, artifVar1->var, 1.0);
+    ScipVar* artifVar2 = new ScipContVar(scip, 0.0, SCIPinfinity(scip), 100000);
+    SCIPaddCoefLinear(scip, cons2, artifVar2->var, 1.0);
+
+    //add the managers
+    if(cvrp.shouldPrice){
+        SCIP_CONS* manager1;
+        SCIP_CONS* manager2;
+
+        SCIP_CALL(branchingManager->SCIPcreateBranchingManager(scip, cons1, &manager1, "manager1",
+            FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, edgesList));
+
+        SCIP_CALL(branchingManager->SCIPcreateBranchingManager(scip, cons2, &manager2, "manager2",
+            FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, edgesList));
+
+        SCIP_CALL(SCIPaddConsNode(scip, child1, manager1, NULL));
+        SCIP_CALL(SCIPaddConsNode(scip, child2, manager2, NULL));
+
+        SCIP_CALL(SCIPreleaseCons(scip, &manager1));
+        SCIP_CALL(SCIPreleaseCons(scip, &manager2));
+    }
+
+    //release stuff
+    SCIP_CALL(SCIPreleaseCons(scip, &cons1));
+    SCIP_CALL(SCIPreleaseCons(scip, &cons2));
+
+    CMGR_FreeMemCMgr(&SetsCMP);
+
+    *result = SCIP_BRANCHED;
+    return SCIP_OKAY;
 }

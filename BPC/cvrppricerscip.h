@@ -17,7 +17,6 @@ using namespace std;
 
 class CVRPPricerSCIP : public ObjPricer {
     private:
-        const double eps = 0.000001;
         CVRPInstance &cvrp;
         EdgeSCIPConsMap &translateMap;
         NodeSCIPConsMap &nodeMap;

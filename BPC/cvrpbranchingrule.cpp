@@ -16,7 +16,7 @@ CVRPBranchingRule::CVRPBranchingRule(SCIP *scip, const char *name, const char *d
 void CVRPBranchingRule::initializeCVRPSEPConstants(CVRPInstance &cvrp, CnstrMgrPointer MyOldCutsCMP){
     NoOfCustomers = cvrp.n - 1;
     CAP = cvrp.capacity;
-    EpsForIntegrality = 0.000001;
+    EpsForIntegrality = 0.0001;
 
     //initialize Constraint structure
     this->MyOldCutsCMP = MyOldCutsCMP;
@@ -264,6 +264,11 @@ SCIP_RETCODE CVRPBranchingRule::branchingRoutine(SCIP *scip, SCIP_RESULT* result
 
     SCIP_CALL(SCIPaddConsNode(scip, child1, cons1, NULL));
     SCIP_CALL(SCIPaddConsNode(scip, child2, cons2, NULL));
+
+    ScipVar* artifVar1 = new ScipContVar(scip, 0.0, SCIPinfinity(scip), 100000);
+    SCIPaddCoefLinear(scip, cons1, artifVar1->var, 1.0);
+    ScipVar* artifVar2 = new ScipContVar(scip, 0.0, SCIPinfinity(scip), 100000);
+    SCIPaddCoefLinear(scip, cons2, artifVar2->var, 1.0);
 
     //add the managers
     if(cvrp.shouldPrice){

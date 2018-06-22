@@ -71,6 +71,8 @@ class CVRPInstance
         int nroutes;
         bool shouldPrice;
         bool testing;
+        volatile long long int ncolumns;
+        volatile long long int nrows;
 };
 
 class QR{

@@ -94,6 +94,7 @@ void DPCaller::getData(vector<QR*> &qroutes){
 
             //create a new variable with objective value set to the tour lenght
             ScipVar* var = new ScipPriceBinVar(scip, obj);
+            cvrp.ncolumns++;
             //fprintf(stderr, "created new var\n");
             qr->var = var->var;
 
@@ -107,14 +108,14 @@ void DPCaller::getData(vector<QR*> &qroutes){
 }
 
 void DPCaller::solveExact(vector<QR*> &qroutes){
-    solver = new QRSolver<QROracleScip>(2, mode);
-    solver->solve(oracle, -1);
+    solver = new QRSolver<QROracleScip>(3, mode);
+    solver->solve(oracle);
     getData(qroutes);
     //find_shortest_tour(qroutes);
 }
 
 void DPCaller::solveHeuristic(vector<QR*> &qroutes){
-    solver = new QRSolver<QROracleScip>(2, mode);
+    solver = new QRSolver<QROracleScip>(3, mode);
     solver->solve (oracle, mode);
     getData(qroutes);
 }

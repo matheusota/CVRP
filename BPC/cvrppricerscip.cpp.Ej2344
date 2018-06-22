@@ -10,6 +10,8 @@ CVRPPricerSCIP::CVRPPricerSCIP(SCIP *scip, CVRPInstance &cvrp, EdgeSCIPConsMap &
     cvrp(cvrp), translateMap(translateMap_), nodeMap(nodeMap_), x(x), ObjPricer(scip, "CVRPPricer", "Finds tour with negative reduced cost", 0, TRUE){
     consPool = consPool_;
     varPool = varPool_;
+    first = true;
+    flag = true;
 }
 
 CVRPPricerSCIP::~CVRPPricerSCIP(){}
@@ -34,9 +36,14 @@ void CVRPPricerSCIP::getReducedCosts(SCIP *scip, bool isFarkas){
     if(isFarkas){
         for(EdgeIt e(cvrp.g); e != INVALID; ++e){
             list<ConsInfo*> consList = consPool->getConsInfo(e);
-            r = 0;
-            r -= SCIPgetDualfarkasLinear(scip, nodeMap[cvrp.g.u(e)]);
-            r -= SCIPgetDualfarkasLinear(scip, nodeMap[cvrp.g.u(e)]);
+            r = cvrp.weight[e];
+            if(first){
+                r -= 200000;
+            }
+            else{
+                r -= SCIPgetDualfarkasLinear(scip, nodeMap[cvrp.g.u(e)]);
+                r -= SCIPgetDualfarkasLinear(scip, nodeMap[cvrp.g.u(e)]);
+            }
 
             list<ConsInfo*>::iterator it = consList.begin();
             while (it != consList.end()){
@@ -169,6 +176,7 @@ SCIP_RETCODE CVRPPricerSCIP::pricing(SCIP* scip, bool isFarkas) {
 SCIP_DECL_PRICERREDCOST(CVRPPricerSCIP::scip_redcost){
    SCIPdebugMessage("pricerredcost\n");
    /* set result pointer, see above */
+
    *result = SCIP_DIDNOTRUN;
    SCIP_CALL(pricing(scip, false));
    *result = SCIP_SUCCESS;
@@ -186,8 +194,10 @@ SCIP_DECL_PRICERREDCOST(CVRPPricerSCIP::scip_redcost){
  */
 SCIP_DECL_PRICERFARKAS(CVRPPricerSCIP::scip_farkas){
     /* call pricing routine */
-    SCIPdebugMessage("pricerredfarkas (CODE SHOULD NEVER GETS HERE!)\n");
+    SCIPdebugMessage("pricerredfarkas\n");
+    //if(first)
     SCIP_CALL(pricing(scip, true));
+    first = false;
 
     return SCIP_OKAY;
 }

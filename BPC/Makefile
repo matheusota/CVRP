@@ -66,7 +66,7 @@ DINPROGLIBDIR  = dinprog.a
 
 #================= SCIP =====================================================
 SCIPINC  = -Isrc -DWITH_SCIPDEF -I/home/matheus/scip/scip-4.0.0/src -DNDEBUG -DROUNDING_FE  -DNPARASCIP -DWITH_ZLIB  -DWITH_GMP  -DWITH_READLINE
-SCIPLIB = -L/home/matheus/scip/scip-4.0.0/lib/static -lscip.linux.x86_64.gnu.opt -lobjscip.linux.x86_64.gnu.opt -llpispx2.linux.x86_64.gnu.opt -lnlpi.cppad.linux.x86_64.gnu.opt -ltpinone.linux.x86_64.gnu.opt  -O3 -fomit-frame-pointer -mtune=native    -L/home/matheus/scip/scip-4.0.0/lib/static -lsoplex.linux.x86_64.gnu.opt -lm -m64  -lz -lzimpl.linux.x86_64.gnu.opt  -lgmp -lreadline -lncurses -lm -m64  -lz -lzimpl.linux.x86_64.gnu.opt  -lgmp -lreadline -lncurses
+SCIPLIB = -L/home/matheus/scip/scip-4.0.0/lib/static -ldl -lscip.linux.x86_64.gnu.opt -lobjscip.linux.x86_64.gnu.opt -llpicpx.linux.x86_64.gnu.opt -lnlpi.cppad.linux.x86_64.gnu.opt -ltpinone.linux.x86_64.gnu.opt -O3 -fomit-frame-pointer -mtune=native -lcplex.linux.x86_64.gnu -lm -m64  -lz -lzimpl.linux.x86_64.gnu.opt  -lgmp -lreadline -lncurses -lm -m64  -lz -lzimpl.linux.x86_64.gnu.opt  -lgmp -lreadline -lncurses
 #---------------------------------------------
 # define includes and libraries
 

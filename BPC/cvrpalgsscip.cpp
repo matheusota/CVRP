@@ -56,6 +56,7 @@ bool SCIPexact(CVRPInstance &l, CVRPSolution  &s, int tl){
 
     //set some parameters
     //SCIP_CALL(SCIPsetIntParam(scip, "display/verblevel", 5));
+    //SCIP_CALL(SCIPsetBoolParam(scip, "display/lpinfo", TRUE));
     SCIP_CALL(SCIPsetIntParam(scip, "presolving/maxrestarts", 0));
     SCIP_CALL(SCIPsetIntParam(scip, "presolving/maxrounds", 0));
     SCIP_CALL(SCIPincludeDefaultPlugins(scip));
@@ -63,9 +64,10 @@ bool SCIPexact(CVRPInstance &l, CVRPSolution  &s, int tl){
     SCIPsetHeuristics(scip, SCIP_PARAMSETTING_OFF, TRUE);
     SCIP_CALL(SCIPsetSeparating(scip, SCIP_PARAMSETTING_OFF, TRUE));
     SCIP_CALL(SCIPsetIntParam(scip, "nodeselection/dfs/stdpriority", 1073741823));
-    SCIP_CALL(SCIPsetRealParam(scip, "numerics/epsilon", 0.000001));
-    SCIP_CALL(SCIPsetRealParam(scip, "numerics/feastol", 0.000001));
-    SCIP_CALL(SCIPsetRealParam(scip, "numerics/lpfeastol", 0.000001));
+    SCIP_CALL(SCIPsetRealParam(scip, "numerics/epsilon", 0.0001));
+    SCIP_CALL(SCIPsetRealParam(scip, "numerics/feastol", 0.0001));
+    SCIP_CALL(SCIPsetRealParam(scip, "numerics/lpfeastol", 0.0001));
+    SCIP_CALL(SCIPsetRealParam(scip, "numerics/dualfeastol", 0.0001));
 
     // create an empty problem
     SCIP_CALL(SCIPcreateProb(scip, "CVRP Problem", NULL, NULL, NULL, NULL, NULL, NULL, NULL));
@@ -75,6 +77,23 @@ bool SCIPexact(CVRPInstance &l, CVRPSolution  &s, int tl){
     //now we add the model constraints
 
     //initialize edge variables
+    if(l.shouldPrice){
+        for(EdgeIt e(l.g); e != INVALID; ++e){
+            ScipVar* var;
+
+            //if one of the ends of the edge is in the depot, x can be 2
+            if(l.g.id(l.g.u(e)) == 0 ||  l.g.id(l.g.v(e)) == 0) {
+                var = new ScipIntVar(scip, 0.0, 2.0, l.weight[e]);
+            }
+            else {
+                var = new ScipBinVar(scip, l.weight[e]);
+            }
+
+            x[e] = var->var;
+        }
+    }
+
+    /*
     for(EdgeIt e(l.g); e != INVALID; ++e){
         ScipVar* var;
         if(l.shouldPrice)
@@ -83,22 +102,31 @@ bool SCIPexact(CVRPInstance &l, CVRPSolution  &s, int tl){
             var = new ScipIntVar(scip, 0.0, 2.0, l.weight[e]);
 
         x[e] = var->var;
-    }
+    }*/
 
     //constraints added if using Branch-Cut-and-Price
     if(l.shouldPrice){
         //translation constraints
+        /*
         for(EdgeIt e(l.g); e != INVALID; ++e){
             ScipConsPrice *cons = new ScipConsPrice(scip, 0.0, 0.0);
             cons->addVar(x[e], -1.0);
             consPool->addConsInfoTranslate(e, 1, cons->cons);
+            ScipVar* artifVar1 = new ScipContVar(scip, 0.0, SCIPinfinity(scip), 100000);
+            cons->addVar(artifVar1->var, 1);
+            ScipVar* artifVar2 = new ScipContVar(scip, 0.0, SCIPinfinity(scip), 100000);
+            cons->addVar(artifVar2->var, -1);
             cons->commit();
-        }
+        }*/
 
         //add constraint x(\delta(i)) == 2 (forall i \in V \ {0})
         for(NodeIt v(l.g); v != INVALID; ++v){
             if(l.vname[v] != 0){
-                ScipConsPrice *cons = new ScipConsPrice(scip, 2.0, 2.0);
+                ScipConsPrice *cons = new ScipConsPrice(scip, 2.0, SCIPinfinity(scip));
+
+                //we use artificial variables just to avoid calling farkas pricing
+                ScipVar* artifVar = new ScipContVar(scip, 0.0, SCIPinfinity(scip), 100000);
+                cons->addVar(artifVar->var, 1);
                 (*nodeMap)[v] = cons->cons;
                 cons->commit();
                 delete cons;
@@ -107,6 +135,8 @@ bool SCIPexact(CVRPInstance &l, CVRPSolution  &s, int tl){
 
         //add constraint x(\delta(0)) == 2K
         ScipConsPrice *cons_depot = new ScipConsPrice(scip, 2.0 * l.nroutes, 2.0 * l.nroutes);
+        ScipVar* artifVar = new ScipContVar(scip, 0.0, SCIPinfinity(scip), 100000);
+        cons_depot->addVar(artifVar->var, 1);
         (*nodeMap)[l.int2node[0]] = cons_depot->cons;
         cons_depot->commit();
         delete cons_depot;
