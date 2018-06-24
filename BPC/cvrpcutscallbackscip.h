@@ -1,6 +1,6 @@
 #ifndef CVRPCUTSCALLBACKSCIP_H
 #define CVRPCUTSCALLBACKSCIP_H
-#define SCIP_DEBUG
+//#define SCIP_DEBUG
 #include <scip/scip.h>
 #include <scip/scipdefplugins.h>
 #include "objscip/objscip.h"
@@ -22,6 +22,7 @@
 #include "conspool.h"
 #include "varpool.h"
 #include "easyscip.h"
+#include <utility>
 
 using namespace easyscip;
 using namespace scip;
@@ -72,21 +73,19 @@ class CVRPCutsCallbackSCIP: public scip::ObjConshdlr{
            );
 
     private:
-        void addVarToRow(SCIP* scip, Edge e, SCIP_ROW* row, double coef);
-        void addVarToCons(SCIP *scip, Edge e, SCIP_CONS* cons, double coef);
+        double addVarToRow(SCIP *scip, SCIP_SOL *sol, Edge e, SCIP_ROW* row, double coef);
+        void addEdgesToConsPool(list<pair<Edge, double>> &edges, SCIP_ROW* row);
         bool checkFeasibilityCVRP(SCIP* scip, SCIP_SOL* sol);
         SCIP_RETCODE addCVRPCuts(SCIP* scip, SCIP_CONSHDLR* conshdlr, SCIP_SOL* sol, SCIP_RESULT* result, bool feasible);
-        SCIP_RETCODE getDeltaExpr(int *S, int size, SCIP* scip, SCIP_ROW* row, double coef);
-        SCIP_RETCODE getDeltaExpr(int *S, int size, SCIP* scip, SCIP_CONS* cons, double coef, list<int> &edgesList, bool flag);
-        SCIP_RETCODE getCrossingExpr(int *S1, int *S2, int size1, int size2, SCIP* scip, SCIP_ROW* row, double coef);
-        SCIP_RETCODE getInsideExpr(int *S, int size, SCIP* scip, SCIP_ROW* row, double coef);
+        double getDeltaExpr(int *S, int size, SCIP* scip, SCIP_SOL *sol, SCIP_ROW* row, double coef, list<pair<Edge, double>> &edges);
+        double getCrossingExpr(int *S1, int *S2, int size1, int size2, SCIP* scip, SCIP_SOL *sol, SCIP_ROW* row, double coef, list<pair<Edge, double>> &edges);
+        double getInsideExpr(int *S, int size, SCIP* scip, SCIP_SOL *sol, SCIP_ROW* row, double coef, list<pair<Edge, double>> &edges);
         int checkForDepot(int i);
         SCIP_RETCODE addCapacityCuts(int i, SCIP* scip, SCIP_CONSHDLR* conshdlr, SCIP_SOL* sol, SCIP_RESULT* result, bool feasible);
         SCIP_RETCODE addFCICuts(int i, SCIP* scip, SCIP_CONSHDLR* conshdlr, SCIP_SOL* sol, SCIP_RESULT* result, bool feasible);
         SCIP_RETCODE addMultistarCuts(int i, SCIP* scip, SCIP_CONSHDLR* conshdlr, SCIP_SOL* sol, SCIP_RESULT* result, bool feasible);
         SCIP_RETCODE addCombCuts(int i, SCIP* scip, SCIP_CONSHDLR* conshdlr, SCIP_SOL* sol, SCIP_RESULT* result, bool feasible);
         SCIP_RETCODE addHypotourCuts(int i, SCIP* scip, SCIP_CONSHDLR* conshdlr, SCIP_SOL* sol, SCIP_RESULT* result, bool feasible);
-        SCIP_RETCODE branchingRoutine(SCIP *scip, SCIP_RESULT* result);
 };
 
 #endif // CVRPCUTSCALLBACK_H

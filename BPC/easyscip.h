@@ -85,7 +85,7 @@ namespace easyscip {
         public:
             ScipConsPrice(SCIP *scip_, double lb, double ub){
                 scip = scip_;
-                SCIPcreateConsLinear(scip, &cons, "constraint", 0, NULL, NULL, lb, ub, TRUE, TRUE, TRUE, TRUE, TRUE,
+                SCIPcreateConsLinear(scip, &cons, "constraint", 0, NULL, NULL, lb, ub, TRUE, FALSE, TRUE, TRUE, TRUE,
                     FALSE, TRUE, FALSE, FALSE, FALSE);
                 //SCIP_CALL(SCIPcreateConsLinear(scip, &cons, ("x(\\delta(" + to_string(l.vname[v]) + ")) == 2").c_str(), 0, NULL, NULL, 2.0, 2.0,
                 //    TRUE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE));

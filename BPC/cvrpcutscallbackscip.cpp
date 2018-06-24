@@ -3,7 +3,7 @@
 void CVRPCutsCallbackSCIP::initializeCVRPSEPConstants(CVRPInstance &cvrp){
     NoOfCustomers = cvrp.n - 1;
     CAP = cvrp.capacity;
-    EpsForIntegrality = 0.0001;
+    EpsForIntegrality = 0.001;
     MaxNoOfCapCuts = 50;
     MaxNoOfFCITreeNodes = 100;
     MaxNoOfFCICuts = 10;
@@ -29,7 +29,7 @@ void CVRPCutsCallbackSCIP::initializeCVRPSEPConstants(CVRPInstance &cvrp){
 }
 
 CVRPCutsCallbackSCIP::CVRPCutsCallbackSCIP(SCIP *scip, CVRPInstance &cvrp, ConsPool *consPool_, VarPool *varPool_, EdgeSCIPVarMap &x) : cvrp(cvrp), x(x),
-    ObjConshdlr(scip, "CVRPCuts", "CVRP callback constraints", 1000000, 1000000, 1000000, 1, -1, 1, 0,
+    ObjConshdlr(scip, "CVRPCuts", "CVRP callback constraints", 10000, 10000, 10000, 1, -1, 1, 0,
         FALSE, FALSE, TRUE, SCIP_PROPTIMING_BEFORELP, SCIP_PRESOLTIMING_FAST) {
     consPool = consPool_;
     varPool = varPool_;
@@ -84,7 +84,6 @@ SCIP_DECL_CONSSEPALP(CVRPCutsCallbackSCIP::scip_sepalp)
 {
     SCIPdebugMessage("consepalp\n");
     bool feasible;
-    *result = SCIP_DIDNOTFIND;
     SCIP_CALL(addCVRPCuts(scip, conshdlr, NULL, result, &feasible));
     return SCIP_OKAY;
 }
@@ -108,14 +107,13 @@ SCIP_DECL_CONSENFOLP(CVRPCutsCallbackSCIP::scip_enfolp)
     if(check)
         *result = SCIP_FEASIBLE;
     else{
+        *result = SCIP_INFEASIBLE;
+        /*
         bool feasible;
-        *result = SCIP_DIDNOTFIND;
         SCIP_CALL(addCVRPCuts(scip, conshdlr, NULL, result, &feasible));
 
-        if(*result == SCIP_DIDNOTFIND){
-            branchingRoutine(scip, result);
-            *result = SCIP_BRANCHED;
-        }
+        if(*result == SCIP_DIDNOTFIND)
+            *result = SCIP_INFEASIBLE;*/
     }
 
     return SCIP_OKAY;
@@ -154,13 +152,13 @@ SCIP_DECL_CONSLOCK(CVRPCutsCallbackSCIP::scip_lock)
 } /*lint !e715*/
 
 //add variable to a row (and update consPool if pricing)
-void CVRPCutsCallbackSCIP::addVarToRow(SCIP *scip, Edge e, SCIP_ROW* row, double coef){
+double CVRPCutsCallbackSCIP::addVarToRow(SCIP *scip, SCIP_SOL *sol, Edge e, SCIP_ROW* row, double coef){
     if(cvrp.shouldPrice){
-        varPool->addEdgeVar(scip, row, e, coef);
-        consPool->addConsInfo(e, coef, row);
+        return varPool->addEdgeVar(scip, sol, row, e, coef);
     }
     else{
         SCIPaddVarToRow(scip, row, x[e], coef);
+        return coef * SCIPgetSolVal(scip, sol, x[e]);
     }
 }
 
@@ -171,9 +169,18 @@ CVRPCutsCallbackSCIP::~CVRPCutsCallbackSCIP(){
     delete[] Demand;
 }
 
+void CVRPCutsCallbackSCIP::addEdgesToConsPool(list<pair<Edge, double>> &edges, SCIP_ROW* row){
+    if(cvrp.shouldPrice){
+        for (list<pair<Edge, double>>::iterator it = edges.begin(); it != edges.end(); ++it){
+            consPool->addConsInfo(it->first, it->second, row);
+        }
+    }
+}
+
 //return the expression for x(delta(S))
-SCIP_RETCODE CVRPCutsCallbackSCIP::getDeltaExpr(int *S, int size, SCIP* scip, SCIP_ROW* row, double coef){
+double CVRPCutsCallbackSCIP::getDeltaExpr(int *S, int size, SCIP* scip, SCIP_SOL *sol, SCIP_ROW* row, double coef, list<pair<Edge, double>> &edges){
     bool set[cvrp.n];
+    double ans;
 
     //create a set for fast checking
     fill_n(set, cvrp.n, false);
@@ -188,14 +195,19 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::getDeltaExpr(int *S, int size, SCIP* scip, SC
                 Node u = cvrp.int2node[i];
                 Node v = cvrp.int2node[S[j]];
                 Edge e = findEdge(cvrp.g,u,v);
-                addVarToRow(scip, e, row, coef);
+                ans += addVarToRow(scip, sol, e, row, coef);
+                edges.push_back(make_pair(e, coef));
             }
         }
     }
+
+    return ans;
 }
 
 //return the expression for x(S1:S2)
-SCIP_RETCODE CVRPCutsCallbackSCIP::getCrossingExpr(int *S1, int *S2, int size1, int size2, SCIP* scip, SCIP_ROW* row, double coef){
+double CVRPCutsCallbackSCIP::getCrossingExpr(int *S1, int *S2, int size1, int size2, SCIP* scip, SCIP_SOL *sol, SCIP_ROW* row, double coef, list<pair<Edge, double>> &edges){
+    double ans;
+
     //get the expression
     for(int i = 1; i < size1; i++){
         for(int j = 1; j < size2; j++){
@@ -203,14 +215,18 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::getCrossingExpr(int *S1, int *S2, int size1, 
                 Node u = cvrp.int2node[S1[i]];
                 Node v = cvrp.int2node[S2[j]];
                 Edge e = findEdge(cvrp.g,u,v);
-                addVarToRow(scip, e, row, coef);
+                ans += addVarToRow(scip, sol, e, row, coef);
+                edges.push_back(make_pair(e, coef));
             }
         }
     }
+
+    return ans;
 }
 
 //return the expression for x(S:S)
-SCIP_RETCODE CVRPCutsCallbackSCIP::getInsideExpr(int *S, int size, SCIP* scip, SCIP_ROW* row, double coef){
+double CVRPCutsCallbackSCIP::getInsideExpr(int *S, int size, SCIP* scip, SCIP_SOL *sol, SCIP_ROW* row, double coef, list<pair<Edge, double>> &edges){
+    double ans;
 
     //cout << "Crossing: ";
     //get the expression
@@ -219,9 +235,12 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::getInsideExpr(int *S, int size, SCIP* scip, S
             Node u = cvrp.int2node[S[i]];
             Node v = cvrp.int2node[S[j]];
             Edge e = findEdge(cvrp.g,u,v);
-            addVarToRow(scip, e, row, coef);
+            ans += addVarToRow(scip, sol, e, row, coef);
+            edges.push_back(make_pair(e, coef));
         }
     }
+
+    return ans;
 }
 
 //check if vertex is a depot (N)
@@ -234,16 +253,22 @@ int CVRPCutsCallbackSCIP::checkForDepot(int i){
 
 //add capacity cuts
 SCIP_RETCODE CVRPCutsCallbackSCIP::addCapacityCuts(int i, SCIP* scip, SCIP_CONSHDLR* conshdlr, SCIP_SOL* sol, SCIP_RESULT* result, bool feasible){
-    double RHS;
+    double RHS, LHS;
     int ListSize = 0;
     int List[NoOfCustomers + 1];
+    list<pair<Edge, double>> edges;
+
+    SCIPdebugMessage("adding capacity cuts\n");
 
     //populate List with the customers defining the cut
+    //printf("CUT SET: ");
     for (int j = 1; j <= MyCutsCMP -> CPL[i] -> IntListSize; j++){
         int aux = MyCutsCMP -> CPL[i] -> IntList[j];
 
         List[++ListSize] = checkForDepot(aux);
+        //printf("%d ",  checkForDepot(aux));
     }
+    //printf("\n");
 
     //create the expression for x(S:S) <= (|S| - k(S))
 
@@ -252,39 +277,49 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addCapacityCuts(int i, SCIP* scip, SCIP_CONSH
     SCIP_ROW* row;
     SCIP_CALL(SCIPcreateEmptyRowCons(scip, &row, conshdlr, "capacityCut", -SCIPinfinity(scip), RHS, FALSE, TRUE, FALSE));
     SCIP_CALL(SCIPcacheRowExtensions(scip, row));
+    ScipVar* artifVar = new ScipContVar(scip, 0.0, SCIPinfinity(scip), 100000);
 
     //cout << "constraint: ";
+    LHS = 0;
     for(int j = 1; j <= ListSize; j++){
         for(int k = j + 1; k <= ListSize; k++){
             Edge e = findEdge(cvrp.g, cvrp.int2node[List[j]], cvrp.int2node[List[k]]);
-            addVarToRow(scip, e, row, 1.0);
+            LHS += addVarToRow(scip, sol, e, row, 1.0);
+            edges.push_back(make_pair(e, 1.0));
         }
     }
 
-    //Add the cut to the LP
-    SCIP_CALL(SCIPflushRowExtensions(scip, row));
-    if(SCIPisCutEfficacious(scip, sol, row)){
-        SCIP_Bool infeasible;
-        ScipVar* artifVar = new ScipContVar(scip, 0.0, SCIPinfinity(scip), 100000);
+    if(cvrp.shouldPrice)
         SCIPaddVarToRow(scip, row, artifVar->var, -1.0);
-        SCIP_CALL(SCIPaddCut(scip, sol, row, FALSE, &infeasible));
+
+    //printf("lhs: %f\n", LHS);
+    //printf("rhs: %f\n", RHS);
+
+    //SCIPprintSol(scip, sol, stderr, FALSE);
+    if(std::abs(RHS - LHS) >= EpsForIntegrality){
+        //Add the cut to the LP
+        SCIP_CALL(SCIPflushRowExtensions(scip, row));
+        SCIP_Bool infeasible;
+        SCIP_CALL(SCIPaddCut(scip, sol, row, TRUE, &infeasible));
+        addEdgesToConsPool(edges, row);
+        edges.clear();
 
         if(infeasible)
             *result = SCIP_CUTOFF;
     }
-
-    //if(!cvrp.shouldPrice)
-        //SCIP_CALL(SCIPreleaseRow(scip, &row));
 }
 
 //add FCI cuts
 SCIP_RETCODE CVRPCutsCallbackSCIP::addFCICuts(int i, SCIP* scip, SCIP_CONSHDLR* conshdlr, SCIP_SOL* sol, SCIP_RESULT* result, bool feasible){
-    double RHS;
+    double LHS, RHS;
     int MaxIdx = 0, MinIdx, k, w = 1;
     int nsubsets = MyCutsCMP->CPL[i]->ExtListSize;
     int sets_index[nsubsets + 1];
     int *sets[nsubsets + 1];
     int *S;
+    list<pair<Edge, double>> edges;
+
+    SCIPdebugMessage("adding fci cuts\n");
 
     //allocate memory
     S = new int[cvrp.n + 1];
@@ -316,23 +351,27 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addFCICuts(int i, SCIP* scip, SCIP_CONSHDLR* 
     SCIP_ROW* row;
     SCIP_CALL(SCIPcreateEmptyRowCons(scip, &row, conshdlr, "FCICut", RHS, SCIPinfinity(scip), FALSE, TRUE, FALSE));
     SCIP_CALL(SCIPcacheRowExtensions(scip, row));
+    ScipVar* artifVar = new ScipContVar(scip, 0.0, SCIPinfinity(scip), 100000);
 
-    getDeltaExpr(S, w, scip, row, 1.0);
+    LHS = 0;
+    LHS += getDeltaExpr(S, w, scip, sol, row, 1.0, edges);
     for(int SubsetNr = 1; SubsetNr <= nsubsets; SubsetNr++)
-        getDeltaExpr(sets[SubsetNr], sets_index[SubsetNr], scip, row, 1.0);
+        LHS += getDeltaExpr(sets[SubsetNr], sets_index[SubsetNr], scip, sol, row, 1.0, edges);
+    if(cvrp.shouldPrice)
+        SCIPaddVarToRow(scip, row, artifVar->var, 1.0);
 
     //Add the cut to the LP
-    SCIP_CALL(SCIPflushRowExtensions(scip, row));
-    if(SCIPisCutEfficacious(scip, sol, row)){
+    if(std::abs(RHS - LHS) >= EpsForIntegrality){
+        //Add the cut to the LP
+        SCIP_CALL(SCIPflushRowExtensions(scip, row));
         SCIP_Bool infeasible;
-        ScipVar* artifVar = new ScipContVar(scip, 0.0, SCIPinfinity(scip), 100000);
-        SCIPaddVarToRow(scip, row, artifVar->var, 1.0);
-        SCIP_CALL(SCIPaddCut(scip, sol, row, FALSE, &infeasible));
+        SCIP_CALL(SCIPaddCut(scip, sol, row, TRUE, &infeasible));
+        addEdgesToConsPool(edges, row);
+        edges.clear();
 
         if(infeasible)
             *result = SCIP_CUTOFF;
     }
-    SCIP_CALL(SCIPreleaseRow(scip, &row));
 
     //free memory
     delete[] S;
@@ -343,6 +382,10 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addFCICuts(int i, SCIP* scip, SCIP_CONSHDLR* 
 //add multistar cuts
 SCIP_RETCODE CVRPCutsCallbackSCIP::addMultistarCuts(int i, SCIP* scip, SCIP_CONSHDLR* conshdlr, SCIP_SOL* sol, SCIP_RESULT* result, bool feasible){
     int A, B, L, sizeN, sizeT, sizeC;
+    double LHS;
+    list<pair<Edge, double>> edges;
+
+    SCIPdebugMessage("adding multistar cuts\n");
 
     sizeN = MyCutsCMP->CPL[i]->IntListSize;
     sizeT = MyCutsCMP->CPL[i]->ExtListSize;
@@ -379,24 +422,27 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addMultistarCuts(int i, SCIP* scip, SCIP_CONS
 
     //get the expression
     SCIP_ROW* row;
-    SCIP_CALL(SCIPcreateEmptyRowCons(scip, &row, conshdlr, "multistarCut", L, SCIPinfinity(scip), FALSE, TRUE, TRUE));
+    SCIP_CALL(SCIPcreateEmptyRowCons(scip, &row, conshdlr, "multistarCut", L, SCIPinfinity(scip), FALSE, TRUE, FALSE));
     SCIP_CALL(SCIPcacheRowExtensions(scip, row));
+    ScipVar* artifVar = new ScipContVar(scip, 0.0, SCIPinfinity(scip), 100000);
 
-    getDeltaExpr(NList, sizeN + 1, scip, row, B);
-    getCrossingExpr(TList, CList, sizeT + 1, sizeC + 1, scip, row, -A);
+    LHS = 0;
+    LHS += getDeltaExpr(NList, sizeN + 1, scip, sol, row, B, edges);
+    LHS += getCrossingExpr(TList, CList, sizeT + 1, sizeC + 1, scip, sol, row, -A, edges);
+    if(cvrp.shouldPrice)
+        SCIPaddVarToRow(scip, row, artifVar->var, 1.0);
 
     //Add the cut to the LP
-    SCIP_CALL(SCIPflushRowExtensions(scip, row));
-    if(SCIPisCutEfficacious(scip, sol, row)){
+    if(std::abs(L - LHS) >= EpsForIntegrality){
+        SCIP_CALL(SCIPflushRowExtensions(scip, row));
         SCIP_Bool infeasible;
-        ScipVar* artifVar = new ScipContVar(scip, 0.0, SCIPinfinity(scip), 100000);
-        SCIPaddVarToRow(scip, row, artifVar->var, 1.0);
-        SCIP_CALL(SCIPaddCut(scip, sol, row, FALSE, &infeasible));
+        SCIP_CALL(SCIPaddCut(scip, sol, row, TRUE, &infeasible));
+        addEdgesToConsPool(edges, row);
+        edges.clear();
 
         if(infeasible)
             *result = SCIP_CUTOFF;
     }
-    SCIP_CALL(SCIPreleaseRow(scip, &row));
 
     //free memory
     delete[] NList;
@@ -406,7 +452,7 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addMultistarCuts(int i, SCIP* scip, SCIP_CONS
 
 //add strengthened comb cuts
 SCIP_RETCODE CVRPCutsCallbackSCIP::addCombCuts(int i, SCIP* scip, SCIP_CONSHDLR* conshdlr, SCIP_SOL* sol, SCIP_RESULT* result, bool feasible){
-    double RHS;
+    double LHS, RHS;
     int NoOfTeeth = MyCutsCMP->CPL[i]->Key;
     int j;
     int *teeth[NoOfTeeth + 1];
@@ -414,6 +460,9 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addCombCuts(int i, SCIP* scip, SCIP_CONSHDLR*
     int MinIdx, MaxIdx;
     int teeth_index[NoOfTeeth + 1];
     int handle_size = MyCutsCMP->CPL[i]->IntListSize;
+    list<pair<Edge, double>> edges;
+
+    SCIPdebugMessage("adding comb cuts\n");
 
     //allocate memory
     for (int t = 1; t <= NoOfTeeth; t++)
@@ -449,24 +498,28 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addCombCuts(int i, SCIP* scip, SCIP_CONSHDLR*
     SCIP_ROW* row;
     SCIP_CALL(SCIPcreateEmptyRowCons(scip, &row, conshdlr, "combCut", RHS, SCIPinfinity(scip), FALSE, TRUE, FALSE));
     SCIP_CALL(SCIPcacheRowExtensions(scip, row));
+    ScipVar* artifVar = new ScipContVar(scip, 0.0, SCIPinfinity(scip), 100000);
 
-    getDeltaExpr(handle, handle_size + 1, scip, row, 1.0);
+    LHS = 0;
+    LHS += getDeltaExpr(handle, handle_size + 1, scip, sol,row, 1.0, edges);
 
     for (int t = 1; t <= NoOfTeeth; t++)
-        getDeltaExpr(teeth[t], teeth_index[t], scip, row, 1.0);
+        LHS += getDeltaExpr(teeth[t], teeth_index[t], scip, sol, row, 1.0, edges);
+
+    if(cvrp.shouldPrice)
+        SCIPaddVarToRow(scip, row, artifVar->var, 1.0);
 
     //Add the cut to the LP
-    SCIP_CALL(SCIPflushRowExtensions(scip, row));
-    if(SCIPisCutEfficacious(scip, sol, row)){
+    if(std::abs(RHS - LHS) >= EpsForIntegrality){
+        SCIP_CALL(SCIPflushRowExtensions(scip, row));
         SCIP_Bool infeasible;
-        ScipVar* artifVar = new ScipContVar(scip, 0.0, SCIPinfinity(scip), 100000);
-        SCIPaddVarToRow(scip, row, artifVar->var, 1.0);
-        SCIP_CALL(SCIPaddCut(scip, sol, row, FALSE, &infeasible));
+        SCIP_CALL(SCIPaddCut(scip, sol, row, TRUE, &infeasible));
+        addEdgesToConsPool(edges, row);
+        edges.clear();
 
         if(infeasible)
             *result = SCIP_CUTOFF;
     }
-    SCIP_CALL(SCIPreleaseRow(scip, &row));
 
     //free memory
     delete[] handle;
@@ -476,10 +529,13 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addCombCuts(int i, SCIP* scip, SCIP_CONSHDLR*
 
 //add hypotour cuts
 SCIP_RETCODE CVRPCutsCallbackSCIP::addHypotourCuts(int i, SCIP* scip, SCIP_CONSHDLR* conshdlr, SCIP_SOL* sol, SCIP_RESULT* result, bool feasible){
-    double RHS;
+    double LHS, RHS;
     int *Tail, *Head;
     double *Coeff;
     int size = MyCutsCMP->CPL[i]->IntListSize + 1;
+    list<pair<Edge, double>> edges;
+
+    SCIPdebugMessage("adding hypotour cuts\n");
 
     //allocate memory
     Tail = new int[size];
@@ -498,29 +554,34 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addHypotourCuts(int i, SCIP* scip, SCIP_CONSH
     SCIP_ROW* row;
     SCIP_CALL(SCIPcreateEmptyRowCons(scip, &row, conshdlr, "hypotourCut", -SCIPinfinity(scip), RHS, FALSE, TRUE, FALSE));
     SCIP_CALL(SCIPcacheRowExtensions(scip, row));
+    ScipVar* artifVar = new ScipContVar(scip, 0.0, SCIPinfinity(scip), 100000);
 
     Node u, v;
     Edge e;
 
+    LHS = 0;
     for (int j = 1; j < size; j++){
         u = cvrp.int2node[Tail[j]];
         v = cvrp.int2node[Head[j]];
         e = findEdge(cvrp.g, u, v);
-        addVarToRow(scip, e, row, Coeff[j]);
+        LHS += addVarToRow(scip, sol, e, row, Coeff[j]);
+        edges.push_back(make_pair(e, Coeff[j]));
     }
 
-    //Add the cut to the LP
-    SCIP_CALL(SCIPflushRowExtensions(scip, row));
-    if(SCIPisCutEfficacious(scip, sol, row)){
-        SCIP_Bool infeasible;
-        ScipVar* artifVar = new ScipContVar(scip, 0.0, SCIPinfinity(scip), 100000);
+    if(cvrp.shouldPrice)
         SCIPaddVarToRow(scip, row, artifVar->var, -1.0);
-        SCIP_CALL(SCIPaddCut(scip, sol, row, FALSE, &infeasible));
+
+    //Add the cut to the LP
+    if(std::abs(RHS - LHS) >= EpsForIntegrality){
+        SCIP_CALL(SCIPflushRowExtensions(scip, row));
+        SCIP_Bool infeasible;
+        SCIP_CALL(SCIPaddCut(scip, sol, row, TRUE, &infeasible));
+        addEdgesToConsPool(edges, row);
+        edges.clear();
 
         if(infeasible)
             *result = SCIP_CUTOFF;
     }
-    SCIP_CALL(SCIPreleaseRow(scip, &row));
 
     //free memory
     delete[] Tail;
@@ -536,7 +597,12 @@ bool CVRPCutsCallbackSCIP::checkFeasibilityCVRP(SCIP* scip, SCIP_SOL* sol){
         EdgeValueMap edgeValue(cvrp.g);
 
         for(EdgeIt e(cvrp.g); e != INVALID; ++e){
-            double aux = SCIPgetSolVal(scip, sol, x[e]);
+            double aux = 0;
+            if(cvrp.shouldPrice)
+                aux = varPool->getEdgeValue(scip, sol, e);
+            else
+                aux = SCIPgetSolVal(scip, sol, x[e]);
+
             edgeValue[e] = aux;
             if(aux > EpsForIntegrality)
                 nedges++;
@@ -592,7 +658,6 @@ bool CVRPCutsCallbackSCIP::checkFeasibilityCVRP(SCIP* scip, SCIP_SOL* sol){
         NodePosMap demand(g);
         ListGraph::EdgeMap<int> edgeCount(g);
         bool integer = true;
-        double aux;
 
         //create an auxiliary graph
         for(int i = 0; i < cvrp.n; i++){
@@ -606,7 +671,12 @@ bool CVRPCutsCallbackSCIP::checkFeasibilityCVRP(SCIP* scip, SCIP_SOL* sol){
         }
 
         for(EdgeIt e(cvrp.g); e != INVALID; ++e){
-            aux = SCIPgetSolVal(scip, sol, x[e]);
+            double aux = 0;
+            if(cvrp.shouldPrice)
+                aux = varPool->getEdgeValue(scip, sol, e);
+            else
+                aux = SCIPgetSolVal(scip, sol, x[e]);
+
             if(std::abs(std::round(aux) - aux) > EpsForIntegrality){
                 //solution is not integer
                 integer = false;
@@ -700,10 +770,17 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addCVRPCuts(SCIP* scip, SCIP_CONSHDLR* conshd
     EdgeValueMap edgeValue(cvrp.g);
 
     for(EdgeIt e(cvrp.g); e != INVALID; ++e){
-        double aux = SCIPgetSolVal(scip, sol, x[e]);
+        double aux = 0;
+        if(cvrp.shouldPrice)
+            aux = varPool->getEdgeValue(scip, sol, e);
+        else
+            aux = SCIPgetSolVal(scip, sol, x[e]);
+
         edgeValue[e] = aux;
-        if(aux > EpsForIntegrality)
+        if(aux > EpsForIntegrality){
+            //printf("x[%d][%d] = %f\n", cvrp.g.u(e), cvrp.g.v(e), aux);
             nedges++;
+        }
     }
 
     //populate EdgeTail, EdgeHead and EdgeX
@@ -743,7 +820,8 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addCVRPCuts(SCIP* scip, SCIP_CONSHDLR* conshd
         delete[] EdgeTail;
         delete[] EdgeHead;
         delete[] EdgeX;
-        SCIPdebugMessage("integer and feasible\n");
+        SCIPdebugMessage("integer and feasible %f\n", SCIPgetPrimalbound(scip));
+        //SCIPprintSol(scip, sol, stderr, FALSE);
         return SCIP_OKAY;
     }
 
@@ -811,262 +889,4 @@ SCIP_RETCODE CVRPCutsCallbackSCIP::addCVRPCuts(SCIP* scip, SCIP_CONSHDLR* conshd
 
         return SCIP_OKAY;
     }
-}
-
-//add variable to a cons (if pricing, the consPool update will be done by the branching manager)
-void CVRPCutsCallbackSCIP::addVarToCons(SCIP *scip, Edge e, SCIP_CONS* cons, double coef){
-    if(cvrp.shouldPrice)
-        varPool->addEdgeVar(scip, cons, e, coef);
-    else
-        SCIPaddCoefLinear(scip, cons, x[e], coef);
-}
-
-//return the expression for x(delta(S))
-SCIP_RETCODE CVRPCutsCallbackSCIP::getDeltaExpr(int *S, int size, SCIP* scip, SCIP_CONS* cons, double coef, list<int> &edgesList, bool flag){
-    bool set[cvrp.n];
-
-    //create a set for fast checking
-    fill_n(set, cvrp.n, false);
-    for(int i = 1; i <= size; i++){
-        set[S[i]] = true;
-    }
-
-    //get the expression
-    for(int i = 0; i < cvrp.n; i++){
-        if(!set[i]){
-            for(int j = 1; j <= size; j++){
-                Node u = cvrp.g.nodeFromId(i);
-                Node v = cvrp.g.nodeFromId(S[j]);
-                Edge e = findEdge(cvrp.g,u,v);
-
-                if(e == INVALID)
-                    e = findEdge(cvrp.g, v, u);
-
-                addVarToCons(scip, e, cons, coef);
-                if(flag)
-                    edgesList.push_back(cvrp.g.id(e));
-            }
-        }
-    }
-}
-
-//main branching routine
-SCIP_RETCODE CVRPCutsCallbackSCIP::branchingRoutine(SCIP *scip, SCIP_RESULT* result){
-    *result = SCIP_DIDNOTRUN;
-
-    //interrupt if testing
-    if(cvrp.testing)
-        SCIPinterruptSolve(scip);
-
-    //we will use this list to add the branching decision in the cutspool (if pricing)
-    list<int> edgesList;
-
-    int nedges = 0;
-    EdgeValueMap edgeValue(cvrp.g);
-    for(EdgeIt e(cvrp.g); e != INVALID; ++e){
-        double aux = SCIPgetSolVal(scip, NULL, x[e]);
-        edgeValue[e] = aux;
-        if(aux > EpsForIntegrality)
-            nedges++;
-    }
-
-    //populate EdgeTail, EdgeHead and EdgeX
-    int *EdgeTail, *EdgeHead, i = 1;
-    double *EdgeX;
-
-    EdgeTail = new int[nedges + 1];
-    EdgeHead = new int[nedges + 1];
-    EdgeX = new double[nedges + 1];
-
-    for(EdgeIt e(cvrp.g); e != INVALID; ++e){
-        if(edgeValue[e] > EpsForIntegrality){
-            int u = cvrp.vname[cvrp.g.u(e)];
-            if(u == 0)
-                u = cvrp.n;
-
-            int v = cvrp.vname[cvrp.g.v(e)];
-            if(v == 0)
-                v = cvrp.n;
-
-            EdgeTail[i] = u;
-            EdgeHead[i] = v;
-            EdgeX[i] = edgeValue[e];
-            i++;
-
-            //printf("x[%d, %d] = %f\n", u, v, EdgeX[i - 1]);
-        }
-    }
-
-    //get branching candidates
-    int MaxNoOfSets;
-    double BoundaryTarget;
-    CnstrMgrPointer SetsCMP;
-
-    BoundaryTarget = 3.0;
-
-    MaxNoOfSets = NoOfCustomers;
-    CMGR_CreateCMgr(&SetsCMP,MaxNoOfSets);
-
-    BRNCHING_GetCandidateSets(NoOfCustomers, Demand, CAP, nedges, EdgeTail, EdgeHead, EdgeX,
-        MyOldCutsCMP, BoundaryTarget, 1, SetsCMP);
-
-    //free edges arrays
-    delete[] EdgeTail;
-    delete[] EdgeHead;
-    delete[] EdgeX;
-
-    double RHS;
-    double LB, LB1, LB2;
-    unsigned int lperror, cutoff;
-
-    int count = 0;
-    int winner = 0;
-    LB = 0;
-
-    //we need probing to compute lower bounds
-    /*
-    SCIP_CALL(SCIPstartProbing(scip));
-    for(int i = 0; i < SetsCMP->Size; i++){
-        int ListSize = SetsCMP->CPL[i]->IntListSize;
-        int List[ListSize + 1];
-        for (int j = 1; j <= ListSize; j++){
-            List[j] = checkForDepot(SetsCMP->CPL[i]->IntList[j]);
-        }
-
-        // Now List contains the numbers of the customers in
-        // the i’th candidate set for S.
-        // The boundary x^*(\delta(S)) of this S is RHS.
-        RHS = SetsCMP->CPL[i]->RHS;
-
-        //create a new node in probing mode
-        SCIP_CALL(SCIPnewProbingNode(scip));
-        SCIP_NODE* node1 = SCIPgetCurrentNode(scip);
-
-        //add one contraint
-        SCIP_CONS* cons1;
-
-        //create constraint
-        SCIP_CALL(SCIPcreateConsLinear(scip, &cons1, "branching1", 0, NULL, NULL, 2.0, 2.0,
-            TRUE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE));
-
-        getDeltaExpr(List, ListSize, scip, cons1, 1.0, edgesList, false);
-
-        //add and release contraint
-        SCIP_CALL(SCIPaddConsNode(scip, node1, cons1, NULL));
-        SCIP_CALL(SCIPreleaseCons(scip, &cons1));
-
-        //solve it!
-        SCIP_CALL(SCIPsolveProbingLP(scip, -1, &lperror, &cutoff));
-
-        //the child was fathomed, so we will branch on this set
-        if(cutoff){
-            winner = i;
-            SCIP_CALL(SCIPbacktrackProbing(scip, 0));
-            break;
-        }
-
-        //get lower bound
-        LB1 = SCIPgetLPObjval(scip);
-
-        //backtrack to parent
-        SCIP_CALL(SCIPbacktrackProbing(scip, 0));
-
-        //now repeat the process to the other node
-        SCIP_CALL(SCIPnewProbingNode(scip));
-        SCIP_NODE* node2 = SCIPgetCurrentNode(scip);
-        SCIP_CONS* cons2;
-        SCIP_CALL(SCIPcreateConsLinear(scip, &cons2, "branching2", 0, NULL, NULL, 4.0, SCIPinfinity(scip),
-            TRUE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE));
-        getDeltaExpr(List, ListSize, scip, cons2, 1.0, edgesList, false);
-        SCIP_CALL(SCIPaddConsNode(scip, node2, cons2, NULL));
-        SCIP_CALL(SCIPreleaseCons(scip, &cons2));
-        SCIP_CALL(SCIPsolveProbingLP(scip, -1, &lperror, &cutoff));
-        if(cutoff){
-            winner = i;
-            SCIP_CALL(SCIPbacktrackProbing(scip, 0));
-            break;
-        }
-        LB2 = SCIPgetLPObjval(scip);
-        SCIP_CALL(SCIPbacktrackProbing(scip, 0));
-
-        //use Lysgaard rules to compare the lowerbounds
-        if(LB < min(LB1, LB2)){
-            LB = min(LB1, LB2);
-            winner = i;
-            count = 0;
-        }
-        else{
-            count++;
-        }
-
-        //last two sets have not yielded any improvement
-        if(count == 2){
-            winner = i;
-            break;
-        }
-    }
-    SCIP_CALL(SCIPendProbing(scip));
-    */
-
-    //get back the list of nodes for the selected set
-    int ListSize = SetsCMP->CPL[winner]->IntListSize;
-    int List[ListSize + 1];
-    for (int j = 1; j <= ListSize; j++){
-        List[j] = checkForDepot(SetsCMP->CPL[winner]->IntList[j]);
-    }
-
-    SCIP_NODE* child1;
-    SCIP_NODE* child2;
-    SCIP_CONS* cons1;
-    SCIP_CONS* cons2;
-
-    //create constraints
-    SCIP_CALL(SCIPcreateConsLinear(scip, &cons1, "branching1", 0, NULL, NULL, 2.0, 2.0,
-        TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE, TRUE));
-
-    SCIP_CALL(SCIPcreateConsLinear(scip, &cons2, "branching2", 0, NULL, NULL, 4.0, SCIPinfinity(scip),
-        TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE, TRUE));
-
-    //add the child node to scip
-    SCIP_CALL(SCIPcreateChild(scip, &child1, 0.0, SCIPgetLocalTransEstimate(scip)));
-    SCIP_CALL(SCIPcreateChild(scip, &child2, 0.0, SCIPgetLocalTransEstimate(scip)));
-
-    //add constraints to childs
-    getDeltaExpr(List, ListSize, scip, cons1, 1.0, edgesList, false);
-    getDeltaExpr(List, ListSize, scip, cons2, 1.0, edgesList, true);
-
-    SCIP_CALL(SCIPaddConsNode(scip, child1, cons1, NULL));
-    SCIP_CALL(SCIPaddConsNode(scip, child2, cons2, NULL));
-
-    ScipVar* artifVar1 = new ScipContVar(scip, 0.0, SCIPinfinity(scip), 100000);
-    SCIPaddCoefLinear(scip, cons1, artifVar1->var, 1.0);
-    ScipVar* artifVar2 = new ScipContVar(scip, 0.0, SCIPinfinity(scip), 100000);
-    SCIPaddCoefLinear(scip, cons2, artifVar2->var, 1.0);
-
-    //add the managers
-    if(cvrp.shouldPrice){
-        SCIP_CONS* manager1;
-        SCIP_CONS* manager2;
-
-        SCIP_CALL(branchingManager->SCIPcreateBranchingManager(scip, cons1, &manager1, "manager1",
-            FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, edgesList));
-
-        SCIP_CALL(branchingManager->SCIPcreateBranchingManager(scip, cons2, &manager2, "manager2",
-            FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, edgesList));
-
-        SCIP_CALL(SCIPaddConsNode(scip, child1, manager1, NULL));
-        SCIP_CALL(SCIPaddConsNode(scip, child2, manager2, NULL));
-
-        SCIP_CALL(SCIPreleaseCons(scip, &manager1));
-        SCIP_CALL(SCIPreleaseCons(scip, &manager2));
-    }
-
-    //release stuff
-    SCIP_CALL(SCIPreleaseCons(scip, &cons1));
-    SCIP_CALL(SCIPreleaseCons(scip, &cons2));
-
-    CMGR_FreeMemCMgr(&SetsCMP);
-
-    *result = SCIP_BRANCHED;
-    return SCIP_OKAY;
 }

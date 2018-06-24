@@ -18,17 +18,15 @@ using namespace std;
 class CVRPPricerSCIP : public ObjPricer {
     private:
         CVRPInstance &cvrp;
-        EdgeSCIPConsMap &translateMap;
         NodeSCIPConsMap &nodeMap;
         ConsPool *consPool;
         VarPool *varPool;
-        EdgeSCIPVarMap &x;
 
         void getReducedCosts(SCIP *scip, bool isFarkas);
         SCIP_RETCODE pricing(SCIP* scip, bool isFarkas);
 
     public:
-        CVRPPricerSCIP(SCIP *scip, CVRPInstance &cvrp, EdgeSCIPConsMap &translateMap_, NodeSCIPConsMap &nodeMap_, ConsPool *consPool_, VarPool *varPool_, EdgeSCIPVarMap &x);
+        CVRPPricerSCIP(SCIP *scip, CVRPInstance &cvrp, NodeSCIPConsMap &nodeMap_, ConsPool *consPool_, VarPool *varPool_);
 
         virtual ~CVRPPricerSCIP();
 

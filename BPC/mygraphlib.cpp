@@ -759,9 +759,16 @@ int ViewListGraph2(ListGraph &g,
         else
             color = RED;
 
-        myfile << "\t" << "\"" << to_string(vname[v]).c_str() << "\n(" << to_string(int(demand[v])).c_str() << ")\"" << "[style = \"bold\", color=\""
-        << ColorName(color).c_str() << "\", pos = \"" << factor*(px[v]-minpx)/delta << "," <<
-           factor*(py[v]-minpy)/delta << "!\" ];\n";
+        myfile << "\t" << "\"" << to_string(vname[v]).c_str();
+        if(vname[v] != 0){
+            myfile << "\n(" << to_string(int(demand[v])).c_str() << ")\"";
+        }
+        else{
+            myfile << "\"";
+        }
+
+        myfile << "[style = \"bold\", color=\"" << ColorName(color).c_str() << "\", pos = \""
+               << factor*(px[v]-minpx)/delta << "," << factor*(py[v]-minpy)/delta << "!\" ];\n";
     }
 
     color = 1;
@@ -781,9 +788,19 @@ int ViewListGraph2(ListGraph &g,
                 color = 1;
         }
 
-        myfile << "\t" << "\"" << to_string(u).c_str() << "\n(" << to_string(int(demand[nodeu])).c_str() << ")\" -- \""
-               << to_string(v).c_str() << "\n(" << to_string(int(demand[nodev])).c_str() << ")\""
-               << " [style = \"bold\", label = \"\", color=\"" << ColorName(color).c_str() << "\" ];\n";
+        myfile << "\t" << "\"" << to_string(u).c_str();
+        if(u != 0)
+            myfile << "\n(" << to_string(int(demand[nodeu])).c_str() << ")\" -- \"";
+        else
+            myfile << "\" -- \"";
+
+        myfile << to_string(v).c_str();
+        if(v != 0)
+            myfile << "\n(" << to_string(int(demand[nodev])).c_str() << ")\"";
+        else
+            myfile << "\"";
+
+        myfile << " [style = \"bold\", label = \"\", color=\"" << ColorName(color).c_str() << "\" ];\n";
     }
 
     myfile << "label=\"" << text.c_str() << "\";\n";

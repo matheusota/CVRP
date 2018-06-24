@@ -56,7 +56,6 @@ string ColorName(int cor)
   case RED: return("red");
   case GREEN: return("green");
   case BLUE: return("blue");
-  case YELLOW: return("yellow");
   case MAGENTA: return("magenta");
   case CYAN: return("cyan");
   case GRAY: return("gray");

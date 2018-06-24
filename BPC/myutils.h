@@ -144,7 +144,7 @@ bool VectorIsInteger(vector<double> &v);
 //====================================================================================
 //     * Working with colors
 // colors must match the ColorName in myutils.cpp
-typedef enum Color {NOCOLOR,WHITE,BLACK,RED,GREEN,BLUE,YELLOW,MAGENTA,CYAN,GRAY,ORANGE} Color;
+typedef enum Color {NOCOLOR,WHITE,BLACK,RED,GREEN,BLUE,MAGENTA,CYAN,GRAY,ORANGE} Color;
 
 // Given a color code, return its name
 std::string ColorName(int cor);

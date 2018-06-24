@@ -10,15 +10,6 @@ void ConsPool::addConsInfo(Edge e, double coef, SCIP_CONS *cons){
     }
 }
 
-void ConsPool::addConsInfoTranslate(Edge e, double coef, SCIP_CONS *cons){
-    if(coef != 0){
-        ConsInfo *consInfo = new ConsInfo(coef, cons);
-        consInfo->row = NULL;
-        consInfo->translate = true;
-        consMap[e].push_back(consInfo);
-    }
-}
-
 void ConsPool::removeConsInfo(Edge e, SCIP_CONS *cons){
     for (list<ConsInfo*>::iterator it = consMap[e].begin(); it != consMap[e].end(); ++it){
         if((*it)->cons != NULL && (*it)->cons == cons){

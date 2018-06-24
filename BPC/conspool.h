@@ -14,16 +14,13 @@ class ConsInfo
         double coef;
         SCIP_CONS *cons;
         SCIP_ROW *row;
-        bool translate;
         ConsInfo(double coef_, SCIP_CONS *cons_){
             coef = coef_;
             cons = cons_;
-            translate = false;
         }
         ConsInfo(double coef_, SCIP_ROW *row_){
             coef = coef_;
             row = row_;
-            translate = false;
         }
 };
 
@@ -40,7 +37,6 @@ public:
     ConsPool(CVRPInstance &cvrp);
     ~ConsPool();
     void addConsInfo(Edge e, double coef, SCIP_ROW *row);
-    void addConsInfoTranslate(Edge e, double coef, SCIP_CONS *cons);
     void addConsInfo(Edge e, double coef, SCIP_CONS *cons);
     void addConsInfo(int e, double coef, SCIP_CONS *cons);
     void removeConsInfo(Edge e, SCIP_CONS *cons);

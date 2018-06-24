@@ -108,6 +108,7 @@ void DPCaller::getData(vector<QR*> &qroutes){
 }
 
 void DPCaller::solveExact(vector<QR*> &qroutes){
+    SCIPdebugMessage("solving exact\n");
     solver = new QRSolver<QROracleScip>(3, mode);
     solver->solve(oracle);
     getData(qroutes);

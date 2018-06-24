@@ -5,12 +5,74 @@
 #include "CVRPSEP/include/cnstrmgr.h"
 #include "CVRPSEP/include/capsep.h"
 
-CVRPBranchingRule::CVRPBranchingRule(SCIP *scip, const char *name, const char *desc, int priority, int maxdepth,
-    SCIP_Real maxbounddist, CVRPInstance &cvrp, ConsPool *consPool_, CVRPBranchingManager *branchingManager_, VarPool *varPool_, EdgeSCIPVarMap &x) : cvrp(cvrp),
-    ObjBranchrule(scip, name, desc, priority, maxdepth, maxbounddist), x(x){
+bool CVRPBranchingRule::isIntegerSolution(SCIP* scip, SCIP_SOL* sol){
+    //this will traverse the graph and check if edges are integers
+    //first we are going to create a graph from the solution
+    ListGraph g;
+    NodeIntMap vname(g);
+    NodePosMap demand(g);
+    ListGraph::EdgeMap<int> edgeCount(g);
+    bool integer = true;
+
+    //create an auxiliary graph
+    for(int i = 0; i < cvrp.n; i++){
+        Node v = g.addNode();
+        vname[v] = i;
+
+        if(i > 0)
+            demand[v] = cvrp.demand[cvrp.int2node[i]];
+        else
+            demand[v] = 0;
+    }
+
+    for(EdgeIt e(cvrp.g); e != INVALID; ++e){
+        double aux = 0;
+        if(cvrp.shouldPrice)
+            aux = varPool->getEdgeValue(scip, sol, e);
+        else
+            aux = SCIPgetSolVal(scip, sol, x[e]);
+
+        if(std::abs(std::round(aux) - aux) > EpsForIntegrality){
+            //solution is not integer
+            integer = false;
+            break;
+        }
+        else if(std::round(aux) == 1 || std::round(aux) == 2){
+            //assign this edge on the copy graph
+            int nameu = cvrp.vname[cvrp.g.u(e)];
+            int namev = cvrp.vname[cvrp.g.v(e)];
+            Edge e = g.addEdge(g.nodeFromId(nameu), g.nodeFromId(namev));
+            edgeCount[e] = int(std::round(aux));
+            //printf("count[%d][%d] = %d\n", nameu, namev, edgeCount[e]);
+        }
+    }
+
+    if(!integer)
+        return false;
+    else
+        return true;
+}
+
+bool CVRPBranchingRule::areArtificialVariablesSet(SCIP* scip, SCIP_SOL* sol){
+    if(cvrp.shouldPrice){
+        for(NodeIt v(cvrp.g); v != INVALID; ++v){
+            if(SCIPgetSolVal(scip, sol, nodeArtifVars[v]) > EpsForIntegrality)
+                return false;
+        }
+    }
+}
+
+CVRPBranchingRule::CVRPBranchingRule(SCIP *scip, CVRPInstance &cvrp, ConsPool *consPool_, CVRPBranchingManager *branchingManager_, VarPool *varPool_, EdgeSCIPVarMap &x, NodeSCIPVarMap &nodeArtifVars) : cvrp(cvrp),
+    ObjConshdlr(scip, "CVRPBranchingRule", "CVRP branching rule", 1000, 1000, 1000, -1, -1, -1, 0,
+        FALSE, FALSE, TRUE, SCIP_PROPTIMING_BEFORELP, SCIP_PRESOLTIMING_FAST), x(x), nodeArtifVars(nodeArtifVars){
     consPool = consPool_;
     branchingManager = branchingManager_;
     varPool = varPool_;
+}
+
+//free Data Structure created for CVRPSEP package
+CVRPBranchingRule::~CVRPBranchingRule(){
+    delete[] Demand;
 }
 
 void CVRPBranchingRule::initializeCVRPSEPConstants(CVRPInstance &cvrp, CnstrMgrPointer MyOldCutsCMP){
@@ -32,10 +94,125 @@ void CVRPBranchingRule::initializeCVRPSEPConstants(CVRPInstance &cvrp, CnstrMgrP
     }
 }
 
+
+/** creates and captures a CVRPSEP constraint */
+SCIP_RETCODE CVRPBranchingRule::SCIPcreateCVRPBranchingRule(
+    SCIP*                 scip,               /**< SCIP data structure */
+    SCIP_CONS**           cons,               /**< pointer to hold the created constraint */
+    const char*           name,               /**< name of constraint */
+    SCIP_Bool             initial,            /**< should the LP relaxation of constraint be in the initial LP? */
+    SCIP_Bool             separate,           /**< should the constraint be separated during LP processing? */
+    SCIP_Bool             enforce,            /**< should the constraint be enforced during node processing? */
+    SCIP_Bool             check,              /**< should the constraint be checked for feasibility? */
+    SCIP_Bool             propagate,          /**< should the constraint be propagated during node processing? */
+    SCIP_Bool             local,              /**< is constraint only valid locally? */
+    SCIP_Bool             modifiable,         /**< is constraint modifiable (subject to column generation)? */
+    SCIP_Bool             dynamic,            /**< is constraint dynamic? */
+    SCIP_Bool             removable           /**< should the constraint be removed from the LP due to aging or cleanup? */
+){
+    SCIP_CONSHDLR* conshdlr;
+    SCIP_CONSDATA* consdata = NULL;
+
+    /* find the subtour constraint handler */
+    conshdlr = SCIPfindConshdlr(scip, "CVRPBranchingRule");
+    if( conshdlr == NULL ){
+      SCIPerrorMessage("CVRPBranchingRule constraint handler not found\n");
+      return SCIP_PLUGINNOTFOUND;
+    }
+
+    /* create constraint */
+    SCIP_CALL( SCIPcreateCons(scip, cons, name, conshdlr, consdata, initial, separate, enforce, check, propagate,
+         local, modifiable, dynamic, removable, TRUE) );
+
+    return SCIP_OKAY;
+}
+
+/** transforms constraint data into data belonging to the transformed problem */
+SCIP_DECL_CONSTRANS(CVRPBranchingRule::scip_trans)
+{
+   SCIP_CALL(SCIPcreateCons(scip, targetcons, SCIPconsGetName(sourcecons), conshdlr, NULL,
+       SCIPconsIsInitial(sourcecons), SCIPconsIsSeparated(sourcecons), SCIPconsIsEnforced(sourcecons),
+       SCIPconsIsChecked(sourcecons), SCIPconsIsPropagated(sourcecons),  SCIPconsIsLocal(sourcecons),
+       SCIPconsIsModifiable(sourcecons), SCIPconsIsDynamic(sourcecons), SCIPconsIsRemovable(sourcecons),
+       SCIPconsIsStickingAtNode(sourcecons)));
+
+   return SCIP_OKAY;
+}
+
+// separation method of constraint handler for LP solution
+SCIP_DECL_CONSSEPALP(CVRPBranchingRule::scip_sepalp)
+{
+    SCIPdebugMessage("branching consepalp\n");
+    bool feasible;
+    *result = SCIP_DIDNOTFIND;
+    return SCIP_OKAY;
+}
+
+// separation method of constraint handler for arbitrary primal solution
+SCIP_DECL_CONSSEPASOL(CVRPBranchingRule::scip_sepasol)
+{
+    SCIPdebugMessage("branching consepasol\n");
+    bool feasible;
+    *result = SCIP_DIDNOTFIND;
+    return SCIP_OKAY;
+}
+
+
+// constraint enforcing method of constraint handler for LP solutions
+SCIP_DECL_CONSENFOLP(CVRPBranchingRule::scip_enfolp)
+{
+    SCIPdebugMessage("branching consenfolp\n");
+
+    if(areArtificialVariablesSet(scip, NULL))
+        *result = SCIP_INFEASIBLE;
+    else{
+        //SCIPprintSol(scip, NULL, stderr, FALSE);
+        if(isIntegerSolution(scip, NULL))
+            *result = SCIP_FEASIBLE;
+        else{
+            SCIP_CALL(branchingRoutine(scip, result));
+        }
+    }
+
+    return SCIP_OKAY;
+}/*lint !e715*/
+
+// constraint enforcing method of constraint handler for pseudo solutions
+SCIP_DECL_CONSENFOPS(CVRPBranchingRule::scip_enfops)
+{
+    SCIPdebugMessage("branching consenfops\n");
+    bool check = isIntegerSolution(scip, NULL);
+    if(check)
+        *result = SCIP_FEASIBLE;
+    else
+        *result = SCIP_SOLVELP;
+
+    return SCIP_OKAY;
+} /*lint !e715*/
+
+// feasibility check method of constraint handler for primal solutions
+SCIP_DECL_CONSCHECK(CVRPBranchingRule::scip_check)
+{
+    SCIPdebugMessage("branching conscheck\n");
+    bool check = isIntegerSolution(scip, sol);
+    if(check)
+        *result = SCIP_FEASIBLE;
+    else
+        *result = SCIP_INFEASIBLE;
+
+    return SCIP_OKAY;
+} /*lint !e715*/
+
+// variable rounding lock method of constraint handler
+SCIP_DECL_CONSLOCK(CVRPBranchingRule::scip_lock)
+{
+    return SCIP_OKAY;
+} /*lint !e715*/
+
 //add variable to a cons (if pricing, the consPool update will be done by the branching manager)
 void CVRPBranchingRule::addVarToCons(SCIP *scip, Edge e, SCIP_CONS* cons, double coef){
     if(cvrp.shouldPrice)
-        varPool->addEdgeVar(scip, cons, e, coef);
+        varPool->addEdgeVar(scip, NULL, cons, e, coef);
     else
         SCIPaddCoefLinear(scip, cons, x[e], coef);
 }
@@ -91,7 +268,12 @@ SCIP_RETCODE CVRPBranchingRule::branchingRoutine(SCIP *scip, SCIP_RESULT* result
     int nedges = 0;
     EdgeValueMap edgeValue(cvrp.g);
     for(EdgeIt e(cvrp.g); e != INVALID; ++e){
-        double aux = SCIPgetSolVal(scip, NULL, x[e]);
+        double aux = 0;
+        if(cvrp.shouldPrice)
+            aux = varPool->getEdgeValue(scip, NULL, e);
+        else
+            aux = SCIPgetSolVal(scip, NULL, x[e]);
+
         edgeValue[e] = aux;
         if(aux > EpsForIntegrality)
             nedges++;
@@ -129,7 +311,7 @@ SCIP_RETCODE CVRPBranchingRule::branchingRoutine(SCIP *scip, SCIP_RESULT* result
     double BoundaryTarget;
     CnstrMgrPointer SetsCMP;
 
-    BoundaryTarget = 3.0;
+    BoundaryTarget = 2.7;
 
     MaxNoOfSets = NoOfCustomers;
     CMGR_CreateCMgr(&SetsCMP,MaxNoOfSets);
@@ -149,11 +331,12 @@ SCIP_RETCODE CVRPBranchingRule::branchingRoutine(SCIP *scip, SCIP_RESULT* result
     int count = 0;
     int winner = 0;
     LB = 0;
+    int limit = max(10 - SCIPgetDepth(scip), 5);
+    limit = min(SetsCMP->Size, limit);
 
     //we need probing to compute lower bounds
-    /*
     SCIP_CALL(SCIPstartProbing(scip));
-    for(int i = 0; i < SetsCMP->Size; i++){
+    for(int i = 0; i < limit; i++){
         int ListSize = SetsCMP->CPL[i]->IntListSize;
         int List[ListSize + 1];
         for (int j = 1; j <= ListSize; j++){
@@ -233,7 +416,6 @@ SCIP_RETCODE CVRPBranchingRule::branchingRoutine(SCIP *scip, SCIP_RESULT* result
         }
     }
     SCIP_CALL(SCIPendProbing(scip));
-    */
 
     //get back the list of nodes for the selected set
     int ListSize = SetsCMP->CPL[winner]->IntListSize;
@@ -265,11 +447,6 @@ SCIP_RETCODE CVRPBranchingRule::branchingRoutine(SCIP *scip, SCIP_RESULT* result
     SCIP_CALL(SCIPaddConsNode(scip, child1, cons1, NULL));
     SCIP_CALL(SCIPaddConsNode(scip, child2, cons2, NULL));
 
-    ScipVar* artifVar1 = new ScipContVar(scip, 0.0, SCIPinfinity(scip), 100000);
-    SCIPaddCoefLinear(scip, cons1, artifVar1->var, 1.0);
-    ScipVar* artifVar2 = new ScipContVar(scip, 0.0, SCIPinfinity(scip), 100000);
-    SCIPaddCoefLinear(scip, cons2, artifVar2->var, 1.0);
-
     //add the managers
     if(cvrp.shouldPrice){
         SCIP_CONS* manager1;
@@ -296,15 +473,4 @@ SCIP_RETCODE CVRPBranchingRule::branchingRoutine(SCIP *scip, SCIP_RESULT* result
 
     *result = SCIP_BRANCHED;
     return SCIP_OKAY;
-}
-
-SCIP_DECL_BRANCHEXECPS(CVRPBranchingRule::scip_execps){
-    SCIPdebugMessage("branching execps\n");
-    *result = SCIP_DIDNOTRUN;
-    return SCIP_OKAY;
-}
-
-SCIP_DECL_BRANCHEXECLP(CVRPBranchingRule::scip_execlp){
-    SCIPdebugMessage("branching execlp\n");
-    branchingRoutine(scip, result);
 }

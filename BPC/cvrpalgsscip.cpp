@@ -1,7 +1,7 @@
 #include "cvrpalgsscip.h"
 
 //convert a graph from the solution vector x to a matrix form
-void toMatrix(EdgeSCIPVarMap &x, CVRPInstance &l, int **m, int n, SCIP *scip, SCIP_SOL* sol){
+void toMatrix(EdgeSCIPVarMap &x, VarPool *varPool, CVRPInstance &l, int **m, int n, SCIP *scip, SCIP_SOL* sol){
     //initialize matrix
     for(int i = 0; i < n; i++){
         for(int j = 0; j < n; j++)
@@ -10,10 +10,16 @@ void toMatrix(EdgeSCIPVarMap &x, CVRPInstance &l, int **m, int n, SCIP *scip, SC
 
     //put each edge on the matrix
     for(EdgeIt e(l.g); e != INVALID; ++e){
-        if(SCIPgetSolVal(scip, sol, x[e]) > 0.1){
+        double aux = 0;
+        if(l.shouldPrice)
+            aux = varPool->getEdgeValue(scip, sol, e);
+        else
+            aux = SCIPgetSolVal(scip, sol, x[e]);
+
+        if(aux > 0.1){
             int u = l.g.id(l.g.u(e));
             int v = l.g.id(l.g.v(e));
-            int value = int(SCIPgetSolVal(scip, sol, x[e]) + 0.5);
+            int value = int(aux + 0.5);
             m[u][v] = value;
             m[v][u] = value;
         }
@@ -50,9 +56,10 @@ bool SCIPexact(CVRPInstance &l, CVRPSolution  &s, int tl){
     NodeSCIPConsMap *nodeMap = new NodeSCIPConsMap(l.g);
     ConsPool *consPool = new ConsPool(l);
     EdgeSCIPConsMap *translateMap = new EdgeSCIPConsMap(l.g);
-    CVRPBranchingManager *branchingManager;
-    VarPool *varPool = new VarPool(l);
+    CVRPBranchingManager *branchingManager = NULL;
     EdgeSCIPVarMap x(l.g);
+    NodeSCIPVarMap nodeArtifVars(l.g);
+    VarPool *varPool = new VarPool(scip, l, x);
 
     //set some parameters
     //SCIP_CALL(SCIPsetIntParam(scip, "display/verblevel", 5));
@@ -68,6 +75,7 @@ bool SCIPexact(CVRPInstance &l, CVRPSolution  &s, int tl){
     SCIP_CALL(SCIPsetRealParam(scip, "numerics/feastol", 0.0001));
     SCIP_CALL(SCIPsetRealParam(scip, "numerics/lpfeastol", 0.0001));
     SCIP_CALL(SCIPsetRealParam(scip, "numerics/dualfeastol", 0.0001));
+    SCIP_CALL(SCIPsetRealParam(scip, "separating/minefficacy", 0.001));
 
     // create an empty problem
     SCIP_CALL(SCIPcreateProb(scip, "CVRP Problem", NULL, NULL, NULL, NULL, NULL, NULL, NULL));
@@ -77,7 +85,7 @@ bool SCIPexact(CVRPInstance &l, CVRPSolution  &s, int tl){
     //now we add the model constraints
 
     //initialize edge variables
-    if(l.shouldPrice){
+    if(!l.shouldPrice){
         for(EdgeIt e(l.g); e != INVALID; ++e){
             ScipVar* var;
 
@@ -93,32 +101,8 @@ bool SCIPexact(CVRPInstance &l, CVRPSolution  &s, int tl){
         }
     }
 
-    /*
-    for(EdgeIt e(l.g); e != INVALID; ++e){
-        ScipVar* var;
-        if(l.shouldPrice)
-            var = new ScipIntVar(scip, 0.0, 2.0, 0);
-        else
-            var = new ScipIntVar(scip, 0.0, 2.0, l.weight[e]);
-
-        x[e] = var->var;
-    }*/
-
     //constraints added if using Branch-Cut-and-Price
     if(l.shouldPrice){
-        //translation constraints
-        /*
-        for(EdgeIt e(l.g); e != INVALID; ++e){
-            ScipConsPrice *cons = new ScipConsPrice(scip, 0.0, 0.0);
-            cons->addVar(x[e], -1.0);
-            consPool->addConsInfoTranslate(e, 1, cons->cons);
-            ScipVar* artifVar1 = new ScipContVar(scip, 0.0, SCIPinfinity(scip), 100000);
-            cons->addVar(artifVar1->var, 1);
-            ScipVar* artifVar2 = new ScipContVar(scip, 0.0, SCIPinfinity(scip), 100000);
-            cons->addVar(artifVar2->var, -1);
-            cons->commit();
-        }*/
-
         //add constraint x(\delta(i)) == 2 (forall i \in V \ {0})
         for(NodeIt v(l.g); v != INVALID; ++v){
             if(l.vname[v] != 0){
@@ -127,6 +111,8 @@ bool SCIPexact(CVRPInstance &l, CVRPSolution  &s, int tl){
                 //we use artificial variables just to avoid calling farkas pricing
                 ScipVar* artifVar = new ScipContVar(scip, 0.0, SCIPinfinity(scip), 100000);
                 cons->addVar(artifVar->var, 1);
+                nodeArtifVars[v] = artifVar->var;
+
                 (*nodeMap)[v] = cons->cons;
                 cons->commit();
                 delete cons;
@@ -136,6 +122,8 @@ bool SCIPexact(CVRPInstance &l, CVRPSolution  &s, int tl){
         //add constraint x(\delta(0)) == 2K
         ScipConsPrice *cons_depot = new ScipConsPrice(scip, 2.0 * l.nroutes, 2.0 * l.nroutes);
         ScipVar* artifVar = new ScipContVar(scip, 0.0, SCIPinfinity(scip), 100000);
+        nodeArtifVars[l.int2node[0]] = artifVar->var;
+
         cons_depot->addVar(artifVar->var, 1);
         (*nodeMap)[l.int2node[0]] = cons_depot->cons;
         cons_depot->commit();
@@ -145,6 +133,12 @@ bool SCIPexact(CVRPInstance &l, CVRPSolution  &s, int tl){
         for(EdgeIt e(l.g); e != INVALID; ++e){
             if(l.vname[l.g.u(e)] != 0 && l.vname[l.g.v(e)] != 0){
                 ScipConsPrice *cons = new ScipConsPrice(scip, -SCIPinfinity(scip), 1);
+                consPool->addConsInfo(e, 1, cons->cons);
+                cons->commit();
+                delete cons;
+            }
+            else{
+                ScipConsPrice *cons = new ScipConsPrice(scip, -SCIPinfinity(scip), 2);
                 consPool->addConsInfo(e, 1, cons->cons);
                 cons->commit();
                 delete cons;
@@ -180,7 +174,7 @@ bool SCIPexact(CVRPInstance &l, CVRPSolution  &s, int tl){
     // once we have the constraints, we now insert the plugins
     if(l.shouldPrice){
         //insert pricer in the model
-        pricer = new CVRPPricerSCIP(scip, l, *translateMap, *nodeMap, consPool, varPool, x);
+        pricer = new CVRPPricerSCIP(scip, l, *nodeMap, consPool, varPool);
         SCIP_CALL(SCIPincludeObjPricer(scip, pricer, TRUE));
         SCIP_CALL(SCIPactivatePricer(scip, SCIPfindPricer(scip, "CVRPPricer")));
 
@@ -194,16 +188,21 @@ bool SCIPexact(CVRPInstance &l, CVRPSolution  &s, int tl){
     cuts.initializeCVRPSEPConstants(l);
     SCIP_CALL(SCIPincludeObjConshdlr(scip, &cuts, TRUE));
 
-    //create CVRPSEP constraints
     SCIP_CONS* cons;
     SCIP_CALL(cuts.SCIPcreateCVRPCuts(scip, &cons, "CVRPCuts", FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, l.shouldPrice, FALSE, TRUE));
     SCIP_CALL(SCIPaddCons(scip, cons));
     SCIP_CALL(SCIPreleaseCons(scip, &cons));
 
     //include branching rules
-    CVRPBranchingRule branching = CVRPBranchingRule(scip, "CVRPBranchingRule", "CVRPBranchingRule", 50000, -1, 1.0, l, consPool, branchingManager, varPool, x);
+    CVRPBranchingRule branching = CVRPBranchingRule(scip, l, consPool, branchingManager, varPool, x, nodeArtifVars);
     branching.initializeCVRPSEPConstants(l, cuts.MyOldCutsCMP);
-    SCIP_CALL(SCIPincludeObjBranchrule(scip, &branching, TRUE));
+    SCIP_CALL(SCIPincludeObjConshdlr(scip, &branching, TRUE));
+
+    SCIP_CONS* cons2;
+    SCIP_CALL(branching.SCIPcreateCVRPBranchingRule(scip, &cons2, "CVRPBranchRule", TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, l.shouldPrice, FALSE, TRUE));
+    SCIP_CALL(SCIPaddCons(scip, cons2));
+    SCIP_CALL(SCIPreleaseCons(scip, &cons2));
+
 
     elapsed_time = double(clock() - begin) / CLOCKS_PER_SEC;
     if(tl - (int)elapsed_time > 0){
@@ -231,7 +230,7 @@ bool SCIPexact(CVRPInstance &l, CVRPSolution  &s, int tl){
             for(int i = 0; i < l.n; i++)
                 matrix[i] = new int[l.n];
 
-            toMatrix(x, l, matrix, l.n, scip, sol);
+            toMatrix(x, varPool, l, matrix, l.n, scip, sol);
 
             //print variable values
             /*

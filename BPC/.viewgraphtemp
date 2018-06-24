@@ -67,8 +67,105 @@ fontsize = 20,
 (21)"[style = "bold", color="red", pos = "10.1031,0.618557!" ];
 	"1
 (19)"[style = "bold", color="red", pos = "19.5876,8.65979!" ];
-	"0
-(0)"[style = "bold", color="blue", pos = "16.701,15.2577!" ];
-label="Instance: A-n32-k5.vrp Capacity: 100 Cost: -1e+20";
+	"0"[style = "bold", color="blue", pos = "16.701,15.2577!" ];
+	"0" -- "6
+(12)" [style = "bold", label = "", color="black" ];
+	"6
+(12)" -- "3
+(6)" [style = "bold", label = "", color="black" ];
+	"3
+(6)" -- "2
+(21)" [style = "bold", label = "", color="black" ];
+	"2
+(21)" -- "23
+(8)" [style = "bold", label = "", color="black" ];
+	"23
+(8)" -- "4
+(19)" [style = "bold", label = "", color="black" ];
+	"4
+(19)" -- "11
+(14)" [style = "bold", label = "", color="black" ];
+	"11
+(14)" -- "28
+(15)" [style = "bold", label = "", color="black" ];
+	"28
+(15)" -- "14
+(3)" [style = "bold", label = "", color="black" ];
+	"14
+(3)" -- "0" [style = "bold", label = "", color="black" ];
+	"0" -- "12
+(21)" [style = "bold", label = "", color="red" ];
+	"12
+(21)" -- "1
+(19)" [style = "bold", label = "", color="red" ];
+	"1
+(19)" -- "16
+(18)" [style = "bold", label = "", color="red" ];
+	"16
+(18)" -- "30
+(14)" [style = "bold", label = "", color="red" ];
+	"30
+(14)" -- "0" [style = "bold", label = "", color="red" ];
+	"0" -- "20
+(8)" [style = "bold", label = "", color="green" ];
+	"20
+(8)" -- "5
+(7)" [style = "bold", label = "", color="green" ];
+	"5
+(7)" -- "25
+(24)" [style = "bold", label = "", color="green" ];
+	"25
+(24)" -- "10
+(8)" [style = "bold", label = "", color="green" ];
+	"10
+(8)" -- "15
+(22)" [style = "bold", label = "", color="green" ];
+	"15
+(22)" -- "22
+(4)" [style = "bold", label = "", color="green" ];
+	"22
+(4)" -- "9
+(16)" [style = "bold", label = "", color="green" ];
+	"9
+(16)" -- "8
+(6)" [style = "bold", label = "", color="green" ];
+	"8
+(6)" -- "18
+(1)" [style = "bold", label = "", color="green" ];
+	"18
+(1)" -- "29
+(2)" [style = "bold", label = "", color="green" ];
+	"29
+(2)" -- "0" [style = "bold", label = "", color="green" ];
+	"0" -- "21
+(12)" [style = "bold", label = "", color="blue" ];
+	"21
+(12)" -- "31
+(9)" [style = "bold", label = "", color="blue" ];
+	"31
+(9)" -- "19
+(24)" [style = "bold", label = "", color="blue" ];
+	"19
+(24)" -- "17
+(19)" [style = "bold", label = "", color="blue" ];
+	"17
+(19)" -- "13
+(16)" [style = "bold", label = "", color="blue" ];
+	"13
+(16)" -- "7
+(16)" [style = "bold", label = "", color="blue" ];
+	"7
+(16)" -- "26
+(2)" [style = "bold", label = "", color="blue" ];
+	"26
+(2)" -- "0" [style = "bold", label = "", color="blue" ];
+	"0" -- "24
+(24)" [style = "bold", label = "", color="magenta" ];
+	"24
+(24)" -- "27
+(20)" [style = "bold", label = "", color="magenta" ];
+	"27
+(20)" -- "0" [style = "bold", label = "", color="magenta" ];
+label="Instance: A-n32-k5.vrp Capacity: 100 Cost: 784";
 fontsize=30;
 }

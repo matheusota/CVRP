@@ -8,6 +8,8 @@
 #include "cvrp.h"
 #include <list>
 
+typedef ListGraph::EdgeMap<SCIP_VAR*> EdgeSCIPVarMap;
+
 class VarInfo
 {
     public:
@@ -26,14 +28,16 @@ class VarPool
 private:
     EdgeVarMap varMap;
     CVRPInstance &cvrp;
+    EdgeSCIPVarMap &x;
+    SCIP *scip;
 
 public:
-    VarPool(CVRPInstance &cvrp);
+    VarPool(SCIP *scip_, CVRPInstance &cvrp, EdgeSCIPVarMap &x);
     ~VarPool();
     void addVarInfo(Edge e, QR *qr);
     double getEdgeValue(SCIP* scip, SCIP_SOL* sol, Edge e);
-    void addEdgeVar(SCIP *scip, SCIP_ROW* row, Edge e, double coef);
-    void addEdgeVar(SCIP *scip, SCIP_CONS* cons, Edge e, double coef);
+    double addEdgeVar(SCIP *scip, SCIP_SOL* sol, SCIP_ROW* row, Edge e, double coef);
+    double addEdgeVar(SCIP *scip, SCIP_SOL* sol, SCIP_CONS* cons, Edge e, double coef);
 };
 
 

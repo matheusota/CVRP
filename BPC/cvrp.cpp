@@ -51,18 +51,15 @@ int main(int argc, char *argv[])
         cout << instanceDescriptionAsString(l) << endl;
     }
 
+    // Now we will compare using B&C with B&C&P at the root node
+    double  elapsedTime = DBL_MAX;
+    /*
     l.testing = true;
     l.shouldPrice = true;
-
-    // Now we will compare using B&C with B&C&P at the root node
-    l.testing = true;
-
-    double  elapsedTime = DBL_MAX;
     double time_bc, lb_bc;
     double time_bcp, lb_bcp;
 
     //test branch-and-cut
-    /*
     clock_t before  = clock();
     l.shouldPrice = false;
     SCIPexact(l, ts, params.timeLimit);
@@ -82,9 +79,7 @@ int main(int argc, char *argv[])
     ts.tour.clear();
 
     printf("finished BCP\n");
-    */
     //check if we should use B&C or B&C&P according to fukasawa rules
-    /*
     if(time_bcp < 10 * time_bc && lb_bcp >= 1.01 * lb_bc){
         l.shouldPrice = true;
         printf("choosed BCP\n");

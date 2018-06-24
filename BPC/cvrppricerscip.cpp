@@ -6,8 +6,8 @@
 
 //based on CVRPBBNode::fastDinProg
 
-CVRPPricerSCIP::CVRPPricerSCIP(SCIP *scip, CVRPInstance &cvrp, EdgeSCIPConsMap &translateMap_, NodeSCIPConsMap &nodeMap_, ConsPool *consPool_, VarPool *varPool_, EdgeSCIPVarMap &x) :
-    cvrp(cvrp), translateMap(translateMap_), nodeMap(nodeMap_), x(x), ObjPricer(scip, "CVRPPricer", "Finds tour with negative reduced cost", 0, TRUE){
+CVRPPricerSCIP::CVRPPricerSCIP(SCIP *scip, CVRPInstance &cvrp, NodeSCIPConsMap &nodeMap_, ConsPool *consPool_, VarPool *varPool_) :
+    cvrp(cvrp), nodeMap(nodeMap_), ObjPricer(scip, "CVRPPricer", "Finds tour with negative reduced cost", 0, TRUE){
     consPool = consPool_;
     varPool = varPool_;
 }
@@ -40,11 +40,6 @@ void CVRPPricerSCIP::getReducedCosts(SCIP *scip, bool isFarkas){
 
             list<ConsInfo*>::iterator it = consList.begin();
             while (it != consList.end()){
-                /*
-                if((*it)->translate){
-                    ++it;
-                    continue;
-                }*/
                 if((*it)->cons != NULL){
                     SCIP_CONS *transfCons;
                     SCIPgetTransformedCons(scip, (*it)->cons, &transfCons);
@@ -75,13 +70,10 @@ void CVRPPricerSCIP::getReducedCosts(SCIP *scip, bool isFarkas){
             r -= SCIPgetDualsolLinear(scip, nodeMap[cvrp.g.u(e)]);
             r -= SCIPgetDualsolLinear(scip, nodeMap[cvrp.g.v(e)]);
 
+            double x = SCIPgetDualsolLinear(scip, nodeMap[cvrp.g.u(e)]);
+            double y = SCIPgetDualsolLinear(scip, nodeMap[cvrp.g.v(e)]);
             list<ConsInfo*>::iterator it = consList.begin();
             while (it != consList.end()){
-                /*
-                if((*it)->translate){
-                    ++it;
-                    continue;
-                }*/
                 if((*it)->cons != NULL){
                     SCIP_CONS *transfCons;
                     SCIPgetTransformedCons(scip, (*it)->cons, &transfCons);
@@ -100,6 +92,7 @@ void CVRPPricerSCIP::getReducedCosts(SCIP *scip, bool isFarkas){
                     }
                 }
             }
+
             //printf("dual[%d][%d] = %lf\n", cvrp.vname[cvrp.g.u(e)], cvrp.vname[cvrp.g.v(e)], r );
             cvrp.dual[e] = r;
         }
@@ -108,7 +101,6 @@ void CVRPPricerSCIP::getReducedCosts(SCIP *scip, bool isFarkas){
 
 // perform pricing
 SCIP_RETCODE CVRPPricerSCIP::pricing(SCIP* scip, bool isFarkas) {
-    //printf("performing pricing\n");
     //get edge reduced costs
     getReducedCosts(scip, isFarkas);
 

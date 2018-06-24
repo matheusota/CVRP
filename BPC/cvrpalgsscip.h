@@ -29,6 +29,7 @@ using namespace scip;
 using namespace std;
 
 typedef ListGraph::EdgeMap<SCIP_VAR*> EdgeSCIPVarMap;
+typedef ListGraph::NodeMap<SCIP_VAR*> NodeSCIPVarMap;
 typedef ListGraph::EdgeMap<SCIP_CONS*> EdgeSCIPConsMap;
 typedef ListGraph::NodeMap<SCIP_CONS*> NodeSCIPConsMap;
 
