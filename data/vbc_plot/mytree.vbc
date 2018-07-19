@@ -1,0 +1,95 @@
+#TYPE: COMPLETE TREE
+#TIME: SET
+#BOUNDS: SET
+#INFORMATION: STANDARD
+#NODE_NUMBER: NONE
+00:00:00.00 N 0 1 3
+00:00:00.00 I 1 \inode:\t1 (0x4350110)\idepth:\t0\nvar:\t-\nbound:\t-100000000000000000000.000000
+00:00:00.71 N 1 2 3
+00:00:00.71 I 2 \inode:\t2 (0x46bc1c0)\idepth:\t1\nvar:\t-\nbound:\t665.006452
+00:00:00.71 N 1 3 3
+00:00:00.71 I 3 \inode:\t3 (0x46bc180)\idepth:\t1\nvar:\t-\nbound:\t665.006452
+00:00:00.71 I 1 \inode:\t1 (0x4350110)\idepth:\t0\nvar:\t-\nbound:\t665.006452\nnr:\t1
+00:00:00.71 P 1 2
+00:00:00.88 N 2 4 3
+00:00:00.88 I 4 \inode:\t4 (0x46bc200)\idepth:\t2\nvar:\t-\nbound:\t667.608696
+00:00:00.88 N 2 5 3
+00:00:00.88 I 5 \inode:\t5 (0x46bc240)\idepth:\t2\nvar:\t-\nbound:\t667.608696
+00:00:00.88 I 2 \inode:\t2 (0x46bc1c0)\idepth:\t1\nvar:\t-\nbound:\t667.608696\nnr:\t2
+00:00:00.88 P 2 2
+00:00:00.88 I 4 \inode:\t4 (0x46bc200)\idepth:\t2\nvar:\t-\nbound:\t673.000000\nnr:\t3
+00:00:00.88 P 4 2
+00:00:00.88 U 673.000000
+00:00:00.88 P 1 11
+00:00:01.03 N 5 6 3
+00:00:01.03 I 6 \inode:\t6 (0x46bc200)\idepth:\t3\nvar:\t-\nbound:\t669.102041
+00:00:01.03 N 5 7 3
+00:00:01.03 I 7 \inode:\t7 (0x469cbe0)\idepth:\t3\nvar:\t-\nbound:\t669.102041
+00:00:01.03 I 5 \inode:\t5 (0x46bc240)\idepth:\t2\nvar:\tt_variable [-0,1] <= 1.000000\nbound:\t669.102041\nnr:\t4
+00:00:01.03 P 5 2
+00:00:01.03 P 1 12
+00:00:01.04 N 6 8 3
+00:00:01.04 I 8 \inode:\t8 (0x469f020)\idepth:\t4\nvar:\t-\nbound:\t671.000000
+00:00:01.04 N 6 9 3
+00:00:01.04 I 9 \inode:\t9 (0x469ea60)\idepth:\t4\nvar:\t-\nbound:\t671.000000
+00:00:01.04 I 6 \inode:\t6 (0x46bc200)\idepth:\t3\nvar:\tt__var12_ [-0,0] <= 0.000000\nbound:\t671.000000\nnr:\t5
+00:00:01.04 P 6 2
+00:00:01.04 I 8 \inode:\t8 (0x469f020)\idepth:\t4\nvar:\t-\nbound:\t100000000000000000000.000000\nnr:\t6
+00:00:01.04 P 8 2
+00:00:01.04 I 8 \inode:\t8 (0x469f020)\idepth:\t4\nvar:\t-\nbound:\t100000000000000000000.000000\nnr:\t6
+00:00:01.04 P 8 4
+00:00:01.06 N 9 10 3
+00:00:01.06 I 10 \inode:\t10 (0x469f020)\idepth:\t5\nvar:\t-\nbound:\t671.500000
+00:00:01.06 N 9 11 3
+00:00:01.06 I 11 \inode:\t11 (0x469d7e0)\idepth:\t5\nvar:\t-\nbound:\t671.500000
+00:00:01.06 I 9 \inode:\t9 (0x469ea60)\idepth:\t4\nvar:\tt__var7_ [-0,0] <= 0.000000\nbound:\t671.500000\nnr:\t7
+00:00:01.06 P 9 2
+00:00:01.06 I 10 \inode:\t10 (0x469f020)\idepth:\t5\nvar:\t-\nbound:\t100000000000000000000.000000\nnr:\t8
+00:00:01.06 P 10 2
+00:00:01.06 I 10 \inode:\t10 (0x469f020)\idepth:\t5\nvar:\t-\nbound:\t100000000000000000000.000000\nnr:\t8
+00:00:01.06 P 10 4
+00:00:01.07 I 11 \inode:\t11 (0x469d7e0)\idepth:\t5\nvar:\t-\nbound:\t100000000000000000000.000000\nnr:\t9
+00:00:01.07 P 11 2
+00:00:01.07 I 11 \inode:\t11 (0x469d7e0)\idepth:\t5\nvar:\t-\nbound:\t100000000000000000000.000000\nnr:\t9
+00:00:01.07 P 11 4
+00:00:01.12 N 7 12 3
+00:00:01.12 I 12 \inode:\t12 (0x469d7e0)\idepth:\t4\nvar:\t-\nbound:\t671.666667
+00:00:01.12 N 7 13 3
+00:00:01.12 I 13 \inode:\t13 (0x469ea60)\idepth:\t4\nvar:\t-\nbound:\t671.666667
+00:00:01.12 I 7 \inode:\t7 (0x469cbe0)\idepth:\t3\nvar:\tt__var7_ [-0,0] <= 0.000000\nbound:\t671.666667\nnr:\t10
+00:00:01.12 P 7 2
+00:00:01.12 I 12 \inode:\t12 (0x469d7e0)\idepth:\t4\nvar:\t-\nbound:\t100000000000000000000.000000\nnr:\t11
+00:00:01.12 P 12 2
+00:00:01.12 I 12 \inode:\t12 (0x469d7e0)\idepth:\t4\nvar:\t-\nbound:\t100000000000000000000.000000\nnr:\t11
+00:00:01.12 P 12 4
+00:00:01.12 I 13 \inode:\t13 (0x469ea60)\idepth:\t4\nvar:\t-\nbound:\t100000000000000000000.000000\nnr:\t12
+00:00:01.12 P 13 2
+00:00:01.12 I 13 \inode:\t13 (0x469ea60)\idepth:\t4\nvar:\t-\nbound:\t100000000000000000000.000000\nnr:\t12
+00:00:01.12 P 13 4
+00:00:01.12 P 1 11
+00:00:01.13 N 3 14 3
+00:00:01.13 I 14 \inode:\t14 (0x469ea60)\idepth:\t2\nvar:\t-\nbound:\t668.000000
+00:00:01.13 N 3 15 3
+00:00:01.13 I 15 \inode:\t15 (0x469cbe0)\idepth:\t2\nvar:\t-\nbound:\t668.000000
+00:00:01.13 I 3 \inode:\t3 (0x46bc180)\idepth:\t1\nvar:\t-\nbound:\t668.000000\nnr:\t13
+00:00:01.13 P 3 2
+00:00:01.13 P 1 12
+00:00:01.13 I 14 \inode:\t14 (0x469ea60)\idepth:\t2\nvar:\tt__var0_ [-0,0] <= 0.000000\nbound:\t671.000000\nnr:\t14
+00:00:01.13 P 14 2
+00:00:01.13 U 671.000000
+00:00:01.13 P 1 11
+00:00:01.15 N 15 16 3
+00:00:01.15 I 16 \inode:\t16 (0x469ea60)\idepth:\t3\nvar:\t-\nbound:\t669.000000
+00:00:01.15 N 15 17 3
+00:00:01.15 I 17 \inode:\t17 (0x46bd500)\idepth:\t3\nvar:\t-\nbound:\t669.000000
+00:00:01.15 I 15 \inode:\t15 (0x469cbe0)\idepth:\t2\nvar:\t-\nbound:\t669.000000\nnr:\t15
+00:00:01.15 P 15 2
+00:00:01.15 P 1 12
+00:00:01.15 I 16 \inode:\t16 (0x469ea60)\idepth:\t3\nvar:\t-\nbound:\t100000000000000000000.000000\nnr:\t16
+00:00:01.15 P 16 2
+00:00:01.15 I 16 \inode:\t16 (0x469ea60)\idepth:\t3\nvar:\t-\nbound:\t100000000000000000000.000000\nnr:\t16
+00:00:01.15 P 16 4
+00:00:01.17 P 1 11
+00:00:01.17 I 17 \inode:\t17 (0x46bd500)\idepth:\t3\nvar:\t-\nbound:\t669.000000\nnr:\t17
+00:00:01.17 P 17 2
+00:00:01.17 U 669.000000

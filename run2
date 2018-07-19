@@ -1,0 +1,2 @@
+./cvrp.e -i in/tcc/A-n38-k5.vrp -o out/tcc/A-n38-k5.vrp -t 3000 -g
+
