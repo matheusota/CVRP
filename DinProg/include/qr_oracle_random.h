@@ -60,7 +60,7 @@ class QROracleRandom {
 		/*--------------------------------
 		 | return list of valid neighbors
 		 *-------------------------------*/
-		inline int getNeighbors (int v, int *label, int *demand, double *length) {
+        inline int getNeighbors (int v, int *label, int *demand, double *length, bool full) {
 			const bool verbose = false;
 			int count = 0;
 
@@ -74,6 +74,25 @@ class QROracleRandom {
 			}
 			return count;
 		}
+
+        /*-------------------------------------------------------------------------
+         | Similar to getNeighbors, but for incoming edges.
+         | - this could be just a call to "getNeighbors", but let's keep it general
+         *-------------------------------------------------------------------------*/
+        inline int getIncomingNeighbors (int v, int *label, int *demand, double *length) {
+            const bool verbose = false;
+            int count = 0;
+
+            if (verbose) {fprintf (stderr, "Getting neighbors of %d (%d)\n", v, n);}
+            for (int w=1; w<=n; w++) {
+                if (v==w || w==getDepot()) continue;
+                label[count] = w;
+                demand[count] = dem[w];
+                length[count] = len[v][w];
+                count ++;
+            }
+            return count;
+        }
 
 
 		/*-------------------------------------------------

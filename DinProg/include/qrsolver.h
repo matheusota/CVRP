@@ -1133,7 +1133,7 @@ template <class TOracle> int QRSolver<TOracle>::insolve (TOracle *_oracle, int k
 			 *-------------------------------------------------*/
 			if (!stack->isEmpty()) {
 				//get list of all neighbors of v --- considering forbidden ones
-                int ncount = oracle->getNeighbors (v, nlabel, ndemand, nlength, full_graph); //number of neighbors
+                int ncount = oracle->getNeighbors(v, nlabel, ndemand, nlength, full_graph); //number of neighbors
                 //int ncount = oracle->getNeighbors (v, nlabel, ndemand, nlength);
 
 				do {

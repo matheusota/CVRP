@@ -1,9 +1,8 @@
 #Fork of Makefile-with-Lemon-installed. By mhmulati.
-
 #================= GUROBI =====================================================
 VERSION := $(shell gurobi_cl --version | cut -c 26,28,30 | head -n 1)
 FLAGVERSION := $(shell gurobi_cl --version | cut -c 26,28 | head -n 1)
-OPTS_FLAGS := -O3 -w -fforce-addr -funroll-loops -frerun-cse-after-loop \
+OPTS_FLAGS := -O3 -no-pie -w -fforce-addr -funroll-loops -frerun-cse-after-loop \
       -finline-limit=100000 -frerun-loop-opt -fno-trapping-math \
 			-funsafe-math-optimizations -ffast-math -fno-math-errno \
 			-mtune=x86-64
@@ -42,18 +41,13 @@ else
 	PLATFORM = linux64
 	CC      = g++
 	#CC_ARGS    = -m64 -O2 -Wall -std=c++11
-	CC_ARGS    = -m64 $(OPTS_FLAGS) -w -std=c++11 -D_GLIBCXX_USE_CXX11_ABI=0 
+	CC_ARGS    = -m64 $(OPTS_FLAGS) -w -std=c++11 -D_GLIBCXX_USE_CXX11_ABI=0
 	RELEASE := $(shell uname -r | cut -f 1 -d .)
 	CC_LIB   = -lm -lpthread
-	GUROBI_DIR = /home/matheus/gurobi$(VERSION)/$(PLATFORM)
+	GUROBI_DIR = /home/matheus/Programs/gurobi$(VERSION)/$(PLATFORM)
 endif
 GUROBI_INC = -I$(GUROBI_DIR)/include/
 GUROBI_LIB = -L$(GUROBI_DIR)/lib/  -lgurobi_c++ -lgurobi$(FLAGVERSION)  $(CPPSTDLIB)
-#================= LEMON =====================================================
-
-LEMONDIR  = /home/matheus/lemon
-LEMONINCDIR  = -I$(LEMONDIR)/include
-LEMONLIBDIR  = -L$(LEMONDIR)/lib
 
 #================= CVRPSEP =====================================================
 CVRPSEPDIR  = CVRPSEP
@@ -67,16 +61,13 @@ DINPROGSOURCESDIR  = $(DINPROGDIR)/source
 DINPROGSOURCES = $(wildcard $(DINPROGSOURCESDIR)/*.cpp)
 DINPROGOBJLIB = $(DINPROGSOURCES:.cpp=.o)
 DINPROGLIBDIR  = dinprog.a
-
-#================= SCIP =====================================================
-SCIPINC  = -Isrc -DWITH_SCIPDEF -I/home/matheus/scip/scip-4.0.0/src -DNDEBUG -DROUNDING_FE  -DNPARASCIP -DWITH_ZLIB  -DWITH_GMP  -DWITH_READLINE
-SCIPLIB = -L/home/matheus/scip/scip-4.0.0/lib/static -ldl -lscip.linux.x86_64.gnu.opt -lobjscip.linux.x86_64.gnu.opt -llpicpx.linux.x86_64.gnu.opt -lnlpi.cppad.linux.x86_64.gnu.opt -ltpinone.linux.x86_64.gnu.opt -O3 -fomit-frame-pointer -mtune=native -lcplex.linux.x86_64.gnu -lm -m64  -lz -lzimpl.linux.x86_64.gnu.opt  -lgmp -lreadline -lncurses -lm -m64  -lz -lzimpl.linux.x86_64.gnu.opt  -lgmp -lreadline -lncurses
 #---------------------------------------------
+# the libraries (SCIP and Lemon) should be installed in /usr/local/lib
+# make sure /etc/ld.so.conf include /usr/local/lib
 # define includes and libraries
 
-INC = $(GUROBI_INC) $(LEMONINCDIR) $(DINPROGINCDIR) $(CVRPSEPINCDIR) $(SCIPINC)
-LIB = $(CC_LIB) $(GUROBI_LIB)  $(LEMONLIBDIR) $(SCIPLIB) -lemon 
-
+INC = $(GUROBI_INC) $(DINPROGINCDIR) $(CVRPSEPINCDIR)
+LIB = $(CC_LIB) $(GUROBI_LIB)  $(LEMONLIBDIR) -lscip -lemon
 
 # g++ -m64 -g -o exe readgraph.cpp viewgraph.cpp adjacencymatrix.cpp ex_fractional_packing.o -I/Library/gurobi600/mac64/include/ -L/Library/gurobi600/mac64/lib/ -lgurobi_c++ -lgurobi60 -stdlib=libstdc++ -lpthread -lm
 # g++ -m64 -g -c adjacencymatrix.cpp -o adjacencymatrix.o -I/Library/gurobi600/mac64/include/  -stdlib=libstdc++ 
@@ -103,7 +94,7 @@ dinprog.a: $(DINPROGOBJLIB) $(DINPROGSOURCES)
 	$(CC) $(CC_ARGS) -c $^ $(INC) -o $@  
 
 %.e: %.o  mylib.a $(DINPROGLIBDIR)
-	$(CC) $(CC_ARGS) $^ -o $@ $(DINPROGLIBDIR) $(CVRPSEPLIBDIR) $(LIB) 
+	$(CC) $(CC_ARGS) $^ -o $@ $(DINPROGLIBDIR) $(CVRPSEPLIBDIR) $(LIB)
 
 .cpp.o:
 	$(CC) -c $(CARGS) $< -o $@
