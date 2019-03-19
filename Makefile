@@ -61,13 +61,16 @@ DINPROGSOURCESDIR  = $(DINPROGDIR)/source
 DINPROGSOURCES = $(wildcard $(DINPROGSOURCESDIR)/*.cpp)
 DINPROGOBJLIB = $(DINPROGSOURCES:.cpp=.o)
 DINPROGLIBDIR  = dinprog.a
+#================= SCIP =====================================================
+SCIPINC  = -DNDEBUG -DROUNDING_FE  -DNPARASCIP -DWITH_ZLIB  -DWITH_GMP  -DWITH_READLINE
+SCIPLIB = -lscip -O3 -fomit-frame-pointer -mtune=native -lgmp -lreadline -lncurses -lm -m64  -lz -ldl
+
 #---------------------------------------------
 # the libraries (SCIP and Lemon) should be installed in /usr/local/lib
-# make sure /etc/ld.so.conf include /usr/local/lib
-# define includes and libraries
+# make sure /etc/ld.so.conf includes /usr/local/lib and run ldconfig after
 
-INC = $(GUROBI_INC) $(DINPROGINCDIR) $(CVRPSEPINCDIR)
-LIB = $(CC_LIB) $(GUROBI_LIB)  $(LEMONLIBDIR) -lscip -lemon
+INC = $(GUROBI_INC) $(DINPROGINCDIR) $(CVRPSEPINCDIR) $(SCIPINC)
+LIB = $(CC_LIB) $(GUROBI_LIB)  $(LEMONLIBDIR) $(SCIPLIB) -lemon
 
 # g++ -m64 -g -o exe readgraph.cpp viewgraph.cpp adjacencymatrix.cpp ex_fractional_packing.o -I/Library/gurobi600/mac64/include/ -L/Library/gurobi600/mac64/lib/ -lgurobi_c++ -lgurobi60 -stdlib=libstdc++ -lpthread -lm
 # g++ -m64 -g -c adjacencymatrix.cpp -o adjacencymatrix.o -I/Library/gurobi600/mac64/include/  -stdlib=libstdc++ 

@@ -34,15 +34,11 @@ int main(int argc, char *argv[])
     NodePosMap   demand(g);
     std::unordered_map<int,Node> int2node;
 
-    cout << "blabla" << endl;
-
     // Read the problem instance from input file
     if(!readCVRP(params.inputFile, g, vname, weight, posx, posy, depot, capacity, demand, nroutes, int2node)){
         cerr << "Erro na leitura do arquivo de entrada " << params.inputFile << endl;
         exit(1);
     }
-
-    cout << "blabla" << endl;
 
     // Initialize the CVRP instance with the read values
     CVRPInstance l(g, vname, weight, dual, posx, posy, depot, capacity, demand, nroutes, int2node);
